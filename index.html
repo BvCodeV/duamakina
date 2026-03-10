@@ -86,14 +86,14 @@
               <img src="/assets/icons/location.svg" alt="location icon" loading="lazy">
               <input type="text" id="pickup" list="locations" name="pickup" placeholder="e.g Tirana City Center" required>
             </div>
-            <div class="dropoff-loc location-inpt" style="display: none;">
+            <div class="dropoff-loc location-inpt" id="dropoffLoc">
               <label for="dropoff">Drop-off Location</label>
               <img src="/assets/icons/location.svg" alt="location icon" loading="lazy">
               <input type="text" id="dropoff" list="locations" name="dropoff" placeholder="e.g Tirana City Center" required>
             </div>
             <div class="dropoff-check">
-              <input type="checkbox" id="dropoff-check" name="dropoff-check" checked>
-              <label for="dropoff-check">Drop-off at same location</label>
+              <input type="checkbox" id="dropoffCheck" name="dropoff-check" checked>
+              <label for="dropoffCheck">Drop-off at same location</label>
             </div>
             <datalist id="locations">
                 <option value="Tirana City Center" />
@@ -104,7 +104,7 @@
             </datalist>
           </div>
           <div class="date-time-con">
-            <div class="date-time-pickup">
+            <div class="date-time">
               <div class="date">
                 <label for="date">Pick-up Date</label>
                 <img src="/assets/icons/calendar.svg" alt="Calendar Icon" loading="lazy">
@@ -165,7 +165,7 @@
                 </select>
               </div>
             </div>
-            <div class="date-time-dropoff">
+            <div class="date-time">
               <div class="date">
                 <label for="date">Drop-off Date</label>
                 <img src="/assets/icons/calendar.svg" alt="Calendar Icon" loading="lazy">
@@ -235,5 +235,6 @@
       </div>
     </section>
   </main>
+<script src="/scripts/index.js"></script>
 </body>
 </html>
