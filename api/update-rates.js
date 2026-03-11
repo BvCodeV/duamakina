@@ -1,21 +1,23 @@
-// ✏️ Edit this list to control exactly what gets stored
-const CURRENCIES = ["EUR", "GBP", "ALL"];
-const BASE_CURRENCY = "USD";
+const CURRENCIES = ["EUR", "GBP", "JPY", "ALL"];
+const BASE = "USD";
 
 export default async function handler(req, res) {
 
-  // 🔒 Security check
-  if (req.headers.authorization !== `Bearer ${process.env.CRON_SECRET}`) {
-    return res.status(401).json({ error: "Unauthorized" });
-  }
+  // 🔒 Auth check
+  // if (req.headers.authorization !== `Bearer ${process.env.CRON_SECRET}`) {
+  //   return res.status(401).json({ error: "Unauthorized" });
+  // }
 
-  // 1. Fetch ONLY the currencies you listed above
   const response = await fetch(
-    `https://api.frankfurter.app/latest?from=${BASE_CURRENCY}&to=${CURRENCIES.join(",")}`
+    `https://v6.exchangerate-api.com/v6/${process.env.EXCHANGE_API_KEY}/latest/${BASE}`
   );
   const data = await response.json();
 
-  // 2. Store ONLY those currencies in Supabase
+  const filtered = {};
+  for (const code of CURRENCIES) {
+    filtered[code] = data.conversion_rates[code];
+  }
+
   for (const code of CURRENCIES) {
     await fetch(`${process.env.SUPABASE_URL}/rest/v1/exchange_rates`, {
       method: "POST",
@@ -23,15 +25,15 @@ export default async function handler(req, res) {
         "Content-Type": "application/json",
         "apikey": process.env.SUPABASE_ANON_KEY,
         "Authorization": `Bearer ${process.env.SUPABASE_ANON_KEY}`,
-        "Prefer": "resolution=merge-duplicates" // updates existing row, no duplicates
+        "Prefer": "resolution=merge-duplicates"
       },
       body: JSON.stringify({
         currency_code: code,
-        rate: data.rates[code],
+        rate: filtered[code],
         fetched_at: new Date().toISOString()
       })
     });
   }
 
-  res.status(200).json({ success: true, stored: CURRENCIES, rates: data.rates });
+  res.status(200).json({ success: true, rates: filtered });
 }
