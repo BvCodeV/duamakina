@@ -42,8 +42,3 @@ export default async function handler(req, res) {
 
   res.status(200).json({ success: true, rates: filtered });
 }
-```
-
-Then in Vercel → Settings → Environment Variables, add:
-```
-SUPABASE_SERVICE_KEY = your service_role key  ← from Supabase dashboard → Settings → API
