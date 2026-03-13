@@ -18,23 +18,23 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Damion&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles/index.css">
+  <link rel="stylesheet" href="styles/mobile.css">
 </head>
 <body>
   <header role="heading">
     <div class="left-sec">
       <a href="+355681234567">
-        <img src="assets/icons/phone.svg" alt="Phone Icon">
-        +355 68 123 4567
+        <img src="assets/icons/phone.svg" alt="Phone Icon" draggable="false">
+        <span class="desktop-only">+355 68 123 4567</span>
       </a>
       <a href="mailto:info@rideshare.com">
-        <img src="assets/icons/mail.svg" alt="Mail Icon">
-        info@rideshare.com
+        <img src="assets/icons/mail.svg" alt="Mail Icon" draggable="false">
+        <span class="desktop-only">info@rideshare.com</span>
       </a>
     </div>
     <div class="right-sec">
       <div>
-        <img src="assets/icons/lang.svg" alt="Language Icon">
+        <img src="assets/icons/lang.svg" alt="Language Icon" draggable="false">
         <select name="lang" id="langSelect">
           <option value="en">🇬🇧 English</option>
           <option value="al">🇦🇱 Albanian</option>
@@ -55,24 +55,32 @@
     <div class="logo">
       <h1>RideShare</h1>
     </div>
-    <ul class="nav-links">
+    <ul class="nav-links desktop-only">
       <li><a href="#">Home</a></li>
       <li><a href="#">Fleet</a></li>
       <li><a href="#">Faqs</a></li>
     </ul>
+    <button id="menuBtn" popovertarget="menu" class="mobile-only">
+      <img src="/assets/icons/hamburger.svg" alt="hamburger.svg" loading="lazy" draggable="false">
+    </button>
+    <div popover id="menu" class="mobile-only">
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Our Fleet</a></li>
+        <li><a href="#">Faqs</a></li>
+      </ul>
+    </div>
   </nav>
 
   <main>
     <section id="hero">
       <picture>
-        <!-- Mobile -->
-        <source media="(max-width: 480px)" srcset="image-mobile.jpg" />
-        <!-- Tablet -->
-        <source media="(max-width: 768px)" srcset="image-tablet.jpg" />
+        <!-- mobile -->
+        <source media="(max-width: 768px)" srcset="https://res.cloudinary.com/dhn1mczy5/image/upload/v1773266830/hero-bg-500.avif" />
         <!-- Laptop -->
         <source media="(max-width: 1450px)" srcset="https://res.cloudinary.com/dhn1mczy5/image/upload/v1773169838/hero-bg-1280.avif" />
         <!-- Desktop -->
-        <img src="https://res.cloudinary.com/dhn1mczy5/image/upload/v1773169837/hero-bg-1990px.avif" alt="main bg" />
+        <img src="https://res.cloudinary.com/dhn1mczy5/image/upload/v1773169837/hero-bg-1990px.avif" alt="main bg" draggable="false" />
       </picture>
       <div class="left-con">
         <h1>Explore Albania <span>Your Way</span></h1>
@@ -83,12 +91,12 @@
           <div class="locations-con">
             <div class="pickup-loc location-inpt" >
               <label for="pickup">Pickup Location</label>
-              <img src="/assets/icons/location.svg" alt="location icon" loading="lazy">
+              <img src="/assets/icons/location.svg" alt="location icon" loading="lazy" draggable="false">
               <input type="text" id="pickup" list="locations" name="pickup" placeholder="e.g Tirana City Center" required>
             </div>
             <div class="dropoff-loc location-inpt" id="dropoffLoc">
               <label for="dropoff">Drop-off Location</label>
-              <img src="/assets/icons/location.svg" alt="location icon" loading="lazy">
+              <img src="/assets/icons/location.svg" alt="location icon" loading="lazy" draggable="false">
               <input type="text" id="dropoff" list="locations" name="dropoff" placeholder="e.g Tirana City Center" required>
             </div>
             <div class="dropoff-check">
@@ -107,12 +115,12 @@
             <div class="date-time">
               <div class="date">
                 <label for="date">Pick-up Date</label>
-                <img src="/assets/icons/calendar.svg" alt="Calendar Icon" loading="lazy">
+                <img src="/assets/icons/calendar.svg" alt="Calendar Icon" loading="lazy" draggable="false"> 
                 <input type="date" id="pickupDate" name="date" required>
               </div>
               <div class="time">
                 <label for="time">Pick-up Time</label>
-                <img src="/assets/icons/time.svg" alt="time" loading="lazy">
+                <img src="/assets/icons/time.svg" alt="time" loading="lazy" draggable="false">
                 <select name="time" id="pickupTime">
                   <option value="00:00">12:00 AM</option>
                   <option value="00:30">12:30 AM</option>
@@ -168,12 +176,12 @@
             <div class="date-time">
               <div class="date">
                 <label for="date">Drop-off Date</label>
-                <img src="/assets/icons/calendar.svg" alt="Calendar Icon" loading="lazy">
+                <img src="/assets/icons/calendar.svg" alt="Calendar Icon" loading="lazy" draggable="false">
                 <input type="date" id="dropoffDate" name="date" required>
               </div>
               <div class="time">
                 <label for="time">Drop-off Time</label>
-                <img src="/assets/icons/time.svg" alt="time" loading="lazy">
+                <img src="/assets/icons/time.svg" alt="time" loading="lazy" draggable="false">
                 <select name="time" id="dropoffTime">
                   <option value="00:00">12:00 AM</option>
                   <option value="00:30">12:30 AM</option>
@@ -228,38 +236,162 @@
             </div>
           </div>
           <button type="submit">
-            <img src="/assets/icons/search.svg" alt="Search Icon" loading="lazy">
+            <img src="/assets/icons/search.svg" alt="Search Icon" loading="lazy" draggable="false">
             <span>Search Available Cars</span>
           </button>
         </form>
       </div>
     </section>
     <section id="certifications">
-      <h1>Trusted by Travelers</h1>
-      <div class="certification-carousel">
+      <h1>Our Certifications</h1>
+      <div class="certification-wrapper">
+        <div class="certification-carousel">
           <div class="certification-card">
-            <img src="/assets/icons/trust.svg" alt="trusted shield icon" loading="lazy">
-            <p>Ministry of Tourism Certified</p>
+              <img src="/assets/icons/trust.svg" alt="trusted shield icon" loading="lazy" draggable="false">
+              <p>Ministry of Tourism Certified</p>
           </div>
           <div class="certification-card">
-            <img src="/assets/icons/medal.svg" alt="medal icon" loading="lazy">
+            <img src="/assets/icons/medal.svg" alt="medal icon" loading="lazy" draggable="false">
             <p>Professional Rental Association</p>
           </div>
           <div class="certification-card">
-            <img src="/assets/icons/star.svg" alt="star icon" loading="lazy">
+            <img src="/assets/icons/star.svg" alt="star icon" loading="lazy" draggable="false">
             <p>Clean Vehicle Guarantee</p>
           </div>
           <div class="certification-card">
-            <img src="/assets/icons/shield.svg" alt="shield icon" loading="lazy">
+            <img src="/assets/icons/shield.svg" alt="shield icon" loading="lazy" draggable="false">
             <p>Full Insurance Coverage</p>
           </div>
           <div class="certification-card">
-            <img src="/assets/icons/roadside.svg" alt="roadside icon" loading="lazy">
+            <img src="/assets/icons/roadside.svg" alt="roadside icon" loading="lazy" draggable="false">
             <p>24/7 Roadside Assistance</p>
           </div>
+        </div>
+        <div class="certification-carousel" aria-hidden="true">
+          <div class="certification-card">
+            <img src="/assets/icons/trust.svg" alt="trusted shield icon" loading="lazy" draggable="false">
+            <p>Ministry of Tourism Certified</p>
+          </div>
+          <div class="certification-card">
+            <img src="/assets/icons/medal.svg" alt="medal icon" loading="lazy" draggable="false">
+            <p>Professional Rental Association</p>
+          </div>
+          <div class="certification-card">
+            <img src="/assets/icons/star.svg" alt="star icon" loading="lazy" draggable="false">
+            <p>Clean Vehicle Guarantee</p>
+          </div>
+          <div class="certification-card">
+            <img src="/assets/icons/shield.svg" alt="shield icon" loading="lazy" draggable="false">
+            <p>Full Insurance Coverage</p>
+          </div>
+          <div class="certification-card">
+            <img src="/assets/icons/roadside.svg" alt="roadside icon" loading="lazy" draggable="false">
+            <p>24/7 Roadside Assistance</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="about">
+      <div class="about-card">
+        <div class="icon-con">
+          <img src="/assets/icons/banknotes.svg" alt="cash icon" loading="lazy" draggable="false">
+        </div>
+        <h1>Cash Only Payment</h1>
+        <p>No credit card needed. Pay in cash when you pick up your car.</p>
+      </div>
+      <div class="about-card">
+        <div class="icon-con">
+          <img src="/assets/icons/insurance.svg" alt="cash icon" loading="lazy" draggable="false">
+        </div>
+        <h1>Full Insurance</h1>
+        <p>All vehicles come with comprehensive insurance coverage included.</p>
+      </div>
+      <div class="about-card">
+        <div class="icon-con">
+          <img src="/assets/icons/clock.svg" alt="cash icon" loading="lazy" draggable="false">
+        </div>
+        <h1>24/7 Support</h1>
+        <p>Reach us anytime via phone or WhatsApp for roadside assistance.</p>
+      </div>
+    </section>
+    <section id="reviews">
+      <h1>What our guest say</h1>
+      <div class="review-card">
+        <p>"Excellent service! The car was spotless and the pickup at Tirana Airport was smooth. Will use DriveNow again."</p>
+        <div class="user-con">
+          <h1>IT</h2>
+          <div class="user">
+            <h2>Marco R.</h2>
+            <div class="rating">
+              <img src="/assets/icons/rating.svg" alt="ratings star icon" loading="lazy" draggable="false">
+              <img src="/assets/icons/rating.svg" alt="ratings star icon" loading="lazy" draggable="false">
+              <img src="/assets/icons/rating.svg" alt="ratings star icon" loading="lazy" draggable="false">
+              <img src="/assets/icons/rating.svg" alt="ratings star icon" loading="lazy" draggable="false">
+              <img src="/assets/icons/rating.svg" alt="ratings star icon" loading="lazy" draggable="false">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <p>"Great value for money. The Duster was perfect for exploring the Albanian Riviera. Highly recommend!"</p>
+        <div class="user-con">
+          <h1>De</h2>
+          <div class="user">
+            <h2>Sarah K.</h2>
+            <div class="rating">
+              <img src="/assets/icons/rating.svg" alt="ratings star icon" loading="lazy" draggable="false">
+              <img src="/assets/icons/rating.svg" alt="ratings star icon" loading="lazy" draggable="false">
+              <img src="/assets/icons/rating.svg" alt="ratings star icon" loading="lazy" draggable="false">
+              <img src="/assets/icons/rating.svg" alt="ratings star icon" loading="lazy" draggable="false">
+              <img src="/assets/icons/rating.svg" alt="ratings star icon" loading="lazy" draggable="false">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <p>"Very transparent pricing with no hidden fees. Cash payment made everything simple. Good experience overall."</p>
+        <div class="user-con">
+          <h1>US</h2>
+          <div class="user">
+            <h2>James L.</h2>
+            <div class="rating">
+              <img src="/assets/icons/rating.svg" alt="ratings star icon" loading="lazy" draggable="false">
+              <img src="/assets/icons/rating.svg" alt="ratings star icon" loading="lazy" draggable="false">
+              <img src="/assets/icons/rating.svg" alt="ratings star icon" loading="lazy" draggable="false">
+              <img src="/assets/icons/rating.svg" alt="ratings star icon" loading="lazy" draggable="false">
+              <img src="/assets/icons/rating.svg" alt="ratings star icon" loading="lazy" draggable="false">
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </main>
+
+  <footer>
+    <h1>RideShare</h1>
+    <ul class="quick-links">
+      <h2>Quick Links</h2>
+      <li><a href="">Home</a></li>
+      <li><a href="">Our Fleet</a></li>
+      <li><a href="">FAQ</a></li>
+    </ul>
+    <ul class="locations-footer">
+      <h2>Locations</h2>
+      <li>Tirana Airport (TIA)</li>
+      <li>Tirana City Center</li>
+      <li>Saranda</li>
+      <li>Durrës</li>
+      <li>Vlorë</li>
+    </ul>
+    <ul class="contact-footer">
+      <h2>Contact</h2>
+      <li><a href="+355681234567">+355 68 123 4567</a></li>
+      <li><a href="mailto:info@rideshare.com">info@rideshare.com</a></li>
+      <li><a href="https://wa.me/+355681234567">Contact us on Whatsapp</a></li>
+    </ul>
+    <hr>
+    <p>© 2026 RideShare. All rights reserved. Payment method: Cash only.</p>
+  </footer>
 <script src="/scripts/index.js"></script>
 </body>
 </html>
