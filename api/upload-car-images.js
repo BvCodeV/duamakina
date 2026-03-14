@@ -1,41 +1,64 @@
 import sharp from "sharp";
 import { createClient } from "@supabase/supabase-js";
 
-export const config = {
-  api: { bodyParser: false },
-};
-
 const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.SUPABASE_URL,
   process.env.SUPABASE_SERVICE_ROLE_KEY
 );
+
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
+
+function getRawBody(req) {
+  return new Promise((resolve, reject) => {
+    const chunks = [];
+    req.on("data", (chunk) => chunks.push(chunk));
+    req.on("end", () => resolve(Buffer.concat(chunks)));
+    req.on("error", reject);
+  });
+}
 
 export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).end();
 
-  const chunks = [];
-  for await (const chunk of req) chunks.push(chunk);
-  const buffer = Buffer.concat(chunks);
+  try {
+    const buffer = await getRawBody(req);
 
-  const fileName = `${Date.now()}.webp`;
+    if (!buffer || buffer.length === 0) {
+      return res.status(400).json({ error: "No image data received" });
+    }
 
-  // Compress to WebP
-  const optimized = await sharp(buffer)
-    .webp({ quality: 80 })
-    .resize({ width: 1200, withoutEnlargement: true })
-    .toBuffer();
+    const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}.webp`;
 
-  // Upload to Supabase Storage
-  const { error } = await supabase.storage
-    .from("car-images")
-    .upload(fileName, optimized, { contentType: "image/webp" });
+    // Compress to WebP
+    const optimized = await sharp(buffer)
+      .webp({ quality: 80 })
+      .resize({ width: 1200, withoutEnlargement: true })
+      .toBuffer();
 
-  if (error) return res.status(500).json({ error: error.message });
+    // Upload to Supabase Storage
+    const { error: uploadError } = await supabase.storage
+      .from("car-images")
+      .upload(fileName, optimized, {
+        contentType: "image/webp",
+        upsert: false,
+      });
 
-  // Get public URL
-  const { data } = supabase.storage
-    .from("car-images")
-    .getPublicUrl(fileName);
+    if (uploadError) {
+      return res.status(500).json({ error: uploadError.message });
+    }
 
-  return res.status(200).json({ url: data.publicUrl });
+    // Get public URL
+    const { data } = supabase.storage
+      .from("car-images")
+      .getPublicUrl(fileName);
+
+    return res.status(200).json({ url: data.publicUrl });
+  } catch (err) {
+    console.error("Upload error:", err);
+    return res.status(500).json({ error: err.message });
+  }
 }
