@@ -1,0 +1,137 @@
+main {
+  display: grid;
+  grid-template-columns: 1fr, 2fr;
+  padding: 10px 20px;
+}
+
+aside {
+  background-color: var(--color-bg-surface);
+  width: fit-content;
+  height: fit-content;
+  border-radius: 30px;
+  padding: 1em 2em;
+  padding-bottom: 2em;
+  position: sticky;
+  top: 10em;
+  margin-top: 10em;
+
+  .filterLocationInfo {
+    position: relative;
+    background-color: var(--color-bg-subtle);
+    border-radius: 30px;
+    padding: 1em 1.5em;
+    padding-bottom: 2.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    gap: 1em;
+
+    .info-groups {
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      gap: 1em;
+
+      .loc-info {
+        display: flex;
+        flex-direction: column;
+        gap: .5em;
+
+        h1 {
+          font-size: 1em;
+          font-weight: 900;
+        }
+
+        div {
+          display: flex;
+          gap: .5em;
+          font-weight: 400;
+
+          span { font-weight: 300;}
+        }
+      }
+    }
+
+    button {
+      position: absolute;
+      bottom: 10px;
+      right: 25px;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      font-size: 12px;
+      text-decoration: underline;
+    }
+  }
+
+  .filterBarFilters {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    gap: 1em;
+    margin-top: 1em;
+
+    h1 { font-size: 1.5em;}
+    hr { border: 1px solid var(--color-border); width: 100%;}
+
+    .suggested-filters {
+      list-style-type: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5em;
+
+      li {
+        display: flex;
+        gap: 0.5em;
+        font-weight: 400;
+
+        input { accent-color: var(--color-primary);}
+      }
+    }
+
+    .price-filter {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 1em;
+
+      .price-group-filter {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        justify-content: start; 
+        gap: 0.5em;
+        position: relative;
+
+        label { font-size: 14px;}
+
+        input {
+          padding: 0.3em 1em;
+          padding-left: 2em;
+          border-radius: 10px;
+          outline: none;
+          border: 1px solid var(--color-border);
+        }
+
+        span {
+          position: absolute;
+          top: 55%;
+          left: 5px;
+        }
+      }
+    }
+  }
+
+  button {
+    border: none;
+    background-color: transparent;
+    text-decoration: underline;
+    position: absolute;
+    bottom: 0.5em;
+    right: 3em;
+    font-size: 12px;
+    cursor: pointer;
+  }
+}

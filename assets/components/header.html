@@ -1,0 +1,119 @@
+<html>
+<head></head>
+<body>
+  <style>
+    header {
+      background-color: var(--color-bg-main);
+      position: relative;
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      z-index: 1000;
+      height: 40px;
+
+      .left-sec {
+        display: flex;
+        align-items: center;
+        gap: 1.5em;
+
+        a {
+          text-decoration: none;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: .5em;
+          color: var(--color-txt-primary);
+          transition: transform 0.2s ease;
+
+          &:hover {
+            transform: scale(0.95);
+          }
+        }
+      }
+      .right-sec {
+        display: flex;
+        align-items: center;
+        gap: 0.5em;
+
+        div {
+          position: relative;
+
+          select {
+            padding: 0.3rem 0.2rem .3rem 1.5rem;
+            border: none;
+            border-radius: 15px;
+            background-color: var(--color-bg-main);
+            color: var(--color-txt-primary);
+            font-size: 14px;
+            cursor: pointer;
+            transition: border-color 0.2s ease;
+
+            &:focus {
+              outline: none;
+            }
+          }
+
+          img {
+            position: absolute;
+            top: 50%;
+            left: 0.5rem;
+            transform: translateY(-50%);
+            width: 1rem;
+            height: 1rem;
+          }
+        }
+
+        #currencySelect {
+          padding: 0.3rem 0.5rem;
+          border: none;
+          border-radius: 15px;
+          background-color: var(--color-bg-main);
+          font-size: 14px;
+          cursor: pointer;
+          transition: border-color 0.2s ease;
+
+          &:focus {
+            outline: none;
+          }
+        }
+      }
+    }
+    @media screen and (min-width: 1024px) {
+      .mobile-only {display: none;}
+      .desktop-only {display: block;}
+    }
+  </style>
+  <header>
+    <div class="left-sec">
+      <a href="+355681234567">
+        <img src="/assets/icons/phone.svg" alt="Phone Icon" draggable="false">
+        <span class="desktop-only">+355 68 123 4567</span>
+      </a>
+      <a href="mailto:info@rideshare.com">
+        <img src="/assets/icons/mail.svg" alt="Mail Icon" draggable="false">
+        <span class="desktop-only">info@rideshare.com</span>
+      </a>
+    </div>
+    <div class="right-sec">
+      <div>
+        <img src="/assets/icons/lang.svg" alt="Language Icon" draggable="false">
+        <select name="lang" id="langSelect">
+          <option value="en">🇬🇧 English</option>
+          <option value="al">🇦🇱 Albanian</option>
+          <option value="fr">🇫🇷 French</option>
+          <option value="it">🇮🇹 Italian</option>
+          <option value="de">🇩🇪 German</option>
+        </select>
+      </div>
+      <select name="currency" id="currencySelect">
+        <option value="EUR">€ EUR</option>
+        <option value="USD">$ USD</option>
+        <option value="ALL">L ALL</option>
+        <option value="GBP">£ GBP</option>
+      </select>
+    </div>
+  </header>
+</body>
+</html>
