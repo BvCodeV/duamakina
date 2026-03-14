@@ -27,8 +27,11 @@ export default async function handler(req, res) {
   try {
     const buffer = await getRawBody(req);
 
+    console.log("Buffer length:", buffer.length);
+    console.log("Content-Type:", req.headers["content-type"]);
+
     if (!buffer || buffer.length === 0) {
-      return res.status(400).json({ error: "No image data received" });
+      return res.status(400).json({ error: "Buffer is empty" });
     }
 
     const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}.webp`;
