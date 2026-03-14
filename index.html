@@ -18,60 +18,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Damion&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles/mobile.css">
+  <link rel="stylesheet" href="styles/home.css">
+  <link rel="stylesheet" href="styles/global.css">
+  <link href="https://cdn.jsdelivr.net/npm/vanilla-calendar-pro/styles/index.css" rel="stylesheet">
+  <script src="/scripts/components.js"></script>
 </head>
 <body>
-  <header role="heading">
-    <div class="left-sec">
-      <a href="+355681234567">
-        <img src="assets/icons/phone.svg" alt="Phone Icon" draggable="false">
-        <span class="desktop-only">+355 68 123 4567</span>
-      </a>
-      <a href="mailto:info@rideshare.com">
-        <img src="assets/icons/mail.svg" alt="Mail Icon" draggable="false">
-        <span class="desktop-only">info@rideshare.com</span>
-      </a>
-    </div>
-    <div class="right-sec">
-      <div>
-        <img src="assets/icons/lang.svg" alt="Language Icon" draggable="false">
-        <select name="lang" id="langSelect">
-          <option value="en">🇬🇧 English</option>
-          <option value="al">🇦🇱 Albanian</option>
-          <option value="fr">🇫🇷 French</option>
-          <option value="it">🇮🇹 Italian</option>
-          <option value="de">🇩🇪 German</option>
-        </select>
-      </div>
-      <select name="currency" id="currencySelect">
-        <option value="USD">$ USD</option>
-        <option value="EUR">€ EUR</option>
-        <option value="ALL">L ALL</option>
-        <option value="GBP">£ GBP</option>
-      </select>
-    </div>
-  </header>
-  <nav role="navigation">
-    <div class="logo">
-      <h1>RideShare</h1>
-    </div>
-    <ul class="nav-links desktop-only">
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Fleet</a></li>
-      <li><a href="#">Faqs</a></li>
-    </ul>
-    <button id="menuBtn" popovertarget="menu" class="mobile-only">
-      <img src="/assets/icons/hamburger.svg" alt="hamburger.svg" loading="lazy" draggable="false">
-    </button>
-    <div popover id="menu" class="mobile-only">
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Our Fleet</a></li>
-        <li><a href="#">Faqs</a></li>
-      </ul>
-    </div>
-  </nav>
-
+  <header role="banner" id="header" style="width: 100%; z-index: 1000; position: relative;" fetchpriority=high></header>
+  <nav role="navigation" id="navbar" style="width: 100%; z-index: 1000; position: sticky; top: 0px;" fetchpriority=high></nav>
   <main>
     <section id="hero">
       <picture>
@@ -116,7 +70,7 @@
               <div class="date">
                 <label for="date">Pick-up Date</label>
                 <img src="/assets/icons/calendar.svg" alt="Calendar Icon" loading="lazy" draggable="false"> 
-                <input type="date" id="pickupDate" name="date" required>
+                <input id="pickupDate" type="text" placeholder="Pickup date" readonly>
               </div>
               <div class="time">
                 <label for="time">Pick-up Time</label>
@@ -177,7 +131,7 @@
               <div class="date">
                 <label for="date">Drop-off Date</label>
                 <img src="/assets/icons/calendar.svg" alt="Calendar Icon" loading="lazy" draggable="false">
-                <input type="date" id="dropoffDate" name="date" required>
+                <input id="dropoffDate" type="text" placeholder="Dropoff date" readonly>
               </div>
               <div class="time">
                 <label for="time">Drop-off Time</label>
@@ -235,7 +189,7 @@
               </div>
             </div>
           </div>
-          <button type="button" onclick="filterFunction()">
+          <button type="button" onclick="filterFunction();">
             <img src="/assets/icons/search.svg" alt="Search Icon" loading="lazy" draggable="false">
             <span>Search Available Cars</span>
           </button>
@@ -396,8 +350,9 @@
     <hr>
     <p>© 2026 RideShare. All rights reserved. Payment method: Cash only.</p>
   </footer>
-<script src="/scripts/index.js"></script>
-<script src="/scripts/filterbar.js"></script>
-<script src="/scripts/gtag.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanilla-calendar-pro/index.js"></script>
+  <script src="/scripts/index.js"></script>
+  <script src="/scripts/filterbar.js"></script>
+  <script src="/scripts/gtag.js"></script>
 </body>
 </html>

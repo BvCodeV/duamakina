@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find the best cars avaible for rent right now | RideShare | Our Fleet</title>
+  <meta name="application-name" content="RideShare">
+  <meta 
+  name="description" 
+  content="RideShare is a platform for connecting riders with drivers for convenient and affordable transportation.
+  ">
+  <meta 
+  name="keywords" 
+  content="ride share, carpooling, transportation, ridesharing, driver, rider, travel, commute, city, urban, sustainable, eco-friendly, cost-effective, convenient, Our fleet
+  ">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <link rel="canonical" href="https://rideshare.vercel.app/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Damion&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/global.css">
+  <link rel="stylesheet" href="/styles/service.css">
+  <script src="/scripts/components.js"></script>
+  <script src="/scripts/filterbar.js" defer></script>
+</head>
+<body>
+  <header role="banner" id="header" style="width: 100%; z-index: 1000; position: relative;" fetchpriority=high></header>
+  <nav role="navigation" id="navbar" style="width: 100%; z-index: 1000; position: sticky; top: 0px;" fetchpriority=high></nav>
+
+  <main>
+    <aside>
+      <div id="filterBarRes">
+        <div class="filterLocationInfo">
+          <div class="pickup-group info-groups">
+            <img src="/assets/icons/location.svg" alt="location icon" loading="lazy" draggable="false">
+            <div class="pickup-info loc-info">
+              <h1>Pick Up:</h1>
+              <div>
+                <p id="pickupTxt">-</p>
+                <span>at</span>
+                <p id="pickupDateTxt">-</p>
+                <span>,</span>
+                <p id="pickupTimeTxt">-</p>
+              </div>
+            </div>
+          </div>
+          <div class="dropoff-group info-groups">
+            <img src="/assets/icons/location.svg" alt="location icon" loading="lazy" draggable="false">
+            <div class="dropoff-info loc-info">
+              <h1>Drop Off:</h1>
+              <div>
+                <p id="dropoffTxt">-</p>
+                <span>at</span>
+                <p id="dropoffDateTxt">-</p>
+                <span>,</span>
+                <p id="dropoffTimeTxt">-</p>
+              </div>
+            </div>
+          </div>
+          <button id="locationChangeBtn">Change Now</button>
+        </div>
+      </div>
+      <div class="filterBarFilters">
+        <h1>Popular Filters</h1>
+        <ul class="suggested-filters">
+          <li><input type="checkbox" name="automatic" id="automaticFilterBox">Automatic Transmission </li>
+          <li><input type="checkbox" name="milage" id="milageFilterBox">Unlimited Mileage</li>
+          <li><input type="checkbox" name="ac" id="acFilterBox">Air Conditioning</li>
+          <li><input type="checkbox" name="doors" id="doorsFilterBox">4+ Doors</li>
+          <li><input type="checkbox" name="suv" id="suvFilterBox">SUV/High-Ground Clearance</li>
+        </ul>
+        <hr>
+        <div class="price-filter">
+          <div class="min-price price-group-filter">
+            <label for="minPrice">Min Price</label>
+            <input type="number" value="0" inputmode="numeric" pattern="[0-9]*" id="minPrice">
+            <span class="currency-sign price-sign">€</span>
+          </div>
+          <hr>
+          <div class="max-price price-group-filter">
+            <label for="maxPrice">Max Price</label>
+            <input type="number" value="100" inputmode="numeric" pattern="[0-9]*" id="maxPrice">
+            <span class="currency-sign price-sign">€</span>
+          </div>
+        </div>
+        <button id="advancedFiltersBtn">Advanced Filters</button>
+      </div>
+    </aside>
+    <div></div>
+  </main>
+</body>
+</html>
