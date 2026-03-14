@@ -61,11 +61,16 @@ header {
   .left-sec {
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: 1.5em;
 
     a {
       text-decoration: none;
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5em;
+      color: var(--color-txt-primary);
       transition: transform 0.2s ease;
 
       &:hover {
@@ -132,7 +137,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.4rem 0.4rem;
+  padding: 0.4rem 2rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   z-index: 1000;
 
@@ -429,13 +434,15 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem;
+  gap: 1em;
   position: relative;
 
   .certification-wrapper {
-    width: 60rem;
-    overflow-x: hidden;
+    width: 60em;
+    overflow: hidden;
     display: flex;
+    align-items: start;
+    justify-content: start;
 
     &::-webkit-scrollbar {
       display: none;
@@ -443,14 +450,14 @@ main {
 
     .certification-carousel {
       display: flex;
-      gap: 1em;
+      flex-shrink: 0;
+      gap: 1em ;
       animation: scroll 20s linear infinite;
       padding-right: 1em;
-      justify-content: start;
-      align-items: start;
 
       .certification-card {
-        flex: 0 0 18em;
+        padding: 0.5em 4em;
+        flex: 0 0 auto;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -458,7 +465,6 @@ main {
         gap: 1em;
         border: 1px solid var(--color-border);
         border-radius: 25px;
-        padding: 0.5em 2em;
 
         img {
           width: 30px;
@@ -490,19 +496,19 @@ main {
     justify-content: center;
     gap: 0.5em;
 
-    h1 { font: 2em;}
-    p { font-size: 13px; text-align: center;}
+    h1 { font-size: 1.3em;}
+    p { font-size: 11px; text-align: center;}
     div {
       background-color: var(--color-primary);
-      width: 50px;
-      height: 50px;
+      width: 40px;
+      height: 40px;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 20px;
+      border-radius: 15px;
 
       img {
-        width: 30px;
+        width: 20px;
       }
     }
   }
@@ -510,21 +516,38 @@ main {
 
 #reviews {
   margin: 10px;
-  margin-top: 5em;
+  height: 330px;
+  margin-top: 3em;
+  text-align: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1em;
+  gap: 3em;
+  position: relative;
+
+  .review-con {
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
 
   .review-card {
+    flex: 0 0 22em;
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: start;
     height: 200px;
-    width: 400px;
+    width: 22em;
     padding: 1em 2em;
     border-radius: 40px;
 
@@ -621,6 +644,96 @@ footer {
 }
 
 @keyframes scroll {
-  0%   { translate: 0; }
-  to { translate: -100%; }
+  0%   { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+
+@media screen and (min-width: 1024px) {
+  .mobile-only {display: none;}
+  .desktop-only {display: block;}
+
+  #hero {
+    height: 22em;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+
+    picture img { height: 22em;}
+
+    .left-con {
+      h1 { font-size: 3.5em;}
+
+      p { font-size: 1em;}
+    }
+
+    .right-con {
+      width: 38.5em;
+      left: 0;
+      transform: translateX(0);
+
+      #filterBar {
+        .date-time-con {
+          display: flex;
+          flex-direction: row;
+          .date-time { gap: 0.5em;}
+        }
+      }
+    }
+  }
+
+  #about {
+    flex-direction: row;
+    gap: 10em;
+  }
+
+ nav {
+    .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+
+    li a {
+      text-decoration: none;
+      color: var(--color-txt-primary);
+      font-size: 18px;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: var(--color-primary);
+      }
+    }
+  }
+ }
+
+  footer {
+    flex-direction: column;
+
+    div {
+      display: flex;
+      justify-content: space-between;
+      padding-left: 3em;
+
+      ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1500px) {
+  
+  #hero {
+    height: 31em;
+    picture img { height: 31em;}
+  }
+
+  #about { 
+    .about-card {
+      h1 { font-size: 2em;}
+      p { font-size: 1em;}
+    }
+  }
 }
