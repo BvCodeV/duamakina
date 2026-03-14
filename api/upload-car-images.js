@@ -8,31 +8,30 @@ const supabase = createClient(
 
 export const config = {
   api: {
-    bodyParser: false,
+    bodyParser: {
+      sizeLimit: "20mb",
+    },
   },
 };
 
-function getRawBody(req) {
-  return new Promise((resolve, reject) => {
-    const chunks = [];
-    req.on("data", (chunk) => chunks.push(chunk));
-    req.on("end", () => resolve(Buffer.concat(chunks)));
-    req.on("error", reject);
-  });
-}
-
 export default async function handler(req, res) {
+  // Handle CORS
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
+  if (req.method === "OPTIONS") return res.status(200).end();
   if (req.method !== "POST") return res.status(405).end();
 
   try {
-    const buffer = await getRawBody(req);
+    const { base64, mimeType } = req.body;
 
-    console.log("Buffer length:", buffer.length);
-    console.log("Content-Type:", req.headers["content-type"]);
-
-    if (!buffer || buffer.length === 0) {
-      return res.status(400).json({ error: "Buffer is empty" });
+    if (!base64) {
+      return res.status(400).json({ error: "No image data received" });
     }
+
+    // Convert base64 to buffer
+    const buffer = Buffer.from(base64, "base64");
 
     const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}.webp`;
 
