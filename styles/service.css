@@ -1,7 +1,16 @@
 main {
-  display: grid;
-  grid-template-columns: 1fr, 2fr;
-  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  gap: 5em;
+  margin: 0 2em;
+
+  .cars-available {
+    position: absolute;
+    top: 2em;
+    left: 2em;
+  }
 }
 
 aside {
@@ -13,7 +22,6 @@ aside {
   padding-bottom: 2em;
   position: sticky;
   top: 10em;
-  margin-top: 10em;
 
   .filterLocationInfo {
     position: relative;
@@ -133,5 +141,106 @@ aside {
     right: 3em;
     font-size: 12px;
     cursor: pointer;
+  }
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+
+  .type-filter {
+    align-self: flex-start;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2em;
+    margin-top: 4em;
+
+    div {
+      position: relative;
+      color: var(--color-txt-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      border: 0.5px solid var(--color-border);
+      padding: 0.7em 1.5em;
+      border-radius: 10em;
+      background-color: var(--color-bg-subtle);
+      cursor: pointer;
+
+      .icon-car {
+        width: 24px;
+        height: 24px;
+        background-color: var(--color-txt-primary,);
+      }
+      }
+
+    .selected-type {
+      background-color: transparent;
+      color: var(--color-txt-inverse);
+      border: 1px solid var(--color-border-strong);
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: var(--color-primary);
+        opacity: 0.7;
+        border-radius: 10em;
+        z-index: -1;
+      }
+
+      .icon-car {
+        background-color: var(--color-txt-inverse);
+      }
+    }
+  }
+
+  .second-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8em;
+  }
+
+  #filterPillsCon {
+    display: flex;
+    align-items: center;
+    gap: 2em;
+
+    div {
+      display: flex;
+      gap: 1em;
+      border-radius: 10em;
+      padding: 0.3em 1em;
+      position: relative;
+      color: var(--color-txt-primary);
+      background-color: var(--color-bg-subtle);
+
+      button {
+        border: none;
+        background-color: transparent;
+        color: var(--color-error);
+        cursor: pointer;
+        font-size: 12px;
+        cursor: pointer;
+      }
+    }
+  }
+
+  #carSort {
+    padding: 0.3em 1em;
+    background-color: transparent;
+    border-radius: 10em;
+
+    &:focus {
+      outline: none;
+    }
   }
 }

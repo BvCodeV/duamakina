@@ -28,6 +28,7 @@
   <nav role="navigation" id="navbar" style="width: 100%; z-index: 1000; position: sticky; top: 0px;" fetchpriority=high></nav>
 
   <main>
+    <h1 class="cars-available"><span id="carNum">XX</span> Cars Available</h1>
     <aside>
       <div id="filterBarRes">
         <div class="filterLocationInfo">
@@ -63,11 +64,11 @@
       <div class="filterBarFilters">
         <h1>Popular Filters</h1>
         <ul class="suggested-filters">
-          <li><input type="checkbox" name="automatic" id="automaticFilterBox">Automatic Transmission </li>
-          <li><input type="checkbox" name="milage" id="milageFilterBox">Unlimited Mileage</li>
-          <li><input type="checkbox" name="ac" id="acFilterBox">Air Conditioning</li>
-          <li><input type="checkbox" name="doors" id="doorsFilterBox">4+ Doors</li>
-          <li><input type="checkbox" name="suv" id="suvFilterBox">SUV/High-Ground Clearance</li>
+          <li><input type="checkbox" name="automatic" value="Automatic" id="automaticFilterBox">Automatic Transmission </li>
+          <li><input type="checkbox" name="milage" value="Unlimited Milage" id="milageFilterBox">Unlimited Mileage</li>
+          <li><input type="checkbox" name="ac" value="Air Conditioning" id="acFilterBox">Air Conditioning</li>
+          <li><input type="checkbox" name="doors" value="4+ Doors" id="doorsFilterBox">4+ Doors</li>
+          <li><input type="checkbox" name="suv" value="Suv" id="suvFilterBox">SUV/High-Ground Clearance</li>
         </ul>
         <hr>
         <div class="price-filter">
@@ -86,7 +87,74 @@
         <button id="advancedFiltersBtn">Advanced Filters</button>
       </div>
     </aside>
-    <div></div>
+    <section>
+      <div class="type-filter">
+        <div class="type-pill selected-type" id="allPill">
+          <span class="icon-car sedan" style="
+            mask: url('/assets/icons/car-types/sedan.svg') no-repeat center / contain;
+            -webkit-mask: url('/assets/icons/car-types/sedan.svg') no-repeat center / contain;
+          "></span>
+          <p>All</p>
+        </div>
+        <div class="type-pill" id="sedanPill">
+          <span class="icon-car sedan" style="
+            mask: url('/assets/icons/car-types/sedan.svg') no-repeat center / contain;
+            -webkit-mask: url('/assets/icons/car-types/sedan.svg') no-repeat center / contain;
+          "></span>
+          <p>Sedan</p>
+        </div>
+        <div class="type-pill" id="economyPill">
+          <span class="icon-car economy" style="
+            mask: url('/assets/icons/car-types/economy.svg') no-repeat center / contain;
+            -webkit-mask: url('/assets/icons/car-types/economy.svg') no-repeat center / contain;
+          "></span>
+          <p>Economy</p>
+        </div>
+        <div class="type-pill" id="compactPill">
+          <span class="icon-car compact" style="
+            mask: url('/assets/icons/car-types/compact.svg') no-repeat center / contain;
+            -webkit-mask: url('/assets/icons/car-types/compact.svg') no-repeat center / contain;
+          "></span>
+          <p>Compact</p>
+        </div>
+        <div class="type-pill" id="suvPill">
+          <span class="icon-car suv" style="
+            mask: url('/assets/icons/car-types/suv.svg') no-repeat center / contain;
+            -webkit-mask: url('/assets/icons/car-types/suv.svg') no-repeat center / contain;
+          "></span>
+          <p>Suv</p>
+        </div>
+        <div class="type-pill" id="vanPill">
+          <span class="icon-car van" style="
+            mask: url('/assets/icons/car-types/van.svg') no-repeat center / contain;
+            -webkit-mask: url('/assets/icons/car-types/van.svg') no-repeat center / contain;
+          "></span>
+          <p>Van</p>
+        </div>
+        <div class="type-pill" id="luxuryPill">
+          <span class="icon-car luxury" style="
+            mask: url('/assets/icons/car-types/luxury.svg') no-repeat center / contain;
+            -webkit-mask: url('/assets/icons/car-types/luxury.svg') no-repeat center / contain;
+          "></span>
+          <p>Luxury</p>
+        </div>
+      </div>
+      <div class="second-row">
+        <div id="filterPillsCon">
+        </div>
+        <select name="sort" id="carSort">
+          <option value="popular">Most popular</option>
+          <option value="lToH">Lowest to High Price</option>
+          <option value="hToL">Highest to Low Price</option>
+          <option value="newest">Newest Listings</option>
+        </select>
+      </div>
+    </section>
   </main>
+
+  <dialog id="locationFilterDialog" open  >
+
+  </dialog>
+<script src="/scripts/service.js"></script>
 </body>
 </html>

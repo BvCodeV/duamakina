@@ -524,9 +524,9 @@ footer {
     height: 31em;
     picture img { height: 31em;}
     .right-con { 
-      height: 20em; 
-      .date-time-con {
-        margin-top: 2em;
+      height: fit-content; 
+      .date-time {
+        flex-direction: rwo;
       }
       button { margin-top: 10em;}
     }
