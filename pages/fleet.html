@@ -20,6 +20,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Damion&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles/global.css">
   <link rel="stylesheet" href="/styles/service.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="/scripts/components.js"></script>
   <script src="/scripts/filterbar.js" defer></script>
 </head>
@@ -58,33 +60,40 @@
               </div>
             </div>
           </div>
-          <button id="locationChangeBtn">Change Now</button>
+          <button id="locationChangeBtn" popovertarget="locationFilterDialog">Change Now</button>
         </div>
       </div>
       <div class="filterBarFilters">
         <h1>Popular Filters</h1>
-        <ul class="suggested-filters">
-          <li><input type="checkbox" name="automatic" value="Automatic" id="automaticFilterBox">Automatic Transmission </li>
-          <li><input type="checkbox" name="milage" value="Unlimited Milage" id="milageFilterBox">Unlimited Mileage</li>
-          <li><input type="checkbox" name="ac" value="Air Conditioning" id="acFilterBox">Air Conditioning</li>
-          <li><input type="checkbox" name="doors" value="4+ Doors" id="doorsFilterBox">4+ Doors</li>
-          <li><input type="checkbox" name="suv" value="Suv" id="suvFilterBox">SUV/High-Ground Clearance</li>
-        </ul>
-        <hr>
-        <div class="price-filter">
-          <div class="min-price price-group-filter">
-            <label for="minPrice">Min Price</label>
-            <input type="number" value="0" inputmode="numeric" pattern="[0-9]*" id="minPrice">
-            <span class="currency-sign price-sign">€</span>
+        <div class="price-filter price-slider">
+          <div class="track-container">
+            <div class="track-bg"></div>
+            <div class="track-fill" id="fill"></div>
+            <input type="range" class="range-input" id="min-range" min="0" max="1000" value="0" step="1">
+            <input type="range" class="range-input" id="max-range" min="0" max="1000" value="1000" step="1">
           </div>
-          <hr>
-          <div class="max-price price-group-filter">
-            <label for="maxPrice">Max Price</label>
-            <input type="number" value="100" inputmode="numeric" pattern="[0-9]*" id="maxPrice">
-            <span class="currency-sign price-sign">€</span>
+          <div class="values">
+            <div class="min-val">
+              <label for="min-val">€</label>
+              <input type="number" id="min-val" value="0" min="0" max="1000" step="1" numberInputMode="numeric">
+            </div>
+            <div class="max-val">
+              <label for="max-val">€</label>
+              <input type="number" id="max-val" value="1000" min="0" max="1000" step="1" numberInputMode="numeric">
+            </div>
           </div>
         </div>
-        <button id="advancedFiltersBtn">Advanced Filters</button>
+        <ul class="suggested-filters">
+          <li><input type="checkbox" name="automatic" value="Automatic" id="automaticFilterBox">Automatic Transmission </li>
+          <li><input type="checkbox" name="seats" value="4+ Seats" id="seatsFilterBox">4+ seats </li>
+          <li><input type="checkbox" name="ac" value="Air Conditioning" id="acFilterBox">Air Conditioning</li>
+          <li><input type="checkbox" name="electric" value="electric" id="electricFilterBox">Electric</li>
+          <li><input type="checkbox" name="milage" value="Unlimited Milage" id="milageFilterBox">Unlimited Mileage</li>
+          <li><input type="checkbox" name="freeCancel" value="Free cancellation" id="freeCancelFilterBox">Free Cancellation</li>
+          <li><input type="checkbox" name="special" value="Special Offers" id="specialFilterBox">Special Offers</li>
+
+        </ul>
+        <button id="advancedFiltersBtn" popovertarget="filtersDialog">Advanced Filters</button>
       </div>
     </aside>
     <section>
@@ -149,12 +158,409 @@
           <option value="newest">Newest Listings</option>
         </select>
       </div>
+      <div class="cars-card-con">
+        <!-- Car cards will be dynamically inserted here -->
+        <div class="car-card">
+          <img src="https://pictures.porsche.com/rtt/iris?COSY-EU-100-1711coMvsi60AAt5FwcmBEgA4qP8iBUDxPE3Cb9pNXkBuNYdMGF4tl3U0%25z8rMHIspbWvanYb%255y%25oq%25vSTmjMXD4qAZeoNBPUSfUx4RmHlCgI7Zl2dioCxkF%25vUqCNwuWXsOw3meV6iTCj%25zhRc2GRdqAZ%25oD21P%25S1BAXmenugTfeIJpV7nDhQT" alt="car image" class="car-image" loading="lazy" draggable="false">
+          <div class="card-body">
+            <h2 class="car-title">Porsche 911 GT3 RS</h2>
+            <ul class="car-features">
+              <li><img src="/assets/icons/person.svg" alt="person icon" loading="lazy" draggable="false"> 5 Seats</li>
+              <li><img src="/assets/icons/bag.svg" alt="bag icon" loading="lazy" draggable="false"> 2 Luggage</li>
+              <li><img src="/assets/icons/door.svg" alt="door icon" loading="lazy" draggable="false"> 4 Doors</li>
+              <li><img src="/assets/icons/gears.svg" alt="gears icon" loading="lazy" draggable="false"> Manual</li>
+              <li><img src="/assets/icons/ac.svg" alt="ac icon" loading="lazy" draggable="false"> A/C</li>
+            </ul>
+            <ul class="car-amenities">
+              <li><img src="/assets/icons/checkmark.svg" alt="checkmark icon" loading="lazy" draggable="false"> Unlimited Mileage</li>
+              <li><img src="/assets/icons/checkmark.svg" alt="checkmark icon" loading="lazy" draggable="false"> Free Cancellation</li>
+              <li><img src="/assets/icons/checkmark.svg" alt="checkmark icon" loading="lazy" draggable="false"> 24/7 Assistance</li>
+            </ul>
+            <div class="review-con">
+              <div class="rating">
+                <img src="/assets/icons/star.svg" alt="star icon" loading="lazy" draggable="false">
+                <span>4.8</span>
+              </div>
+              <p>Excellent (120 reviews)</p>
+            </div>
+          </div>
+          <hr>
+          <div class="card-end">
+            <p class="car-price">$150.00 <span>per day</span></p>
+            <button class="rent-now-btn">View Details</button>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 
-  <dialog id="locationFilterDialog" open  >
+  <div id="locationFilterDialog" popover>
+    <div class="dialog-header">
+      <h1>Change the location</h1>
+      <button id="closeDialog">X</button>
+    </div>
+    <form id="filterBar">
+      <div class="locations-con">
+        <div class="pickup-loc location-inpt" >
+          <label for="pickup">Pickup Location</label>
+          <img src="/assets/icons/location.svg" alt="location icon" loading="lazy" draggable="false">
+          <input type="text" id="changePickup" list="locations" name="pickup" placeholder="e.g Tirana City Center" required autofocus>
+        </div>
+        <div class="dropoff-loc location-inpt" id="dropoffLoc">
+          <label for="dropoff">Drop-off Location</label>
+          <img src="/assets/icons/location.svg" alt="location icon" loading="lazy" draggable="false">
+          <input type="text" id="changeDropoff" list="locations" name="dropoff" placeholder="e.g Tirana City Center" required>
+        </div>
+        <div class="dropoff-check">
+          <input type="checkbox" id="dropoffCheck" name="dropoff-check" checked>
+          <label for="dropoffCheck">Drop-off at same location</label>
+        </div>
+        <datalist id="locations">
+            <option value="Tirana City Center" />
+            <option value="Tirana Airport (TIA)" />
+            <option value="Durrës" />
+            <option value="Saranda" />
+            <option value="Vlorë" />
+        </datalist>
+      </div>
+      <div class="date-time-con">
+        <div class="date-time">
+          <div class="date">
+            <label for="date">Pick-up Date</label>
+            <img src="/assets/icons/calendar.svg" alt="Calendar Icon" loading="lazy" draggable="false"> 
+            <input id="changePickupDate" type="text" class="date-input" placeholder="Pickup date" readonly required>
+          </div>
+          <div class="time">
+            <label for="time">Pick-up Time</label>
+            <img src="/assets/icons/time.svg" alt="time" loading="lazy" draggable="false">
+            <select name="time" id="changePickupTime">
+              <option value="00:00">00:00</option>
+              <option value="00:30">00:30</option>
+              <option value="01:00">01:00</option>
+              <option value="01:30">01:30</option>
+              <option value="02:00">02:00</option>
+              <option value="02:30">02:30</option>
+              <option value="03:00">03:00</option>
+              <option value="03:30">03:30</option>
+              <option value="04:00">04:00</option>
+              <option value="04:30">04:30</option>
+              <option value="05:00">05:00</option>
+              <option value="05:30">05:30</option>
+              <option value="06:00">06:00</option>
+              <option value="06:30">06:30</option>
+              <option value="07:00">07:00</option>
+              <option value="07:30">07:30</option>
+              <option value="08:00">08:00</option>
+              <option value="08:30">08:30</option>
+              <option value="09:00">09:00</option>
+              <option value="09:30">09:30</option>
+              <option value="10:00">10:00</option>
+              <option value="10:30">10:30</option>
+              <option value="11:00">11:00</option>
+              <option value="11:30">11:30</option>
+              <option value="12:00">12:00</option>
+              <option value="12:30">12:30</option>
+              <option value="13:00">13:00</option>
+              <option value="13:30">13:30</option>
+              <option value="14:00">14:00</option>
+              <option value="14:30">14:30</option>
+              <option value="15:00">15:00</option>
+              <option value="15:30">15:30</option>
+              <option value="16:00">16:00</option>
+              <option value="16:30">16:30</option>
+              <option value="17:00">17:00</option>
+              <option value="17:30">17:30</option>
+              <option value="18:00">18:00</option>
+              <option value="18:30">18:30</option>
+              <option value="19:00">19:00</option>
+              <option value="19:30">19:30</option>
+              <option value="20:00">20:00</option>
+              <option value="20:30">20:30</option>
+              <option value="21:00">21:00</option>
+              <option value="21:30">21:30</option>
+              <option value="22:00">22:00</option>
+              <option value="22:30">22:30</option>
+              <option value="23:00">23:00</option>
+              <option value="23:30">23:30</option>
+            </select>
+          </div>
+        </div>
+        <div class="date-time">
+          <div class="date">
+            <label for="date">Drop-off Date</label>
+            <img src="/assets/icons/calendar.svg" alt="Calendar Icon" loading="lazy" draggable="false">
+            <input id="changeDropoffDate" type="text" class="date-input" placeholder="Dropoff date" readonly required>
+          </div>
+          <div class="time">
+            <label for="time">Drop-off Time</label>
+            <img src="/assets/icons/time.svg" alt="time" loading="lazy" draggable="false">
+            <select name="time" id="changeDropoffTime">
+              <option value="00:00">00:00</option>
+              <option value="00:30">00:30</option>
+              <option value="01:00">01:00</option>
+              <option value="01:30">01:30</option>
+              <option value="02:00">02:00</option>
+              <option value="02:30">02:30</option>
+              <option value="03:00">03:00</option>
+              <option value="03:30">03:30</option>
+              <option value="04:00">04:00</option>
+              <option value="04:30">04:30</option>
+              <option value="05:00">05:00</option>
+              <option value="05:30">05:30</option>
+              <option value="06:00">06:00</option>
+              <option value="06:30">06:30</option>
+              <option value="07:00">07:00</option>
+              <option value="07:30">07:30</option>
+              <option value="08:00">08:00</option>
+              <option value="08:30">08:30</option>
+              <option value="09:00">09:00</option>
+              <option value="09:30">09:30</option>
+              <option value="10:00">10:00</option>
+              <option value="10:30">10:30</option>
+              <option value="11:00">11:00</option>
+              <option value="11:30">11:30</option>
+              <option value="12:00">12:00</option>
+              <option value="12:30">12:30</option>
+              <option value="13:00">13:00</option>
+              <option value="13:30">13:30</option>
+              <option value="14:00">14:00</option>
+              <option value="14:30">14:30</option>
+              <option value="15:00">15:00</option>
+              <option value="15:30">15:30</option>
+              <option value="16:00">16:00</option>
+              <option value="16:30">16:30</option>
+              <option value="17:00">17:00</option>
+              <option value="17:30">17:30</option>
+              <option value="18:00">18:00</option>
+              <option value="18:30">18:30</option>
+              <option value="19:00">19:00</option>
+              <option value="19:30">19:30</option>
+              <option value="20:00">20:00</option>
+              <option value="20:30">20:30</option>
+              <option value="21:00">21:00</option>
+              <option value="21:30">21:30</option>
+              <option value="22:00">22:00</option>
+              <option value="22:30">22:30</option>
+              <option value="23:00">23:00</option>
+              <option value="23:30">23:30</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <button type="button" onclick="updateFilter();">
+        <img src="/assets/icons/search.svg" alt="Search Icon" loading="lazy" draggable="false">
+        <span>Update Filters</span>
+      </button>
+    </form>
+  </div>
 
-  </dialog>
+  <div id="filtersDialog" popover>
+    <div class="dialog-header">
+      <h1>Advanced Filters</h1>
+      <button id="filtersCloseDialog">X</button>
+    </div>
+    <form class="main-dialog">
+      <div class="brand-filter filter-con">
+        <p>Vehicle Brand/Make</p>
+        <select name="brand" id="brandFilter">
+          <option value="all">All Brands</option>
+          <option value="Mercedes-Benz">Mercedes-Benz</option>
+          <option value="Volkswagen">Volkswagen</option>
+          <option value="Ford">Ford</option>
+          <option value="Opel">Opel</option>
+          <option value="Audi">Audi</option>
+          <option value="Fiat">Fiat</option>
+          <option value="Toyota">Toyota</option>
+          <option value="BMW">BMW</option>
+          <option value="Renault">Renault</option>
+          <option value="Peugeot">Peugeot</option>
+          <option value="Hyundai">Hyundai</option>
+          <option value="Kia">Kia</option>
+          <option value="Dacia">Dacia</option>
+          <option value="Nissan">Nissan</option>
+          <option value="Skoda">Skoda</option>
+        </select>
+      </div>
+      <div class="main-filters">
+        <div class="seperator">
+          <div class="year-filters filter-con">
+            <p>Vehicle Year</p>
+            <ul class="radio-btn-cons btn-cons">
+              <li class="radio-btn">
+                <label for="2025+">2025 or newer</label>
+                <input type="radio" name="year" id="yearSelc" value="2025+">
+              </li>
+              <li class="radio-btn">
+                <label for="year">2023 or newer</label>
+                <input type="radio" name="year" id="yearSelc" value="2023+">
+              </li>
+              <li class="radio-btn">
+                <label for="year">2020 or newer</label>
+                <input type="radio" name="year" id="yearSelc" value="2020+">
+              </li>
+              <li class="radio-btn">
+                <label for="year">any year</label>
+                <input type="radio" name="year" id="yearSelc" value="any">
+              </li>
+            </ul>
+          </div>
+          <div class="drive-system-filters filter-con">
+            <p>Drive System</p>
+            <ul class="checkbox-btn-cons btn-cons">
+              <li class="checkbox-btn">
+                <label for="transmission">Manual</label>
+                <input type="checkbox" name="transmission" id="transmissionSelc" value="manual">
+              </li>
+              <li class="checkbox-btn">
+                <label for="transmission">Automatic</label>
+                <input type="checkbox" name="automatic" id="transmissionSelc" value="automatic">
+              </li>
+              <li class="checkbox-btn">
+                <label for="transmission">AWD</label>
+                <input type="checkbox" name="drivetrain" id="drivetrainSelc" value="awd">
+              </li>
+              <li class="checkbox-btn">
+                <label for="transmission">FWD</label>
+                <input type="checkbox" name="drivetrain" id="drivetrainSelc" value="fwd">
+              </li>
+              <li class="checkbox-btn">
+                <label for="transmission">RWD</label>
+                <input type="checkbox" name="drivetrain" id="drivetrainSelc" value="rwd">
+              </li>
+              <li class="checkbox-btn">
+                <label for="transmission">4X4</label>
+                <input type="checkbox" name="drivetrain" id="drivetrainSelc" value="4X4">
+              </li>
+            </ul>
+          </div>
+          <div class="fuel-filters filter-con">
+            <p>Fuel Type</p>
+            <ul class="radio-btn-cons btn-cons">
+              <li class="radio-btn">
+                <label for="fuel">Petrol</label>
+                <input type="radio" name="fuel" id="fuelSelc" value="petrol">
+              </li>
+              <li class="radio-btn">
+                <label for="fuel">Diesel</label>
+                <input type="radio" name="fuel" id="fuelSelc" value="dieesel">
+              </li>
+              <li class="radio-btn">
+                <label for="fuel">Electric</label>
+                <input type="radio" name="fuel" id="fuelSelc" value="electric">
+              </li>
+              <li class="radio-btn">
+                <label for="fuel">Hybrid</label>
+                <input type="radio" name="fuel" id="fuelSelc" value="hybrid">
+              </li>
+            </ul>
+          </div>
+          <div class="driver-filters filter-con">
+            <p>Driver Experience</p>
+            <ul class="radio-btn-cons btn-cons">
+              <li class="radio-btn">
+                <label for="under21">Under 21</label>
+                <input type="radio" name="driverExperience" id="under21" value="under21">
+              </li>
+              <li class="radio-btn">
+                <label for="21-24">21-24</label>
+                <input type="radio" name="driverExperience" id="21-24" value="21-24">
+              </li>
+              <li class="radio-btn">
+                <label for="over25">over 25</label>
+                <input type="radio" name="driverExperience" id="over25" value="over25">
+              </li>
+            </ul>
+          </div>
+        </div>
+        <hr>
+        <div class="seperator">
+          <div class="luggage-filters filter-con">
+            <p>Luggage Capacity</p>
+            <ul class="radio-btn-cons btn-cons">
+              <li class="radio-btn">
+                <label for="luggage">1-2 Bags</label>
+                <input type="radio" name="luggage" id="luggageSelc" value="1-2">
+              </li>
+              <li class="radio-btn">
+                <label for="luggage">3-4 Bags</label>
+                <input type="radio" name="luggage" id="luggageSelc" value="3-4">
+              </li>
+              <li class="radio-btn">
+                <label for="luggage">5-6 Bags</label>
+                <input type="radio" name="luggage" id="luggageSelc" value="5-6">
+              </li>
+            </ul>
+          </div>
+          <div class="seating-filters filter-con">
+            <p>Seating Capacity</p>
+            <ul class="radio-btn-cons btn-cons">
+              <li class="radio-btn">
+                <label for="seats">2 seats</label>
+                <input type="radio" name="seats" id="seatsSelc" value="2">
+              </li>
+              <li class="radio-btn">
+                <label for="seats">4 seats</label>
+                <input type="radio" name="seats" id="seatsSelc" value="4">
+              </li>
+              <li class="radio-btn">
+                <label for="seats">5 seats</label>
+                <input type="radio" name="seats" id="seatsSelc" value="5">
+              </li>
+              <li class="radio-btn">
+                <label for="seats">7 seats</label>
+                <input type="radio" name="seats" id="seatsSelc" value="7">
+              </li>
+              <li class="radio-btn">
+                <label for="seats">9 seats</label>
+                <input type="radio" name="seats" id="seatsSelc" value="9">
+              </li>
+            </ul>
+          </div>
+          <div class="insurance-filters filter-con">
+            <p>Insurance</p>
+            <ul class="radio-btn-cons btn-cons">
+              <li class="radio-btn">
+                <label for="full">Full Coverage included</label>
+                <input type="radio" name="insurance" id="full" value="full">
+              </li>
+              <li class="radio-btn">
+                <label for="third-party">Third-Party only</label>
+                <input type="radio" name="insurance" id="third-party" value="third-party">
+              </li>
+              <li class="radio-btn">
+                <label for="noInsurance">No insurance included</label>
+                <input type="radio" name="insurance" id="noInsurance" value="noInsurance">
+              </li>
+            </ul>
+          </div>
+          <div class="deposit-filters filter-con">
+            <p>Deposit Requirements</p>
+            <ul class="radio-btn-cons btn-cons">
+              <li class="radio-btn">
+                <label for="deposit">No Deposit</label>
+                <input type="radio" name="deposit" id="fuelSelc" value="none">
+              </li>
+              <li class="radio-btn">
+                <label for="deposit"><€500</label>
+                <input type="radio" name="deposit" id="fuelSelc" value="500">
+              </li>
+              <li class="radio-btn">
+                <label for="deposit"><€750</label>
+                <input type="radio" name="deposit" id="fuelSelc" value="750">
+              </li>
+              <li class="radio-btn">
+                <label for="deposit"><€1,000</label>
+                <input type="radio" name="deposit" id="fuelSelc" value="1000">
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <button id="submitFiltersBtn">Filter</button>
+    </form>
+  </div>
 <script src="/scripts/service.js"></script>
+<script src="/scripts/index.js"></script>
+<script src="/scripts/calendar.js"></script>
 </body>
 </html>

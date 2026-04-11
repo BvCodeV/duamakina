@@ -8,26 +8,27 @@ main {
 
   .cars-available {
     position: absolute;
-    top: 2em;
-    left: 2em;
+    top: 1.3em;
+    left: 4em;
   }
 }
 
 aside {
   background-color: var(--color-bg-surface);
-  width: fit-content;
+  width: 30em;
   height: fit-content;
   border-radius: 30px;
   padding: 1em 2em;
   padding-bottom: 2em;
   position: sticky;
   top: 10em;
+   margin-top: -12em;
 
   .filterLocationInfo {
     position: relative;
     background-color: var(--color-bg-subtle);
     border-radius: 30px;
-    padding: 1em 1.5em;
+    padding: 1em 1em;
     padding-bottom: 2.5em;
     display: flex;
     flex-direction: column;
@@ -45,6 +46,7 @@ aside {
         display: flex;
         flex-direction: column;
         gap: .5em;
+        white-space: nowrap;
 
         h1 {
           font-size: 1em;
@@ -80,6 +82,7 @@ aside {
     justify-content: center;
     gap: 1em;
     margin-top: 1em;
+    width: 27em;
 
     h1 { font-size: 1.5em;}
     hr { border: 1px solid var(--color-border); width: 100%;}
@@ -99,34 +102,75 @@ aside {
       }
     }
 
-    .price-filter {
-      display: flex;
-      justify-content: space-between;
-      align-items: start;
-      gap: 1em;
-
-      .price-group-filter {
-        display: flex;
-        flex-direction: column;
-        align-items: start;
-        justify-content: start; 
-        gap: 0.5em;
+    .price-slider {
+      padding: 0 1rem;
+      width: 100%;
+      .track-container {
         position: relative;
-
-        label { font-size: 14px;}
-
-        input {
-          padding: 0.3em 1em;
-          padding-left: 2em;
-          border-radius: 10px;
-          outline: none;
-          border: 1px solid var(--color-border);
-        }
-
-        span {
+        height: 10px;
+        margin: 2rem 0 1.5rem;
+        .track-bg {
           position: absolute;
-          top: 55%;
-          left: 5px;
+          inset: 0;
+          height: 4px;
+          background: var(--color-bg-surface);
+          border-radius: 2px;
+        }
+        .track-fill {
+          position: absolute;
+          top: 0;
+          height: 4px;
+          background: var(--color-primary);
+          border-radius: 2px;
+        }        
+        .range-input {
+          position: absolute;
+          top: -7px;
+          width: 100%;
+          appearance: none;
+          background: transparent;
+          pointer-events: none;
+          &::-webkit-slider-thumb {
+              -webkit-appearance: none;
+              width: 18px;
+              height: 18px;
+              border-radius: 50%;
+              background: var(--color-txt-inverse);
+              border: 1.5px solid var(--color-primary);
+              cursor: pointer;
+              pointer-events: all;
+          }
+        }
+      }
+      .values {
+        display: flex;
+        justify-content: space-between;
+        .min-val, .max-val {
+          display: flex;
+          align-items: center;
+          gap: 0.3em;
+          position: relative;
+          input {
+            padding: 0.3em 0.5em;
+            padding-left: 1.3em;
+            border-radius: 40px;
+            border: 1px solid var(--color-border);
+            background-color: oklch(from var(--color-bg-surface) calc(l - 0.01) c h);
+            color: var(--color-txt-primary);
+            position: relative;
+            &:focus {
+              outline: none;
+              border-color: var(--color-primary);
+            }
+          }
+          label {
+            position: absolute;
+            top: .4em;
+            left: .5em;
+            font-size: 13px;
+            color: var(--color-txt-secondary);
+            z-index: 1;
+          }
         }
       }
     }
@@ -156,7 +200,7 @@ section {
     align-items: center;
     justify-content: center;
     gap: 2em;
-    margin-top: 4em;
+    margin-top: 2em;
 
     div {
       position: relative;
@@ -206,7 +250,8 @@ section {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 8em;
+    margin-top: 1.5em;
+    margin-bottom: 1em;
   }
 
   #filterPillsCon {
@@ -241,6 +286,508 @@ section {
 
     &:focus {
       outline: none;
+    }
+  }
+}
+
+#locationFilterDialog {
+  padding: 2em 3em;
+  width: 41em;
+  border: none;
+  border-radius: 40px;
+  overflow: visible;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  &::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  div {
+    display: flex;
+    justify-content: space-between;
+
+    button {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: none;
+      background-color: var(--color-error);
+      color: var(--color-txt-inverse);
+      font-weight: 700;
+      font-size: 1em;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      &:hover { transform: scale(1.05);}
+      &:active { transform: scale(0.95);}
+    }
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin-top: 1em;
+
+    .locations-con {
+      display: flex;
+      align-items: center;
+      height: auto;
+      width: 100%;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+
+      .location-inpt {
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+        position: relative;
+
+        label {
+          font-size: 13px;
+          color: var(--color-txt-secondary);
+        }
+
+        img {
+          position: absolute;
+          top: 55%;
+          left: 0.5rem;
+          width: 1rem;
+          height: 1rem;
+        }
+
+        input {
+          padding: 0.5rem 0rem 0.5rem 2rem;
+          width: 17rem;
+          height: 35px;
+          border: 1px solid var(--color-border);
+          border-radius: 10px;
+          background-color: oklch(from var(--color-bg-surface) calc(l - 0.01) c h);
+
+          &:focus {
+            outline: none;
+            border-color: var(--color-primary);
+          }
+        }
+      }
+
+      .dropoff-check {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.3rem;
+        margin-top: 0.5em;
+
+        input {
+          border-radius: 50%;
+          width: 16px;
+          height: 16px;
+          accent-color: var(--color-primary);
+          cursor: pointer;
+        }
+
+        label {
+          font-size: 13px;
+          color: var(--color-txt-secondary);
+        }
+      }
+    }
+    .date-time-con {
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      gap: .5rem;
+
+      .date-time {
+        display: flex;
+        gap: 2em;
+        width: 100%;
+
+        .date {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+          width: 100%;
+          
+
+          label {
+            font-size: 13px;
+            color: var(--color-txt-secondary);
+          }
+
+          img {
+            position: absolute;
+            top: 55%;
+            left: 0.5rem;
+            width: 1rem;
+            height: 1rem;
+          }
+
+          input {
+            padding-left: 2em;
+            width: 100%;
+            height: 35px;
+            border: 1px solid var(--color-border);
+            border-radius: 10px;
+            background-color: oklch(from var(--color-bg-surface) calc(l - 0.01) c h);
+
+            &:focus {
+              outline: none;
+              border-color: var(--color-primary);
+            }
+          }
+          }
+
+        .time {
+          display: flex;
+          position: relative;
+          flex-direction: column;
+          gap: 0.5rem;
+          width: 100%;
+
+          label {
+            font-size: 13px;
+            color: var(--color-txt-secondary);
+          }
+
+          img {
+            position: absolute;
+            top: 55%;
+            left: 0.5rem;
+            width: 1rem;
+            height: 1rem;
+          }
+
+          ;
+
+          select {
+            padding: 0.5rem 1.5rem 0.5rem 2rem;
+            width: 100%;
+            height: 35px;
+            border: 1px solid var(--color-border);
+            border-radius: 10px;
+            background-color: oklch(from var(--color-bg-surface) calc(l - 0.01) c h);
+            color: var(--color-txt-primary);
+            cursor: pointer;
+
+            &:focus {
+              outline: none;
+              border-color: var(--color-primary);
+            }
+          }
+        }
+      }
+    }
+    button {
+      margin-top: 0.5rem;
+      padding: 0.75rem;
+      width: 100%;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1em;
+      border-radius: 15px;
+      background-color: var(--color-primary);
+      color: var(--color-txt-inverse);
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+
+      &:hover {
+        background-color: var(--color-primary-hover);
+      }
+    }
+    .flatpickr-calendar {
+      position: absolute !important;
+      top: -30% !important;
+      left: 30px !important;
+      right: auto !important;
+      width: 308px !important;
+      display: flex !important;
+      flex-direction: column !important;
+    }
+  }
+}
+
+#filtersDialog {
+  padding: 2em 3em;
+  width: fit-content;
+  border: none;
+  border-radius: 40px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  gap: 1em;
+  &::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .dialog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h1 { font-size: 1.5em;}
+
+    button {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: none;
+      background-color: var(--color-error);
+      color: var(--color-txt-inverse);
+      font-weight: 700;
+      font-size: 1em;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+
+      &:hover { transform: scale(1.05);}
+      &:active { transform: scale(0.95);}
+    }
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    hr { display: none;}
+
+    div {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5em;
+
+      p { font-weight: 600;}
+      ul {
+        display: flex;
+        gap: 1.5em;
+        font-weight: 400;
+        list-style-type: none;
+      }
+    }
+
+    .brand-filter select {
+      padding: 0.5em 1em;
+      border-radius: 10px;
+      border: 1px solid var(--color-border);
+      background-color: oklch(from var(--color-bg-surface) calc(l - 0.01) c h);
+      color: var(--color-txt-primary);
+      cursor: pointer;
+
+      &:focus {
+        outline: none;
+        border-color: var(--color-primary);
+      }
+    }
+
+    button {
+      margin-top: 1em;
+      padding: 0.75em;
+      width: 100%;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1em;
+      border-radius: 15px;
+      background-color: var(--color-primary);
+      color: var(--color-txt-inverse);
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+
+      &:hover {
+        background-color: var(--color-primary-hover);
+      }
+    }
+  }
+}
+
+.car-card {
+  display: flex;
+  align-items: center;
+  gap: 2em;
+  padding: 1em;
+  background-color: var(--color-bg-surface);
+  border-radius: 40px;
+  width: fit-content;
+  .car-image {
+    height: 13em;
+    object-fit: cover;
+    border-radius: 25px;
+  }
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+
+    .car-title {
+      font-size: 1.5em;
+      font-weight: 700;
+    }
+
+    .car-features {
+      display: flex;
+      gap: 1em;
+      list-style-type: none;
+      font-weight: 400;
+      white-space: nowrap;
+
+      li {
+        display: flex;
+        align-items: center;
+        gap: 0.3em;
+        font-size: 14px;
+        img {
+          width: 16px;
+          height: 16px;
+        }
+      }
+    }
+    .car-amenities {
+      display: flex;
+      gap: 1em;
+      list-style-type: none;
+      width: 70%;
+      white-space: nowrap;
+      flex-wrap: wrap;
+      li { 
+        color: var(--color-primary);
+        display: flex;
+        align-items: center;
+        gap: 0.3em;
+        img {
+          width: 16px;
+          height: 16px;
+        }
+      }
+    }
+    .review-con {
+      display: flex;
+      gap: 1em;
+      align-items: center;
+      
+      .rating   {
+        display: flex;
+        align-items: center;
+        gap: 0.3em;
+        font-weight: 500;
+        background-color: oklch(from var(--color-primary) calc(l + 0.4) c h);
+        padding: 0.2em 0.5em;
+        border-radius: 20px;
+        color: var(--color-primary);
+        img {
+          width: 16px;
+          height: 16px;
+        }
+      }
+    }
+  }
+  hr {
+    border: 1px solid var(--color-border);
+    width: 0.5px;
+    height: 12em;
+  }
+  .card-end {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    align-items: center;
+
+    .car-price {
+      display: flex;
+      flex-direction: column;
+      align-items: end;
+      font-size: 1.5em;
+      font-weight: 900;
+      color: var(--color-txt-primary);
+      span {
+        color: var(--color-txt-secondary);
+        font-size: 0.7em;
+        font-weight: 400;
+      }
+    }
+
+    .rent-now-btn {
+      padding: 0.5em 1.5em;
+      border-radius: 10px;
+      border: none;
+      background-color: var(--color-primary);
+      color: var(--color-txt-inverse);
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+      white-space: nowrap;
+
+      &:hover {
+        background-color: var(--color-primary-hover);
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1024px ) and (max-width: 1440px) {
+  aside {
+    width: 26em;
+    margin-top: 4em;
+    padding: 1em 1em;
+    .filterBarFilters {
+      .price-slider {
+        width: 90%;
+      }
+    }
+  }
+  main {
+    gap: 2em;
+    .cars-available {
+      left: 2.5em;
+      top: 0.5em;
+    }
+  }
+  section {
+    .type-filter {
+      gap: 1em;
+      margin-top: 1em;
+        div {
+          padding: 0.6em 1.2em;
+          gap: 0.3em;
+  
+          .icon-car {
+            width: 20px;
+            height: 20px;
+          }
+        }
+
+    }
+  }
+  .car-card {
+    height: fit-content;
+    gap: 1em;
+    .car-image {
+      height: 12em;
+      width: 16em;
+    }
+    .card-body {
+      .car-amenities {
+        font-size: 13px;
+        width: 100%;
+      }
+    }
+  }
+  #filtersDialog {
+    .main-filters {
+      display: flex;
+      flex-direction: row;
+      gap: 2em;
+      white-space: nowrap;
+
+      hr  {display: block;}
     }
   }
 }

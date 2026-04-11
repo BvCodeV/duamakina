@@ -11,14 +11,15 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0.4rem 2rem;
+      padding: 0.4rem 4rem;
+      padding-right: 6em;
       z-index: 1000;
 
-      .logo h1 {
+      .logo a {
         font-family: 'Damion', cursive;
         color: var(--color-primary);
         font-size: 34px;
-        margin: 0;
+        text-decoration: none;
       }
 
       button {
@@ -58,6 +59,7 @@
 
       }
     }
+    .desktop-only {display: none;}
     @media screen and (min-width: 1024px) {
       .mobile-only {display: none;}
       .desktop-only {display: block;}
@@ -84,7 +86,7 @@
   </style>
   <nav>
     <div class="logo">
-      <h1>RideShare</h1>
+      <a href="/index.html">RideShare</a>
     </div>
     <ul class="nav-links desktop-only">
       <li><a href="/index.html">Home</a></li>
