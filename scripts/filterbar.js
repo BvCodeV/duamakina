@@ -4,6 +4,8 @@ const pickupDate = document.getElementById("pickupDate")
 const dropoffDate = document.getElementById("dropoffDate")
 const pickupTime = document.getElementById("pickupTime")
 const dropoffTime = document.getElementById("dropoffTime")
+const fields = [pickupInpt, dropoffDate, pickupDate, dropoffDate]
+let allFilled = true;
 
 function filterFunction() {
   const filter = {
@@ -18,8 +20,21 @@ function filterFunction() {
   if (dropoffCheck.checked) {
     filter.dropoffLoc = filter.pickupLoc
   }
-  localStorage.setItem("homeFilters", JSON.stringify(filter))
+  calcDays()
+  fields.forEach(field => {
+  if (!field.value) {
+    field.style.border = "1px solid var(--color-error)";
+    allFilled = false;
+  } else {
+    field.style.backgroundColor = "";
+    allFilled = true;
+  }
+});
+
+if (allFilled) {
+  localStorage.setItem("homeFilters", JSON.stringify(filter));
   window.location.href = '/pages/fleet.html';
+}
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -46,12 +61,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-  function calcDays(pickupStr, dropoffStr) {
-    const year = new Date().getFullYear();
-    const pickup = new Date(`${pickupStr} ${year}`);
-    const dropoff = new Date(`${dropoffStr} ${year}`);
+function calcDays(pickupStr, dropoffStr) {
+  const pickup = new Date(pickupStr);
+  const dropoff = new Date(dropoffStr);
 
-    const diff = dropoff - pickup;
-    const days = Math.round(diff / (1000 * 60 * 60 * 60 * 24));
-    return days;
-  }
+  const diff = dropoff - pickup;
+  const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+  localStorage.setItem("daysCalc", days);
+  return days;
+}

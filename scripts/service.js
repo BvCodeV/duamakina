@@ -1,3 +1,6 @@
+const sidebarFilter = document.getElementById('sidebarFilter');
+const closeSidebarBtn = document.getElementById('closeSidebarBtn');
+const filterBtn = document.getElementById('filterBtn')
 const automaticPopular = document.getElementById('automaticFilterBox');
 const milagePopular = document.getElementById('milageFilterBox');
 const acPopular = document.getElementById('acFilterBox');
@@ -14,6 +17,16 @@ const minR = document.getElementById('min-range');
 const maxR = document.getElementById('max-range');
 const fill = document.getElementById('fill');
 const GAP = 50;
+
+filterBtn.onclick = () => {
+  sidebarFilter.style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+
+closeSidebarBtn.onclick = () => {
+  sidebarFilter.style.display = 'none';
+  document.body.style.overflow = '';
+}
 
 carTypePills.forEach(div => {
   div.addEventListener("click", () => {
@@ -140,3 +153,18 @@ function updatePriceRange() {
 
 [minR, maxR].forEach(r => r.addEventListener('input', updatePriceRange));
 updatePriceRange.call(minR);
+
+function mountAdvancedFilters() {
+  const isMobile = window.matchMedia('(max-width: 1024px)').matches;
+  const form = document.querySelector('#filtersDialog .main-dialog');
+  const mobileSlot = document.querySelector('.mobile-advanced-filters');
+
+  if (isMobile) {
+    mobileSlot.appendChild(form);
+  } else {
+    document.getElementById('filtersDialog').appendChild(form);
+  }
+}
+
+mountAdvancedFilters();
+window.matchMedia('(max-width: 1024px)').addEventListener('change', mountAdvancedFilters);

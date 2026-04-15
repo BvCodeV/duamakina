@@ -13,11 +13,11 @@
   /* Brand */
   --color-primary: #2D6A4F;
   --color-primary-hover: #245C43;
-  --color-secondary: #A8C5B5;
+  --color-secondary: #cae4d565;
 
   /* Accent */
   --color-accent: #C8853A;
-  --color-accent-light: #F3DFC3;
+  --color-accent-light: #f3dfc373;
 
   /* Borders */
   --color-border: #DDD8D0;
@@ -44,6 +44,7 @@ body {
   background-color: var(--color-bg-main);
   color: var(--color-txt-primary);
   font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  overflow-x: hidden;
 }
 
 .flatpickr-calendar {

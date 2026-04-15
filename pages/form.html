@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <title>Find the best cars avaible for rent right now | RideShare | Our Fleet</title>
+  <meta name="application-name" content="RideShare">
+  <meta 
+  name="description" 
+  content="RideShare is a platform for connecting riders with drivers for convenient and affordable transportation.
+  ">
+  <meta 
+  name="keywords" 
+  content="ride share, carpooling, transportation, ridesharing, driver, rider, travel, commute, city, urban, sustainable, eco-friendly, cost-effective, convenient, Our fleet
+  ">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <link rel="canonical" href="https://rideshare.vercel.app/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Damion&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/global.css">
+  <link rel="stylesheet" href="/styles/form.css">
+  <script src="/scripts/components.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <header role="banner" id="header" style="width: 100%; z-index: 1000; position: relative;" fetchpriority=high></header>
+  <nav role="navigation" id="navbar" style="width: 100%; z-index: 1000; position: sticky; top: 0px;" fetchpriority=high></nav>
+  <main>
+    <h1>Complete Your Rental Inquiry</h1>
+    <p>Submit your booking details below. Our team will confirm availability and send payment instructions via email within 24 hours.</p>
+    <section>
+      <form id="rental-form">
+        <div class="contact-form">
+          <h2>Contact Information</h2>
+          <div class="name-con">
+            <label for="fullName">Full name <span>*</span></label>
+            <input type="text" id="fullName" name="fullName" placeholder="Bob Ndertuesi" required>
+          </div>
+          <div class="contact-info">
+            <div class="email-con">
+              <label for="email">Email <span>*</span></label>
+              <input type="email" id="email" name="email" placeholder="bob@example.com"  required>
+            </div>
+            <div class="phone-con">
+              <label for="phone">Phone Number <span>*</span></label>
+              <input type="phone" id="phone" name="phone" placeholder="+355 068 123 4567" required>
+              <p>We'll contact you via email or whatsapp for confirmation</p>
+            </div>
+          </div>
+        </div>
+        <div class="driver-form">
+          <h2>Driver Information</h2>
+          <div class="driver-form-con">
+            <div class="driver-name">
+              <label for="driverName">Driver's Full Name <span>*</span></label>
+              <input type="text" id="fullName" name="fullName" placeholder="Bob Ndertuesi" required>
+            </div>
+            <div class="driver-license">
+              <label for="driverLicense">License Expiry Date <span>*</span></label>
+              <input type="text" id="driverLicense" name="driverLicense" required>
+            </div>
+          </div>
+        </div>
+        <div class="addons-form">
+          <h1>Optional Add-ons</h1>
+          <div>
+            <div class="addons-card">
+              <input type="checkbox" required id="childSeat">
+              <img src="/assets/icons/child.svg" alt="child img" loading="lazy" draggable="false">
+              <div>
+                <h3>Child Seat</h3>
+                <p><span class="currency-sign">€</span><span class="currency-num">5</span>/day</p>
+              </div>
+            </div>
+            <div class="addons-card">
+              <input type="checkbox" required id="gps">
+              <img src="/assets/icons/gps.svg" alt="gps img" loading="lazy" draggable="false">
+              <div>
+                <h3>GPS Navigation</h3>
+                <p><span class="currency-sign">€</span><span class="currency-num">7</span>/day</p>
+              </div>
+            </div>
+            <div class="addons-card">
+              <input type="checkbox" required id="secondDriver">
+              <img src="/assets/icons/driver.svg" alt="child img" loading="lazy" draggable="false">
+              <div>
+                <h3>Additional Driver</h3>
+                <p><span class="currency-sign">€</span><span class="currency-num">10</span>/day</p>
+              </div>
+            </div>
+            <div class="addons-card">
+              <input type="checkbox" required id="damageWaiver">
+              <img src="/assets/icons/damage.svg" alt="child img" loading="lazy" draggable="false">
+              <div>
+                <h3>Full Damage Waiver</h3>
+                <p><span class="currency-sign">€</span><span class="currency-num">15</span>/day</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h2>Special Requests</h2>
+          <textarea name="requests" id="requests" placeholder="Any special requests or additional information..."></textarea>
+          <p>Maximum 500 characters</p>
+        </div>
+      </form>
+      <aside>
+        
+      </aside>
+    </section>
+  </main>
+  <footer role="footer" id="footer" style="width: 99%; position: relative; bottom: 0;"></footer>
+  <script src="/scripts/currency.js"></script>
+  <script src="/scripts/database.js"></script>
+</body>
+</html>

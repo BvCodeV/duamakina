@@ -1,10 +1,11 @@
 main {
   display: flex;
-  align-items: center;
+  align-items: start;
   justify-content: space-between;
   position: relative;
   gap: 5em;
   margin: 0 2em;
+  height: fit-content  !important;
 
   .cars-available {
     position: absolute;
@@ -15,6 +16,7 @@ main {
 
 aside {
   background-color: var(--color-bg-surface);
+  color: var(--color-txt-primary);
   width: 30em;
   height: fit-content;
   border-radius: 30px;
@@ -22,7 +24,7 @@ aside {
   padding-bottom: 2em;
   position: sticky;
   top: 10em;
-   margin-top: -12em;
+  margin-top: 5em;
 
   .filterLocationInfo {
     position: relative;
@@ -103,8 +105,7 @@ aside {
     }
 
     .price-slider {
-      padding: 0 1rem;
-      width: 100%;
+      width: 98%;
       .track-container {
         position: relative;
         height: 10px;
@@ -192,7 +193,7 @@ section {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100vh;
+  height: fit-content;
 
   .type-filter {
     align-self: flex-start;
@@ -248,7 +249,8 @@ section {
 
   .second-row {
     display: flex;
-    justify-content: space-between;
+    justify-content: start;
+    gap: 2em;
     align-items: center;
     margin-top: 1.5em;
     margin-bottom: 1em;
@@ -256,8 +258,11 @@ section {
 
   #filterPillsCon {
     display: flex;
+    flex-wrap: wrap;
+    white-space: nowrap;
     align-items: center;
-    gap: 2em;
+    justify-content: start;
+    gap: 1em;
 
     div {
       display: flex;
@@ -280,13 +285,12 @@ section {
   }
 
   #carSort {
-    padding: 0.3em 1em;
+    padding: 0.3em 0.3em;
     background-color: transparent;
     border-radius: 10em;
-
-    &:focus {
-      outline: none;
-    }
+    outline: none;
+    border: 0.5px solid var(--color-border);
+    cursor: pointer;
   }
 }
 
@@ -412,7 +416,6 @@ section {
           flex-direction: column;
           gap: 0.5rem;
           width: 100%;
-          
 
           label {
             font-size: 13px;
@@ -427,8 +430,8 @@ section {
             height: 1rem;
           }
 
-          input {
-            padding-left: 2em;
+          input { 
+            padding-left: 3em;
             width: 100%;
             height: 35px;
             border: 1px solid var(--color-border);
@@ -440,7 +443,7 @@ section {
               border-color: var(--color-primary);
             }
           }
-          }
+        }
 
         .time {
           display: flex;
@@ -461,8 +464,6 @@ section {
             width: 1rem;
             height: 1rem;
           }
-
-          ;
 
           select {
             padding: 0.5rem 1.5rem 0.5rem 2rem;
@@ -552,59 +553,60 @@ section {
       &:active { transform: scale(0.95);}
     }
   }
-  form {
+}
+
+.main-dialog {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  hr { display: none;}
+
+  div {
     display: flex;
     flex-direction: column;
+    gap: 0.5em;
+
+    p { font-weight: 600;}
+    ul {
+      display: flex;
+      gap: 1.5em;
+      font-weight: 400;
+      list-style-type: none;
+    }
+  }
+
+  .brand-filter select {
+    padding: 0.5em 1em;
+    border-radius: 10px;
+    border: 1px solid var(--color-border);
+    background-color: oklch(from var(--color-bg-surface) calc(l - 0.01) c h);
+    color: var(--color-txt-primary);
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+      border-color: var(--color-primary);
+    }
+  }
+
+  button {
+    margin-top: 1em;
+    padding: 0.75em;
+    width: 100%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 1em;
-    hr { display: none;}
+    border-radius: 15px;
+    background-color: var(--color-primary);
+    color: var(--color-txt-inverse);
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
 
-    div {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5em;
-
-      p { font-weight: 600;}
-      ul {
-        display: flex;
-        gap: 1.5em;
-        font-weight: 400;
-        list-style-type: none;
-      }
-    }
-
-    .brand-filter select {
-      padding: 0.5em 1em;
-      border-radius: 10px;
-      border: 1px solid var(--color-border);
-      background-color: oklch(from var(--color-bg-surface) calc(l - 0.01) c h);
-      color: var(--color-txt-primary);
-      cursor: pointer;
-
-      &:focus {
-        outline: none;
-        border-color: var(--color-primary);
-      }
-    }
-
-    button {
-      margin-top: 1em;
-      padding: 0.75em;
-      width: 100%;
-      border: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1em;
-      border-radius: 15px;
-      background-color: var(--color-primary);
-      color: var(--color-txt-inverse);
-      font-size: 16px;
-      cursor: pointer;
-      transition: background-color 0.2s ease;
-
-      &:hover {
-        background-color: var(--color-primary-hover);
-      }
+    &:hover {
+      background-color: var(--color-primary-hover);
     }
   }
 }
@@ -615,7 +617,7 @@ section {
   gap: 2em;
   padding: 1em;
   background-color: var(--color-bg-surface);
-  border-radius: 40px;
+  border-radius: 40px;  
   width: fit-content;
   .car-image {
     height: 13em;
@@ -673,7 +675,7 @@ section {
       gap: 1em;
       align-items: center;
       
-      .rating   {
+      .rating {
         display: flex;
         align-items: center;
         gap: 0.3em;
@@ -724,6 +726,7 @@ section {
       cursor: pointer;
       transition: background-color 0.2s ease;
       white-space: nowrap;
+      text-decoration: none;
 
       &:hover {
         background-color: var(--color-primary-hover);
@@ -732,10 +735,19 @@ section {
   }
 }
 
-@media screen and (min-width: 1024px ) and (max-width: 1440px) {
+.cars-card-con  {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.mobile-advanced-filters { display: none; }
+
+@media screen and (min-width: 1024px) and (max-width: 1440px) {
   aside {
     width: 26em;
     margin-top: 4em;
+    top: 3.5em;
     padding: 1em 1em;
     .filterBarFilters {
       .price-slider {
@@ -757,13 +769,11 @@ section {
         div {
           padding: 0.6em 1.2em;
           gap: 0.3em;
-  
           .icon-car {
             width: 20px;
             height: 20px;
           }
         }
-
     }
   }
   .car-card {
@@ -786,8 +796,183 @@ section {
       flex-direction: row;
       gap: 2em;
       white-space: nowrap;
-
-      hr  {display: block;}
+      hr { display: block; }
     }
   }
+}
+
+@media screen and (max-width: 1024px) {
+  aside {
+    display: none;
+    margin: 0px;
+    position: fixed;
+    width: 95%;
+    height: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 10px;
+    z-index: 1000;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.144);
+    padding: 1em;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    .filterBarFilters {
+      width: 100%;
+    }
+
+    .price-slider { width: 20em !important; }
+    .filterLocationInfo { font-size: 14px; }
+
+    #closeSidebarBtn {
+      position: absolute;
+      top: 1em;
+      transform: translateY(-50%);
+      right: 3px;
+      width: 40px;
+      height: 30px;
+      border-radius: 50px;
+      border: none;
+      color: var(--color-error);
+      background-color: transparent;
+      font-weight: 700;
+      font-size: 1.3em;
+      text-align: center;
+      cursor: pointer;
+      text-decoration: none;
+      z-index: 1;
+    }
+  }
+
+  .mobile-advanced-filters {
+    display: flex;
+    width: 100%;
+    height: fit-content;
+  }
+
+  .main-dialog {
+    white-space: normal;
+    width: 100%;
+    box-sizing: border-box;
+
+    #submitFiltersBtn {
+      position: static;
+      text-decoration: none;
+      margin-top: 1em;
+      width: 100%;
+    }
+    select {
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .main-filters {
+      flex-direction: column;
+
+      .seperator {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+      }
+
+      hr { display: none; }
+    }
+
+    .btn-cons {
+      flex-wrap: wrap;
+      gap: 0.6em;
+    }
+
+    p { font-size: 14px; }
+    ul { font-size: 14px; }
+  }
+
+  .desktop-only { display: none !important; }
+
+  section {
+    margin-top: 1em;
+    .second-row {
+      flex-direction: column;
+      align-items: start;
+      gap: 0.5em;
+      #filterPillsCon {
+        display: flex;
+        flex-wrap: wrap;
+        white-space: nowrap;
+        gap: 0.5em;
+      }
+    }
+    .filter-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.3em 0.5em;
+      white-space: nowrap;
+      gap: 0.5em;
+      border-radius: 30px;
+      border: 0.5px solid var(--color-border);
+      color: var(--color-txt-primary);
+      background-color: transparent;
+      cursor: pointer;
+    }
+    .filters-box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+  }
+
+  .cars-available {
+    top: 0 !important;
+    left: 50% !important;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    font-size: 1.5em;
+  }
+
+  .car-card {
+    flex-direction: column;
+    width: 100%;
+    .car-image {
+      width: 100%;
+      height: 10em;
+    }
+    .card-body {
+      width: 100%;
+      .car-title { font-size: 1.3em; }
+      .car-features { flex-wrap: wrap; }
+      .car-amenities {
+        font-size: 14px;
+        width: 100%;
+      }
+      .review-con { display: none; }
+    }
+    hr { display: none; }
+    .card-end {
+      flex-direction: row;
+      justify-content: space-around;
+      width: 100%;
+    }
+  }
+
+  #locationFilterDialog {
+    width: fit-content;
+    .locations-con {
+      flex-direction: column;
+      align-items: start !important;
+    }
+    .date-time {
+      flex-direction: column;
+      gap: 1em !important;
+    }
+  }
+
+  #filtersDialog {
+    p { font-size: 14px; }
+    ul { font-size: 14px; }
+  }
+
+  #advancedFiltersBtn { display: none; }
+  #filtersDialog .dialog-header { display: none; }
 }

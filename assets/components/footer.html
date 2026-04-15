@@ -1,6 +1,91 @@
 <html>
 <head></head>
 <body>
-  
+    <style>
+      footer {
+        margin: 10px 10px;
+        background-color: var(--color-bg-subtle);
+        border-radius: 40px;
+        padding: 2em 2em;
+        display: flex;
+        flex-direction: column;
+        gap: 2em;
+
+        h1 {
+          text-align: center;
+          color: var(--color-primary);
+        }
+        div {
+        ul {
+          display: flex;
+          flex-direction: column;
+          align-items: start;
+          justify-content: center;
+          list-style-type: none;
+          gap: 0.3em;
+          li { 
+            color: var(--color-txt-secondary); 
+            cursor: pointer;
+            &:hover {color: var(--color-accent);}
+          }
+          a {
+            text-decoration: none;
+            color: var(--color-txt-secondary);
+            &:hover {color: var(--color-accent);}
+          }
+        }
+        }
+
+        p {
+          font-size: 16px;
+          text-align: center;
+        }
+      }
+      @media screen and (min-width: 1024px) {
+        footer {
+          flex-direction: column;
+          z-index: 1;
+
+          div {
+            display: flex;
+            justify-content: space-between;
+            padding-left: 3em;
+
+            ul {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+            }
+          }
+        }
+      }
+    </style>
+    <footer>
+    <h1>RideShare</h1>
+    <div>
+      <ul class="quick-links">
+        <h2>Quick Links</h2>
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/pages/fleet.html">Our Fleet</a></li>
+        <li><a href="/pages/faq.html">FAQ</a></li>
+      </ul>
+      <ul class="locations-footer">
+        <h2>Locations</h2>
+        <li>Tirana Airport (TIA)</li>
+        <li>Tirana City Center</li>
+        <li>Saranda</li>
+        <li>Durrës</li>
+        <li>Vlorë</li>
+      </ul>
+      <ul class="contact-footer">
+        <h2>Contact</h2>
+        <li><a href="+355681234567">+355 68 123 4567</a></li>
+        <li><a href="mailto:info@rideshare.com">info@rideshare.com</a></li>
+        <li><a href="https://wa.me/+355681234567">Contact us on Whatsapp</a></li>
+      </ul>
+    </div>
+    <hr>
+    <p>© 2026 RideShare. All rights reserved. Payment method: Cash only.</p>
+  </footer>
 </body>
 </html>

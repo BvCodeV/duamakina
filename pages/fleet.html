@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
   <title>Find the best cars avaible for rent right now | RideShare | Our Fleet</title>
   <meta name="application-name" content="RideShare">
   <meta 
@@ -24,6 +24,7 @@
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="/scripts/components.js"></script>
   <script src="/scripts/filterbar.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
   <header role="banner" id="header" style="width: 100%; z-index: 1000; position: relative;" fetchpriority=high></header>
@@ -31,7 +32,8 @@
 
   <main>
     <h1 class="cars-available"><span id="carNum">XX</span> Cars Available</h1>
-    <aside>
+    <aside id="sidebarFilter">
+      <button id="closeSidebarBtn" class="mobile-only">X</button>
       <div id="filterBarRes">
         <div class="filterLocationInfo">
           <div class="pickup-group info-groups">
@@ -74,12 +76,12 @@
           </div>
           <div class="values">
             <div class="min-val">
-              <label for="min-val">€</label>
-              <input type="number" id="min-val" value="0" min="0" max="1000" step="1" numberInputMode="numeric">
+              <label for="min-val" class="currency-sign">€</label>
+              <input type="number" id="min-val" value="0" min="0" max="1000" step="1" numberInputMode="numeric" class="currency-num">
             </div>
             <div class="max-val">
-              <label for="max-val">€</label>
-              <input type="number" id="max-val" value="1000" min="0" max="1000" step="1" numberInputMode="numeric">
+              <label for="max-val" class="currency-sign">€</label>
+              <input type="number" id="max-val" value="1000" min="0" max="1000" step="1" numberInputMode="numeric" class="currency-num">
             </div>
           </div>
         </div>
@@ -93,11 +95,12 @@
           <li><input type="checkbox" name="special" value="Special Offers" id="specialFilterBox">Special Offers</li>
 
         </ul>
+        <div class="mobile-advanced-filters"></div>
         <button id="advancedFiltersBtn" popovertarget="filtersDialog">Advanced Filters</button>
       </div>
     </aside>
     <section>
-      <div class="type-filter">
+      <div class="type-filter desktop-only">
         <div class="type-pill selected-type" id="allPill">
           <span class="icon-car sedan" style="
             mask: url('/assets/icons/car-types/sedan.svg') no-repeat center / contain;
@@ -149,14 +152,20 @@
         </div>
       </div>
       <div class="second-row">
+        <div class="filters-box">
+          <button id="filterBtn" class="filter-btn mobile-only">
+            <img src="/assets/icons/gears.svg" alt="filter icon" loading="lazy" draggable="false">
+            Show Filters
+          </button>
+          <select name="sort" id="carSort">
+            <option value="popular">Most popular</option>
+            <option value="lToH">Lowest to High Price</option>
+            <option value="hToL">Highest to Low Price</option>
+            <option value="newest">Newest Listings</option>
+          </select>
+        </div>
         <div id="filterPillsCon">
         </div>
-        <select name="sort" id="carSort">
-          <option value="popular">Most popular</option>
-          <option value="lToH">Lowest to High Price</option>
-          <option value="hToL">Highest to Low Price</option>
-          <option value="newest">Newest Listings</option>
-        </select>
       </div>
       <div class="cars-card-con">
         <!-- Car cards will be dynamically inserted here -->
@@ -186,8 +195,13 @@
           </div>
           <hr>
           <div class="card-end">
-            <p class="car-price">$150.00 <span>per day</span></p>
-            <button class="rent-now-btn">View Details</button>
+            <div class="car-price">
+              <div class="price">
+                <span class="currency-sign" style="font-size: 1em; font-weight: bold; color: var(--color-txt-primary);">€</span><span class="currency-num" style="font-size: 1em; font-weight: bold; color: var(--color-txt-primary);">50.00</span>
+              </div>
+              <span>per day</span>
+            </div>
+            <a href="/pages/booking.html" class="rent-now-btn">View Details</a>
           </div>
         </div>
       </div>
@@ -559,8 +573,11 @@
       <button id="submitFiltersBtn">Filter</button>
     </form>
   </div>
-<script src="/scripts/service.js"></script>
-<script src="/scripts/index.js"></script>
-<script src="/scripts/calendar.js"></script>
+  <footer role="footer" id="footer" style="width: 99%; position: relative; bottom: 0;"></footer>
+  <script src="/scripts/database.js"></script>
+  <script src="/scripts/service.js"></script>
+  <script src="/scripts/index.js"></script>
+  <script src="/scripts/calendar.js"></script>
+  <script src="/scripts/currency.js"></script>
 </body>
 </html>

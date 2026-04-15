@@ -1,20 +1,40 @@
-const rates = {};
-const basePrice = parseFloat(document.getElementById("price").textContent);
+window.addEventListener('partialsLoaded', () => {
+  const rates = {};
+  const currencySelect = document.getElementById("currencySelect");
+  const basePriceEls = document.querySelectorAll('.currency-num');
+  const currencySignEls = document.querySelectorAll('.currency-sign');
+  const basePrices = [...basePriceEls].map(el => parseFloat(el.textContent));
+  const currencyMap = { "€": "EUR", "$": "USD", "£": "GBP", "L": "ALL" };
 
-async function fetchAllRates() {
-  const res = await fetch(`${SUPABASE_URL}/rest/v1/exchange_rates?select=currency_code,rate`, {
-    headers: { "apikey": SUPABASE_ANON_KEY, "Authorization": `Bearer ${SUPABASE_ANON_KEY}` }
+  async function fetchAllRates() {
+    const { data, error } = await supabaseClient
+      .from('currency')
+      .select('currency_code, covertion_rate');
+
+    if (error) {
+      console.error('Failed to fetch rates:', error.message);
+      return;
+    }
+
+    data.forEach(row => rates[row.currency_code] = row.covertion_rate);
+    updatePrice(currencySelect.value);
+  }
+
+  function updatePrice(currency) {
+    const sign = Object.keys(currencyMap).find(key => currencyMap[key] === currency);
+    basePriceEls.forEach((el, i) => {
+      const value = currency === "EUR" ? basePrices[i] : basePrices[i] * rates[currency];
+      el.textContent = value.toLocaleString('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    });
+    currencySignEls.forEach(el => el.textContent = sign);
+  }
+
+  currencySelect.addEventListener("change", e => {
+    localStorage.setItem('selectedCurrency', e.target.value);
+    updatePrice(e.target.value);
   });
-  const data = await res.json();
-  data.forEach(row => rates[row.currency_code] = row.rate);
-  updatePrice(document.getElementById("currencySelect").value);
-}
-
-function updatePrice(currency) {
-  const price = currency === "EUR" ? basePrice : Math.round(basePrice * rates[currency]);
-  document.getElementById("price").textContent = `${price} ${currency}`;
-}
-
-document.getElementById("currencySelect").addEventListener("change", e => updatePrice(e.target.value));
-
-fetchAllRates();
+  fetchAllRates();
+});
