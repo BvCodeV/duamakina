@@ -38,7 +38,7 @@ if (allFilled) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  if (window.location.pathname === "/pages/fleet.html") {
+  if (window.location.pathname === "/pages/fleet") {
     const pickupInptTxt = document.getElementById("pickupTxt")
     const dropoffInptTxt = document.getElementById("dropoffTxt")
     const pickupDateTxt = document.getElementById("pickupDateTxt")
