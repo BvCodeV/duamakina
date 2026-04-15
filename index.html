@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
   <title>RideShare</title>
   <meta name="application-name" content="RideShare">
   <meta 
@@ -20,8 +20,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Damion&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles/home.css">
   <link rel="stylesheet" href="styles/global.css">
-  <link href="https://cdn.jsdelivr.net/npm/vanilla-calendar-pro/styles/index.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="/scripts/components.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
   <header role="banner" id="header" style="width: 100%; z-index: 1000; position: relative;" fetchpriority=high></header>
@@ -274,7 +276,7 @@
         <div class="review-card">
           <p>"Excellent service! The car was spotless and the pickup at Tirana Airport was smooth. Will use DriveNow again."</p>
           <div class="user-con">
-            <h1>IT</h2>
+            <h1 style="background-color: var(--color-secondary);">IT</h2>
             <div class="user">
               <h2>Marco R.</h2>
               <div class="rating">
@@ -290,7 +292,7 @@
         <div class="review-card">
           <p>"Great value for money. The Duster was perfect for exploring the Albanian Riviera. Highly recommend!"</p>
           <div class="user-con">
-            <h1>De</h2>
+            <h1 style="background-color: var(--color-accent-light);">De</h2>
             <div class="user">
               <h2>Sarah K.</h2>
               <div class="rating">
@@ -306,7 +308,7 @@
         <div class="review-card">
           <p>"Very transparent pricing with no hidden fees. Cash payment made everything simple. Good experience overall."</p>
           <div class="user-con">
-            <h1>US</h2>
+            <h1 style="background-color: var(--color-info-light);">US</h2>
             <div class="user">
               <h2>James L.</h2>
               <div class="rating">
@@ -320,39 +322,31 @@
           </div>
         </div>
       </div>
+      <div class="review-info">
+        <div class="review-info-card">
+          <h1>4.7</h1>
+          <p>Average Rating</p>
+        </div>
+        <div class="review-info-card">
+          <h1>2,500+</h1>
+          <p>Happy Customers</p>
+        </div>
+        <div class="review-info-card">
+          <h1>50+</h1>
+          <p>Quality Vehicles</p>
+        </div>
+        <div class="review-info-card">
+          <h1>5</h1>
+          <p>Pickup Locations</p>
+        </div>
+      </div>
     </section>
   </main>
-
-  <footer>
-    <h1>RideShare</h1>
-    <div>
-      <ul class="quick-links">
-        <h2>Quick Links</h2>
-        <li><a href="">Home</a></li>
-        <li><a href="">Our Fleet</a></li>
-        <li><a href="">FAQ</a></li>
-      </ul>
-      <ul class="locations-footer">
-        <h2>Locations</h2>
-        <li>Tirana Airport (TIA)</li>
-        <li>Tirana City Center</li>
-        <li>Saranda</li>
-        <li>Durrës</li>
-        <li>Vlorë</li>
-      </ul>
-      <ul class="contact-footer">
-        <h2>Contact</h2>
-        <li><a href="+355681234567">+355 68 123 4567</a></li>
-        <li><a href="mailto:info@rideshare.com">info@rideshare.com</a></li>
-        <li><a href="https://wa.me/+355681234567">Contact us on Whatsapp</a></li>
-      </ul>
-    </div>
-    <hr>
-    <p>© 2026 RideShare. All rights reserved. Payment method: Cash only.</p>
-  </footer>
-  <script src="https://cdn.jsdelivr.net/npm/vanilla-calendar-pro/index.js"></script>
+  <footer role="footer" id="footer" style="width: 99%; position: absolute;"></footer>
   <script src="/scripts/index.js"></script>
   <script src="/scripts/filterbar.js"></script>
   <script src="/scripts/gtag.js"></script>
+  <script src="/scripts/calendar.js"></script>
+  <script src="/scripts/database.js"></script>
 </body>
 </html>

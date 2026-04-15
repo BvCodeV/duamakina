@@ -13,11 +13,11 @@
   /* Brand */
   --color-primary: #2D6A4F;
   --color-primary-hover: #245C43;
-  --color-secondary: #A8C5B5;
+  --color-secondary: #cae4d565;
 
   /* Accent */
   --color-accent: #C8853A;
-  --color-accent-light: #F3DFC3;
+  --color-accent-light: #f3dfc373;
 
   /* Borders */
   --color-border: #DDD8D0;
@@ -44,9 +44,31 @@ body {
   background-color: var(--color-bg-main);
   color: var(--color-txt-primary);
   font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  overflow-x: hidden;
 }
 
-.vc {
-  z-index: 9999 !important;
-  position: relative;
+.flatpickr-calendar {
+  position: absolute !important;
+  width: 308px !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+
+.flatpickr-rContainer {
+  display: flex !important;
+  flex-direction: column !important;
+  width: 294px !important;
+}
+
+#locationFilterDialog .flatpickr-calendar button {
+  all: unset;
+  cursor: pointer;
+}
+
+.flatpickr-day.selected,
+.flatpickr-day.startRange,
+.flatpickr-day.endRange {
+  background: var(--color-primary) !important;
+  border-color: var(--color-primary) !important;
 }

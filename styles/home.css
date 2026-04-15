@@ -11,10 +11,12 @@ main {
   flex-direction: column;
   gap: 3em;
   height: 600px;
+  width: 100%;
 
   picture {
     position: absolute;
     top: 0;
+    width: 100%;
 
     img {
       width: 100%;
@@ -28,6 +30,7 @@ main {
     position: relative;
     display: flex;
     flex-direction: column;
+    align-items: center;
     margin-top: 2em;
     z-index: 2;
 
@@ -41,7 +44,7 @@ main {
       flex-direction: column;
 
       span {
-        background: linear-gradient(14deg, rgba(46, 143, 94, 0.89) 0%, rgba(62, 156, 112, 0.86) 42%, rgba(99, 191, 77, 0.87) 100%);
+        background: linear-gradient(135deg, #1B4332 0%, #2D6A4F 20%, #52B788 40%, #74C69D 60%, #B7E4C7 80%, #EAF5E9 100%);
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -71,20 +74,22 @@ main {
       display: flex;
       flex-direction: column;
       gap: 1em;
+      width: 100%;
 
       .locations-con {
         display: flex;
         align-items: center;
-        height: auto;
-        width: 100%;
+        justify-content: start;
         flex-wrap: wrap;
-        gap: 0.5rem;
+        width: 100%;
+        gap: 0.5em;
 
         .location-inpt {
           display: flex;
           flex-direction: column;
           gap: 0.3rem;
           position: relative;
+          width: 49%;
 
           label {
             font-size: 13px;
@@ -101,7 +106,6 @@ main {
 
           input {
             padding: 0.5rem 0rem 0.5rem 2rem;
-            width: 17rem;
             height: 35px;
             border: 1px solid var(--color-border);
             border-radius: 10px;
@@ -139,11 +143,13 @@ main {
         display: flex;
         flex-direction: column;
         align-items: start;
-        gap: .5rem;
+        gap: 1rem;
+        width: 100%;
 
         .date-time {
           display: flex;
-          gap: 2em;
+          gap: 0.5em;
+          width: 100%;
 
           .date {
             position: relative;
@@ -166,7 +172,7 @@ main {
             }
 
             input {
-              padding-left: 2em;
+              padding-left: 2.5em;
               width: 100%;
               height: 35px;
               border: 1px solid var(--color-border);
@@ -185,6 +191,7 @@ main {
             position: relative;
             flex-direction: column;
             gap: 0.5rem;
+            width: 50%;
 
             label {
               font-size: 13px;
@@ -330,7 +337,7 @@ main {
 
 #reviews {
   margin: 10px;
-  height: 330px;
+  height: fit-content;
   margin-top: 3em;
   text-align: center;
   display: flex;
@@ -341,41 +348,31 @@ main {
   .review-con {
     display: flex;
     flex-direction: row;
-    overflow-x: scroll;
     flex-wrap: nowrap;
     flex-shrink: 0;
     align-items: center;
     justify-content: center;
+    padding: 1em;
+    overflow-x: scroll;
     gap: 1em;
 
     &::-webkit-scrollbar {
       display: none;
     }
   }
-
   .review-card {
     flex: 0 0 22em;
     position: relative;
     display: flex;
     flex-direction: column;
+    background-color: var(--color-bg-surface);
     align-items: center;
     justify-content: start;
     height: 200px;
     width: 22em;
     padding: 1em 2em;
     border-radius: 40px;
-
-    &::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      height: 100%;
-      width: 100%;
-      background-color: var(--color-bg-surface);
-      border-radius: 40px;
-      clip-path: path("M 0,20 L 20,0 L 380,0 A 20,20 0,0,1 400,20 L 400,180 A 20,20 0,0,1 380,200 L 160,200 A 20,20 0,0,1 140,180 L 140,160 A 20,20 0,0,0 120,140 L 20,140 A 20,20 0,0,1 0, 120");
-      z-index: -1;
-    }
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.062);
 
     p {
       margin-top: 2em;
@@ -383,8 +380,8 @@ main {
     
     .user-con {
       position: absolute;
-      bottom: 5px;
-      left: 5px;
+      bottom: 1em;
+      left: 1em;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -394,8 +391,8 @@ main {
         width: 40px;
         height: 40px;
         border-radius: 50%;
-        background-color: var(--color-primary);
-        color: var(--color-txt-inverse);
+        background-color: var(--color-secondary);
+        color: var(--color-txt-secondary);
         font-size: 20px;
         display: flex;
         align-items: center;
@@ -416,44 +413,23 @@ main {
       }
     }
   }
-}
-
-footer {
-  margin: 10px;
-  background-color: var(--color-bg-subtle);
-  border-radius: 40px;
-  padding: 2em 2em;
-  margin-bottom: 1em;
-  display: flex;
-  flex-direction: column;
-  gap: 2em;
-
-  h1 {
-    text-align: center;
-    color: var(--color-primary);
-  }
-
-  ul {
+  .review-info {
     display: flex;
-    flex-direction: column;
-    align-items: start;
+    flex-wrap: wrap;
     justify-content: center;
-    list-style-type: none;
-    gap: 0.3em;
-    
-    li { color: var(--color-txt-secondary);}
-
-    li:hover { color: var(--color-accent);}
-
-    a {
-      text-decoration: none;
-      color: var(--color-txt-secondary);
+    gap: 5em;
+    div {
+      h1 {
+        background: linear-gradient(31deg,rgba(45, 106, 79, 0.89) 0%, rgba(28, 100, 88, 1) 20%, rgba(19, 94, 94, 0.86) 40%, rgba(25, 87, 96, 1) 60%, rgba(37, 79, 94, 1) 80%, rgba(47, 72, 88, 0.87) 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-size: 2.3em;
+      }
+      p {
+        font-size: 14px;
+      }
     }
-  }
-
-  p {
-    font-size: 16px;
-    text-align: center;
   }
 }
 
@@ -495,26 +471,12 @@ footer {
       }
     }
   }
-
+  .certification-wrapper {
+    width: 90% !important;
+  }
   #about {
     flex-direction: row;
     gap: 10em;
-  }
-
-  footer {
-    flex-direction: column;
-
-    div {
-      display: flex;
-      justify-content: space-between;
-      padding-left: 3em;
-
-      ul {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-    }
   }
 }
 
@@ -524,9 +486,19 @@ footer {
     height: 31em;
     picture img { height: 31em;}
     .right-con { 
-      height: 20em; 
+      height: fit-content;
       .date-time-con {
-        margin-top: 2em;
+        width: 100%;
+        .date-time {
+          flex-direction: column;
+          width: 100%;
+          .date {
+            width: 100% !important;
+          }
+          .time {
+            width: 100% !important;
+          }
+        }
       }
       button { margin-top: 10em;}
     }
@@ -537,5 +509,8 @@ footer {
       h1 { font-size: 2em;}
       p { font-size: 1em;}
     }
+  }
+  .review-info {
+    gap: 10em !important;
   }
 }

@@ -10,7 +10,16 @@ Promise.all([
     if (navEl) navEl.innerHTML = navHtml;
     if (footerEl) footerEl.innerHTML = footerHtml;
     if (headerEl) headerEl.innerHTML = headerHtml;
-    // Dispatch an event so other modules can act after partials are injected
+    const currencySelect = document.getElementById('currencySelect');
+    if (currencySelect) {
+      const saved = localStorage.getItem('selectedCurrency');
+      if (saved) currencySelect.value = saved;
+
+      currencySelect.addEventListener('change', (e) => {
+        localStorage.setItem('selectedCurrency', e.target.value);
+      });
+    }
+    
     window.dispatchEvent(new Event('partialsLoaded'));
   })
   .catch(err => console.error('Error loading partials:', err));

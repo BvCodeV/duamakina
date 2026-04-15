@@ -11,14 +11,15 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0.4rem 2rem;
+      padding: 0.4rem 1rem;
+      border-bottom: 1px solid var(--color-border);
       z-index: 1000;
 
-      .logo h1 {
+      .logo a {
         font-family: 'Damion', cursive;
         color: var(--color-primary);
         font-size: 34px;
-        margin: 0;
+        text-decoration: none;
       }
 
       button {
@@ -58,11 +59,14 @@
 
       }
     }
+    .desktop-only {display: none;}
     @media screen and (min-width: 1024px) {
       .mobile-only {display: none;}
       .desktop-only {display: block;}
 
       nav {
+        padding: 0.4rem 4rem;
+        padding-right: 6em;
         .nav-links {
           list-style: none;
           display: flex;
@@ -84,7 +88,7 @@
   </style>
   <nav>
     <div class="logo">
-      <h1>RideShare</h1>
+      <a href="/index.html">RideShare</a>
     </div>
     <ul class="nav-links desktop-only">
       <li><a href="/index.html">Home</a></li>
@@ -96,9 +100,9 @@
     </button>
     <div popover id="menu" class="mobile-only">
       <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Our Fleet</a></li>
-        <li><a href="#">Faqs</a></li>
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/pages/fleet.html">Our Fleet</a></li>
+        <li><a href="/pages/faqs.html">Faqs</a></li>
       </ul>
     </div>
   </nav>
