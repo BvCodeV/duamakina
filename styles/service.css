@@ -5,7 +5,7 @@ main {
   position: relative;
   gap: 5em;
   margin: 0 2em;
-  height: fit-content  !important;
+  height: fit-content;
 
   .cars-available {
     position: absolute;
@@ -735,9 +735,9 @@ section {
   }
 }
 
-.cars-card-con  {
+.cars-card-con {
   display: flex;
-  flex-direction: column;
+  flex-direction: column !important;
   gap: 1em;
 }
 
