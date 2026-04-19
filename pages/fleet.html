@@ -86,13 +86,13 @@
           </div>
         </div>
         <ul class="suggested-filters">
-          <li><input type="checkbox" name="automatic" value="Automatic" id="automaticFilterBox">Automatic Transmission </li>
-          <li><input type="checkbox" name="seats" value="4+ Seats" id="seatsFilterBox">4+ seats </li>
-          <li><input type="checkbox" name="ac" value="Air Conditioning" id="acFilterBox">Air Conditioning</li>
-          <li><input type="checkbox" name="electric" value="electric" id="electricFilterBox">Electric</li>
-          <li><input type="checkbox" name="milage" value="Unlimited Milage" id="milageFilterBox">Unlimited Mileage</li>
-          <li><input type="checkbox" name="freeCancel" value="Free cancellation" id="freeCancelFilterBox">Free Cancellation</li>
-          <li><input type="checkbox" name="special" value="Special Offers" id="specialFilterBox">Special Offers</li>
+          <li><input type="checkbox" name="automatic" value="Automatic" id="automaticFilterBox" aria-label="automatic transition filter">Automatic Transmission </li>
+          <li><input type="checkbox" name="seats" value="4+ Seats" id="seatsFilterBox" aria-label="4+ seats filter">4+ seats </li>
+          <li><input type="checkbox" name="ac" value="Air Conditioning" id="acFilterBox" aria-label="air conditioning filter">Air Conditioning</li>
+          <li><input type="checkbox" name="electric" value="electric" id="electricFilterBox" aria-label="electric vehicle filter">Electric</li>
+          <li><input type="checkbox" name="milage" value="Unlimited Milage" id="milageFilterBox" aria-label="unlimited mileage filter">Unlimited Mileage</li>
+          <li><input type="checkbox" name="freeCancel" value="Free cancellation" id="freeCancelFilterBox" aria-label="free cancellation filter">Free Cancellation</li>
+          <li><input type="checkbox" name="special" value="Special Offers" id="specialFilterBox" aria-label="special offers filter">Special Offers</li>
 
         </ul>
         <div class="mobile-advanced-filters"></div>
@@ -643,7 +643,7 @@
       <button id="submitFiltersBtn">Filter</button>
     </form>
   </div>
-  <footer role="footer" id="footer" style="width: 99%; position: relative; bottom: 0;"></footer>
+  <footer id="footer" style="width: 99%; position: relative; bottom: 0;"></footer>
   <script src="/scripts/database.js"></script>
   <script src="/scripts/index.js"></script>
   <script src="/scripts/calendar.js"></script>
