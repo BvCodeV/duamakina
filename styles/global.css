@@ -31,7 +31,7 @@
   --color-error: #B84040;
   --color-error-light: #F5D5D5;
   --color-info: #2E6B9E;
-  --color-info-light: #D0E5F5;
+  --color-info-light: #d9e9f559;
 }
 
 * {
@@ -43,7 +43,7 @@
 body {
   background-color: var(--color-bg-main);
   color: var(--color-txt-primary);
-  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  font-family: 'Nunito', Helvetica, Arial, sans-serif;
   overflow-x: hidden;
 }
 
@@ -71,4 +71,41 @@ body {
 .flatpickr-day.endRange {
   background: var(--color-primary) !important;
   border-color: var(--color-primary) !important;
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  -webkit-appearance: none;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 7px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.25s ease;
+  display: inline-block;
+  &:hover {
+    border-color: var(--color-border-strong);
+  }
+  &:checked {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    left: 6px;
+    top: 2px;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg) scale(0);
+    transition: transform 0.2s ease;
+  }
+  &:checked::after {
+    transform: rotate(45deg) scale(1);
+  }
 }

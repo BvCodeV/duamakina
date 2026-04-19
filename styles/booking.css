@@ -3,6 +3,7 @@ main {
   align-items: start;
   gap: 2rem;
   padding: 2rem;
+  margin: 20px 20em;
 }
 
 section {
@@ -140,7 +141,6 @@ section {
       border-radius: 20px;
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
       outline: 0.5px solid var(--color-border);
       user-select: none;
       transition: all 0.3s ease;
@@ -309,16 +309,21 @@ aside {
     }
   }
 }
-
+@media screen and (max-width: 1500px) {
+  main {
+    margin: 1em;
+  }
+}
 @media screen and (max-width: 1024px) {
   main {
     flex-direction: column;
     padding: 1rem;
+    margin: 20px 0;
   }
   .car-specs {
     flex-wrap: wrap;
   .spec-con {
-    width: auto !important;
+    width: 9.5em !important;
     white-space: nowrap;
     font-size: 14px;
   }

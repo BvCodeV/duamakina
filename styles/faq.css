@@ -1,0 +1,131 @@
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2em;
+  margin: 20px 25em;
+}
+
+.faq-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 2em;
+
+  .faq-con {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    padding: 1em;
+    background-color: var(--color-bg-surface);
+    border-radius: 20px;
+
+    .faq-header {
+      display: flex;
+      align-items: center;
+      gap: 1em;
+      font-size: 1.2em;
+
+      .img-con {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--color-secondary);
+        border-radius: 10px;
+      }
+    }
+    details {
+      outline: 1px solid var(--color-border);
+      padding: 1em;
+      border-radius: 10px;
+      &[open] {
+        .arrow-img {
+          transform: rotate(180deg) !important;
+        }
+      }
+
+      summary {
+        cursor: pointer;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        user-select: none;
+        img {
+          width: 20px;
+          height: 20px;
+          transition: transform 0.3s ease;
+        }
+      }
+      p {
+        margin-top: 0.5em;
+        color: var(--color-txt-secondary);
+        font-size: 1em;
+      }
+    }
+  }
+}
+
+.contact-sec {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+  padding: 1em;
+  width: 100%;
+  background-color: var(--color-info-light);
+  border-radius: 20px;
+
+  img {
+    width: 50px;
+    height: 50px;
+  }
+  h3 {
+    font-size: 1.5em;
+    color: var(--color-txt-primary);
+  }
+  p {
+    color: var(--color-txt-secondary);
+    font-size: 1em;
+  }
+
+  .btn-con {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+
+    a {
+      text-decoration: none;
+      padding: 0.6em 1.5em;
+      background-color: var(--color-primary);
+      color: var(--color-txt-inverse);
+      border-radius: 10px;
+      font-weight: 600;
+      transition: transform 0.3s ease;
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+    .email-btn {
+      background-color: var(--color-txt-inverse);
+      border: 1px solid var(--color-border);
+      color: var(--color-txt-primary);
+    }
+  }
+}
+
+@media screen and (max-width: 1500px) {
+  main {
+    margin: 20px 10em;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  main {
+    margin: 20px 1em;
+  }
+}

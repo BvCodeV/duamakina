@@ -89,7 +89,7 @@ main {
           flex-direction: column;
           gap: 0.3rem;
           position: relative;
-          width: 49%;
+          width: 100%;
 
           label {
             font-size: 13px;
@@ -123,15 +123,7 @@ main {
           align-items: center;
           justify-content: center;
           gap: 0.3rem;
-          margin-top: 0.5em;
-
-          input {
-            border-radius: 50%;
-            width: 16px;
-            height: 16px;
-            accent-color: var(--color-primary);
-            cursor: pointer;
-          }
+          margin-top: 1.2em;
 
           label {
             font-size: 13px;
@@ -351,7 +343,7 @@ main {
     flex-wrap: nowrap;
     flex-shrink: 0;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
     padding: 1em;
     overflow-x: scroll;
     gap: 1em;
@@ -463,6 +455,7 @@ main {
       transform: translateX(0);
 
       #filterBar {
+        .location-inpt { width: 49% !important;}
         .date-time-con {
           display: flex;
           flex-direction: row;
@@ -478,6 +471,7 @@ main {
     flex-direction: row;
     gap: 10em;
   }
+  .review-con { justify-content: center !important;}
 }
 
 @media screen and (min-width: 1500px) {

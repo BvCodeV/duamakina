@@ -1,9 +1,6 @@
 window.addEventListener('partialsLoaded', () => {
   const rates = {};
   const currencySelect = document.getElementById("currencySelect");
-  const basePriceEls = document.querySelectorAll('.currency-num');
-  const currencySignEls = document.querySelectorAll('.currency-sign');
-  const basePrices = [...basePriceEls].map(el => parseFloat(el.textContent));
   const currencyMap = { "€": "EUR", "$": "USD", "£": "GBP", "L": "ALL" };
 
   async function fetchAllRates() {
@@ -20,21 +17,28 @@ window.addEventListener('partialsLoaded', () => {
     updatePrice(currencySelect.value);
   }
 
-  function updatePrice(currency) {
+  window.updatePrice = function(currency) {
+    const basePriceEls = document.querySelectorAll('.currency-num');
+    const currencySignEls = document.querySelectorAll('.currency-sign');
     const sign = Object.keys(currencyMap).find(key => currencyMap[key] === currency);
-    basePriceEls.forEach((el, i) => {
-      const value = currency === "EUR" ? basePrices[i] : basePrices[i] * rates[currency];
+
+    basePriceEls.forEach(el => {
+      const base = parseFloat(el.dataset.basePrice ?? el.textContent);
+      el.dataset.basePrice = base;
+      const value = currency === "EUR" ? base : base * rates[currency];
       el.textContent = value.toLocaleString('en-US', {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2
       });
     });
+
     currencySignEls.forEach(el => el.textContent = sign);
   }
 
   currencySelect.addEventListener("change", e => {
     localStorage.setItem('selectedCurrency', e.target.value);
-    updatePrice(e.target.value);
+    window.updatePrice(e.target.value);
   });
+
   fetchAllRates();
 });

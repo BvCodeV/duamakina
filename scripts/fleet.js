@@ -13,20 +13,32 @@ const carTypePills = document.querySelectorAll('.type-pill');
 const locationDialog = document.getElementById("locationFilterDialog")
 const filtersDialog = document.getElementById("filtersDialog");
 let activeCarType = document.querySelector('.selected-type');
+// location data
+const pickupTxt = document.getElementById("pickupTxt");
+const dropoffTxt = document.getElementById("dropoffTxt");
+const pickupDateTxt = document.getElementById("pickupDateTxt");
+const dropoffDateTxt = document.getElementById("dropoffDateTxt");
+const pickupTimeTxt = document.getElementById("pickupTimeTxt");
+const dropoffTimeTxt = document.getElementById("dropoffTimeTxt");
+
 const minR = document.getElementById('min-range');
 const maxR = document.getElementById('max-range');
 const fill = document.getElementById('fill');
 const GAP = 50;
 
-filterBtn.onclick = () => {
-  sidebarFilter.style.display = 'block';
-  document.body.style.overflow = 'hidden';
+// display location data
+function displayLocationDataSearch() {
+  const locationData = JSON.parse(localStorage.getItem("locationData"))
+  pickupTxt.textContent = locationData.pickupLoc;
+  dropoffTxt.textContent = locationData.dropoffLoc;
+  pickupDateTxt.textContent = locationData.pickupDate;
+  dropoffDateTxt.textContent = locationData.dropoffDate;
+  pickupTimeTxt.textContent = locationData.pickupTime;
+  dropoffTimeTxt.textContent = locationData.dropoffTime;
 }
+displayLocationDataSearch();
 
-closeSidebarBtn.onclick = () => {
-  sidebarFilter.style.display = 'none';
-  document.body.style.overflow = '';
-}
+// filter Pills
 
 carTypePills.forEach(div => {
   div.addEventListener("click", () => {
@@ -34,8 +46,7 @@ carTypePills.forEach(div => {
     activeCarType = div;
     div.classList.add('selected-type')
   })
-})
-
+});
 const pillsConfig = [
   { checkbox: automaticPopular, label: 'Automatic' },
   { checkbox: milagePopular,    label: 'Unlimited Mileage' },
@@ -45,7 +56,6 @@ const pillsConfig = [
   { checkbox: freeCancelPopular, label: 'Free Cancellation' },
   { checkbox: specialPopular,   label: 'Special Offers' },
 ];
-
 pillsCon.addEventListener('click', (e) => {
   if (e.target.tagName === 'BUTTON') {
     const pill = e.target.closest('.filter-pill');
@@ -58,7 +68,6 @@ pillsCon.addEventListener('click', (e) => {
     pill.remove();
   }
 });
-
 pillsConfig.forEach(({ checkbox, label }) => {
   checkbox.addEventListener('change', () => {
     if (checkbox.checked) {
@@ -75,9 +84,18 @@ pillsConfig.forEach(({ checkbox, label }) => {
   });
 });
 
-// Handle modal open button
+// location dialog
+
+let calendarsInitialized = false;
+locationDialog.addEventListener('toggle', (e) => {
+  document.body.style.overflow = e.newState === 'open' ? 'hidden' : '';
+  if (e.newState === 'open' && !calendarsInitialized) {
+    displayCalendarFleet();
+    calendarsInitialized = true;
+  }
+});
 document.getElementById("locationChangeBtn").onclick = () => {
-  const filter = JSON.parse(localStorage.getItem("homeFilters"));
+  const filter = JSON.parse(localStorage.getItem("locationData"));
   if (filter) {
     document.getElementById("changePickup").value = filter.pickupLoc || '';
     document.getElementById("changeDropoff").value = filter.dropoffLoc || '';
@@ -87,19 +105,7 @@ document.getElementById("locationChangeBtn").onclick = () => {
     document.getElementById("changeDropoffTime").value = filter.dropoffTime || '00:00';
   }
 };
-
-locationDialog.addEventListener('toggle', (e) => {
-  document.body.style.overflow = e.newState === 'open' ? 'hidden' : '';
-});
-
-filtersDialog.addEventListener('toggle', (e) => {
-  document.body.style.overflow = e.newState === 'open' ? 'hidden' : '';
-});
-
-document.getElementById("closeDialog").onclick = () => locationDialog.hidePopover();
-document.getElementById("filtersCloseDialog").onclick = () => filtersDialog.hidePopover();
-
-function updateFilter() {
+function updateLocationData() {
   const newFilter = {
     pickupLoc: document.getElementById("changePickup").value,
     pickupDate: document.getElementById("changePickupDate").value,
@@ -112,31 +118,21 @@ function updateFilter() {
   if (dropoffCheck.checked) {
     newFilter.dropoffLoc = newFilter.pickupLoc
   }
-
-  // Update localStorage
-  localStorage.setItem("homeFilters", JSON.stringify(newFilter));
-
-  // Update displayed values on the page
-  document.getElementById("pickupTxt").textContent = newFilter.pickupLoc;
-  document.getElementById("dropoffTxt").textContent = newFilter.dropoffLoc;
-  document.getElementById("pickupDateTxt").textContent = newFilter.pickupDate;
-  document.getElementById("dropoffDateTxt").textContent = newFilter.dropoffDate;
-  document.getElementById("pickupTimeTxt").textContent = newFilter.pickupTime;
-  document.getElementById("dropoffTimeTxt").textContent = newFilter.dropoffTime;
-
-  // Close the modal
+  localStorage.setItem("locationData", JSON.stringify(newFilter));
+  calcDays(newFilter.pickupDate, newFilter.dropoffDate);
+  displayLocationDataSearch();
   locationDialog.hidePopover();
 }
+document.getElementById("closeDialog").onclick = () => locationDialog.hidePopover();
 
-let calendarsInitialized = false;
+// filters dialog
 
-locationDialog.addEventListener('toggle', (e) => {
+filtersDialog.addEventListener('toggle', (e) => {
   document.body.style.overflow = e.newState === 'open' ? 'hidden' : '';
-  if (e.newState === 'open' && !calendarsInitialized) {
-    initializeModalCalendars();
-    calendarsInitialized = true;
-  }
 });
+document.getElementById("filtersCloseDialog").onclick = () => filtersDialog.hidePopover();
+
+// price range slider
 
 function updatePriceRange() {
   let min = +minR.value, max = +maxR.value;
@@ -150,9 +146,10 @@ function updatePriceRange() {
   document.getElementById('min-val').value = min;
   document.getElementById('max-val').value = max;
 }
-
 [minR, maxR].forEach(r => r.addEventListener('input', updatePriceRange));
 updatePriceRange.call(minR);
+
+// mobile filters
 
 function mountAdvancedFilters() {
   const isMobile = window.matchMedia('(max-width: 1024px)').matches;
@@ -165,6 +162,13 @@ function mountAdvancedFilters() {
     document.getElementById('filtersDialog').appendChild(form);
   }
 }
-
 mountAdvancedFilters();
 window.matchMedia('(max-width: 1024px)').addEventListener('change', mountAdvancedFilters);
+filterBtn.onclick = () => {
+  sidebarFilter.style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+closeSidebarBtn.onclick = () => {
+  sidebarFilter.style.display = 'none';
+  document.body.style.overflow = '';
+}
