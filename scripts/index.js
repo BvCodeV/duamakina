@@ -14,3 +14,13 @@ dropoffCheck.addEventListener('change', () => {
     dropoffLoc.style.display = 'flex';
   }
 });
+
+function calcDays(pickupStr, dropoffStr) {
+  const pickup = new Date(pickupStr);
+  const dropoff = new Date(dropoffStr);
+
+  const diff = dropoff - pickup;
+  const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+  localStorage.setItem("daysCalc", days);
+  return days;
+}

@@ -385,14 +385,6 @@ section {
         gap: 0.3rem;
         margin-top: 0.5em;
 
-        input {
-          border-radius: 50%;
-          width: 16px;
-          height: 16px;
-          accent-color: var(--color-primary);
-          cursor: pointer;
-        }
-
         label {
           font-size: 13px;
           color: var(--color-txt-secondary);
@@ -572,6 +564,11 @@ section {
       gap: 1.5em;
       font-weight: 400;
       list-style-type: none;
+      li {
+        display: flex;
+        align-items: center;
+        gap: 0.5em;
+      }
     }
   }
 

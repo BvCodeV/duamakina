@@ -1,6 +1,7 @@
+if (document.getElementById('pickupDate')) {
   const pickup = flatpickr('#pickupDate', {
     mode: 'range',
-    dateFormat: 'M j, y',
+    dateFormat: 'M j, Y',
     minDate: 'today',
     allowInput: false,
     position: 'below',
@@ -15,13 +16,22 @@
       }
     }
   });
-
   document.getElementById('dropoffDate').addEventListener('click', () => pickup.open());
+}
 
-function initializeModalCalendars() {
+if (document.getElementById('driverLicense')) {
+  const driverLicense = flatpickr('#driverLicense', {
+    mode: 'single',
+    dateFormat: 'M j, Y',
+    minDate: 'today',
+    allowInput: false,
+  });
+}
+
+function displayCalendarFleet() {
   const pickup = flatpickr('#changePickupDate', {
     mode: 'range',
-    dateFormat: 'M j, y',
+    dateFormat: 'M j, Y',
     minDate: 'today',
     allowInput: false,
     position: 'above left',
@@ -40,6 +50,30 @@ function initializeModalCalendars() {
       }
     }
   });
-
   document.getElementById('changeDropoffDate').addEventListener('click', () => pickup.open());
+}
+
+function displayCalendarForm() {
+  const pickupForm = flatpickr('#changeFormPickupDate', {
+    mode: 'range',
+    dateFormat: 'M j, Y',
+    minDate: 'today',
+    allowInput: false,
+    position: 'above left',
+    onReady(_, __, fp) {
+      locationForm.appendChild(fp.calendarContainer);
+    },
+    onChange(selectedDates) {
+      if (selectedDates.length >= 1) {
+        document.getElementById('changeFormPickupDate').value =
+          selectedDates[0].toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: "numeric" });
+      }
+      if (selectedDates.length === 2) {
+        document.getElementById('changeFormDropoffDate').value =
+          selectedDates[1].toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: "numeric" });
+        pickupForm.close();
+      }
+    }
+  });
+  document.getElementById('changeFormDropoffDate').addEventListener('click', () => pickupForm.open());
 }
