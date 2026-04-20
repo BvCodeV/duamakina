@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Block non-SEO pages
+Disallow: /pages/booking
+Disallow: /pages/form
+
+# Block query strings
+Disallow: /*?*
+
+# Sitemap location
+Sitemap: https://www.duamakina.com/sitemap.xml
