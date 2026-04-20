@@ -45,9 +45,11 @@ main {
 
       span {
         background: linear-gradient(135deg, #1B4332 0%, #2D6A4F 20%, #52B788 40%, #74C69D 60%, #B7E4C7 80%, #EAF5E9 100%);
+        letter-spacing: 5px;
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: transparent;
+        font-family: "Damion", sans-serif;
       }
     }
 

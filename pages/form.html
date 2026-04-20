@@ -3,18 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-  <title>Find the best cars avaible for rent right now | RideShare | Our Fleet</title>
-  <meta name="application-name" content="RideShare">
-  <meta 
-  name="description" 
-  content="RideShare is a platform for connecting riders with drivers for convenient and affordable transportation.
-  ">
-  <meta 
-  name="keywords" 
-  content="ride share, carpooling, transportation, ridesharing, driver, rider, travel, commute, city, urban, sustainable, eco-friendly, cost-effective, convenient, Our fleet
-  ">
-  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-  <link rel="canonical" href="https://rideshare.vercel.app/">
+  <title>Rent a Car in Tirana, Albania | Dua Makina</title>
+  <meta name="application-name" content="duamakina">
+  <meta name="description" content="Affordable, reliable car rentals in Tirana, Albania. Explore Albania Your Way with DuaMakina. Best prices guaranteed – book online in minutes!">
+  <meta name="keywords" content="dua makine,dua makina, duamakina car rental Tirana, rent a car Albania, car hire Albania, cheap car rental Albania, affordable car rental Tirana, car rental Tirana airport, Albania road trip, explore Albania by car, reliable car rental Albania, makina me qera Tiranë, qera makine Shqiperi, makina me qera çmim të lirë, makina me qera aeroporti Tiranë, qera makine online Shqiperi, eksploroni Shqipërinë me makinë, makina me qera te besueshem, udhëtim me makinë Shqipëri">
+  <link rel="canonical" href="https://duamakina.com/">
+  <meta name="robots" content="noindex, nofollow">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Damion&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
@@ -55,10 +49,14 @@
         </div>
         <div class="driver-form form-con">
           <h2>Driver Information</h2>
-          <div class="driver-form-con">
-            <div class="driver-name">
+          <div class="driver-name">
               <label for="driverName">Driver's Full Name <span class="required-star">*</span></label>
               <input type="text" id="driverName" name="driverName" placeholder="Bob Ndertuesi" required>
+            </div>
+          <div class="driver-form-con">
+            <div class="driver-name">
+              <label for="driverAge">Driver's Age <span class="required-star">*</span></label>
+              <input type="number" id="driverAge" name="driverAge" placeholder="25-70" required>
             </div>
             <div class="driver-license">
               <label for="driverLicense">License Expiry Date <span class="required-star">*</span></label>
@@ -70,7 +68,7 @@
           <h1>Optional Add-ons</h1>
           <div class="addons-card-con">
             <div class="addons-card-check">
-              <input type="checkbox" id="childSeat" class="addonCheck" data-name="Child Seat" data-price="5">
+              <input type="checkbox" id="childSeat" class="addonCheck" data-name="Child Seat" data-price="5"aria-label="child seat">
               <img src="/assets/icons/child.svg" alt="child img" loading="lazy" draggable="false">
               <div>
                 <h3>Child Seat</h3>
@@ -78,7 +76,7 @@
               </div>
             </div>
             <div class="addons-card-check">
-              <input type="checkbox" id="gps" class="addonCheck" data-name="GPS Navigation" data-price="7">
+              <input type="checkbox" id="gps" class="addonCheck" data-name="GPS Navigation" data-price="7" aria-label="gps navigation">
               <img src="/assets/icons/gps.svg" alt="gps img" loading="lazy" draggable="false" >
               <div>
                 <h3>GPS Navigation</h3>
@@ -86,7 +84,7 @@
               </div>
             </div>
             <div class="addons-card-check">
-              <input type="checkbox" id="secondDriver" class="addonCheck" data-name="Additional Driver" data-price="10">
+              <input type="checkbox" id="secondDriver" class="addonCheck" data-name="Additional Driver" data-price="10" aria-label="additional driver">
               <img src="/assets/icons/driverPlus.svg" alt="driverPlus img" loading="lazy" draggable="false">
               <div>
                 <h3>Additional Driver</h3>
@@ -94,7 +92,7 @@
               </div>
             </div>
             <div class="addons-card-check">
-              <input type="checkbox"  id="damageWaiver" class="addonCheck" data-name="Damage waiver" data-price="15">
+              <input type="checkbox"  id="damageWaiver" class="addonCheck" data-name="Damage waiver" data-price="15" aria-label="damage waiver">
               <img src="/assets/icons/damage.svg" alt="damage img" loading="lazy" draggable="false">
               <div>
                 <h3>Full Damage Waiver</h3>
@@ -354,7 +352,7 @@
       </button>
     </form>
   </div>
-  <footer role="footer" id="footer" style="width: 99%; position: relative; bottom: 0;"></footer>
+  <footer id="footer" style="width: 99%; position: relative; bottom: 0;"></footer>
   <script src="/scripts/calendar.js"></script>
   <script src="/scripts/currency.js"></script>
   <script src="/scripts/database.js"></script>
