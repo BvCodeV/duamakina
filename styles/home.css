@@ -253,7 +253,7 @@ main {
   position: relative;
 
   .certification-wrapper {
-    width: 60em;
+    width: 100%;
     overflow: hidden;
     display: flex;
     align-items: start;
