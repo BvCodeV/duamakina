@@ -6,7 +6,17 @@
   <url>
     <loc>https://www.duamakina.com/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.duamakina.com/"/>
-    <lastmod>2026-04-20</lastmod>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://www.duamakina.com/sq/"/>
+    <lastmod>2026-04-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://www.duamakina.com/sq/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.duamakina.com/"/>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://www.duamakina.com/sq/"/>
+    <lastmod>2026-04-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -14,16 +24,39 @@
   <!-- Fleet page -->
   <url>
     <loc>https://www.duamakina.com/pages/fleet</loc>
-    <lastmod>2026-04-20</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.duamakina.com/pages/fleet"/>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://www.duamakina.com/sq/pages/fleet"/>
+    <lastmod>2026-04-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
-  <!-- faqs page -->
+  <url>
+    <loc>https://www.duamakina.com/sq/pages/fleet</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.duamakina.com/pages/fleet"/>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://www.duamakina.com/sq/pages/fleet"/>
+    <lastmod>2026-04-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- FAQs page -->
   <url>
     <loc>https://www.duamakina.com/pages/faqs</loc>
-    <lastmod>2026-04-20</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.duamakina.com/pages/faqs"/>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://www.duamakina.com/sq/pages/faqs"/>
+    <lastmod>2026-04-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <url>
+    <loc>https://www.duamakina.com/sq/pages/faqs</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.duamakina.com/pages/faqs"/>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://www.duamakina.com/sq/pages/faqs"/>
+    <lastmod>2026-04-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
