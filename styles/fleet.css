@@ -9,8 +9,8 @@ main {
 
   .cars-available {
     position: absolute;
-    top: 1.3em;
-    left: 4em;
+    top: 1em;
+    left: 1em;
   }
 }
 

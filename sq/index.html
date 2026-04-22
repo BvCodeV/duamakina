@@ -1,19 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sq">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-  <title>Rent a Car in Tirana, Albania | Dua Makina</title>
+  <title>Merr makine me qira ne Tirane, Shqiperi | DuaMakina</title>
   <meta name="application-name" content="duamakina">
-  <meta name="description" content="Affordable, reliable car rentals in Tirana, Albania. Explore Albania Your Way with DuaMakina. Best prices guaranteed – book online in minutes!">
-  <meta name="keywords" content="dua makine,dua makina, duamakina car rental Tirana, rent a car Albania, car hire Albania, cheap car rental Albania, affordable car rental Tirana, car rental Tirana airport, Albania road trip, explore Albania by car, reliable car rental Albania, makina me qera Tiranë, qera makine Shqiperi, makina me qera çmim të lirë, makina me qera aeroporti Tiranë, qera makine online Shqiperi, eksploroni Shqipërinë me makinë, makina me qera te besueshem, udhëtim me makinë Shqipëri">
+  <meta name="description" content="DuaMakina – Shërbim i makinave me qira në Tiranë, Shqipëri. Rezervo online lehtë dhe shpejt. Çmime të përballueshme, flotë moderne.">
+  <meta name="keywords" content="dua makin ,dua makine,dua makina, duamakina car rental Tirana, rent a car Albania, car hire Albania, cheap car rental Albania, affordable car rental Tirana, car rental Tirana airport, Albania road trip, explore Albania by car, reliable car rental Albania, makina me qera Tiranë, qera makine Shqiperi, makina me qera çmim të lirë, makina me qera aeroporti Tiranë, qera makine online Shqiperi, eksploroni Shqipërinë me makinë, makina me qera te besueshem, udhëtim me makinë Shqipëri">
   <link rel="canonical" href="https://duamakina.com/">
-  <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
-  <link rel="icon" type="image/webp" href="/assets/icons/favicon.webp">
   <link rel="alternate" hreflang="x-default" href="https://www.duamakina.com/">
   <link rel="alternate" hreflang="en" href="https://www.duamakina.com/">
   <link rel="alternate" hreflang="sq" href="https://www.duamakina.com/sq/">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Damion&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
@@ -32,8 +31,8 @@
     crossorigin="anonymous">
   </script>
 
-  <link rel="stylesheet" href="styles/home.css">
-  <link rel="stylesheet" href="styles/global.css">
+  <link rel="stylesheet" href="/styles/home.css">
+  <link rel="stylesheet" href="/styles/global.css">
   <script src="/scripts/components.js"></script>
 </head>
 <body>
@@ -43,32 +42,32 @@
     <section id="hero">
       <picture>
         <!-- mobile -->
-        <source media="(max-width: 768px)" srcset="https://jdhigikorvtxhslxudcs.supabase.co/storage/v1/object/public/duamakina-img/public/hero-bg-500.avif"/>
+        <source media="(max-width: 768px)" srcset="https://jdhigikorvtxhslxudcs.supabase.co/storage/v1/object/public/duamakina-img/public/hero-bg-500.avif" />
         <!-- Laptop -->
         <source media="(max-width: 1450px)" srcset="https://jdhigikorvtxhslxudcs.supabase.co/storage/v1/object/public/duamakina-img/public/hero-bg-1280px.avif" />
         <!-- Desktop -->
         <img src="https://jdhigikorvtxhslxudcs.supabase.co/storage/v1/object/public/duamakina-img/public/hero-bg-1990px.avif" alt="main bg" draggable="false" fetchpriority=high />
       </picture>
       <div class="left-con">
-        <h1>Explore Albania <span>Your Way</span></h1>
-        <p>Rent a car with zero hidden fees. Pay cash on arrival. No credit card needed.</p>
+        <h1>Rruga Fillon <span>Këtu</span></h1>
+        <p>Pa tarifa të fshehura. Pa kartë krediti. Vetëm cash.</p>
       </div>
       <div class="right-con">
         <form id="filterBar">
           <div class="locations-con">
             <div class="pickup-loc location-inpt" >
-              <label for="pickup">Pickup Location</label>
+              <label for="pickup">Vendi Marrjes</label>
               <img src="/assets/icons/location.svg" alt="location icon" loading="lazy" draggable="false">
               <input type="text" id="pickup" list="locations" name="pickup" placeholder="e.g Tirana City Center" required>
             </div>
             <div class="dropoff-loc location-inpt" id="dropoffLoc">
-              <label for="dropoff">Drop-off Location</label>
+              <label for="dropoff">Vendi Dorzimit</label>
               <img src="/assets/icons/location.svg" alt="location icon" loading="lazy" draggable="false">
               <input type="text" id="dropoff" list="locations" name="dropoff" placeholder="e.g Tirana City Center" required>
             </div>
             <div class="dropoff-check">
               <input type="checkbox" id="dropoffCheck" name="dropoff-check" checked>
-              <label for="dropoffCheck">Drop-off at same location</label>
+              <label for="dropoffCheck">Dorzoje ne te njejtin lokacion</label>
             </div>
             <datalist id="locations">
                 <option value="Tirana City Center" />
@@ -81,12 +80,12 @@
           <div class="date-time-con">
             <div class="date-time">
               <div class="date">
-                <label for="pickupDate">Pick-up Date</label>
+                <label for="pickupDate">Data Marrjes</label>
                 <img src="/assets/icons/calendar.svg" alt="Calendar Icon" loading="lazy" draggable="false"> 
-                <input id="pickupDate" type="text" placeholder="Pickup date" readonly>
+                <input id="pickupDate" type="text" placeholder="Data marrjes" readonly>
               </div>
               <div class="time">
-                <label for="pickupTime">Pick-up Time</label>
+                <label for="pickupTime">Koha e Marrjes</label>
                 <img src="/assets/icons/time.svg" alt="time" loading="lazy" draggable="false">
                 <select name="time" id="pickupTime">
                   <option value="00:00">00:00</option>
@@ -142,12 +141,12 @@
             </div>
             <div class="date-time">
               <div class="date">
-                <label for="dropoffDate">Drop-off Date</label>
+                <label for="dropoffDate">Data Dorzimit</label>
                 <img src="/assets/icons/calendar.svg" alt="Calendar Icon" loading="lazy" draggable="false">
-                <input id="dropoffDate" type="text" placeholder="Dropoff date" readonly>
+                <input id="dropoffDate" type="text" placeholder="Data e dorzimit" readonly>
               </div>
               <div class="time">
-                <label for="dropoffTime">Drop-off Time</label>
+                <label for="dropoffTime">Koha Dorzimit</label>
                 <img src="/assets/icons/time.svg" alt="time" loading="lazy" draggable="false">
                 <select name="time" id="dropoffTime">
                   <option value="00:00">00:00</option>
@@ -204,56 +203,56 @@
           </div>
           <button type="button" id="filterBtn">
             <img src="/assets/icons/search.svg" alt="Search Icon" loading="lazy" draggable="false">
-            <span>Search Available Cars</span>
+            <span>Kërko makina të disponueshme</span>
           </button>
         </form>
       </div>
     </section>
     <section id="certifications">
-      <h1>Our Certifications</h1>
+      <h1>Certifikimet tona</h1>
       <div class="certification-wrapper">
         <div class="certification-carousel">
           <div class="certification-card">
               <img src="/assets/icons/trust.svg" alt="trusted shield icon" loading="lazy" draggable="false">
-              <p>Ministry of Tourism Certified</p>
+              <p>I certifikuar nga Ministria e Turizmit</p>
           </div>
           <div class="certification-card">
             <img src="/assets/icons/medal.svg" alt="medal icon" loading="lazy" draggable="false">
-            <p>Professional Rental Association</p>
+            <p>Kompani Profesionale e Qiradhënies</p>
           </div>
           <div class="certification-card">
             <img src="/assets/icons/star.svg" alt="star icon" loading="lazy" draggable="false">
-            <p>Clean Vehicle Guarantee</p>
+            <p>Garanci për automjete të pastra</p>
           </div>
           <div class="certification-card">
             <img src="/assets/icons/shield.svg" alt="shield icon" loading="lazy" draggable="false">
-            <p>Full Insurance Coverage</p>
+            <p>Mbulim i plotë i sigurimit</p>
           </div>
           <div class="certification-card">
             <img src="/assets/icons/roadside.svg" alt="roadside icon" loading="lazy" draggable="false">
-            <p>24/7 Roadside Assistance</p>
+            <p>Asistencë në rrugë 24/7</p>
           </div>
         </div>
         <div class="certification-carousel" aria-hidden="true">
           <div class="certification-card">
             <img src="/assets/icons/trust.svg" alt="trusted shield icon" loading="lazy" draggable="false">
-            <p>Ministry of Tourism Certified</p>
+              <p>I certifikuar nga Ministria e Turizmit</p>
           </div>
           <div class="certification-card">
             <img src="/assets/icons/medal.svg" alt="medal icon" loading="lazy" draggable="false">
-            <p>Professional Rental Association</p>
+            <p>Kompani Profesionale e Qiradhënies</p>
           </div>
           <div class="certification-card">
             <img src="/assets/icons/star.svg" alt="star icon" loading="lazy" draggable="false">
-            <p>Clean Vehicle Guarantee</p>
+            <p>Garanci për automjete të pastra</p>
           </div>
           <div class="certification-card">
             <img src="/assets/icons/shield.svg" alt="shield icon" loading="lazy" draggable="false">
-            <p>Full Insurance Coverage</p>
+            <p>Mbulim i plotë i sigurimit</p>
           </div>
           <div class="certification-card">
             <img src="/assets/icons/roadside.svg" alt="roadside icon" loading="lazy" draggable="false">
-            <p>24/7 Roadside Assistance</p>
+            <p>Asistencë në rrugë 24/7</p>
           </div>
         </div>
       </div>
@@ -263,29 +262,29 @@
         <div class="icon-con">
           <img src="/assets/icons/banknotes.svg" alt="cash icon" loading="lazy" draggable="false">
         </div>
-        <h1>Cash Only Payment</h1>
-        <p>No credit card needed. Pay in cash when you pick up your car.</p>
+        <h1>Pagesa vetem ne cash</h1>
+        <p>Nuk nevojitet kartë krediti. Paguani me cash kur merrni makinën tuaj.</p>
       </div>
       <div class="about-card">
         <div class="icon-con">
           <img src="/assets/icons/insurance.svg" alt="cash icon" loading="lazy" draggable="false">
         </div>
-        <h1>Full Insurance</h1>
-        <p>All vehicles come with comprehensive insurance coverage included.</p>
+        <h1>Siguracion i plote</h1>
+        <p>Të gjitha automjetet vijnë me mbulim të plotë sigurimi.</p>
       </div>
       <div class="about-card">
         <div class="icon-con">
           <img src="/assets/icons/clock.svg" alt="cash icon" loading="lazy" draggable="false">
         </div>
-        <h1>24/7 Support</h1>
-        <p>Reach us anytime via phone or WhatsApp for roadside assistance.</p>
+        <h1>Asistence 24/7</h1>
+        <p>Na kontaktoni në çdo kohë me telefon ose WhatsApp për asistencë në rrugë.</p>
       </div>
     </section>
     <section id="reviews">
-      <h1 class="title">What our guest say</h1>
+      <h1 class="title">Çfarë thonë klientët tanë</h1>
       <div class="review-con">
         <div class="review-card">
-          <p>"Excellent service! The car was spotless and the pickup at Tirana Airport was smooth. Will use DriveNow again."</p>
+          <p>“ Shërbim i shkëlqyer! Makina ishte shumë e pastër dhe marrja në Aeroportin e Tiranës shkoi pa probleme. Do ta përdor sërish Dua makina. ”</p>
           <div class="user-con">
             <h1 style="background-color: var(--color-secondary);">IT</h2>
             <div class="user">
@@ -301,7 +300,7 @@
           </div>
         </div>
         <div class="review-card">
-          <p>"Great value for money. The Duster was perfect for exploring the Albanian Riviera. Highly recommend!"</p>
+          <p>“ Vlerë e shkëlqyer për çmimin. Dacia Duster ishte perfekte për të eksploruar Rivierën Shqiptare. E rekomandoj shumë! ”</p>
           <div class="user-con">
             <h1 style="background-color: var(--color-accent-light);">De</h2>
             <div class="user">
@@ -317,7 +316,7 @@
           </div>
         </div>
         <div class="review-card">
-          <p>"Very transparent pricing with no hidden fees. Cash payment made everything simple. Good experience overall."</p>
+          <p>“ Çmime shumë transparente pa tarifa të fshehura. Pagesa me cash e bëri gjithçka shumë të thjeshtë. Përvojë e mirë në përgjithësi. ”</p>
           <div class="user-con">
             <h1 style="background-color: var(--color-info-light);">US</h2>
             <div class="user">
@@ -336,19 +335,19 @@
       <div class="review-info">
         <div class="review-info-card">
           <h1>4.7</h1>
-          <p>Average Rating</p>
+          <p>Vlerësimi mesatar</p>
         </div>
         <div class="review-info-card">
           <h1>2,500+</h1>
-          <p>Happy Customers</p>
+          <p>Klientë të kenaqur</p>
         </div>
         <div class="review-info-card">
           <h1>50+</h1>
-          <p>Quality Vehicles</p>
+          <p>Automjete cilësore</p>
         </div>
         <div class="review-info-card">
           <h1>5</h1>
-          <p>Pickup Locations</p>
+          <p>Vende Marrjesh</p>
         </div>
       </div>
     </section>

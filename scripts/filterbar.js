@@ -34,7 +34,7 @@ function filterFunction() {
 
 if (allFilled) {
   localStorage.setItem("locationData", JSON.stringify(filter));
-  window.location.href = '/pages/fleet.html';
+  window.location.href = langHref('/pages/fleet.html');
 }
 }
 
