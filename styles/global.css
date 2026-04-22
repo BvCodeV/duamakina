@@ -1,37 +1,37 @@
 :root {
   /* Backgrounds */
-  --color-bg-main: #F7F4EF;
-  --color-bg-surface: #FFFFFF;
-  --color-bg-subtle: #EEE9E1;
+  --color-bg-main:#F5F7FA;
+  --color-bg-surface:#FFFFFF;
+  --color-bg-subtle: #EBEff5;
 
   /* Typography */
-  --color-txt-primary: #1C1A17;
-  --color-txt-secondary: #6B6560;
-  --color-txt-placeholder: #A8A19A;
-  --color-txt-inverse: #F7F4EF;
+  --color-txt-primary:#0F1C2E;
+  --color-txt-secondary:#5A6882;
+  --color-txt-placeholder:#9AAABE;
+  --color-txt-inverse:#F5F7FA;
 
   /* Brand */
-  --color-primary: #2D6A4F;
-  --color-primary-hover: #245C43;
-  --color-secondary: #cae4d565;
+  --color-primary: #1A4A8A;
+  --color-primary-hover:#133A6E;
+  --color-secondary: #1A4A8A26;
 
   /* Accent */
-  --color-accent: #C8853A;
-  --color-accent-light: #fff2df60;
+  --color-accent:#E87C2B;
+  --color-accent-light:#FFF0E060;
 
   /* Borders */
-  --color-border: #DDD8D0;
-  --color-border-strong: #B8B2AA;
+  --color-border:#D6DCE8;
+  --color-border-strong:#A4AFBF;
 
   /* Status */
-  --color-success: #3A7D5C;
-  --color-success-light: #D4EDE2;
-  --color-warning: #C47A1E;
-  --color-warning-light: #FBE9CE;
+  --color-success:#1E7B52;
+  --color-success-light:#D0EFE0;
+  --color-warning:#C47A1E;
+  --color-warning-light:#FBE9CE;
   --color-error: #B84040;
-  --color-error-light: #F5D5D5;
-  --color-info: #2E6B9E;
-  --color-info-light: #d9e9f559;
+  --color-error-light:#F5D5D5;
+  --color-info: #1A4A8A;
+  --color-info-light:#DCE8F859;
 }
 
 * {

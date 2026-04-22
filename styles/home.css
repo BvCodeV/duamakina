@@ -44,12 +44,10 @@ main {
       flex-direction: column;
 
       span {
-        background: linear-gradient(135deg, #1B4332 0%, #2D6A4F 20%, #52B788 40%, #74C69D 60%, #B7E4C7 80%, #EAF5E9 100%);
-        letter-spacing: 5px;
+        background: linear-gradient(135deg, #5BA8F5 0%, #2E7DD1 35%, #1A4A8A 70%, #0F1C2E 100%);
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: transparent;
-        font-family: "Damion", sans-serif;
       }
     }
 
@@ -414,7 +412,7 @@ main {
     gap: 5em;
     div {
       h1 {
-        background: linear-gradient(31deg,rgba(45, 106, 79, 0.89) 0%, rgba(28, 100, 88, 1) 20%, rgba(19, 94, 94, 0.86) 40%, rgba(25, 87, 96, 1) 60%, rgba(37, 79, 94, 1) 80%, rgba(47, 72, 88, 0.87) 100%);
+        background: linear-gradient(135deg, #5BA8F5 0%, #2E7DD1 35%, #1A4A8A 70%, #0F1C2E 100%);
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: transparent;
