@@ -470,20 +470,20 @@
             <p>Viti i prodhimit</p>
             <ul class="radio-btn-cons btn-cons">
               <li class="radio-btn">
-                <label for="2025+">2025 ose me e re</label>
-                <input type="radio" name="year" id="yearSelc" value="2025+">
+                <input type="radio" name="year" id="year2025" value="2025+">
+                <label for="year2025">2025 ose më e re</label>
               </li>
               <li class="radio-btn">
-                <label for="year">2023 ose me e re</label>
-                <input type="radio" name="year" id="yearSelc" value="2023+">
+                <input type="radio" name="year" id="year2023" value="2023+">
+                <label for="year2023">2023 ose më e re</label>
               </li>
               <li class="radio-btn">
-                <label for="year">2020 ose me e re</label>
-                <input type="radio" name="year" id="yearSelc" value="2020+">
+                <input type="radio" name="year" id="year2020" value="2020+">
+                <label for="year2020">2020 ose më e re</label>
               </li>
               <li class="radio-btn">
-                <label for="year">çdo vit</label>
-                <input type="radio" name="year" id="yearSelc" value="any">
+                <input type="radio" name="year" id="yearAny" value="any">
+                <label for="yearAny">Çdo vit</label>
               </li>
             </ul>
           </div>
@@ -491,28 +491,28 @@
             <p>Lloji i kambios</p>
             <ul class="checkbox-btn-cons btn-cons">
               <li class="checkbox-btn">
-                <label for="transmission">Manuale</label>
-                <input type="checkbox" name="transmission" id="transmissionSelc" value="manual">
+                <input type="checkbox" id="manual" name="transmission" value="manual">
+                <label for="manual">Manuale</label>
               </li>
               <li class="checkbox-btn">
-                <label for="transmission">Automatike</label>
-                <input type="checkbox" name="automatic" id="transmissionSelc" value="automatic">
+                <input type="checkbox" id="automatic" name="transmission" value="automatic">
+                <label for="automatic">Automatike</label>
               </li>
               <li class="checkbox-btn">
-                <label for="transmission">AWD</label>
-                <input type="checkbox" name="drivetrain" id="drivetrainSelc" value="awd">
+                <input type="checkbox" id="awd" name="drivetrain" value="awd">
+                <label for="awd">AWD</label>
               </li>
               <li class="checkbox-btn">
-                <label for="transmission">FWD</label>
-                <input type="checkbox" name="drivetrain" id="drivetrainSelc" value="fwd">
+                <input type="checkbox" id="fwd" name="drivetrain" value="fwd">
+                <label for="fwd">FWD</label>
               </li>
               <li class="checkbox-btn">
-                <label for="transmission">RWD</label>
-                <input type="checkbox" name="drivetrain" id="drivetrainSelc" value="rwd">
+                <input type="checkbox" id="rwd" name="drivetrain" value="rwd">
+                <label for="rwd">RWD</label>
               </li>
               <li class="checkbox-btn">
-                <label for="transmission">4X4</label>
-                <input type="checkbox" name="drivetrain" id="drivetrainSelc" value="4X4">
+                <input type="checkbox" id="x4" name="drivetrain" value="4x4">
+                <label for="x4">4X4</label>
               </li>
             </ul>
           </div>
@@ -520,37 +520,38 @@
             <p>Lloji i karburantit</p>
             <ul class="radio-btn-cons btn-cons">
               <li class="radio-btn">
-                <label for="fuel">Benzinë</label>
-                <input type="radio" name="fuel" id="fuelSelc" value="petrol">
+                <input type="radio" name="fuel" id="petrol" value="petrol">
+                <label for="petrol">Benzinë</label>
               </li>
               <li class="radio-btn">
-                <label for="fuel">Naftë</label>
-                <input type="radio" name="fuel" id="fuelSelc" value="dieesel">
+                <input type="radio" name="fuel" id="diesel" value="diesel">
+                <label for="diesel">Naftë</label>
               </li>
               <li class="radio-btn">
-                <label for="fuel">Elektrike</label>
-                <input type="radio" name="fuel" id="fuelSelc" value="electric">
+                <input type="radio" name="fuel" id="electric" value="electric">
+                <label for="electric">Elektrike</label>
               </li>
               <li class="radio-btn">
-                <label for="fuel">Hibride</label>
-                <input type="radio" name="fuel" id="fuelSelc" value="hybrid">
+                <input type="radio" name="fuel" id="hybrid" value="hybrid">
+                <label for="hybrid">Hibride</label>
               </li>
             </ul>
           </div>
+
           <div class="driver-filters filter-con">
             <p>Përvojë e shoferit</p>
             <ul class="radio-btn-cons btn-cons">
               <li class="radio-btn">
-                <label for="under21">Nen 21</label>
                 <input type="radio" name="driverExperience" id="under21" value="under21">
+                <label for="under21">Nën 21</label>
               </li>
               <li class="radio-btn">
-                <label for="21-24">21-24</label>
-                <input type="radio" name="driverExperience" id="21-24" value="21-24">
+                <input type="radio" name="driverExperience" id="age21to24" value="21-24">
+                <label for="age21to24">21–24</label>
               </li>
               <li class="radio-btn">
-                <label for="over25">Sipër 25</label>
                 <input type="radio" name="driverExperience" id="over25" value="over25">
+                <label for="over25">Mbi 25</label>
               </li>
             </ul>
           </div>
@@ -561,16 +562,16 @@
             <p>Kapaciteti i bagazhit</p>
             <ul class="radio-btn-cons btn-cons">
               <li class="radio-btn">
-                <label for="luggage">1-2 bagazhe</label>
-                <input type="radio" name="luggage" id="luggageSelc" value="1-2">
+                <input type="radio" name="luggage" id="bags12" value="1-2">
+                <label for="bags12">1–2 bagazhe</label>
               </li>
               <li class="radio-btn">
-                <label for="luggage">3-4 bagazhe</label>
-                <input type="radio" name="luggage" id="luggageSelc" value="3-4">
+                <input type="radio" name="luggage" id="bags34" value="3-4">
+                <label for="bags34">3–4 bagazhe</label>
               </li>
               <li class="radio-btn">
-                <label for="luggage">5-6 bagazhe</label>
-                <input type="radio" name="luggage" id="luggageSelc" value="5-6">
+                <input type="radio" name="luggage" id="bags56" value="5-6">
+                <label for="bags56">5–6 bagazhe</label>
               </li>
             </ul>
           </div>
@@ -578,62 +579,62 @@
             <p>Numri i pasagjerëve</p>
             <ul class="radio-btn-cons btn-cons">
               <li class="radio-btn">
-                <label for="seats">2 Vende</label>
-                <input type="radio" name="seats" id="seatsSelc" value="2">
+                <input type="radio" name="seats" id="seat2" value="2">
+                <label for="seat2">2 vende</label>
               </li>
               <li class="radio-btn">
-                <label for="seats">4 Vende</label>
-                <input type="radio" name="seats" id="seatsSelc" value="4">
+                <input type="radio" name="seats" id="seat4" value="4">
+                <label for="seat4">4 vende</label>
               </li>
               <li class="radio-btn">
-                <label for="seats">5 Vende</label>
-                <input type="radio" name="seats" id="seatsSelc" value="5">
+                <input type="radio" name="seats" id="seat5" value="5">
+                <label for="seat5">5 vende</label>
               </li>
               <li class="radio-btn">
-                <label for="seats">7 Vende</label>
-                <input type="radio" name="seats" id="seatsSelc" value="7">
+                <input type="radio" name="seats" id="seat7" value="7">
+                <label for="seat7">7 vende</label>
               </li>
               <li class="radio-btn">
-                <label for="seats">9 Vende</label>
-                <input type="radio" name="seats" id="seatsSelc" value="9">
+                <input type="radio" name="seats" id="seat9" value="9">
+                <label for="seat9">9 vende</label>
               </li>
             </ul>
           </div>
           <div class="insurance-filters filter-con">
-            <p>Siguracioni</p>
+            <p>Siguracione</p>
             <ul class="radio-btn-cons btn-cons">
               <li class="radio-btn">
-                <label for="full">Mbulim i plotë i përfshirë</label>
-                <input type="radio" name="insurance" id="full" value="full">
+                <input type="radio" name="insurance" id="fullCoverage" value="full">
+                <label for="fullCoverage">Mbulim i plotë i përfshirë</label>
               </li>
               <li class="radio-btn">
-                <label for="third-party">Vetëm sigurim nga palët e treta</label>
-                <input type="radio" name="insurance" id="third-party" value="third-party">
+                <input type="radio" name="insurance" id="thirdParty" value="third-party">
+                <label for="thirdParty">Vetëm palë e tretë</label>
               </li>
               <li class="radio-btn">
-                <label for="noInsurance">Asnjë sigurim i përfshirë</label>
-                <input type="radio" name="insurance" id="noInsurance" value="noInsurance">
+                <input type="radio" name="insurance" id="noInsurance" value="none">
+                <label for="noInsurance">Pa siguracion</label>
               </li>
             </ul>
           </div>
           <div class="deposit-filters filter-con">
-            <p>Kërkesat e Depozitës</p>
+            <p>Kërkesat e depozitës</p>
             <ul class="radio-btn-cons btn-cons">
               <li class="radio-btn">
-                <label for="deposit">Asnjë Depozitë</label>
-                <input type="radio" name="deposit" id="fuelSelc" value="none">
+                <input type="radio" name="deposit" id="depositNone" value="none">
+                <label for="depositNone">Pa depozitë</label>
               </li>
               <li class="radio-btn">
-                <label for="deposit"><€500</label>
-                <input type="radio" name="deposit" id="fuelSelc" value="500">
+                <input type="radio" name="deposit" id="deposit500" value="500">
+                <label for="deposit500">&lt; €500</label>
               </li>
               <li class="radio-btn">
-                <label for="deposit"><€750</label>
-                <input type="radio" name="deposit" id="fuelSelc" value="750">
+                <input type="radio" name="deposit" id="deposit750" value="750">
+                <label for="deposit750">&lt; €750</label>
               </li>
               <li class="radio-btn">
-                <label for="deposit"><€1,000</label>
-                <input type="radio" name="deposit" id="fuelSelc" value="1000">
+                <input type="radio" name="deposit" id="deposit1000" value="1000">
+                <label for="deposit1000">&lt; €1,000</label>
               </li>
             </ul>
           </div>

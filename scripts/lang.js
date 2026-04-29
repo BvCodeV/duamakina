@@ -7,6 +7,10 @@ const storedLang = localStorage.getItem('lang') || 'en';
 if (storedLang !== urlLang) {
   const page = location.pathname.replace(/^\/(sq|it)\//, '/');
   location.replace(storedLang === 'en' ? page : '/' + storedLang + page);
+  const target = storedLang === 'en' ? page : '/' + storedLang + page;
+  if (location.pathname !== target) {
+    location.replace(target);
+  }
 }
 
 function getCurrentPagePath() {

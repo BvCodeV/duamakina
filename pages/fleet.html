@@ -468,20 +468,20 @@
             <p>Vehicle Year</p>
             <ul class="radio-btn-cons btn-cons">
               <li class="radio-btn">
-                <label for="2025+">2025 or newer</label>
-                <input type="radio" name="year" id="yearSelc" value="2025+">
+                <input type="radio" name="year" id="year2025" value="2025+">
+                <label for="year2025">2025 or newer</label>
               </li>
               <li class="radio-btn">
-                <label for="year">2023 or newer</label>
-                <input type="radio" name="year" id="yearSelc" value="2023+">
+                <input type="radio" name="year" id="year2023" value="2023+">
+                <label for="year2023">2023 or newer</label>
               </li>
               <li class="radio-btn">
-                <label for="year">2020 or newer</label>
-                <input type="radio" name="year" id="yearSelc" value="2020+">
+                <input type="radio" name="year" id="year2020" value="2020+">
+                <label for="year2020">2020 or newer</label>
               </li>
               <li class="radio-btn">
-                <label for="year">any year</label>
-                <input type="radio" name="year" id="yearSelc" value="any">
+                <input type="radio" name="year" id="yearAny" value="any">
+                <label for="yearAny">Any year</label>
               </li>
             </ul>
           </div>
@@ -489,28 +489,28 @@
             <p>Drive System</p>
             <ul class="checkbox-btn-cons btn-cons">
               <li class="checkbox-btn">
-                <label for="transmission">Manual</label>
-                <input type="checkbox" name="transmission" id="transmissionSelc" value="manual">
+                <input type="checkbox" id="manual" name="transmission" value="manual">
+                <label for="manual">Manual</label>
               </li>
               <li class="checkbox-btn">
-                <label for="transmission">Automatic</label>
-                <input type="checkbox" name="automatic" id="transmissionSelc" value="automatic">
+                <input type="checkbox" id="automatic" name="transmission" value="automatic">
+                <label for="automatic">Automatic</label>
               </li>
               <li class="checkbox-btn">
-                <label for="transmission">AWD</label>
-                <input type="checkbox" name="drivetrain" id="drivetrainSelc" value="awd">
+                <input type="checkbox" id="awd" name="drivetrain" value="awd">
+                <label for="awd">AWD</label>
               </li>
               <li class="checkbox-btn">
-                <label for="transmission">FWD</label>
-                <input type="checkbox" name="drivetrain" id="drivetrainSelc" value="fwd">
+                <input type="checkbox" id="fwd" name="drivetrain" value="fwd">
+                <label for="fwd">FWD</label>
               </li>
               <li class="checkbox-btn">
-                <label for="transmission">RWD</label>
-                <input type="checkbox" name="drivetrain" id="drivetrainSelc" value="rwd">
+                <input type="checkbox" id="rwd" name="drivetrain" value="rwd">
+                <label for="rwd">RWD</label>
               </li>
               <li class="checkbox-btn">
-                <label for="transmission">4X4</label>
-                <input type="checkbox" name="drivetrain" id="drivetrainSelc" value="4X4">
+                <input type="checkbox" id="x4" name="drivetrain" value="4x4">
+                <label for="x4">4X4</label>
               </li>
             </ul>
           </div>
@@ -518,20 +518,20 @@
             <p>Fuel Type</p>
             <ul class="radio-btn-cons btn-cons">
               <li class="radio-btn">
-                <label for="fuel">Petrol</label>
-                <input type="radio" name="fuel" id="fuelSelc" value="petrol">
+                <input type="radio" name="fuel" id="petrol" value="petrol">
+                <label for="petrol">Petrol</label>
               </li>
               <li class="radio-btn">
-                <label for="fuel">Diesel</label>
-                <input type="radio" name="fuel" id="fuelSelc" value="dieesel">
+                <input type="radio" name="fuel" id="diesel" value="diesel">
+                <label for="diesel">Diesel</label>
               </li>
               <li class="radio-btn">
-                <label for="fuel">Electric</label>
-                <input type="radio" name="fuel" id="fuelSelc" value="electric">
+                <input type="radio" name="fuel" id="electric" value="electric">
+                <label for="electric">Electric</label>
               </li>
               <li class="radio-btn">
-                <label for="fuel">Hybrid</label>
-                <input type="radio" name="fuel" id="fuelSelc" value="hybrid">
+                <input type="radio" name="fuel" id="hybrid" value="hybrid">
+                <label for="hybrid">Hybrid</label>
               </li>
             </ul>
           </div>
@@ -539,16 +539,16 @@
             <p>Driver Experience</p>
             <ul class="radio-btn-cons btn-cons">
               <li class="radio-btn">
-                <label for="under21">Under 21</label>
                 <input type="radio" name="driverExperience" id="under21" value="under21">
+                <label for="under21">Under 21</label>
               </li>
               <li class="radio-btn">
-                <label for="21-24">21-24</label>
-                <input type="radio" name="driverExperience" id="21-24" value="21-24">
+                <input type="radio" name="driverExperience" id="age21to24" value="21-24">
+                <label for="age21to24">21–24</label>
               </li>
               <li class="radio-btn">
-                <label for="over25">over 25</label>
                 <input type="radio" name="driverExperience" id="over25" value="over25">
+                <label for="over25">Over 25</label>
               </li>
             </ul>
           </div>
@@ -559,16 +559,16 @@
             <p>Luggage Capacity</p>
             <ul class="radio-btn-cons btn-cons">
               <li class="radio-btn">
-                <label for="luggage">1-2 Bags</label>
-                <input type="radio" name="luggage" id="luggageSelc" value="1-2">
+                <input type="radio" name="luggage" id="bags12" value="1-2">
+                <label for="bags12">1–2 Bags</label>
               </li>
               <li class="radio-btn">
-                <label for="luggage">3-4 Bags</label>
-                <input type="radio" name="luggage" id="luggageSelc" value="3-4">
+                <input type="radio" name="luggage" id="bags34" value="3-4">
+                <label for="bags34">3–4 Bags</label>
               </li>
               <li class="radio-btn">
-                <label for="luggage">5-6 Bags</label>
-                <input type="radio" name="luggage" id="luggageSelc" value="5-6">
+                <input type="radio" name="luggage" id="bags56" value="5-6">
+                <label for="bags56">5–6 Bags</label>
               </li>
             </ul>
           </div>
@@ -576,24 +576,24 @@
             <p>Seating Capacity</p>
             <ul class="radio-btn-cons btn-cons">
               <li class="radio-btn">
-                <label for="seats">2 seats</label>
-                <input type="radio" name="seats" id="seatsSelc" value="2">
+                <input type="radio" name="seats" id="seat2" value="2">
+                <label for="seat2">2 Seats</label>
               </li>
               <li class="radio-btn">
-                <label for="seats">4 seats</label>
-                <input type="radio" name="seats" id="seatsSelc" value="4">
+                <input type="radio" name="seats" id="seat4" value="4">
+                <label for="seat4">4 Seats</label>
               </li>
               <li class="radio-btn">
-                <label for="seats">5 seats</label>
-                <input type="radio" name="seats" id="seatsSelc" value="5">
+                <input type="radio" name="seats" id="seat5" value="5">
+                <label for="seat5">5 Seats</label>
               </li>
               <li class="radio-btn">
-                <label for="seats">7 seats</label>
-                <input type="radio" name="seats" id="seatsSelc" value="7">
+                <input type="radio" name="seats" id="seat7" value="7">
+                <label for="seat7">7 Seats</label>
               </li>
               <li class="radio-btn">
-                <label for="seats">9 seats</label>
-                <input type="radio" name="seats" id="seatsSelc" value="9">
+                <input type="radio" name="seats" id="seat9" value="9">
+                <label for="seat9">9 Seats</label>
               </li>
             </ul>
           </div>
@@ -601,16 +601,16 @@
             <p>Insurance</p>
             <ul class="radio-btn-cons btn-cons">
               <li class="radio-btn">
-                <label for="full">Full Coverage included</label>
-                <input type="radio" name="insurance" id="full" value="full">
+                <input type="radio" name="insurance" id="fullCoverage" value="full">
+                <label for="fullCoverage">Full Coverage Included</label>
               </li>
               <li class="radio-btn">
-                <label for="third-party">Third-Party only</label>
-                <input type="radio" name="insurance" id="third-party" value="third-party">
+                <input type="radio" name="insurance" id="thirdParty" value="third-party">
+                <label for="thirdParty">Third-Party Only</label>
               </li>
               <li class="radio-btn">
-                <label for="noInsurance">No insurance included</label>
-                <input type="radio" name="insurance" id="noInsurance" value="noInsurance">
+                <input type="radio" name="insurance" id="noInsurance" value="none">
+                <label for="noInsurance">No Insurance Included</label>
               </li>
             </ul>
           </div>
@@ -618,20 +618,20 @@
             <p>Deposit Requirements</p>
             <ul class="radio-btn-cons btn-cons">
               <li class="radio-btn">
-                <label for="deposit">No Deposit</label>
-                <input type="radio" name="deposit" id="fuelSelc" value="none">
+                <input type="radio" name="deposit" id="depositNone" value="none">
+                <label for="depositNone">No Deposit</label>
               </li>
               <li class="radio-btn">
-                <label for="deposit"><€500</label>
-                <input type="radio" name="deposit" id="fuelSelc" value="500">
+                <input type="radio" name="deposit" id="deposit500" value="500">
+                <label for="deposit500">&lt; €500</label>
               </li>
               <li class="radio-btn">
-                <label for="deposit"><€750</label>
-                <input type="radio" name="deposit" id="fuelSelc" value="750">
+                <input type="radio" name="deposit" id="deposit750" value="750">
+                <label for="deposit750">&lt; €750</label>
               </li>
               <li class="radio-btn">
-                <label for="deposit"><€1,000</label>
-                <input type="radio" name="deposit" id="fuelSelc" value="1000">
+                <input type="radio" name="deposit" id="deposit1000" value="1000">
+                <label for="deposit1000">&lt; €1,000</label>
               </li>
             </ul>
           </div>
