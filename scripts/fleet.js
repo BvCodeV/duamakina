@@ -12,6 +12,8 @@ const pillsCon = document.getElementById('filterPillsCon');
 const carTypePills = document.querySelectorAll('.type-pill');
 const locationDialog = document.getElementById("locationFilterDialog")
 const filtersDialog = document.getElementById("filtersDialog");
+const container = document.querySelector('.cars-card-con');
+const carNum = document.getElementById('carNum');
 let activeCarType = document.querySelector('.selected-type');
 // location data
 const pickupTxt = document.getElementById("pickupTxt");
@@ -38,8 +40,182 @@ function displayLocationDataSearch() {
 }
 displayLocationDataSearch();
 
-// filter Pills
+// cars display
+function getTodayPrice(pricingRows) {
+  if (!pricingRows || pricingRows.length === 0) return null;
+  const today = new Date().toISOString().split('T')[0];
+  const match = pricingRows.find(p => {
+    const from = p.valid_from ?? '0000-01-01';
+    const to   = p.valid_to   ?? '9999-12-31';
+    return today >= from && today <= to;
+  });
+  return match ?? pricingRows[0];
+}
+ 
+function getPrimaryPhoto(photos) {
+  if (!photos || photos.length === 0) return null;
+  return photos.find(p => p.is_primary) ?? photos[0];
+}
+ 
+function getPhotoUrl(storagePath) {
+  if (!storagePath) return 'https://jdhigikorvtxhslxudcs.supabase.co/storage/v1/object/public/cars/car-placeholder.avif';
+  if (storagePath.startsWith('http')) return storagePath;
+  return `${SUPABASE_URL}/storage/v1/object/public/${storagePath}`;
+}
+ 
+function capitalize(str) {
+  if (!str) return '';
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+ 
+// ─── Card Builder ────────────────────────────────────────────
+ 
+function buildCarCard(car) {
+  const pricing      = getTodayPrice(car.car_pricing);
+  const photo        = getPrimaryPhoto(car.car_photos);
+  const imageUrl     = getPhotoUrl(photo?.storage_path);
+  const imageAlt     = photo?.alt_text ?? `${car.brand} ${car.model}`;
+  const price        = pricing ? parseFloat(pricing.price_per_day).toFixed(2) : 'N/A';
+  const transmission = capitalize(car.transmission);
+  const trunkLitres  = car.trunk_litres ?? '—';
+ 
+  return `
+    <div class="car-card">
+      <img
+        src="${imageUrl}"
+        alt="${imageAlt}"
+        class="car-image"
+        loading="lazy"
+        draggable="false"
+      >
+      <div class="card-body">
+        <h2 class="car-title">${car.brand} ${car.model}</h2>
+        <ul class="car-features">
+          <li><img src="/assets/icons/person.svg" alt="person icon" loading="lazy" draggable="false"> ${car.seats} Seats</li>
+          <li><img src="/assets/icons/bag.svg" alt="bag icon" loading="lazy" draggable="false"> ${trunkLitres}L Trunk</li>
+          <li><img src="/assets/icons/door.svg" alt="door icon" loading="lazy" draggable="false"> ${car.doors} Doors</li>
+          <li><img src="/assets/icons/gears.svg" alt="gears icon" loading="lazy" draggable="false"> ${transmission}</li>
+          ${car.has_ac ? `<li><img src="/assets/icons/ac.svg" alt="ac icon" loading="lazy" draggable="false"> A/C</li>` : ''}
+        </ul>
+        <ul class="car-amenities">
+          ${car.mileage_unlimited ? `<li><img src="/assets/icons/checkmark.svg" alt="checkmark icon" loading="lazy" draggable="false"> Unlimited Mileage</li>` : ''}
+          <li><img src="/assets/icons/checkmark.svg" alt="checkmark icon" loading="lazy" draggable="false"> Free Cancellation</li>
+          <li><img src="/assets/icons/checkmark.svg" alt="checkmark icon" loading="lazy" draggable="false"> 24/7 Assistance</li>
+        </ul>
+        <div class="review-con">
+          <div class="rating">
+            <img src="/assets/icons/star.svg" alt="star icon" loading="lazy" draggable="false">
+            <span>—</span>
+          </div>
+          <p>No reviews yet</p>
+        </div>
+      </div>
+      <hr>
+      <div class="card-end">
+        <div class="car-price">
+          <div class="price">
+            <span class="currency-sign" style="font-size: 1em; font-weight: bold; color: var(--color-txt-primary);">€</span><span class="currency-num" style="font-size: 1em; font-weight: bold; color: var(--color-txt-primary);">${price}</span>
+          </div>
+          <span>per day</span>
+        </div>
+        <a href="/pages/booking.html?id=${car.id}" class="rent-now-btn">View Details</a>
+      </div>
+    </div>
+  `;
+}
 
+function sortCars(cars, sortValue) {
+  const sorted = [...cars];
+  switch (sortValue) {
+    case 'lToH':
+      return sorted.sort((a, b) => {
+        const pa = parseFloat(getTodayPrice(a.car_pricing)?.price_per_day ?? Infinity);
+        const pb = parseFloat(getTodayPrice(b.car_pricing)?.price_per_day ?? Infinity);
+        return pa - pb;
+      });
+    case 'hToL':
+      return sorted.sort((a, b) => {
+        const pa = parseFloat(getTodayPrice(a.car_pricing)?.price_per_day ?? 0);
+        const pb = parseFloat(getTodayPrice(b.car_pricing)?.price_per_day ?? 0);
+        return pb - pa;
+      });
+    case 'newest':
+      return sorted.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+    case 'popular':
+    default:
+      return sorted.sort((a, b) => a.brand.localeCompare(b.brand));
+  }
+}
+ 
+ 
+let allCars = [];
+ 
+function renderCars(sortValue = 'popular') {
+  if (!container) return;
+  const sorted = sortCars(allCars, sortValue);
+  container.innerHTML = sorted.map(buildCarCard).join('');
+}
+ 
+async function loadCars() {
+  if (!container) {
+    console.error('No .cars-card-con element found in the DOM.');
+    return;
+  }
+ 
+  container.innerHTML = '<p class="loading-msg">Loading cars...</p>';
+ 
+  const { data: cars, error } = await supabaseClient
+    .from('cars')
+    .select(`
+      id,
+      brand,
+      model,
+      year,
+      category,
+      seats,
+      doors,
+      has_ac,
+      trunk_litres,
+      transmission,
+      mileage_unlimited,
+      is_available,
+      is_active,
+      created_at,
+      car_pricing ( price_per_day, valid_from, valid_to, is_special_offer ),
+      car_photos  ( storage_path, alt_text, is_primary, sort_order )
+    `)
+    .eq('is_active', true)
+    .eq('is_available', true);
+ 
+  if (error) {
+    console.error('Error fetching cars:', error.message);
+    container.innerHTML = '<p class="error-msg">Failed to load cars. Please try again later.</p>';
+    return;
+  }
+ 
+  if (!cars || cars.length === 0) {
+    container.innerHTML = '<p class="empty-msg">No cars available at the moment.</p>';
+    return;
+  }
+ 
+  allCars = cars;
+  
+  if (carNum) carNum.textContent = cars.length;
+
+  const sortSelect = document.getElementById('carSort');
+  renderCars(sortSelect?.value ?? 'popular');
+}
+ 
+document.addEventListener('DOMContentLoaded', () => {
+  loadCars();
+ 
+  const sortSelect = document.getElementById('carSort');
+  if (sortSelect) {
+    sortSelect.addEventListener('change', () => renderCars(sortSelect.value));
+  }
+});
+
+// filter Pills
 carTypePills.forEach(div => {
   div.addEventListener("click", () => {
     if (activeCarType) activeCarType.classList.remove('selected-type');

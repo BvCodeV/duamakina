@@ -647,6 +647,7 @@ section {
   width: fit-content;
   .car-image {
     height: 13em;
+    width: 17em;
     object-fit: cover;
     border-radius: 25px;
   }
