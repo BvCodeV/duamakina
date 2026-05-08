@@ -30,146 +30,94 @@
   <nav role="navigation" id="navbar" style="width: 100%; z-index: 1000; position: sticky; top: 0px;" fetchpriority=high></nav>
 
   <main>
-    <h1 class="cars-available"><span id="carNum">XX</span> Cars Available</h1>
-    <aside id="sidebarFilter">
-      <button id="closeSidebarBtn" class="mobile-only">X</button>
-      <div id="filterBarRes">
+    <div class="page-header">
+      <p class="header-info desktop-only">Fleet<span>&middot;</span><span id="headerLoc">Durres</p>
+      <div class="header-end">
+        <h1 class="cars-available desktop-only"><span id="carNum">XX</span> Cars Available</h1>
         <div class="filterLocationInfo">
+          <p class="editLocationTxt">Booking</p>
           <div class="pickup-group info-groups">
-            <img src="/assets/icons/location.svg" alt="location icon" loading="lazy" draggable="false">
-            <div class="pickup-info loc-info">
-              <h1>Pick Up:</h1>
-              <div>
-                <p id="pickupTxt">-</p>
-                <span>at</span>
-                <p id="pickupDateTxt">-</p>
-                <span>,</span>
-                <p id="pickupTimeTxt">-</p>
-              </div>
-            </div>
+            <img src="/assets/icons/location-color.svg" alt="location icon" loading="lazy" draggable="false">
+            <p><span id="pickupTxt">Durres</span> &middot; <span id="pickupDateTxt">28 May</span>, <span id="pickupTimeTxt">10:00</span></p>
           </div>
           <div class="dropoff-group info-groups">
-            <img src="/assets/icons/location.svg" alt="location icon" loading="lazy" draggable="false">
-            <div class="dropoff-info loc-info">
-              <h1>Drop Off:</h1>
-              <div>
-                <p id="dropoffTxt">-</p>
-                <span>at</span>
-                <p id="dropoffDateTxt">-</p>
-                <span>,</span>
-                <p id="dropoffTimeTxt">-</p>
-              </div>
-            </div>
+            <img src="/assets/icons/location-color.svg" alt="location icon" loading="lazy" draggable="false">
+            <p><span id="dropoffTxt">Durres</span> &middot; <span id="dropoffDateTxt">28 May</span>, <span id="dropoffTimeTxt">10:00</span></p>
           </div>
-          <button id="locationChangeBtn" popovertarget="locationFilterDialog">Change Now</button>
-        </div>
+          <button id="locationChangeBtn" popovertarget="locationFilterDialog">Edit dates</button>
       </div>
-      <div class="filterBarFilters">
-        <h1>Popular Filters</h1>
-        <div class="price-filter price-slider">
-          <div class="track-container">
-            <div class="track-bg"></div>
-            <div class="track-fill" id="fill"></div>
-            <input type="range" class="range-input" id="min-range" min="0" max="1000" value="0" step="1">
-            <input type="range" class="range-input" id="max-range" min="0" max="1000" value="1000" step="1">
-          </div>
-          <div class="values">
-            <div class="min-val">
-              <label for="min-val" class="currency-sign">€</label>
-              <input type="number" id="min-val" value="0" min="0" max="1000" step="1" numberInputMode="numeric" class="currency-num">
-            </div>
-            <div class="max-val">
-              <label for="max-val" class="currency-sign">€</label>
-              <input type="number" id="max-val" value="1000" min="0" max="1000" step="1" numberInputMode="numeric" class="currency-num">
-            </div>
-          </div>
-        </div>
-        <ul class="suggested-filters">
-          <li><input type="checkbox" name="automatic" value="Automatic" id="automaticFilterBox" aria-label="automatic transition filter">Automatic Transmission </li>
-          <li><input type="checkbox" name="seats" value="4+ Seats" id="seatsFilterBox" aria-label="4+ seats filter">4+ seats </li>
-          <li><input type="checkbox" name="ac" value="Air Conditioning" id="acFilterBox" aria-label="air conditioning filter">Air Conditioning</li>
-          <li><input type="checkbox" name="electric" value="electric" id="electricFilterBox" aria-label="electric vehicle filter">Electric</li>
-          <li><input type="checkbox" name="milage" value="Unlimited Milage" id="milageFilterBox" aria-label="unlimited mileage filter">Unlimited Mileage</li>
-          <li><input type="checkbox" name="freeCancel" value="Free cancellation" id="freeCancelFilterBox" aria-label="free cancellation filter">Free Cancellation</li>
-          <li><input type="checkbox" name="special" value="Special Offers" id="specialFilterBox" aria-label="special offers filter">Special Offers</li>
+      </div>
+    </div>
+    <div class="page-second-header">
+      <div class="car-type-filter desktop-only">
+        <p id="allPill" class="type-pill selected-type" data-type="all">All</p>
+        <p id="sedanPill" class="type-pill" data-type="sedan">Sedan</p>
+        <p id="economyPill" class="type-pill" data-type="economy">Economy</p>
+        <p id="compactPill" class="type-pill" data-type="compact">Compact</p>
+        <p id="suvPill" class="type-pill" data-type="suv">Suv</p>
+        <p id="vanPill" class="type-pill" data-type="van">Van</p>
+        <p id="luxuryPill" class="type-pill" data-type="luxury">Luxury</p>
+      </div>
 
-        </ul>
-        <div class="mobile-advanced-filters"></div>
-        <button id="advancedFiltersBtn" popovertarget="filtersDialog">Advanced Filters</button>
+      <button id="filterBtn" class="sidebar-btn mobile-only">
+        <img src="/assets/icons/gears.svg" alt="filter icon" loading="lazy" draggable="false">
+        Show Filters
+      </button>
+
+      <div class="sortSltcCon">
+        <label for="carSort">Sort by:</label>
+        <select name="sort" id="carSort">
+          <option value="popular">Most popular</option>
+          <option value="lToH">Lowest to High Price</option>
+          <option value="hToL">Highest to Low Price</option>
+          <option value="newest">Newest Listings</option>
+        </select>
       </div>
-    </aside>
-    <section>
-      <div class="type-filter desktop-only">
-        <div class="type-pill selected-type" id="allPill">
-          <span class="icon-car sedan" style="
-            mask: url('/assets/icons/car-types/sedan.svg') no-repeat center / contain;
-            -webkit-mask: url('/assets/icons/car-types/sedan.svg') no-repeat center / contain;
-          "></span>
-          <p>All</p>
+    </div>
+    <div class="section-body">
+      <aside id="sidebarFilter">
+        <button id="closeSidebarBtn" class="mobile-only">X</button>
+        <div class="filterBarFilters">
+          <h1>FILTERS</h1>
+          <div class="price-filter">
+            <div class="track-container">
+              <div class="track-bg"></div>
+              <div class="track-fill" id="fill"></div>
+              <input type="range" class="range-input" id="min-range" min="0" max="1000" value="0" step="1">
+              <input type="range" class="range-input" id="max-range" min="0" max="1000" value="1000" step="1">
+            </div>
+            <div class="values">
+              <p class="min-val"><span class="currency-sign">€</span> <span id="min-val" class="currency-num">0</span></p>
+              <p class="max-val"><span class="currency-sign">€</span> <span id="max-val" class="currency-num">1000</span></p>
+            </div>
+          </div>
+          <ul class="suggested-filters">
+            <li><input type="checkbox" name="automatic" value="Automatic" id="automaticFilterBox" aria-label="automatic transition filter">Automatic Transmission </li>
+            <li><input type="checkbox" name="seats" value="4+ Seats" id="seatsFilterBox" aria-label="4+ seats filter">4+ seats </li>
+            <li><input type="checkbox" name="ac" value="Air Conditioning" id="acFilterBox" aria-label="air conditioning filter">Air Conditioning</li>
+            <li><input type="checkbox" name="electric" value="electric" id="electricFilterBox" aria-label="electric vehicle filter">Electric</li>
+            <li><input type="checkbox" name="milage" value="Unlimited Milage" id="milageFilterBox" aria-label="unlimited mileage filter">Unlimited Mileage</li>
+            <li><input type="checkbox" name="freeCancel" value="Free cancellation" id="freeCancelFilterBox" aria-label="free cancellation filter">Free Cancellation</li>
+            <li><input type="checkbox" name="special" value="Special Offers" id="specialFilterBox" aria-label="special offers filter">Special Offers</li>
+          </ul>
+          <div class="mobile-advanced-filters"></div>
+          <div class="btn-con">
+            <button id="resetAllBtn">Reset All</button>
+            <button id="advancedFiltersBtn" popovertarget="filtersDialog">Advanced Filters</button>
+          </div>
         </div>
-        <div class="type-pill" id="sedanPill">
-          <span class="icon-car sedan" style="
-            mask: url('/assets/icons/car-types/sedan.svg') no-repeat center / contain;
-            -webkit-mask: url('/assets/icons/car-types/sedan.svg') no-repeat center / contain;
-          "></span>
-          <p>Sedan</p>
+      </aside>
+      <section>
+        <div id="filterPillsCon"></div>
+        <div class="section-body-info">
+          <p class="car-count"><span id="carNumFilter">X</span> OF <span id="totalCars">X</span> VEHICLES</p>
+          <p class="day-num"><span id="dayNumFleet">X</span> DAYS</p>
         </div>
-        <div class="type-pill" id="economyPill">
-          <span class="icon-car economy" style="
-            mask: url('/assets/icons/car-types/economy.svg') no-repeat center / contain;
-            -webkit-mask: url('/assets/icons/car-types/economy.svg') no-repeat center / contain;
-          "></span>
-          <p>Economy</p>
+        <div class="cars-card-con">
+          <!-- Car cards will be dynamically inserted here -->
         </div>
-        <div class="type-pill" id="compactPill">
-          <span class="icon-car compact" style="
-            mask: url('/assets/icons/car-types/compact.svg') no-repeat center / contain;
-            -webkit-mask: url('/assets/icons/car-types/compact.svg') no-repeat center / contain;
-          "></span>
-          <p>Compact</p>
-        </div>
-        <div class="type-pill" id="suvPill">
-          <span class="icon-car suv" style="
-            mask: url('/assets/icons/car-types/suv.svg') no-repeat center / contain;
-            -webkit-mask: url('/assets/icons/car-types/suv.svg') no-repeat center / contain;
-          "></span>
-          <p>Suv</p>
-        </div>
-        <div class="type-pill" id="vanPill">
-          <span class="icon-car van" style="
-            mask: url('/assets/icons/car-types/van.svg') no-repeat center / contain;
-            -webkit-mask: url('/assets/icons/car-types/van.svg') no-repeat center / contain;
-          "></span>
-          <p>Van</p>
-        </div>
-        <div class="type-pill" id="luxuryPill">
-          <span class="icon-car luxury" style="
-            mask: url('/assets/icons/car-types/luxury.svg') no-repeat center / contain;
-            -webkit-mask: url('/assets/icons/car-types/luxury.svg') no-repeat center / contain;
-          "></span>
-          <p>Luxury</p>
-        </div>
-      </div>
-      <div class="second-row">
-        <div class="filters-box">
-          <button id="filterBtn" class="filter-btn mobile-only">
-            <img src="/assets/icons/gears.svg" alt="filter icon" loading="lazy" draggable="false">
-            Show Filters
-          </button>
-          <select name="sort" id="carSort">
-            <option value="popular">Most popular</option>
-            <option value="lToH">Lowest to High Price</option>
-            <option value="hToL">Highest to Low Price</option>
-            <option value="newest">Newest Listings</option>
-          </select>
-        </div>
-        <div id="filterPillsCon">
-        </div>
-      </div>
-      <div class="cars-card-con">
-        <!-- Car cards will be dynamically inserted here -->
-      </div>
-    </section>
+      </section>
+    </div>
   </main>
 
   <div id="locationFilterDialog" popover>
