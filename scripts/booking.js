@@ -283,14 +283,19 @@ async function loadCarDetails() {
   populatePage(car);
 }
 
-async function handleShare(url) {
+async function handleShare() {
+  const url = window.location.href;
+
   if (navigator.share) {
-    await navigator.share({
-      title: document.title,
-      url: url ?? window.location.href,
-    });
+    await navigator.share({ title: document.title, url });
+  } else if (navigator.clipboard?.writeText) {
+    await navigator.clipboard.writeText(url);
+    alert("Link copied!");
   } else {
-    await navigator.clipboard.writeText(url ?? window.location.href);
+    prompt("Copy this link:", url);
   }
 }
+
+document.getElementById("shareBtn").addEventListener("click", handleShare);
+
 document.addEventListener('DOMContentLoaded', loadCarDetails);
