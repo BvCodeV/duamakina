@@ -141,7 +141,7 @@ aside {
       display: flex;
       gap: 1em;
       align-items: center;
-      .main-img {
+      #mainImg {
       width: 9em;
       height: 100%;
       border-radius: 20px;

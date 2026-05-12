@@ -8,6 +8,7 @@ const freeCancelPopular = document.getElementById("freeCancelFilterBox");
 const specialPopular = document.getElementById("specialFilterBox");
 const pillsCon = document.getElementById("filterPillsCon");
 const carTypePills = document.querySelectorAll(".type-pill");
+const allCarTypePill = document.getElementById("allPill");
 const locationDialog = document.getElementById("locationFilterDialog");
 const filtersDialog = document.getElementById("filtersDialog");
 const container = document.querySelector(".cars-card-con");
@@ -196,7 +197,7 @@ function applyFilters(cars) {
     }
 
     if (price < activeFilters.minPrice || price > activeFilters.maxPrice) return false;
-    if (activeFilters.carType && car.category !== activeFilters.carType) return false;
+    if (activeFilters.carType && activeFilters.carType !== "all" && car.category !== activeFilters.carType) return false;
 
     return true;
   });
@@ -479,6 +480,12 @@ function resetAllFilters() {
 
   if (activeCarType) {
     activeCarType.classList.remove("selected-type");
+  }
+
+  if (allCarTypePill) {
+    allCarTypePill.classList.add("selected-type");
+    activeCarType = allCarTypePill;
+  } else {
     activeCarType = null;
   }
 
@@ -490,16 +497,16 @@ document.getElementById("resetAllBtn").addEventListener("click", resetAllFilters
 
 carTypePills.forEach((div) => {
   div.addEventListener("click", () => {
-    if (activeCarType === div) {
+    if (activeCarType && activeCarType !== div) {
       activeCarType.classList.remove("selected-type");
-      activeCarType = null;
-      activeFilters.carType = null;
-    } else {
-      if (activeCarType) activeCarType.classList.remove("selected-type");
-      activeCarType = div;
-      div.classList.add("selected-type");
-      activeFilters.carType = div.dataset.type ?? div.textContent.trim().toLowerCase();
     }
+
+    activeCarType = div;
+    div.classList.add("selected-type");
+
+    const selectedType = div.dataset.type ?? div.textContent.trim().toLowerCase();
+    activeFilters.carType = selectedType === "all" ? null : selectedType;
+
     renderCars();
   });
 });
@@ -634,10 +641,18 @@ function updatePriceRange() {
   const total = +minR.max - +minR.min;
   fill.style.left = ((min - +minR.min) / total) * 100 + "%";
   fill.style.right = 100 - ((max - +minR.min) / total) * 100 + "%";
-  document.getElementById("min-val").value = min;
-  document.getElementById("max-val").value = max;
+  document.getElementById("min-val").textContent = min;
+  document.getElementById("max-val").textContent = max;
 }
-[minR, maxR].forEach((r) => r.addEventListener("input", updatePriceRange));
+[minR, maxR].forEach((r) => {
+  r.addEventListener("input", function () {
+    updatePriceRange.call(this);
+    activeFilters.minPrice = parseInt(minR.value);
+    activeFilters.maxPrice = parseInt(maxR.value);
+    syncAdvancedPills();
+    renderCars();
+  });
+});
 updatePriceRange.call(minR);
 
 function mountAdvancedFilters() {

@@ -125,7 +125,7 @@ function buildGallery(photos) {
 }
  
 function populatePage(car) {
-  const pricing     = getTodayPrice(car.car_pricing);
+  const pricing = getTodayPrice(car.car_pricing);
   const pricePerDay = pricing ? parseFloat(pricing.price_per_day) : 0;
  
   const carName = document.getElementById('car-name');
