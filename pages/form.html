@@ -8,6 +8,8 @@
   <meta name="description" content="Affordable, reliable car rentals in Tirana, Albania. Explore Albania Your Way with DuaMakina. Best prices guaranteed – book online in minutes!">
   <meta name="keywords" content="dua makine,dua makina, duamakina car rental Tirana, rent a car Albania, car hire Albania, cheap car rental Albania, affordable car rental Tirana, car rental Tirana airport, Albania road trip, explore Albania by car, reliable car rental Albania, makina me qera Tiranë, qera makine Shqiperi, makina me qera çmim të lirë, makina me qera aeroporti Tiranë, qera makine online Shqiperi, eksploroni Shqipërinë me makinë, makina me qera te besueshem, udhëtim me makinë Shqipëri">
   <link rel="canonical" href="https://duamakina.com/">
+  <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+  <link rel="icon" type="image/webp" href="/assets/icons/favicon.webp">
   <link rel="alternate" hreflang="x-default" href="https://www.duamakina.com/pages/form.html">
   <link rel="alternate" hreflang="en" href="https://www.duamakina.com/pages/form.html">
   <link rel="alternate" hreflang="sq" href="https://www.duamakina.com/sq/pages/form.html">
@@ -21,6 +23,8 @@
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="/scripts/components.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
   <header role="banner" id="header" style="width: 100%; z-index: 1000; position: relative;" fetchpriority=high></header>
@@ -113,21 +117,21 @@
       <aside>
         <div class="sidebar-header">
           <div class="car-container">
-            <img src="https://pictures.porsche.com/rtt/iris?COSY-EU-100-1711coMvsi60AAt5FwcmBEgA4qP8iBUDxPE3Cb9pNXkBuNYdMGF4tl3U0%25z8rMHIspbWvanYb%255y%25oq%25vSTmjMXD4qAZeoNBPUSfUx4RmHlCgI7Zl2dioCxkF%25vUqCNwuWXsOw3meV6iTCj%25zhRc2GRdqAZ%25oD21P%25S1BAXmenugTfeIJpV7nDhQT" alt="car image" loading="lazy" draggable="false" class="main-img">
+            <img src="https://jdhigikorvtxhslxudcs.supabase.co/storage/v1/object/public/duamakina-img/public/cover.avif" alt="car image" loading="lazy" draggable="false" id="mainImg">
             <div class="car-info">
-              <h3>Porsche 911 GT3 RS</h3>
+              <h3 id="carName">Car data</h3>
               <div class="car-spec-con">
                 <div class="car-spec-card">
                   <img src="/assets/icons/person.svg" alt="person icon" loading="lazy" draggable="false">
-                  4
+                  <span id="carSeats">0</span>
                 </div>
                 <div class="car-spec-card">
                   <img src="/assets/icons/bag.svg" alt="beg icon" loading="lazy" draggable="false">
-                  2
+                  <span id="carLuggage">0</span>
                 </div>
                 <div class="car-spec-card">
                   <img src="/assets/icons/gears.svg" alt="gear icon" loading="lazy" draggable="false">
-                  Automatic
+                  <span id="carTransmission">car data</span>
                 </div>
               </div>
             </div>
@@ -149,7 +153,7 @@
           <h3>Price Breakdown</h3>
           <div class="price-per-day">
             <div class="items">
-              <p id="carName">Porshe 911 Gt3 Rs</p>
+              <p id="carNamePrice">Car data</p>
               <span>X</span>
               <p class="days">
                 <span class="dayNum">X</span>
@@ -180,7 +184,15 @@
             <input type="checkbox" id="termsCheck" name="tearmsCheck">
             <label for="termsCheck">I agree to the <span>Terms & Conditions</span> and <span>Privacy Policy</span></label>
           </div>
-          <button id="formSendBtn">Send Inquiry</button>
+          <button id="formSendBtn" onclick="
+            Swal.fire({
+              title: `Booking isn't available at this time`,
+              text: `Please try again later`,
+              icon: 'error',
+              confirmButtonText: 'OK',
+              confirmButtonColor: 'var(--color-primary)'
+            });
+          ">Send Inquiry</button>
         </div>
         <hr>
         <div class="sidebar-footer">
@@ -362,5 +374,6 @@
   <script src="/scripts/database.js"></script>
   <script src="/scripts/index.js"></script>
   <script src="/scripts/form.js"></script>
+  <script src="/scripts/analytics.js"></script>
 </body>
 </html>

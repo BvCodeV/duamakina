@@ -55,14 +55,13 @@ function displayCalendarFleet() {
 
 function displayCalendarForm() {
   const pickupForm = flatpickr('#changeFormPickupDate', {
+    static: true,
+    appendTo: document.querySelector(".date-time-con"),
     mode: 'range',
     dateFormat: 'M j, Y',
     minDate: 'today',
     allowInput: false,
-    position: 'above left',
-    onReady(_, __, fp) {
-      locationForm.appendChild(fp.calendarContainer);
-    },
+    position: 'above right',
     onChange(selectedDates) {
       if (selectedDates.length >= 1) {
         document.getElementById('changeFormPickupDate').value =

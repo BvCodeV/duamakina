@@ -8,6 +8,8 @@
   <meta name="description" content="Affordable, reliable car rentals in Tirana, Albania. Explore Albania Your Way with DuaMakina. Best prices guaranteed – book online in minutes!">
   <meta name="keywords" content="dua makine,dua makina, duamakina car rental Tirana, rent a car Albania, car hire Albania, cheap car rental Albania, affordable car rental Tirana, car rental Tirana airport, Albania road trip, explore Albania by car, reliable car rental Albania, makina me qera Tiranë, qera makine Shqiperi, makina me qera çmim të lirë, makina me qera aeroporti Tiranë, qera makine online Shqiperi, eksploroni Shqipërinë me makinë, makina me qera te besueshem, udhëtim me makinë Shqipëri">
   <link rel="canonical" href="https://duamakina.com/">
+  <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+  <link rel="icon" type="image/webp" href="/assets/icons/favicon.webp">
   <link rel="alternate" hreflang="x-default" href="https://www.duamakina.com/pages/fleet.html">
   <link rel="alternate" hreflang="en" href="https://www.duamakina.com/pages/fleet.html">
   <link rel="alternate" hreflang="sq" href="https://www.duamakina.com/sq/pages/fleet.html">
@@ -28,251 +30,94 @@
   <nav role="navigation" id="navbar" style="width: 100%; z-index: 1000; position: sticky; top: 0px;" fetchpriority=high></nav>
 
   <main>
-    <h1 class="cars-available"><span id="carNum">XX</span> Cars Available</h1>
-    <aside id="sidebarFilter">
-      <button id="closeSidebarBtn" class="mobile-only">X</button>
-      <div id="filterBarRes">
+    <div class="page-header">
+      <p class="header-info desktop-only">Fleet<span>&middot;</span><span id="headerLoc">Durres</p>
+      <div class="header-end">
+        <h1 class="cars-available desktop-only"><span id="carNum">XX</span> Cars Available</h1>
         <div class="filterLocationInfo">
+          <p class="editLocationTxt">Booking</p>
           <div class="pickup-group info-groups">
-            <img src="/assets/icons/location.svg" alt="location icon" loading="lazy" draggable="false">
-            <div class="pickup-info loc-info">
-              <h1>Pick Up:</h1>
-              <div>
-                <p id="pickupTxt">-</p>
-                <span>at</span>
-                <p id="pickupDateTxt">-</p>
-                <span>,</span>
-                <p id="pickupTimeTxt">-</p>
-              </div>
-            </div>
+            <img src="/assets/icons/location-color.svg" alt="location icon" loading="lazy" draggable="false">
+            <p><span id="pickupTxt">Durres</span> &middot; <span id="pickupDateTxt">28 May</span>, <span id="pickupTimeTxt">10:00</span></p>
           </div>
           <div class="dropoff-group info-groups">
-            <img src="/assets/icons/location.svg" alt="location icon" loading="lazy" draggable="false">
-            <div class="dropoff-info loc-info">
-              <h1>Drop Off:</h1>
-              <div>
-                <p id="dropoffTxt">-</p>
-                <span>at</span>
-                <p id="dropoffDateTxt">-</p>
-                <span>,</span>
-                <p id="dropoffTimeTxt">-</p>
-              </div>
-            </div>
+            <img src="/assets/icons/location-color.svg" alt="location icon" loading="lazy" draggable="false">
+            <p><span id="dropoffTxt">Durres</span> &middot; <span id="dropoffDateTxt">28 May</span>, <span id="dropoffTimeTxt">10:00</span></p>
           </div>
-          <button id="locationChangeBtn" popovertarget="locationFilterDialog">Change Now</button>
-        </div>
+          <button id="locationChangeBtn" popovertarget="locationFilterDialog">Edit dates</button>
       </div>
-      <div class="filterBarFilters">
-        <h1>Popular Filters</h1>
-        <div class="price-filter price-slider">
-          <div class="track-container">
-            <div class="track-bg"></div>
-            <div class="track-fill" id="fill"></div>
-            <input type="range" class="range-input" id="min-range" min="0" max="1000" value="0" step="1">
-            <input type="range" class="range-input" id="max-range" min="0" max="1000" value="1000" step="1">
-          </div>
-          <div class="values">
-            <div class="min-val">
-              <label for="min-val" class="currency-sign">€</label>
-              <input type="number" id="min-val" value="0" min="0" max="1000" step="1" numberInputMode="numeric" class="currency-num">
-            </div>
-            <div class="max-val">
-              <label for="max-val" class="currency-sign">€</label>
-              <input type="number" id="max-val" value="1000" min="0" max="1000" step="1" numberInputMode="numeric" class="currency-num">
-            </div>
-          </div>
-        </div>
-        <ul class="suggested-filters">
-          <li><input type="checkbox" name="automatic" value="Automatic" id="automaticFilterBox" aria-label="automatic transition filter">Automatic Transmission </li>
-          <li><input type="checkbox" name="seats" value="4+ Seats" id="seatsFilterBox" aria-label="4+ seats filter">4+ seats </li>
-          <li><input type="checkbox" name="ac" value="Air Conditioning" id="acFilterBox" aria-label="air conditioning filter">Air Conditioning</li>
-          <li><input type="checkbox" name="electric" value="electric" id="electricFilterBox" aria-label="electric vehicle filter">Electric</li>
-          <li><input type="checkbox" name="milage" value="Unlimited Milage" id="milageFilterBox" aria-label="unlimited mileage filter">Unlimited Mileage</li>
-          <li><input type="checkbox" name="freeCancel" value="Free cancellation" id="freeCancelFilterBox" aria-label="free cancellation filter">Free Cancellation</li>
-          <li><input type="checkbox" name="special" value="Special Offers" id="specialFilterBox" aria-label="special offers filter">Special Offers</li>
+      </div>
+    </div>
+    <div class="page-second-header">
+      <div class="car-type-filter desktop-only">
+        <p id="allPill" class="type-pill selected-type" data-type="all">All</p>
+        <p id="sedanPill" class="type-pill" data-type="sedan">Sedan</p>
+        <p id="economyPill" class="type-pill" data-type="economy">Economy</p>
+        <p id="compactPill" class="type-pill" data-type="compact">Compact</p>
+        <p id="suvPill" class="type-pill" data-type="suv">Suv</p>
+        <p id="vanPill" class="type-pill" data-type="van">Van</p>
+        <p id="luxuryPill" class="type-pill" data-type="luxury">Luxury</p>
+      </div>
 
-        </ul>
-        <div class="mobile-advanced-filters"></div>
-        <button id="advancedFiltersBtn" popovertarget="filtersDialog">Advanced Filters</button>
+      <button id="filterBtn" class="sidebar-btn mobile-only">
+        <img src="/assets/icons/gears.svg" alt="filter icon" loading="lazy" draggable="false">
+        Show Filters
+      </button>
+
+      <div class="sortSltcCon">
+        <label for="carSort">Sort by:</label>
+        <select name="sort" id="carSort">
+          <option value="popular">Most popular</option>
+          <option value="lToH">Lowest to High Price</option>
+          <option value="hToL">Highest to Low Price</option>
+          <option value="newest">Newest Listings</option>
+        </select>
       </div>
-    </aside>
-    <section>
-      <div class="type-filter desktop-only">
-        <div class="type-pill selected-type" id="allPill">
-          <span class="icon-car sedan" style="
-            mask: url('/assets/icons/car-types/sedan.svg') no-repeat center / contain;
-            -webkit-mask: url('/assets/icons/car-types/sedan.svg') no-repeat center / contain;
-          "></span>
-          <p>All</p>
-        </div>
-        <div class="type-pill" id="sedanPill">
-          <span class="icon-car sedan" style="
-            mask: url('/assets/icons/car-types/sedan.svg') no-repeat center / contain;
-            -webkit-mask: url('/assets/icons/car-types/sedan.svg') no-repeat center / contain;
-          "></span>
-          <p>Sedan</p>
-        </div>
-        <div class="type-pill" id="economyPill">
-          <span class="icon-car economy" style="
-            mask: url('/assets/icons/car-types/economy.svg') no-repeat center / contain;
-            -webkit-mask: url('/assets/icons/car-types/economy.svg') no-repeat center / contain;
-          "></span>
-          <p>Economy</p>
-        </div>
-        <div class="type-pill" id="compactPill">
-          <span class="icon-car compact" style="
-            mask: url('/assets/icons/car-types/compact.svg') no-repeat center / contain;
-            -webkit-mask: url('/assets/icons/car-types/compact.svg') no-repeat center / contain;
-          "></span>
-          <p>Compact</p>
-        </div>
-        <div class="type-pill" id="suvPill">
-          <span class="icon-car suv" style="
-            mask: url('/assets/icons/car-types/suv.svg') no-repeat center / contain;
-            -webkit-mask: url('/assets/icons/car-types/suv.svg') no-repeat center / contain;
-          "></span>
-          <p>Suv</p>
-        </div>
-        <div class="type-pill" id="vanPill">
-          <span class="icon-car van" style="
-            mask: url('/assets/icons/car-types/van.svg') no-repeat center / contain;
-            -webkit-mask: url('/assets/icons/car-types/van.svg') no-repeat center / contain;
-          "></span>
-          <p>Van</p>
-        </div>
-        <div class="type-pill" id="luxuryPill">
-          <span class="icon-car luxury" style="
-            mask: url('/assets/icons/car-types/luxury.svg') no-repeat center / contain;
-            -webkit-mask: url('/assets/icons/car-types/luxury.svg') no-repeat center / contain;
-          "></span>
-          <p>Luxury</p>
-        </div>
-      </div>
-      <div class="second-row">
-        <div class="filters-box">
-          <button id="filterBtn" class="filter-btn mobile-only">
-            <img src="/assets/icons/gears.svg" alt="filter icon" loading="lazy" draggable="false">
-            Show Filters
-          </button>
-          <select name="sort" id="carSort">
-            <option value="popular">Most popular</option>
-            <option value="lToH">Lowest to High Price</option>
-            <option value="hToL">Highest to Low Price</option>
-            <option value="newest">Newest Listings</option>
-          </select>
-        </div>
-        <div id="filterPillsCon">
-        </div>
-      </div>
-      <div class="cars-card-con">
-        <!-- Car cards will be dynamically inserted here -->
-        <div class="car-card">
-          <img src="https://pictures.porsche.com/rtt/iris?COSY-EU-100-1711coMvsi60AAt5FwcmBEgA4qP8iBUDxPE3Cb9pNXkBuNYdMGF4tl3U0%25z8rMHIspbWvanYb%255y%25oq%25vSTmjMXD4qAZeoNBPUSfUx4RmHlCgI7Zl2dioCxkF%25vUqCNwuWXsOw3meV6iTCj%25zhRc2GRdqAZ%25oD21P%25S1BAXmenugTfeIJpV7nDhQT" alt="car image" class="car-image" loading="lazy" draggable="false">
-          <div class="card-body">
-            <h2 class="car-title">Porsche 911 GT3 RS</h2>
-            <ul class="car-features">
-              <li><img src="/assets/icons/person.svg" alt="person icon" loading="lazy" draggable="false"> 5 Seats</li>
-              <li><img src="/assets/icons/bag.svg" alt="bag icon" loading="lazy" draggable="false"> 2 Luggage</li>
-              <li><img src="/assets/icons/door.svg" alt="door icon" loading="lazy" draggable="false"> 4 Doors</li>
-              <li><img src="/assets/icons/gears.svg" alt="gears icon" loading="lazy" draggable="false"> Manual</li>
-              <li><img src="/assets/icons/ac.svg" alt="ac icon" loading="lazy" draggable="false"> A/C</li>
-            </ul>
-            <ul class="car-amenities">
-              <li><img src="/assets/icons/checkmark.svg" alt="checkmark icon" loading="lazy" draggable="false"> Unlimited Mileage</li>
-              <li><img src="/assets/icons/checkmark.svg" alt="checkmark icon" loading="lazy" draggable="false"> Free Cancellation</li>
-              <li><img src="/assets/icons/checkmark.svg" alt="checkmark icon" loading="lazy" draggable="false"> 24/7 Assistance</li>
-            </ul>
-            <div class="review-con">
-              <div class="rating">
-                <img src="/assets/icons/star.svg" alt="star icon" loading="lazy" draggable="false">
-                <span>4.8</span>
-              </div>
-              <p>Excellent (120 reviews)</p>
+    </div>
+    <div class="section-body">
+      <aside id="sidebarFilter">
+        <button id="closeSidebarBtn" class="mobile-only">X</button>
+        <div class="filterBarFilters">
+          <h1>FILTERS</h1>
+          <div class="price-filter">
+            <div class="track-container">
+              <div class="track-bg"></div>
+              <div class="track-fill" id="fill"></div>
+              <input type="range" class="range-input" id="min-range" min="0" max="1000" value="0" step="1">
+              <input type="range" class="range-input" id="max-range" min="0" max="1000" value="1000" step="1">
+            </div>
+            <div class="values">
+              <p class="min-val"><span class="currency-sign">€</span> <span id="min-val" class="currency-num">0</span></p>
+              <p class="max-val"><span class="currency-sign">€</span> <span id="max-val" class="currency-num">1000</span></p>
             </div>
           </div>
-          <hr>
-          <div class="card-end">
-            <div class="car-price">
-              <div class="price">
-                <span class="currency-sign" style="font-size: 1em; font-weight: bold; color: var(--color-txt-primary);">€</span><span class="currency-num" style="font-size: 1em; font-weight: bold; color: var(--color-txt-primary);">50.00</span>
-              </div>
-              <span>per day</span>
-            </div>
-            <a href="/pages/booking.html" class="rent-now-btn">View Details</a>
+          <ul class="suggested-filters">
+            <li><input type="checkbox" name="automatic" value="Automatic" id="automaticFilterBox" aria-label="automatic transition filter">Automatic Transmission </li>
+            <li><input type="checkbox" name="seats" value="4+ Seats" id="seatsFilterBox" aria-label="4+ seats filter">4+ seats </li>
+            <li><input type="checkbox" name="ac" value="Air Conditioning" id="acFilterBox" aria-label="air conditioning filter">Air Conditioning</li>
+            <li><input type="checkbox" name="electric" value="electric" id="electricFilterBox" aria-label="electric vehicle filter">Electric</li>
+            <li><input type="checkbox" name="milage" value="Unlimited Milage" id="milageFilterBox" aria-label="unlimited mileage filter">Unlimited Mileage</li>
+            <li><input type="checkbox" name="freeCancel" value="Free cancellation" id="freeCancelFilterBox" aria-label="free cancellation filter">Free Cancellation</li>
+            <li><input type="checkbox" name="special" value="Special Offers" id="specialFilterBox" aria-label="special offers filter">Special Offers</li>
+          </ul>
+          <div class="mobile-advanced-filters"></div>
+          <div class="btn-con">
+            <button id="resetAllBtn">Reset All</button>
+            <button id="advancedFiltersBtn" popovertarget="filtersDialog">Advanced Filters</button>
           </div>
         </div>
-        <div class="car-card">
-          <img src="https://pictures.porsche.com/rtt/iris?COSY-EU-100-1711coMvsi60AAt5FwcmBEgA4qP8iBUDxPE3Cb9pNXkBuNYdMGF4tl3U0%25z8rMHIspbWvanYb%255y%25oq%25vSTmjMXD4qAZeoNBPUSfUx4RmHlCgI7Zl2dioCxkF%25vUqCNwuWXsOw3meV6iTCj%25zhRc2GRdqAZ%25oD21P%25S1BAXmenugTfeIJpV7nDhQT" alt="car image" class="car-image" loading="lazy" draggable="false">
-          <div class="card-body">
-            <h2 class="car-title">Porsche 911 GT3 RS</h2>
-            <ul class="car-features">
-              <li><img src="/assets/icons/person.svg" alt="person icon" loading="lazy" draggable="false"> 5 Seats</li>
-              <li><img src="/assets/icons/bag.svg" alt="bag icon" loading="lazy" draggable="false"> 2 Luggage</li>
-              <li><img src="/assets/icons/door.svg" alt="door icon" loading="lazy" draggable="false"> 4 Doors</li>
-              <li><img src="/assets/icons/gears.svg" alt="gears icon" loading="lazy" draggable="false"> Manual</li>
-              <li><img src="/assets/icons/ac.svg" alt="ac icon" loading="lazy" draggable="false"> A/C</li>
-            </ul>
-            <ul class="car-amenities">
-              <li><img src="/assets/icons/checkmark.svg" alt="checkmark icon" loading="lazy" draggable="false"> Unlimited Mileage</li>
-              <li><img src="/assets/icons/checkmark.svg" alt="checkmark icon" loading="lazy" draggable="false"> Free Cancellation</li>
-              <li><img src="/assets/icons/checkmark.svg" alt="checkmark icon" loading="lazy" draggable="false"> 24/7 Assistance</li>
-            </ul>
-            <div class="review-con">
-              <div class="rating">
-                <img src="/assets/icons/star.svg" alt="star icon" loading="lazy" draggable="false">
-                <span>4.8</span>
-              </div>
-              <p>Excellent (120 reviews)</p>
-            </div>
-          </div>
-          <hr>
-          <div class="card-end">
-            <div class="car-price">
-              <div class="price">
-                <span class="currency-sign" style="font-size: 1em; font-weight: bold; color: var(--color-txt-primary);">€</span><span class="currency-num" style="font-size: 1em; font-weight: bold; color: var(--color-txt-primary);">50.00</span>
-              </div>
-              <span>per day</span>
-            </div>
-            <a href="/pages/booking.html" class="rent-now-btn">View Details</a>
-          </div>
+      </aside>
+      <section>
+        <div id="filterPillsCon"></div>
+        <div class="section-body-info">
+          <p class="car-count"><span id="carNumFilter">X</span> OF <span id="totalCars">X</span> VEHICLES</p>
+          <p class="day-num"><span id="dayNumFleet">X</span> DAYS</p>
         </div>
-        <div class="car-card">
-          <img src="https://pictures.porsche.com/rtt/iris?COSY-EU-100-1711coMvsi60AAt5FwcmBEgA4qP8iBUDxPE3Cb9pNXkBuNYdMGF4tl3U0%25z8rMHIspbWvanYb%255y%25oq%25vSTmjMXD4qAZeoNBPUSfUx4RmHlCgI7Zl2dioCxkF%25vUqCNwuWXsOw3meV6iTCj%25zhRc2GRdqAZ%25oD21P%25S1BAXmenugTfeIJpV7nDhQT" alt="car image" class="car-image" loading="lazy" draggable="false">
-          <div class="card-body">
-            <h2 class="car-title">Porsche 911 GT3 RS</h2>
-            <ul class="car-features">
-              <li><img src="/assets/icons/person.svg" alt="person icon" loading="lazy" draggable="false"> 5 Seats</li>
-              <li><img src="/assets/icons/bag.svg" alt="bag icon" loading="lazy" draggable="false"> 2 Luggage</li>
-              <li><img src="/assets/icons/door.svg" alt="door icon" loading="lazy" draggable="false"> 4 Doors</li>
-              <li><img src="/assets/icons/gears.svg" alt="gears icon" loading="lazy" draggable="false"> Manual</li>
-              <li><img src="/assets/icons/ac.svg" alt="ac icon" loading="lazy" draggable="false"> A/C</li>
-            </ul>
-            <ul class="car-amenities">
-              <li><img src="/assets/icons/checkmark.svg" alt="checkmark icon" loading="lazy" draggable="false"> Unlimited Mileage</li>
-              <li><img src="/assets/icons/checkmark.svg" alt="checkmark icon" loading="lazy" draggable="false"> Free Cancellation</li>
-              <li><img src="/assets/icons/checkmark.svg" alt="checkmark icon" loading="lazy" draggable="false"> 24/7 Assistance</li>
-            </ul>
-            <div class="review-con">
-              <div class="rating">
-                <img src="/assets/icons/star.svg" alt="star icon" loading="lazy" draggable="false">
-                <span>4.8</span>
-              </div>
-              <p>Excellent (120 reviews)</p>
-            </div>
-          </div>
-          <hr>
-          <div class="card-end">
-            <div class="car-price">
-              <div class="price">
-                <span class="currency-sign" style="font-size: 1em; font-weight: bold; color: var(--color-txt-primary);">€</span><span class="currency-num" style="font-size: 1em; font-weight: bold; color: var(--color-txt-primary);">50.00</span>
-              </div>
-              <span>per day</span>
-            </div>
-            <a href="/pages/booking.html" class="rent-now-btn">View Details</a>
-          </div>
+        <div class="cars-card-con">
+          <!-- Car cards will be dynamically inserted here -->
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   </main>
 
   <div id="locationFilterDialog" popover>
@@ -468,20 +313,20 @@
             <p>Vehicle Year</p>
             <ul class="radio-btn-cons btn-cons">
               <li class="radio-btn">
-                <label for="2025+">2025 or newer</label>
-                <input type="radio" name="year" id="yearSelc" value="2025+">
+                <input type="radio" name="year" id="year2025" value="2025+">
+                <label for="year2025">2025 or newer</label>
               </li>
               <li class="radio-btn">
-                <label for="year">2023 or newer</label>
-                <input type="radio" name="year" id="yearSelc" value="2023+">
+                <input type="radio" name="year" id="year2023" value="2023+">
+                <label for="year2023">2023 or newer</label>
               </li>
               <li class="radio-btn">
-                <label for="year">2020 or newer</label>
-                <input type="radio" name="year" id="yearSelc" value="2020+">
+                <input type="radio" name="year" id="year2020" value="2020+">
+                <label for="year2020">2020 or newer</label>
               </li>
               <li class="radio-btn">
-                <label for="year">any year</label>
-                <input type="radio" name="year" id="yearSelc" value="any">
+                <input type="radio" name="year" id="yearAny" value="any">
+                <label for="yearAny">Any year</label>
               </li>
             </ul>
           </div>
@@ -489,28 +334,28 @@
             <p>Drive System</p>
             <ul class="checkbox-btn-cons btn-cons">
               <li class="checkbox-btn">
-                <label for="transmission">Manual</label>
-                <input type="checkbox" name="transmission" id="transmissionSelc" value="manual">
+                <input type="checkbox" id="manual" name="transmission" value="manual">
+                <label for="manual">Manual</label>
               </li>
               <li class="checkbox-btn">
-                <label for="transmission">Automatic</label>
-                <input type="checkbox" name="automatic" id="transmissionSelc" value="automatic">
+                <input type="checkbox" id="automatic" name="transmission" value="automatic">
+                <label for="automatic">Automatic</label>
               </li>
               <li class="checkbox-btn">
-                <label for="transmission">AWD</label>
-                <input type="checkbox" name="drivetrain" id="drivetrainSelc" value="awd">
+                <input type="checkbox" id="awd" name="drivetrain" value="awd">
+                <label for="awd">AWD</label>
               </li>
               <li class="checkbox-btn">
-                <label for="transmission">FWD</label>
-                <input type="checkbox" name="drivetrain" id="drivetrainSelc" value="fwd">
+                <input type="checkbox" id="fwd" name="drivetrain" value="fwd">
+                <label for="fwd">FWD</label>
               </li>
               <li class="checkbox-btn">
-                <label for="transmission">RWD</label>
-                <input type="checkbox" name="drivetrain" id="drivetrainSelc" value="rwd">
+                <input type="checkbox" id="rwd" name="drivetrain" value="rwd">
+                <label for="rwd">RWD</label>
               </li>
               <li class="checkbox-btn">
-                <label for="transmission">4X4</label>
-                <input type="checkbox" name="drivetrain" id="drivetrainSelc" value="4X4">
+                <input type="checkbox" id="x4" name="drivetrain" value="4x4">
+                <label for="x4">4X4</label>
               </li>
             </ul>
           </div>
@@ -518,20 +363,20 @@
             <p>Fuel Type</p>
             <ul class="radio-btn-cons btn-cons">
               <li class="radio-btn">
-                <label for="fuel">Petrol</label>
-                <input type="radio" name="fuel" id="fuelSelc" value="petrol">
+                <input type="radio" name="fuel" id="petrol" value="petrol">
+                <label for="petrol">Petrol</label>
               </li>
               <li class="radio-btn">
-                <label for="fuel">Diesel</label>
-                <input type="radio" name="fuel" id="fuelSelc" value="dieesel">
+                <input type="radio" name="fuel" id="diesel" value="diesel">
+                <label for="diesel">Diesel</label>
               </li>
               <li class="radio-btn">
-                <label for="fuel">Electric</label>
-                <input type="radio" name="fuel" id="fuelSelc" value="electric">
+                <input type="radio" name="fuel" id="electric" value="electric">
+                <label for="electric">Electric</label>
               </li>
               <li class="radio-btn">
-                <label for="fuel">Hybrid</label>
-                <input type="radio" name="fuel" id="fuelSelc" value="hybrid">
+                <input type="radio" name="fuel" id="hybrid" value="hybrid">
+                <label for="hybrid">Hybrid</label>
               </li>
             </ul>
           </div>
@@ -539,16 +384,16 @@
             <p>Driver Experience</p>
             <ul class="radio-btn-cons btn-cons">
               <li class="radio-btn">
-                <label for="under21">Under 21</label>
                 <input type="radio" name="driverExperience" id="under21" value="under21">
+                <label for="under21">Under 21</label>
               </li>
               <li class="radio-btn">
-                <label for="21-24">21-24</label>
-                <input type="radio" name="driverExperience" id="21-24" value="21-24">
+                <input type="radio" name="driverExperience" id="age21to24" value="21-24">
+                <label for="age21to24">21–24</label>
               </li>
               <li class="radio-btn">
-                <label for="over25">over 25</label>
                 <input type="radio" name="driverExperience" id="over25" value="over25">
+                <label for="over25">Over 25</label>
               </li>
             </ul>
           </div>
@@ -559,16 +404,16 @@
             <p>Luggage Capacity</p>
             <ul class="radio-btn-cons btn-cons">
               <li class="radio-btn">
-                <label for="luggage">1-2 Bags</label>
-                <input type="radio" name="luggage" id="luggageSelc" value="1-2">
+                <input type="radio" name="luggage" id="bags12" value="1-2">
+                <label for="bags12">1–2 Bags</label>
               </li>
               <li class="radio-btn">
-                <label for="luggage">3-4 Bags</label>
-                <input type="radio" name="luggage" id="luggageSelc" value="3-4">
+                <input type="radio" name="luggage" id="bags34" value="3-4">
+                <label for="bags34">3–4 Bags</label>
               </li>
               <li class="radio-btn">
-                <label for="luggage">5-6 Bags</label>
-                <input type="radio" name="luggage" id="luggageSelc" value="5-6">
+                <input type="radio" name="luggage" id="bags56" value="5-6">
+                <label for="bags56">5–6 Bags</label>
               </li>
             </ul>
           </div>
@@ -576,24 +421,24 @@
             <p>Seating Capacity</p>
             <ul class="radio-btn-cons btn-cons">
               <li class="radio-btn">
-                <label for="seats">2 seats</label>
-                <input type="radio" name="seats" id="seatsSelc" value="2">
+                <input type="radio" name="seats" id="seat2" value="2">
+                <label for="seat2">2 Seats</label>
               </li>
               <li class="radio-btn">
-                <label for="seats">4 seats</label>
-                <input type="radio" name="seats" id="seatsSelc" value="4">
+                <input type="radio" name="seats" id="seat4" value="4">
+                <label for="seat4">4 Seats</label>
               </li>
               <li class="radio-btn">
-                <label for="seats">5 seats</label>
-                <input type="radio" name="seats" id="seatsSelc" value="5">
+                <input type="radio" name="seats" id="seat5" value="5">
+                <label for="seat5">5 Seats</label>
               </li>
               <li class="radio-btn">
-                <label for="seats">7 seats</label>
-                <input type="radio" name="seats" id="seatsSelc" value="7">
+                <input type="radio" name="seats" id="seat7" value="7">
+                <label for="seat7">7 Seats</label>
               </li>
               <li class="radio-btn">
-                <label for="seats">9 seats</label>
-                <input type="radio" name="seats" id="seatsSelc" value="9">
+                <input type="radio" name="seats" id="seat9" value="9">
+                <label for="seat9">9 Seats</label>
               </li>
             </ul>
           </div>
@@ -601,16 +446,16 @@
             <p>Insurance</p>
             <ul class="radio-btn-cons btn-cons">
               <li class="radio-btn">
-                <label for="full">Full Coverage included</label>
-                <input type="radio" name="insurance" id="full" value="full">
+                <input type="radio" name="insurance" id="fullCoverage" value="full">
+                <label for="fullCoverage">Full Coverage Included</label>
               </li>
               <li class="radio-btn">
-                <label for="third-party">Third-Party only</label>
-                <input type="radio" name="insurance" id="third-party" value="third-party">
+                <input type="radio" name="insurance" id="thirdParty" value="third-party">
+                <label for="thirdParty">Third-Party Only</label>
               </li>
               <li class="radio-btn">
-                <label for="noInsurance">No insurance included</label>
-                <input type="radio" name="insurance" id="noInsurance" value="noInsurance">
+                <input type="radio" name="insurance" id="noInsurance" value="none">
+                <label for="noInsurance">No Insurance Included</label>
               </li>
             </ul>
           </div>
@@ -618,20 +463,20 @@
             <p>Deposit Requirements</p>
             <ul class="radio-btn-cons btn-cons">
               <li class="radio-btn">
-                <label for="deposit">No Deposit</label>
-                <input type="radio" name="deposit" id="fuelSelc" value="none">
+                <input type="radio" name="deposit" id="depositNone" value="none">
+                <label for="depositNone">No Deposit</label>
               </li>
               <li class="radio-btn">
-                <label for="deposit"><€500</label>
-                <input type="radio" name="deposit" id="fuelSelc" value="500">
+                <input type="radio" name="deposit" id="deposit500" value="500">
+                <label for="deposit500">&lt; €500</label>
               </li>
               <li class="radio-btn">
-                <label for="deposit"><€750</label>
-                <input type="radio" name="deposit" id="fuelSelc" value="750">
+                <input type="radio" name="deposit" id="deposit750" value="750">
+                <label for="deposit750">&lt; €750</label>
               </li>
               <li class="radio-btn">
-                <label for="deposit"><€1,000</label>
-                <input type="radio" name="deposit" id="fuelSelc" value="1000">
+                <input type="radio" name="deposit" id="deposit1000" value="1000">
+                <label for="deposit1000">&lt; €1,000</label>
               </li>
             </ul>
           </div>
@@ -647,5 +492,6 @@
   <script src="/scripts/calendar.js"></script>
   <script src="/scripts/currency.js"></script>
   <script src="/scripts/fleet.js"></script>
+  <script src="/scripts/analytics.js"></script>
 </body>
 </html>

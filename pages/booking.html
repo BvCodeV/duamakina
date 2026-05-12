@@ -8,6 +8,8 @@
   <meta name="description" content="Affordable, reliable car rentals in Tirana, Albania. Explore Albania Your Way with DuaMakina. Best prices guaranteed – book online in minutes!">
   <meta name="keywords" content="dua makine,dua makina, duamakina car rental Tirana, rent a car Albania, car hire Albania, cheap car rental Albania, affordable car rental Tirana, car rental Tirana airport, Albania road trip, explore Albania by car, reliable car rental Albania, makina me qera Tiranë, qera makine Shqiperi, makina me qera çmim të lirë, makina me qera aeroporti Tiranë, qera makine online Shqiperi, eksploroni Shqipërinë me makinë, makina me qera te besueshem, udhëtim me makinë Shqipëri">
   <link rel="canonical" href="https://duamakina.com/">
+  <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+  <link rel="icon" type="image/webp" href="/assets/icons/favicon.webp">
   <link rel="alternate" hreflang="x-default" href="https://www.duamakina.com/pages/booking.html">
   <link rel="alternate" hreflang="en" href="https://www.duamakina.com/pages/booking.html">
   <link rel="alternate" hreflang="sq" href="https://www.duamakina.com/sq/pages/booking.html">
@@ -25,9 +27,19 @@
   <nav role="navigation" id="navbar" style="width: 100%; z-index: 1000; position: sticky; top: 0px;" fetchpriority=high></nav>
   <main>
     <section>
+      <div class="car-info">
+        <div class="info">
+          <h1 id="car-name">Car Name</h1>
+          <p id="car-type">car type</p>
+        </div>
+        <button id="shareBtn">
+          <img src="/assets/icons/share.svg" alt="share icon" loading="lazy" draggable="false">
+          Share
+        </button>
+      </div>
       <div class="image-con">
         <div class="main-img-con">
-          <img src="https://pictures.porsche.com/rtt/iris?COSY-EU-100-1711coMvsi60AAt5FwcmBEgA4qP8iBUDxPE3Cb9pNXkBuNYdMGF4tl3U0%25z8rMHIspbWvanYb%255y%25oq%25vSTmjMXD4qAZeoNBPUSfUx4RmHlCgI7Zl2dioCxkF%25vUqCNwuWXsOw3meV6iTCj%25zhRc2GRdqAZ%25oD21P%25S1BAXmenugTfeIJpV7nDhQT" alt="main-img" id="main-img" loading="lazy" draggable="false">
+          <img src="https://jdhigikorvtxhslxudcs.supabase.co/storage/v1/object/public/duamakina-img/public/cover.avif" alt="main-img" id="main-img" loading="lazy" draggable="false">
           <div id="leftArrow"><img src="/assets/icons/left-arrow.svg" alt="left arrow" draggable="false" loading="lazy"></div>
           <div id="rightArrow"><img src="/assets/icons/right-arrow.svg" alt="right arrow" draggable="false" loading="lazy"></div>
           <div class="dots">
@@ -37,41 +49,48 @@
           </div>
         </div>
         <div class="image-con-end">
-          <img src="https://pictures.porsche.com/rtt/iris?COSY-EU-100-1711coMvsi60AAt5FwcmBEgA4qP8iBUDxPE3Cb9pNXkBuNYdMGF4tl3U0%25z8rMHIspbWvanYb%255y%25oq%25vSTmjMXD4qAZeoNBPUSfUx4RmHlCgI7Zl2dioCxkF%25vUqCNwuWXsOw3meV6iTCj%25zhRc2GRdqAZ%25oD21P%25S1BAXmenugTfeIJpV7nDhQT" alt="other-img" id="other-img" loading="lazy" draggable="false" class="other-imgs">
-          <img src="https://pictures.porsche.com/rtt/iris?COSY-EU-100-1711coMvsi60AAt5FwcmBEgA4qP8iBUDxPE3Cb9pNXkBuNYdMGF4tl3U0%25z8rMHIspbWvanYb%255y%25oq%25vSTmjMXD4qAZeoNBPUSfUx4RmHlCgI7Zl2dioCxkF%25vUqCNwuWXsOw3meV6iTCj%25zhRc2GRdqAZ%25oD21P%25S1BAXmenugTfeIJpV7nDhQT" alt="other-img" id="other-img" loading="lazy" draggable="false" class="other-imgs">
-          <img src="https://pictures.porsche.com/rtt/iris?COSY-EU-100-1711coMvsi60AAt5FwcmBEgA4qP8iBUDxPE3Cb9pNXkBuNYdMGF4tl3U0%25z8rMHIspbWvanYb%255y%25oq%25vSTmjMXD4qAZeoNBPUSfUx4RmHlCgI7Zl2dioCxkF%25vUqCNwuWXsOw3meV6iTCj%25zhRc2GRdqAZ%25oD21P%25S1BAXmenugTfeIJpV7nDhQT" alt="other-img" id="other-img" loading="lazy" draggable="false" class="other-imgs">
-          <img src="https://pictures.porsche.com/rtt/iris?COSY-EU-100-1711coMvsi60AAt5FwcmBEgA4qP8iBUDxPE3Cb9pNXkBuNYdMGF4tl3U0%25z8rMHIspbWvanYb%255y%25oq%25vSTmjMXD4qAZeoNBPUSfUx4RmHlCgI7Zl2dioCxkF%25vUqCNwuWXsOw3meV6iTCj%25zhRc2GRdqAZ%25oD21P%25S1BAXmenugTfeIJpV7nDhQT" alt="other-img" id="other-img" loading="lazy" draggable="false" class="other-imgs">
+          <img src="https://jdhigikorvtxhslxudcs.supabase.co/storage/v1/object/public/duamakina-img/public/profile.avif" alt="other-img" id="other-img" loading="lazy" draggable="false" class="other-imgs">
+          <img src="https://jdhigikorvtxhslxudcs.supabase.co/storage/v1/object/public/duamakina-img/public/profile.avif" alt="other-img" id="other-img" loading="lazy" draggable="false" class="other-imgs">
+          <img src="https://jdhigikorvtxhslxudcs.supabase.co/storage/v1/object/public/duamakina-img/public/profile.avif" alt="other-img" id="other-img" loading="lazy" draggable="false" class="other-imgs">
+          <img src="https://jdhigikorvtxhslxudcs.supabase.co/storage/v1/object/public/duamakina-img/public/profile.avif" alt="other-img" id="other-img" loading="lazy" draggable="false" class="other-imgs">
         </div>
       </div>
-      <div class="car-info-con">
-        <h1  id="car-name">Porsche 911 GT3 RS</h1>
-        <p id="car-type">Sedan</p>
-        <hr>
-        <div class="car-specs">
-          <div class="spec-con">
-            <img src="/assets/icons/gears.svg" alt="gears icon" loading="lazy" draggable="false">
-            <p>Manual</p>
-          </div>
-          <div class="spec-con">
-            <img src="/assets/icons/person.svg" alt="person icon" loading="lazy" draggable="false">
-            <p>4 Seats</p>
-          </div>
-          <div class="spec-con">
-            <img src="/assets/icons/bag.svg" alt="bag icon" loading="lazy" draggable="false">
-            <p>2 Bags</p>
-          </div>
-          <div class="spec-con">
-            <img src="/assets/icons/door.svg" alt="door icon" loading="lazy" draggable="false">
-            <p>4 Doors</p>
-          </div>
-          <div class="spec-con">
-            <img src="/assets/icons/ac.svg" alt="ac icon" loading="lazy" draggable="false">
-            <p>A/C</p>
-          </div>
-          <div class="spec-con">
-            <img src="/assets/icons/fuel.svg" alt="fuel icon" loading="lazy" draggable="false">
-            <p>Petrol</p>
-          </div>
+      <div class="car-specs">
+        <div class="spec-con">
+          <img src="/assets/icons/gears.svg" alt="gears icon" loading="lazy" draggable="false">
+          <p>car transmission</p>
+        </div>
+        <div class="spec-con">
+          <img src="/assets/icons/insurance-booking.svg" alt="insurance icon" loading="lazy" draggable="false">
+          <p>Insurance type</p>
+        </div>
+        <div class="spec-con">
+          <img src="/assets/icons/year.svg" alt="year icon" loading="lazy" draggable="false">
+          <p>Car year</p>
+        </div>
+        <div class="spec-con">
+          <img src="/assets/icons/license-plate.svg" alt="license-plate icon" loading="lazy" draggable="false">
+          <p>License plate</p>
+        </div>
+        <div class="spec-con">
+          <img src="/assets/icons/person.svg" alt="person icon" loading="lazy" draggable="false">
+          <p>car seats</p>
+        </div>
+        <div class="spec-con">
+          <img src="/assets/icons/bag.svg" alt="bag icon" loading="lazy" draggable="false">
+          <p>car trunk capacity</p>
+        </div>
+        <div class="spec-con">
+          <img src="/assets/icons/door.svg" alt="door icon" loading="lazy" draggable="false">
+          <p>car doors</p>
+        </div>
+        <div class="spec-con">
+          <img src="/assets/icons/ac.svg" alt="ac icon" loading="lazy" draggable="false">
+          <p>A/C</p>
+        </div>
+        <div class="spec-con">
+          <img src="/assets/icons/fuel.svg" alt="fuel icon" loading="lazy" draggable="false">
+          <p>car fuel type</p>
         </div>
       </div>
       <div class="faq">
@@ -181,7 +200,7 @@
           <p>
             <span>Deposit:</span>
             <span class="currency-sign" style="font-weight: bold;">€</span>
-            <span class="currency-num" style="font-weight: bold;">400.00</span> 
+            <span class="currency-num" style="font-weight: bold;" id="depositAmount">400.00</span> 
             (refundable upon return)
           </p>
         </details>
@@ -260,5 +279,6 @@
   <script src="/scripts/database.js"></script>
   <script src="/scripts/currency.js"></script>
   <script src="/scripts/booking.js"></script>
+  <script src="/scripts/analytics.js"></script>
 </body>
 </html>
