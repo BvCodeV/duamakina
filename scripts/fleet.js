@@ -107,7 +107,7 @@ function buildCarCard(car) {
           </div>
           <span>per day</span>
         </div>
-        <a href="/pages/booking.html?id=${car.id}" class="rent-now-btn">View Details</a>
+        <a href="/pages/booking.html?id=${car.id}" class="rent-now-btn" id="viewDetailsBtn">View Details</a>
       </div>
     </div>
   `;
