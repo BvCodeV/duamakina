@@ -282,5 +282,15 @@ async function loadCarDetails() {
  
   populatePage(car);
 }
- 
+
+async function handleShare(url) {
+  if (navigator.share) {
+    await navigator.share({
+      title: document.title,
+      url: url ?? window.location.href,
+    });
+  } else {
+    await navigator.clipboard.writeText(url ?? window.location.href);
+  }
+}
 document.addEventListener('DOMContentLoaded', loadCarDetails);
