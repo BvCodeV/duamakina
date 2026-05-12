@@ -23,6 +23,8 @@
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="/scripts/components.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
   <header role="banner" id="header" style="width: 100%; z-index: 1000; position: relative;" fetchpriority=high></header>
@@ -182,7 +184,15 @@
             <input type="checkbox" id="termsCheck" name="tearmsCheck">
             <label for="termsCheck">I agree to the <span>Terms & Conditions</span> and <span>Privacy Policy</span></label>
           </div>
-          <button id="formSendBtn">Send Inquiry</button>
+          <button id="formSendBtn" onclick="
+            Swal.fire({
+              title: `Booking isn't available at this time`,
+              text: `Please try again later`,
+              icon: 'error',
+              confirmButtonText: 'OK',
+              confirmButtonColor: 'var(--color-primary)'
+            });
+          ">Send Inquiry</button>
         </div>
         <hr>
         <div class="sidebar-footer">
