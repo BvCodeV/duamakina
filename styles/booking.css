@@ -20,8 +20,8 @@ section {
     display: flex;
     flex-direction: column;
     align-items: start;
-    h1 {font-weight: 700; font-size: 2.3em; letter-spacing: 1px;}
-    p {font-size: 1.3em; font-weight: 500;}
+    h1 {font-weight: 600; font-size: 2.5em; letter-spacing: 1px;}
+    p {font-size: 1em; font-weight: 500; color: var(--color-primary);}
   }
   button {
     background-color: transparent;
@@ -141,13 +141,76 @@ section {
     gap: 0.25rem;
   }
 }
+.car-extra-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  padding: 1em;
+  background-color: var(--color-bg-surface);
+  border-radius: 20px;
+}
+.car-extra-info-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  align-items: start;
+  width: max-content;
+  div {
+    display: flex;
+    gap: 2em;
+  }
+  button {
+    background-color: transparent;
+    color: var(--color-txt-secondary);
+    border: none;
+    font-size: 1em;
+    cursor: pointer;
+    padding: 0.3em 1em;
+    position: relative;
+  }
+  .selected-button {
+    color: var(--color-txt-primary);
+    &::after{
+      content: "";
+      position: absolute;
+      bottom: -0.62em;
+      left: 0;
+      width: 110%;
+      height: 2px;
+      background-color: var(--color-primary);
+      z-index: 2;
+    }
+  }
+  hr {
+    border-color: var(--color-border);
+    width: 100%
+  }
+}
+.car-overview {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  .best-for-con {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    .best-for-card-con {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1em;
+      div {
+        background-color: var(--color-bg-subtle);
+        padding: 1em;
+        border-radius: 20px;
+      }
+    }
+  }
+}
 .faq {
   display: flex;
   flex-direction: column;
   gap: 1em;
-  padding: 1em;
-  background-color: var(--color-bg-surface);
-  border-radius: 20px;
 
   h1 {
     font-size: 1.5rem;

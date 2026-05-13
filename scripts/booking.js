@@ -1,7 +1,12 @@
+const overviewBtn = document.getElementById('overviewBtn');
+const faqBtn = document.getElementById('faqBtn');
+const carFaq = document.getElementById('carFaq');
+const carOverview = document.getElementById('carOverview');
+
 function getCarIdFromUrl() {
   return new URLSearchParams(window.location.search).get('id');
 }
- 
+
 function getTodayPrice(pricingRows) {
   if (!pricingRows || pricingRows.length === 0) return null;
   const today = new Date().toISOString().split('T')[0];
@@ -123,7 +128,7 @@ function buildGallery(photos) {
  
   currentIndex = 0;
 }
- 
+
 function populatePage(car) {
   const pricing = getTodayPrice(car.car_pricing);
   const pricePerDay = pricing ? parseFloat(pricing.price_per_day) : 0;
@@ -131,10 +136,14 @@ function populatePage(car) {
   const carName = document.getElementById('car-name');
   if (carName) carName.textContent = `${car.brand} ${car.model}`;
  
-  const carType = document.getElementById('car-type');
+  const carType = document.getElementById('carType');
   if (carType) carType.textContent = translateCategory(car.category);
- 
   document.title = `${car.brand} ${car.model} — Dua Makina`;
+
+  const carYear = document.getElementById('carYear')
+  if (carYear) carYear.textContent = `${car.year}`;
+  const carFuel = document.getElementById('carFuel')
+  if (carFuel) carFuel.textContent = translateFuel(car.fuel);
  
   const specMap = {
     'gears':  translateTransmission(car.transmission),
@@ -145,7 +154,7 @@ function populatePage(car) {
     'bag':    car.trunk_litres ? `${car.trunk_litres}L Trunk` : '— Trunk',
     'door':   `${car.doors} Doors`,
     'ac':     car.has_ac ? 'A/C' : null,
-    'fuel':   translateFuel(car.fuel)
+    'fuel':   translateFuel(car.fuel),
   };
  
   document.querySelectorAll('.spec-con').forEach(con => {
@@ -296,6 +305,33 @@ async function handleShare() {
   }
 }
 
-document.getElementById("shareBtn").addEventListener("click", handleShare);
+function changeInfo(carPage) {
+  if (carPage === 'overview') {
+    overviewBtn.classList.add('selected-button');
+    faqBtn.classList.remove('selected-button');
+    carOverview.style.display = 'flex';
+    carFaq.style.display = 'none';
+  } else if (carPage === 'faq') {
+    overviewBtn.classList.remove('selected-button');
+    faqBtn.classList.add('selected-button');
+    carOverview.style.display = 'none';
+    carFaq.style.display = 'flex';
+  } else {
+    overviewBtn.classList.add('selected-button');
+    faqBtn.classList.remove('selected-button');
+    carOverview.style.display = 'block';
+    carFaq.style.display = 'none';
+  }
+}
 
+overviewBtn.addEventListener('click', () => {
+  console.log('overview btn is pressed');
+  changeInfo('overview');
+});
+faqBtn.addEventListener('click', () => {
+  console.log('faq btn is pressed');
+  changeInfo('faq');
+});
+
+document.getElementById("shareBtn").addEventListener("click", handleShare);
 document.addEventListener('DOMContentLoaded', loadCarDetails);
