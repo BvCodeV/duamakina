@@ -124,7 +124,7 @@ main {
   }
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 745px) {
   main {
     margin: 20px 1em;
   }

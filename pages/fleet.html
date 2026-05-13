@@ -30,8 +30,8 @@
   <nav role="navigation" id="navbar" style="width: 100%; z-index: 1000; position: sticky; top: 0px;" fetchpriority=high></nav>
 
   <main>
-    <div class="page-header">
-      <div class="header-left desktop-only">
+    <div class="page-header desktop-only">
+      <div class="header-left">
         <p class="header-info">Fleet<span>&middot;</span><span id="headerLoc">Durres</p>
         <h1 class="cars-available"><span id="carNum">XX</span> Cars Available</h1>
       </div>
@@ -91,7 +91,7 @@
               <p class="max-val"><span class="currency-sign">€</span> <span id="max-val" class="currency-num">1000</span></p>
             </div>
           </div>
-          <ul class="suggested-filters">
+          <ul class="suggested-filters desktop-only">
             <li><input type="checkbox" name="automatic" value="Automatic" id="automaticFilterBox" aria-label="automatic transition filter">Automatic Transmission </li>
             <li><input type="checkbox" name="seats" value="4+ Seats" id="seatsFilterBox" aria-label="4+ seats filter">4+ seats </li>
             <li><input type="checkbox" name="ac" value="Air Conditioning" id="acFilterBox" aria-label="air conditioning filter">Air Conditioning</li>
@@ -101,17 +101,18 @@
             <li><input type="checkbox" name="special" value="Special Offers" id="specialFilterBox" aria-label="special offers filter">Special Offers</li>
           </ul>
           <div class="mobile-advanced-filters"></div>
-          <div class="btn-con">
-            <button id="resetAllBtn">Reset All</button>
-            <button id="advancedFiltersBtn" popovertarget="filtersDialog">Advanced Filters</button>
-          </div>
+        </div>
+        <div class="btn-con">
+          <button id="resetAllBtn">Reset All</button>
+          <button id="advancedFiltersBtn" popovertarget="filtersDialog">Advanced Filters</button>
         </div>
       </aside>
       <section>
         <div class="section-body-info">
           <p class="car-count"><span id="carNumFilter">X</span> OF <span id="totalCars">X</span> VEHICLES</p>
           <div id="filterPillsCon"></div>
-          <p class="day-num"><span id="dayNumFleet">X</span> DAYS</p>
+          <p class="day-num desktop-only"><span id="dayNumFleet">X</span> DAYS</p>
+          <!-- <p class="dates-show mobile-only"><span id="pickupDateMobile">DD MM</span> &middot; <span id="droppoffDateMobile">DD MM</span> <span>Edit</span></p> -->
         </div>
         <div class="cars-card-con">
           <!-- Car cards will be dynamically inserted here -->
@@ -482,7 +483,9 @@
           </div>
         </div>
       </div>
-      <button id="submitFiltersBtn">Filter</button>
+      <div class="submitBtnWrapper">
+        <button id="submitFiltersBtn">Apply Filters</button>
+      </div>
     </form>
   </div>
   <footer id="footer" style="width: 99%; position: relative; bottom: 0;"></footer>

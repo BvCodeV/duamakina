@@ -17,6 +17,7 @@ const totalCarNum = document.getElementById('totalCars')
 const filteredCarNum = document.getElementById('carNumFilter')
 const dayTxt = document.getElementById('dayNumFleet')
 let activeCarType = document.querySelector(".selected-type");
+const isMobile = window.matchMedia("(max-width: 745px)").matches;
 
 const pickupTxt = document.getElementById("pickupTxt");
 const dropoffTxt = document.getElementById("dropoffTxt");
@@ -367,28 +368,24 @@ function syncClearAllBtn() {
 function removePillByData(label, advKey) {
   if (advKey) {
     const def = advancedPillDefs.find((d) => d.key === advKey);
-    def?.reset();
-    pillsCon.querySelector(`.filter-pill[data-advanced="${advKey}"]`)?.remove();
+    if (def) {
+      def.reset();
+      syncAdvancedPills();
+      renderCars();
+    }
   } else {
     const match = pillsConfig.find((item) => item.label === label);
     if (match) {
       match.checkbox.checked = false;
-      activeFilters[match.key] = false;
+      match.checkbox.dispatchEvent(new Event("change", { bubbles: true }));
     }
-    pillsCon.querySelector(`.filter-pill[data-label="${label}"]:not([data-advanced])`)?.remove();
   }
-  syncClearAllBtn();
-  if (tooltipEl?.classList.contains("visible")) {
-    const pills = pillsCon.querySelectorAll(".filter-pill");
-    if (pills.length === 0) hideTooltip();
-    else showTooltip();
-  }
-  renderCars();
 }
 
 pillsCon.addEventListener("click", (e) => {
-  if (e.target.tagName !== "BUTTON" || e.target.classList.contains("clear-all-btn")) return;
-  const pill = e.target.closest(".filter-pill");
+  const button = e.target.closest("button:not(.clear-all-btn)");
+  if (!button) return;
+  const pill = button.closest(".filter-pill");
   if (!pill) return;
   removePillByData(pill.dataset.label, pill.dataset.advanced);
 });
@@ -450,6 +447,12 @@ document.getElementById("submitFiltersBtn")?.addEventListener("click", (e) => {
   syncAdvancedPills();
   renderCars();
   filtersDialog?.hidePopover?.();
+  if (isMobile) {
+    if (sidebarFilter) {
+      sidebarFilter.style.display = "none";
+      document.body.style.overflow = "";
+    }
+  }
 });
 
 function resetAllFilters() {
@@ -657,7 +660,6 @@ function updatePriceRange() {
 updatePriceRange.call(minR);
 
 function mountAdvancedFilters() {
-  const isMobile = window.matchMedia("(max-width: 1024px)").matches;
   const form = document.querySelector("#filtersDialog .main-dialog");
   const mobileSlot = document.querySelector(".mobile-advanced-filters");
   if (isMobile) mobileSlot.appendChild(form);

@@ -1,3 +1,20 @@
+.page-nav {
+  position: static;
+  width: 100%;
+  left: 0;
+  height: 40px;
+  background-color: var(--color-bg-surface);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  padding-left: 8.2em;
+  a {
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+}
+
 main {
   display: flex;
   align-items: start;
@@ -189,11 +206,18 @@ section {
 .car-overview {
   display: flex;
   flex-direction: column;
-  gap: 1em;
+  gap: 2em;
+  h1 {
+    font-weight: 700;
+    font-size: 1.7em;
+    color: var(--color-txt-primary);
+  }
+  p {font-size: 1em; color: var(--color-txt-secondary);}
   .best-for-con {
     display: flex;
     flex-direction: column;
     gap: 1em;
+    h2 {font-weight: 600;}
     .best-for-card-con {
       display: flex;
       align-items: center;
@@ -203,6 +227,7 @@ section {
         background-color: var(--color-bg-subtle);
         padding: 1em;
         border-radius: 20px;
+        h3 {text-align: center; font-weight: 500;}
       }
     }
   }
@@ -393,7 +418,10 @@ aside {
     margin: 1em;
   }
 }
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 745px) {
+  .page-nav {
+    padding-left: 2em;
+  }
   main {
     flex-direction: column;
     padding: 1rem;
@@ -409,5 +437,8 @@ aside {
   }
   section, aside {
     width: 100%;
+  }
+  .best-for-card-con {
+    flex-wrap: wrap;
   }
 }
