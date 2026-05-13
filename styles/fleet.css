@@ -10,58 +10,58 @@ main {
 
 .page-header {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   gap: 0.5em;
-  margin-top: 1em;
   width: 100%;
   padding: 0.5em 2em;
   border-bottom: 1px solid var(--color-border);
-  .header-info {
+  .header-left {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
     gap: 0.5em;
-    display: flex;
-    align-items: center;
-    color: var(--color-primary);
-    font-weight: 600;
-    font-size: 0.75em;
-  }
-  .header-end {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    .filterLocationInfo {
-      display: flex;
-      flex-direction: column;
-      align-items: start;
+    p {
       gap: 0.5em;
-      font-size: 0.7em;
-      .editLocationTxt {
-        align-self: flex-end;
-        color: var(--color-txt-secondary);
-        font-weight: 400;
-      }
-      .info-groups {
-        display: flex;
-        align-items: center;
-        justify-content: start;
-        gap: 0.5em;
-        p {
-          align-self: flex-end;
-        }
-        img {
-          width: 16px;
-          height: 16px;
-        }
-      }
-      #locationChangeBtn {
-        background-color: transparent;
-        border: none;
-        outline: none;
-        color: var(--color-primary);
-        font-weight: 600;
-        cursor: pointer;
-        text-decoration: underline;
+      display: flex;
+      align-items: center;
+      color: var(--color-primary);
+      font-weight: 600;
+      font-size: 0.75em;
+    }
+  }
+  .filterLocationInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 0.5em;
+    font-size: 0.7em;
+    .editLocationTxt {
+      align-self: flex-end;
+      color: var(--color-txt-secondary);
+      font-weight: 400;
+    }
+    .info-groups {
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      gap: 0.5em;
+      p {
         align-self: flex-end;
       }
+      img {
+        width: 16px;
+        height: 16px;
+      }
+    }
+    #locationChangeBtn {
+      background-color: transparent;
+      border: none;
+      outline: none;
+      color: var(--color-primary);
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: underline;
+      align-self: flex-end;
     }
   }
 }
@@ -327,13 +327,16 @@ section {
   overflow-x: hidden;
   .section-body-info {
     width: 100%;
+    position: relative;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 1em;
+    white-space: nowrap;
     color: var(--color-txt-secondary);
-  }
-  p {
-    margin-right: 1em;
+    .day-num {
+      margin-left: auto;
+      margin-right: 2em;
+    }
   }
 }
 
@@ -1039,17 +1042,6 @@ section {
   }
   section {
     margin-top: 1em;
-    .second-row {
-      flex-direction: column;
-      align-items: start;
-      gap: 0.5em;
-      #filterPillsCon {
-        display: flex;
-        flex-wrap: wrap;
-        white-space: nowrap;
-        gap: 0.5em;
-      }
-    }
     .filter-btn {
       display: flex;
       align-items: center;

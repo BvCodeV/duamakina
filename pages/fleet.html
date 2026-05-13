@@ -31,10 +31,11 @@
 
   <main>
     <div class="page-header">
-      <p class="header-info desktop-only">Fleet<span>&middot;</span><span id="headerLoc">Durres</p>
-      <div class="header-end">
-        <h1 class="cars-available desktop-only"><span id="carNum">XX</span> Cars Available</h1>
-        <div class="filterLocationInfo">
+      <div class="header-left desktop-only">
+        <p class="header-info">Fleet<span>&middot;</span><span id="headerLoc">Durres</p>
+        <h1 class="cars-available"><span id="carNum">XX</span> Cars Available</h1>
+      </div>
+      <div class="filterLocationInfo">
           <p class="editLocationTxt">Booking</p>
           <div class="pickup-group info-groups">
             <img src="/assets/icons/location-color.svg" alt="location icon" loading="lazy" draggable="false">
@@ -45,7 +46,6 @@
             <p><span id="dropoffTxt">Durres</span> &middot; <span id="dropoffDateTxt">28 May</span>, <span id="dropoffTimeTxt">10:00</span></p>
           </div>
           <button id="locationChangeBtn" popovertarget="locationFilterDialog">Edit dates</button>
-      </div>
       </div>
     </div>
     <div class="page-second-header">
@@ -108,9 +108,9 @@
         </div>
       </aside>
       <section>
-        <div id="filterPillsCon"></div>
         <div class="section-body-info">
           <p class="car-count"><span id="carNumFilter">X</span> OF <span id="totalCars">X</span> VEHICLES</p>
+          <div id="filterPillsCon"></div>
           <p class="day-num"><span id="dayNumFleet">X</span> DAYS</p>
         </div>
         <div class="cars-card-con">

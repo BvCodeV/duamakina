@@ -470,13 +470,14 @@ function resetAllFilters() {
   activeFilters.insurance = null;
   activeFilters.minPrice = 0;
   activeFilters.maxPrice = 1000;
-  activeFilters.carType = null;
+  activeFilters.carType = `all`;
 
-  getActiveForm()?.reset();
+  const activeForm = getActiveForm();
+  if (activeForm?.reset) activeForm.reset();
 
   if (minR) minR.value = 0;
   if (maxR) maxR.value = 1000;
-  updatePriceRange.call(minR);
+  if (minR) updatePriceRange.call(minR);
 
   if (activeCarType) {
     activeCarType.classList.remove("selected-type");
@@ -489,7 +490,7 @@ function resetAllFilters() {
     activeCarType = null;
   }
 
-  hideTooltip();
+  syncAdvancedPills();
   renderCars();
 }
 
