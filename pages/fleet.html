@@ -20,9 +20,6 @@
   <link rel="stylesheet" href="/styles/global.css">
   <link rel="stylesheet" href="/styles/fleet.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-  <script src="/scripts/components.js"></script>
-  <script src="/scripts/filterbar.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
@@ -30,11 +27,12 @@
   <nav role="navigation" id="navbar" style="width: 100%; z-index: 1000; position: sticky; top: 0px;" fetchpriority=high></nav>
 
   <main>
-    <div class="page-header">
-      <p class="header-info desktop-only">Fleet<span>&middot;</span><span id="headerLoc">Durres</p>
-      <div class="header-end">
-        <h1 class="cars-available desktop-only"><span id="carNum">XX</span> Cars Available</h1>
-        <div class="filterLocationInfo">
+    <div class="page-header desktop-only">
+      <div class="header-left">
+        <p class="header-info">Fleet<span>&middot;</span><span id="headerLoc">Durres</p>
+        <h1 class="cars-available"><span id="carNum">XX</span> Cars Available</h1>
+      </div>
+      <div class="filterLocationInfo">
           <p class="editLocationTxt">Booking</p>
           <div class="pickup-group info-groups">
             <img src="/assets/icons/location-color.svg" alt="location icon" loading="lazy" draggable="false">
@@ -45,7 +43,6 @@
             <p><span id="dropoffTxt">Durres</span> &middot; <span id="dropoffDateTxt">28 May</span>, <span id="dropoffTimeTxt">10:00</span></p>
           </div>
           <button id="locationChangeBtn" popovertarget="locationFilterDialog">Edit dates</button>
-      </div>
       </div>
     </div>
     <div class="page-second-header">
@@ -91,7 +88,7 @@
               <p class="max-val"><span class="currency-sign">€</span> <span id="max-val" class="currency-num">1000</span></p>
             </div>
           </div>
-          <ul class="suggested-filters">
+          <ul class="suggested-filters desktop-only">
             <li><input type="checkbox" name="automatic" value="Automatic" id="automaticFilterBox" aria-label="automatic transition filter">Automatic Transmission </li>
             <li><input type="checkbox" name="seats" value="4+ Seats" id="seatsFilterBox" aria-label="4+ seats filter">4+ seats </li>
             <li><input type="checkbox" name="ac" value="Air Conditioning" id="acFilterBox" aria-label="air conditioning filter">Air Conditioning</li>
@@ -101,17 +98,18 @@
             <li><input type="checkbox" name="special" value="Special Offers" id="specialFilterBox" aria-label="special offers filter">Special Offers</li>
           </ul>
           <div class="mobile-advanced-filters"></div>
-          <div class="btn-con">
-            <button id="resetAllBtn">Reset All</button>
-            <button id="advancedFiltersBtn" popovertarget="filtersDialog">Advanced Filters</button>
-          </div>
+        </div>
+        <div class="btn-con">
+          <button id="resetAllBtn">Reset All</button>
+          <button id="advancedFiltersBtn" popovertarget="filtersDialog">Advanced Filters</button>
         </div>
       </aside>
       <section>
-        <div id="filterPillsCon"></div>
         <div class="section-body-info">
           <p class="car-count"><span id="carNumFilter">X</span> OF <span id="totalCars">X</span> VEHICLES</p>
-          <p class="day-num"><span id="dayNumFleet">X</span> DAYS</p>
+          <div id="filterPillsCon"></div>
+          <p class="day-num desktop-only"><span id="dayNumFleet">X</span> DAYS</p>
+          <!-- <p class="dates-show mobile-only"><span id="pickupDateMobile">DD MM</span> &middot; <span id="droppoffDateMobile">DD MM</span> <span>Edit</span></p> -->
         </div>
         <div class="cars-card-con">
           <!-- Car cards will be dynamically inserted here -->
@@ -446,12 +444,12 @@
             <p>Insurance</p>
             <ul class="radio-btn-cons btn-cons">
               <li class="radio-btn">
-                <input type="radio" name="insurance" id="fullCoverage" value="full">
-                <label for="fullCoverage">Full Coverage Included</label>
+                <input type="radio" name="insurance" id="premium" value="full">
+                <label for="premium">Premium</label>
               </li>
               <li class="radio-btn">
-                <input type="radio" name="insurance" id="thirdParty" value="third-party">
-                <label for="thirdParty">Third-Party Only</label>
+                <input type="radio" name="insurance" id="basic" value="third-party">
+                <label for="basic">Basic</label>
               </li>
               <li class="radio-btn">
                 <input type="radio" name="insurance" id="noInsurance" value="none">
@@ -482,16 +480,22 @@
           </div>
         </div>
       </div>
-      <button id="submitFiltersBtn">Filter</button>
+      <div class="submitBtnWrapper">
+        <button id="submitFiltersBtn">Apply Filters</button>
+      </div>
     </form>
   </div>
   <footer id="footer" style="width: 99%; position: relative; bottom: 0;"></footer>
-  <script src="/scripts/lang.js"></script>
+  <script src="/scripts/components.js"></script>
   <script src="/scripts/database.js"></script>
-  <script src="/scripts/index.js"></script>
-  <script src="/scripts/calendar.js"></script>
-  <script src="/scripts/currency.js"></script>
   <script src="/scripts/fleet.js"></script>
+  <script src="/scripts/fleet.js"></script>
+  <script src="/scripts/lang.js"></script>
+   <script src="/scripts/filterbar.js"></script>
+  <script src="/scripts/index.js"></script>
+  <script src="/scripts/currency.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="/scripts/calendar.js"></script>
   <script src="/scripts/analytics.js"></script>
 </body>
 </html>

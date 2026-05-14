@@ -525,7 +525,7 @@ aside {
     margin: 1em;
   }
 }
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 745px) {
   main {
     margin: 0em;
     section {
