@@ -20,9 +20,6 @@
   <link rel="stylesheet" href="/styles/global.css">
   <link rel="stylesheet" href="/styles/fleet.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-  <script src="/scripts/components.js"></script>
-  <script src="/scripts/filterbar.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
@@ -447,12 +444,12 @@
             <p>Insurance</p>
             <ul class="radio-btn-cons btn-cons">
               <li class="radio-btn">
-                <input type="radio" name="insurance" id="fullCoverage" value="full">
-                <label for="fullCoverage">Full Coverage Included</label>
+                <input type="radio" name="insurance" id="premium" value="full">
+                <label for="premium">Premium</label>
               </li>
               <li class="radio-btn">
-                <input type="radio" name="insurance" id="thirdParty" value="third-party">
-                <label for="thirdParty">Third-Party Only</label>
+                <input type="radio" name="insurance" id="basic" value="third-party">
+                <label for="basic">Basic</label>
               </li>
               <li class="radio-btn">
                 <input type="radio" name="insurance" id="noInsurance" value="none">
@@ -489,12 +486,16 @@
     </form>
   </div>
   <footer id="footer" style="width: 99%; position: relative; bottom: 0;"></footer>
-  <script src="/scripts/lang.js"></script>
+  <script src="/scripts/components.js"></script>
   <script src="/scripts/database.js"></script>
-  <script src="/scripts/index.js"></script>
-  <script src="/scripts/calendar.js"></script>
-  <script src="/scripts/currency.js"></script>
   <script src="/scripts/fleet.js"></script>
+  <script src="/scripts/fleet.js"></script>
+  <script src="/scripts/lang.js"></script>
+   <script src="/scripts/filterbar.js"></script>
+  <script src="/scripts/index.js"></script>
+  <script src="/scripts/currency.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="/scripts/calendar.js"></script>
   <script src="/scripts/analytics.js"></script>
 </body>
 </html>

@@ -103,12 +103,12 @@
       <div class="car-extra-info">
         <div class="car-extra-info-nav">
           <div class="btn-con">
-            <button id="overviewBtn" class="selected-button">Overview</button>
-            <button id="faqBtn">Faqs</button>
+            <button id="faqBtn" class="selected-button">Faqs</button>
+            <button id="overviewBtn">Overview</button>
           </div>
           <hr>
         </div>
-        <div class="car-overview" id="carOverview">
+        <div class="car-overview" id="carOverview" style="display: none;">
           <h1 id="overviewTitle">Car overview title</h1>
           <p id="overviewDesc">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Culpa quibusdam accusantium excepturi nemo blanditiis necessitatibus repellat nobis delectus quis vel minus voluptate dolore, dolores sunt reiciendis error aspernatur sapiente beatae?</p>
           <div class="best-for-con">
@@ -126,16 +126,71 @@
             </div>
           </div>
         </div>
-        <div class="faq" id="carFaq" style="display: none;">
+        <div class="faq" id="carFaq">
           <h1>Rental Conditions</h1>
-          <details name="rental-conditions">
-            <summary>
+          <div class="faq-box">
+            <div class="faq-header">
               <div>
-                <img src="/assets/icons/documents.svg" alt="document icon" loading="lazy" draggable="false">
-                Documents Required
+                <img src="/assets/icons/banknotes-color.svg" alt="payment icon" loading="lazy" draggable="false">
+                Depostit & Payment
               </div>
-              <img src="/assets/icons/down-arrow.svg" alt="down-arrow icon" loading="lazy" draggable="false" class="arrow-img">
-            </summary>
+            </div>
+            <p>All payments are processed in CASH ONLY at the time of vehicle collection. No online payments required.</p>
+            <p>
+              <span>Deposit:</span>
+              <span class="currency-sign" style="font-weight: bold;">€</span>
+              <span class="currency-num" style="font-weight: bold;" id="depositAmount">400.00</span> 
+              (refundable upon return)
+            </p>
+          </div>
+          <div class="faq-box">
+            <div class="faq-header">
+              <div>
+                <img src="/assets/icons/speed.svg" alt="speed icon" loading="lazy" draggable="false">
+                Mileage Policy
+              </div>
+            </div>
+            <ul>
+              <li id="milage-policy">
+                <img src="/assets/icons/checkmark.svg" alt="checkmark icon" loading="lazy" draggable="false">
+                Unlimited mileage included
+              </li>
+            </ul>
+          </div>
+          <div class="faq-box">
+            <div class="faq-header">
+              <div>
+                <img src="/assets/icons/fuel-color.svg" alt="fuel icon" loading="lazy" draggable="false">
+                Fuel Policy
+              </div>
+            </div>
+            <p>
+              <span style="font-weight: bold;">Full-to-Full:</span> You receive the car with a full tank and return it with a full tank.
+            </p>
+          </div>
+          <div class="faq-box">
+            <div class="faq-header">
+              <div>
+                <img src="/assets/icons/world.svg" alt="world icon" loading="lazy" draggable="false">
+                Cross-Border Travel
+              </div>
+            </div>
+            <p>This vehicle is authorized for travel throughout Europe.</p>
+          </div>
+          <div class="faq-box">
+            <div class="faq-header">
+              <div>
+                <img src="/assets/icons/ship.svg" alt="ship icon" loading="lazy" draggable="false">
+                Ferry Travel
+              </div>
+            </div>
+            <p>Ferry travel to Greece (Saranda-Corfu) and Italy (Durres-Bari) is allowed with prior notice. Please inform us when booking.</p>
+          </div>
+          <div class="faq-box">
+            <div class="faq-header">
+              <img src="/assets/icons/documents.svg" alt="document icon" loading="lazy" draggable="false">
+              Documents Required
+            </div>
             <ul>
               <li>
                 <img src="/assets/icons/checkmark.svg" alt="checkmark icon" loading="lazy" draggable="false">
@@ -150,15 +205,14 @@
                 International Driving Permit (for non-EU licenses)
               </li>
             </ul>
-          </details>
-          <details name="rental-conditions">
-            <summary>
+          </div>
+          <div class="faq-box">
+            <div class="faq-header">
               <div>
                 <img src="/assets/icons/people.svg" alt="people icon" loading="lazy" draggable="false">
                 Driver Requirements
               </div>
-              <img src="/assets/icons/down-arrow.svg" alt="down-arrow icon" loading="lazy" draggable="false" class="arrow-img">
-            </summary>
+            </div>
             <ul>
               <li>
                 <img src="/assets/icons/checkmark.svg" alt="checkmark icon" loading="lazy" draggable="false">
@@ -173,78 +227,14 @@
                 License held for at least 2 years
               </li>
             </ul>
-          </details>
-          <details name="rental-conditions">
-            <summary>
-              <div>
-                <img src="/assets/icons/world.svg" alt="world icon" loading="lazy" draggable="false">
-                Cross-Border Travel
-              </div>
-              <img src="/assets/icons/down-arrow.svg" alt="down-arrow icon" loading="lazy" draggable="false" class="arrow-img">
-            </summary>
-            <p>This vehicle is authorized for travel throughout Europe.</p>
-          </details>
-          <details name="rental-conditions">
-            <summary>
-              <div>
-                <img src="/assets/icons/ship.svg" alt="ship icon" loading="lazy" draggable="false">
-                Ferry Travel
-              </div>
-              <img src="/assets/icons/down-arrow.svg" alt="down-arrow icon" loading="lazy" draggable="false" class="arrow-img">
-            </summary>
-            <p>Ferry travel to Greece (Saranda-Corfu) and Italy (Durres-Bari) is allowed with prior notice. Please inform us when booking.</p>
-          </details>
-          <details name="rental-conditions">
-            <summary>
-              <div>
-                <img src="/assets/icons/speed.svg" alt="speed icon" loading="lazy" draggable="false">
-                Mileage Policy
-              </div>
-              <img src="/assets/icons/down-arrow.svg" alt="down-arrow icon" loading="lazy" draggable="false" class="arrow-img">
-            </summary>
-            <ul>
-              <li id="milage-policy">
-                <img src="/assets/icons/checkmark.svg" alt="checkmark icon" loading="lazy" draggable="false">
-                Unlimited mileage included
-              </li>
-            </ul>
-          </details>
-          <details name="rental-conditions">
-            <summary>
-              <div>
-                <img src="/assets/icons/fuel-color.svg" alt="fuel icon" loading="lazy" draggable="false">
-                Fuel Policy
-              </div>
-              <img src="/assets/icons/down-arrow.svg" alt="down-arrow icon" loading="lazy" draggable="false" class="arrow-img">
-            </summary>
-            <p>
-              <span style="font-weight: bold;">Full-to-Full:</span> You receive the car with a full tank and return it with a full tank.
-            </p>
-          </details>
-          <details name="rental-contitions">
-            <summary>
-              <div>
-                <img src="/assets/icons/banknotes-color.svg" alt="payment icon" loading="lazy" draggable="false">
-                Depostit & Payment
-              </div>
-              <img src="/assets/icons/down-arrow.svg" alt="down-arrow icon" loading="lazy" draggable="false" class="arrow-img">
-            </summary>
-            <p>All payments are processed in CASH ONLY at the time of vehicle collection. No online payments required.</p>
-            <p>
-              <span>Deposit:</span>
-              <span class="currency-sign" style="font-weight: bold;">€</span>
-              <span class="currency-num" style="font-weight: bold;" id="depositAmount">400.00</span> 
-              (refundable upon return)
-            </p>
-          </details>
-          <details name="rental-conditions">
-            <summary>
+          </div>
+          <div class="faq-box">
+            <div class="faq-header">
               <div>
                 <img src="/assets/icons/clock-color.svg" alt="clock icon" loading="lazy" draggable="false">
                 Cancelation Policy
               </div>
-              <img src="/assets/icons/down-arrow.svg" alt="down-arrow icon" loading="lazy" draggable="false" class="arrow-img">
-            </summary>
+            </div>
             <ul>
               <li>
                 <img src="/assets/icons/checkmark.svg" alt="checkmark icon" loading="lazy" draggable="false">
@@ -255,7 +245,7 @@
                 Modifications allowed via email or WhatsApp
               </li>
             </ul>
-          </details>
+          </div>
         </div>
       </div>
     </section>

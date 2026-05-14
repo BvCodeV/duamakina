@@ -11,6 +11,7 @@ const quality1 = document.getElementById('quality1');
 const quality2 = document.getElementById('quality2');
 const quality3 = document.getElementById('quality3');
 const carName = document.getElementById('car-name');
+const depositAmount = document.getElementById('depositAmount')
 
 function getCarIdFromUrl() {
   return new URLSearchParams(window.location.search).get('id');
@@ -146,7 +147,7 @@ function populatePage(car) {
   document.title = `${car.brand} ${car.model} — Dua Makina`;
   if (carYear) carYear.textContent = `${car.year}`;
   if (carFuel) carFuel.textContent = translateFuel(car.fuel);
-
+  if (depositAmount) depositAmount.textContent = `${car.deposit_amount}`
   const desc = car.car_descriptions?.[0];
   if (overviewTitle) overviewTitle.textContent = desc?.title ?? 'No title available at this time';
   if (overviewDesc) overviewDesc.textContent = desc?.short_desc ?? 'No Description available at this time. Please try again later';

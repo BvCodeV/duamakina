@@ -13,9 +13,9 @@ const locationDialog = document.getElementById("locationFilterDialog");
 const filtersDialog = document.getElementById("filtersDialog");
 const container = document.querySelector(".cars-card-con");
 const carNum = document.getElementById("carNum");
-const totalCarNum = document.getElementById('totalCars')
-const filteredCarNum = document.getElementById('carNumFilter')
-const dayTxt = document.getElementById('dayNumFleet')
+const totalCarNum = document.getElementById("totalCars");
+const filteredCarNum = document.getElementById("carNumFilter");
+const dayTxt = document.getElementById("dayNumFleet");
 let activeCarType = document.querySelector(".selected-type");
 const isMobile = window.matchMedia("(max-width: 745px)").matches;
 
@@ -33,7 +33,7 @@ const GAP = 50;
 
 function displayLocationDataSearch() {
   const locationData = JSON.parse(localStorage.getItem("locationData"));
-  const days = localStorage.getItem('daysCalc')
+  const days = localStorage.getItem("daysCalc");
   pickupTxt.textContent = locationData.pickupLoc;
   dropoffTxt.textContent = locationData.dropoffLoc;
   pickupDateTxt.textContent = locationData.pickupDate;
@@ -70,6 +70,21 @@ function getPhotoUrl(storagePath) {
 function capitalize(str) {
   if (!str) return "";
   return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+function normalizeInsuranceValue(value) {
+  if (!value) return "none";
+  const normalized = value.toString().trim().toLowerCase();
+  if (normalized === "full") return "premium";
+  if (normalized === "third-party" || normalized === "third party" || normalized === "thirdparty") return "basic";
+  if (normalized === "premium" || normalized === "basic" || normalized === "none") return normalized;
+  return normalized;
+}
+
+function getInsurancePillLabel(value) {
+  const normalized = normalizeInsuranceValue(value);
+  if (normalized === "none") return "No insurance";
+  return `${capitalize(normalized)} insurance`;
 }
 
 function buildCarCard(car) {
@@ -193,8 +208,9 @@ function applyFilters(cars) {
     }
 
     if (activeFilters.insurance) {
-      const map = { full: "premium", "third-party": "basic", none: null };
-      if (car.insurance_type !== map[activeFilters.insurance]) return false;
+      const selectedInsurance = normalizeInsuranceValue(activeFilters.insurance);
+      const carInsurance = normalizeInsuranceValue(car.insurance_type);
+      if (selectedInsurance !== carInsurance) return false;
     }
 
     if (price < activeFilters.minPrice || price > activeFilters.maxPrice) return false;
@@ -226,7 +242,14 @@ function renderCars(sortValue) {
     return;
   }
 
-  container.innerHTML = sorted.map(buildCarCard).join("");
+  const fragment = document.createDocumentFragment();
+  sorted.forEach((car) => {
+    const div = document.createElement("div");
+    div.innerHTML = buildCarCard(car);
+    fragment.appendChild(div.firstElementChild);
+  });
+  container.innerHTML = "";
+  container.appendChild(fragment);
 }
 
 const pillsConfig = [
@@ -293,7 +316,7 @@ const advancedPillDefs = [
   },
   {
     key: "insurance",
-    getLabel: () => activeFilters.insurance ? activeFilters.insurance : null,
+    getLabel: () => activeFilters.insurance ? getInsurancePillLabel(activeFilters.insurance) : null,
     reset: () => {
       activeFilters.insurance = null;
       uncheckRadioGroup("insurance");
@@ -431,7 +454,7 @@ function readAdvancedFilters() {
   activeFilters.fuel = form?.querySelector('input[name="fuel"]:checked')?.value ?? null;
   activeFilters.seating = form?.querySelector('input[name="seats"]:checked')?.value ?? null;
   activeFilters.deposit = form?.querySelector('input[name="deposit"]:checked')?.value ?? null;
-  activeFilters.insurance = form?.querySelector('input[name="insurance"]:checked')?.value ?? null;
+  activeFilters.insurance = normalizeInsuranceValue(form?.querySelector('input[name="insurance"]:checked')?.value ?? null);
   activeFilters.minPrice = parseInt(minR?.value ?? 0);
   activeFilters.maxPrice = parseInt(maxR?.value ?? 1000);
 
@@ -473,7 +496,7 @@ function resetAllFilters() {
   activeFilters.insurance = null;
   activeFilters.minPrice = 0;
   activeFilters.maxPrice = 1000;
-  activeFilters.carType = `all`;
+  activeFilters.carType = "all";
 
   const activeForm = getActiveForm();
   if (activeForm?.reset) activeForm.reset();
@@ -515,53 +538,68 @@ carTypePills.forEach((div) => {
   });
 });
 
+const SKELETON_HTML = Array(4).fill(`
+  <div class="car-card skeleton-card">
+    <div class="skeleton skeleton-image"></div>
+    <div class="card-body">
+      <div class="skeleton skeleton-title"></div>
+      <div class="skeleton-features">
+        <div class="skeleton skeleton-feature"></div>
+        <div class="skeleton skeleton-feature"></div>
+        <div class="skeleton skeleton-feature"></div>
+        <div class="skeleton skeleton-feature"></div>
+      </div>
+      <div class="skeleton-amenities">
+        <div class="skeleton skeleton-amenity"></div>
+        <div class="skeleton skeleton-amenity"></div>
+        <div class="skeleton skeleton-amenity"></div>
+      </div>
+    </div>
+    <hr>
+    <div class="card-end">
+      <div class="skeleton skeleton-price"></div>
+      <div class="skeleton skeleton-btn"></div>
+    </div>
+  </div>
+`).join("");
+
+const CACHE_KEY = "fleet_cars_v1";
+const CACHE_TTL = 90 * 1000;
+
 async function loadCars() {
   if (!container) return;
 
-  container.innerHTML = Array(4)
-    .fill(
-      `
-    <div class="car-card skeleton-card">
-      <div class="skeleton skeleton-image"></div>
-      <div class="card-body">
-        <div class="skeleton skeleton-title"></div>
-        <div class="skeleton-features">
-          <div class="skeleton skeleton-feature"></div>
-          <div class="skeleton skeleton-feature"></div>
-          <div class="skeleton skeleton-feature"></div>
-          <div class="skeleton skeleton-feature"></div>
-        </div>
-        <div class="skeleton-amenities">
-          <div class="skeleton skeleton-amenity"></div>
-          <div class="skeleton skeleton-amenity"></div>
-          <div class="skeleton skeleton-amenity"></div>
-        </div>
-      </div>
-      <hr>
-      <div class="card-end">
-        <div class="skeleton skeleton-price"></div>
-        <div class="skeleton skeleton-btn"></div>
-      </div>
-    </div>
-  `,
-    )
-    .join("");
+  container.innerHTML = SKELETON_HTML;
+
+  try {
+    const cached = localStorage.getItem(CACHE_KEY);
+    if (cached) {
+      const { data: cachedCars, ts } = JSON.parse(cached);
+      if (Date.now() - ts < CACHE_TTL) {
+        allCars = cachedCars;
+        if (carNum) carNum.textContent = cachedCars.length;
+        if (totalCarNum) totalCarNum.textContent = cachedCars.length;
+        renderCars(document.getElementById("carSort")?.value ?? "popular");
+        return;
+      }
+    }
+  } catch (_) {}
 
   const { data: cars, error } = await supabaseClient
     .from("cars")
     .select(
       `
-      id, brand, model, year, category, color,
+      id, brand, model, year, category,
       seats, doors, has_ac, trunk_litres,
       transmission, fuel, mileage_unlimited,
-      mileage_limit_km, deposit_amount,
-      insurance_type, is_available, is_active, created_at,
+      deposit_amount, insurance_type, created_at,
       car_pricing ( price_per_day, valid_from, valid_to, is_special_offer ),
-      car_photos  ( storage_path, alt_text, is_primary, sort_order )
-    `,
+      car_photos  ( storage_path, alt_text, is_primary )
+    `
     )
     .eq("is_active", true)
-    .eq("is_available", true);
+    .eq("is_available", true)
+    .limit(50);
 
   if (error) {
     container.innerHTML = `
@@ -575,7 +613,7 @@ async function loadCars() {
 
   if (!cars || cars.length === 0) {
     container.innerHTML = `
-    <div class="availability-con">
+      <div class="availability-con">
         <img src="/assets/icons/availability.svg" alt="Availability icon" loading="lazy" draggable="false">
         <h1>No cars available at this moment</h1>
         <p>Please try again later.</p>
@@ -583,20 +621,35 @@ async function loadCars() {
     return;
   }
 
+  try {
+    localStorage.setItem(CACHE_KEY, JSON.stringify({ data: cars, ts: Date.now() }));
+  } catch (_) {}
+
   allCars = cars;
   if (carNum) carNum.textContent = cars.length;
   if (totalCarNum) totalCarNum.textContent = cars.length;
-
-  const sortSelect = document.getElementById("carSort");
-  renderCars(sortSelect?.value ?? "popular");
+  renderCars(document.getElementById("carSort")?.value ?? "popular");
 }
 
+let flatpickrLoaded = false;
 let calendarsInitialized = false;
+
 locationDialog.addEventListener("toggle", (e) => {
   document.body.style.overflow = e.newState === "open" ? "hidden" : "";
   if (e.newState === "open" && !calendarsInitialized) {
-    displayCalendarFleet();
-    calendarsInitialized = true;
+    if (!flatpickrLoaded) {
+      const script = document.createElement("script");
+      script.src = "https://cdn.jsdelivr.net/npm/flatpickr";
+      script.onload = () => {
+        flatpickrLoaded = true;
+        displayCalendarFleet();
+        calendarsInitialized = true;
+      };
+      document.head.appendChild(script);
+    } else {
+      displayCalendarFleet();
+      calendarsInitialized = true;
+    }
   }
 });
 
@@ -677,9 +730,7 @@ closeSidebarBtn.onclick = () => {
   document.body.style.overflow = "";
 };
 
-document.addEventListener("DOMContentLoaded", () => {
-  loadCars();
-  const sortSelect = document.getElementById("carSort");
-  if (sortSelect)
-    sortSelect.addEventListener("change", () => renderCars(sortSelect.value));
-});
+const sortSelect = document.getElementById("carSort");
+if (sortSelect) sortSelect.addEventListener("change", () => renderCars(sortSelect.value));
+
+loadCars();
