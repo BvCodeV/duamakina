@@ -25,6 +25,9 @@ const pickupDateTxt = document.getElementById("pickupDateTxt");
 const dropoffDateTxt = document.getElementById("dropoffDateTxt");
 const pickupTimeTxt = document.getElementById("pickupTimeTxt");
 const dropoffTimeTxt = document.getElementById("dropoffTimeTxt");
+const pickupDateMobile = document.getElementById('pickupDateMobile');
+const dropoffDateMobile = document.getElementById('dropoffDateMobile');
+const headerLoc = document.getElementById('headerLoc')
 
 const minR = document.getElementById("min-range");
 const maxR = document.getElementById("max-range");
@@ -40,6 +43,9 @@ function displayLocationDataSearch() {
   dropoffDateTxt.textContent = locationData.dropoffDate;
   pickupTimeTxt.textContent = locationData.pickupTime;
   dropoffTimeTxt.textContent = locationData.dropoffTime;
+  dropoffDateMobile.textContent = locationData.pickupDate;
+  pickupDateMobile.textContent = locationData.dropoffDate;
+  headerLoc.textContent = locationData.pickupLoc;
   dayTxt.textContent = days;
 }
 displayLocationDataSearch();

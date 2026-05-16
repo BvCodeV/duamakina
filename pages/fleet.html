@@ -25,8 +25,11 @@
 <body>
   <header role="banner" id="header" style="width: 100%; z-index: 1000; position: relative;" fetchpriority=high></header>
   <nav role="navigation" id="navbar" style="width: 100%; z-index: 1000; position: sticky; top: 0px;" fetchpriority=high></nav>
-
   <main>
+    <div class="mobile-dates mobile-only">
+      <p><span id="pickupDateMobile">Date</span> &middot; <span id="dropoffDateMobile">Date</span></p>
+      <button popovertarget="locationFilterDialog" id="editDateMobile">Edit dates</button>
+    </div>
     <div class="page-header desktop-only">
       <div class="header-left">
         <p class="header-info">Fleet<span>&middot;</span><span id="headerLoc">Durres</p>
@@ -126,36 +129,41 @@
     <form id="filterBar">
       <div class="locations-con">
         <div class="pickup-loc location-inpt" >
-          <label for="pickup">Pickup Location</label>
+          <label for="changePickup">Pickup Location</label>
           <img src="/assets/icons/location.svg" alt="location icon" loading="lazy" draggable="false">
-          <input type="text" id="changePickup" list="locations" name="pickup" placeholder="e.g Tirana City Center" required autofocus>
+          <select name="changePickup" id="changePickup">
+            <option value="Tirana City Center">Tirana City Center</option>
+            <option value="Tirana Airport (TIA)">Tirana Airport (TIA)</option>
+            <option value="Durrës">Durrës</option>
+            <option value="Saranda">Saranda</option>
+            <option value="Vlorë">Vlorë</option>
+          </select>
         </div>
         <div class="dropoff-loc location-inpt" id="dropoffLoc">
-          <label for="dropoff">Drop-off Location</label>
+          <label for="changeDropoff">Drop-off Location</label>
           <img src="/assets/icons/location.svg" alt="location icon" loading="lazy" draggable="false">
-          <input type="text" id="changeDropoff" list="locations" name="dropoff" placeholder="e.g Tirana City Center" required>
+          <select name="changeDropoff" id="changeDropoff">
+            <option value="Tirana City Center">Tirana City Center</option>
+            <option value="Tirana Airport (TIA)">Tirana Airport (TIA)</option>
+            <option value="Durrës">Durrës</option>
+            <option value="Saranda">Saranda</option>
+            <option value="Vlorë">Vlorë</option>
+          </select>
         </div>
         <div class="dropoff-check">
           <input type="checkbox" id="dropoffCheck" name="dropoff-check" checked>
           <label for="dropoffCheck">Drop-off at same location</label>
         </div>
-        <datalist id="locations">
-            <option value="Tirana City Center" />
-            <option value="Tirana Airport (TIA)" />
-            <option value="Durrës" />
-            <option value="Saranda" />
-            <option value="Vlorë" />
-        </datalist>
       </div>
       <div class="date-time-con">
         <div class="date-time">
           <div class="date">
-            <label for="date">Pick-up Date</label>
+            <label for="changePickupDate">Pick-up Date</label>
             <img src="/assets/icons/calendar.svg" alt="Calendar Icon" loading="lazy" draggable="false"> 
             <input id="changePickupDate" type="text" class="date-input" placeholder="Pickup date" readonly required>
           </div>
           <div class="time">
-            <label for="time">Pick-up Time</label>
+            <label for="changePickupTime">Pick-up Time</label>
             <img src="/assets/icons/time.svg" alt="time" loading="lazy" draggable="false">
             <select name="time" id="changePickupTime">
               <option value="00:00">00:00</option>
@@ -211,12 +219,12 @@
         </div>
         <div class="date-time">
           <div class="date">
-            <label for="date">Drop-off Date</label>
+            <label for="changeDropoffDate">Drop-off Date</label>
             <img src="/assets/icons/calendar.svg" alt="Calendar Icon" loading="lazy" draggable="false">
             <input id="changeDropoffDate" type="text" class="date-input" placeholder="Dropoff date" readonly required>
           </div>
           <div class="time">
-            <label for="time">Drop-off Time</label>
+            <label for="changeDropoffTime">Drop-off Time</label>
             <img src="/assets/icons/time.svg" alt="time" loading="lazy" draggable="false">
             <select name="time" id="changeDropoffTime">
               <option value="00:00">00:00</option>
