@@ -14,27 +14,3 @@
 
   document.head.appendChild(script);
 })();
-
-document.getElementById('viewDetailsBtn').addEventListener('click', () => {
-    va("event", {
-    name: "view_details_button_clicked",
-  });
-});
-
-document.getElementById('searchBtn').addEventListener('click', () => {
-    va("event", {
-    name: "search_button_clicked",
-  });
-});
-
-document.getElementById('bookNow').addEventListener('click', () => {
-    va("event", {
-    name: "next_to_form_button_clicked",
-  });
-});
-
-document.getElementById('formSendBtn').addEventListener('click', () => {
-    va("event", {
-    name: "form_send_button_clicked",
-  });
-});

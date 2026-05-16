@@ -3,303 +3,367 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-  <title>Rent a Car in Tirana, Albania | Dua Makina</title>
+  <title>Rent a Car in Tirana, Albania | Dua Makina | Booking</title>
   <meta name="application-name" content="duamakina">
   <meta name="description" content="Affordable, reliable car rentals in Tirana, Albania. Explore Albania Your Way with DuaMakina. Best prices guaranteed – book online in minutes!">
   <meta name="keywords" content="dua makine,dua makina, duamakina car rental Tirana, rent a car Albania, car hire Albania, cheap car rental Albania, affordable car rental Tirana, car rental Tirana airport, Albania road trip, explore Albania by car, reliable car rental Albania, makina me qera Tiranë, qera makine Shqiperi, makina me qera çmim të lirë, makina me qera aeroporti Tiranë, qera makine online Shqiperi, eksploroni Shqipërinë me makinë, makina me qera te besueshem, udhëtim me makinë Shqipëri">
   <link rel="canonical" href="https://duamakina.com/">
   <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
   <link rel="icon" type="image/webp" href="/assets/icons/favicon.webp">
-  <link rel="alternate" hreflang="x-default" href="https://www.duamakina.com/pages/booking.html">
-  <link rel="alternate" hreflang="en" href="https://www.duamakina.com/pages/booking.html">
-  <link rel="alternate" hreflang="sq" href="https://www.duamakina.com/sq/pages/booking.html">
+  <link rel="alternate" hreflang="x-default" href="https://www.duamakina.com/pages/form.html">
+  <link rel="alternate" hreflang="en" href="https://www.duamakina.com/pages/form.html">
+  <link rel="alternate" hreflang="sq" href="https://www.duamakina.com/sq/pages/form.html">
   <meta name="robots" content="noindex, nofollow">
   <link rel="stylesheet" href="/styles/global.css">
   <link rel="stylesheet" href="/styles/booking.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="/scripts/components.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
 </head>
 <body>
   <header role="banner" id="header" style="width: 100%; z-index: 1000; position: relative;" fetchpriority=high></header>
   <nav role="navigation" id="navbar" style="width: 100%; z-index: 1000; position: sticky; top: 0px;" fetchpriority=high></nav>
-  <div class="page-nav">
-    <a href="/index.html">Home</a>
-    <span>/</span>
-    <a href="/pages/fleet.html">Fleet</a>
-    <span>/</span>
-    <a href="">Booking</a>
+  <div class="checkout-progress">
+    <a id="carPageProgressBtn" class="progress-btn progress-completed">
+      <span>1</span>
+      Vehicle
+    </a>
+    <hr>
+    <a id="addonProgressBtn" class="progress-btn progress-active">
+      <span>2</span>
+      Extras & rules
+    </a>
+    <hr>
+    <a id="detailsProgressBtn" class="progress-btn">
+      <span>3</span>
+      Driver details
+    </a>
   </div>
   <main>
+    <div class="page-header">
+      <h1>Complete Your Rental Inquiry</h1>
+      <p>Submit your booking details below. Our team will confirm availability and send payment instructions via email within 24 hours.</p>
+    </div>
     <section>
-      <div class="car-info">
-        <div class="info">
-          <p id="carInfoTxt"><span id="carType">Type</span> &middot; <span id="carYear">Year</span> &middot; <span id="carFuel">Fuel</span></p>
-          <h1 id="car-name">Car Name</h1>
-        </div>
-        <button id="shareBtn">
-          <img src="/assets/icons/share.svg" alt="share icon" loading="lazy" draggable="false">
-          Share
-        </button>
-      </div>
-      <div class="image-con">
-        <div class="main-img-con">
-          <img src="https://jdhigikorvtxhslxudcs.supabase.co/storage/v1/object/public/duamakina-img/public/cover.avif" alt="main-img" id="main-img" loading="lazy" draggable="false">
-          <div id="leftArrow"><img src="/assets/icons/left-arrow.svg" alt="left arrow" draggable="false" loading="lazy"></div>
-          <div id="rightArrow"><img src="/assets/icons/right-arrow.svg" alt="right arrow" draggable="false" loading="lazy"></div>
-          <div class="dots">
-            <div id="dot"></div>
-            <div id="dot"></div>
-            <div id="dot"></div>
+      <form id="rental-form">
+        <div class="addons-page" id="addonPage">
+          <h1>Optional Addons</h1>
+          <div class="addons-card-con" id="addonsCardCon">
           </div>
         </div>
-        <div class="image-con-end">
-          <img src="https://jdhigikorvtxhslxudcs.supabase.co/storage/v1/object/public/duamakina-img/public/profile.avif" alt="other-img" id="other-img" loading="lazy" draggable="false" class="other-imgs">
-          <img src="https://jdhigikorvtxhslxudcs.supabase.co/storage/v1/object/public/duamakina-img/public/profile.avif" alt="other-img" id="other-img" loading="lazy" draggable="false" class="other-imgs">
-          <img src="https://jdhigikorvtxhslxudcs.supabase.co/storage/v1/object/public/duamakina-img/public/profile.avif" alt="other-img" id="other-img" loading="lazy" draggable="false" class="other-imgs">
-          <img src="https://jdhigikorvtxhslxudcs.supabase.co/storage/v1/object/public/duamakina-img/public/profile.avif" alt="other-img" id="other-img" loading="lazy" draggable="false" class="other-imgs">
+        <div class="info-page" id="infoPage" style="display: none;">
+          <div class="contact-form form-con">
+            <h2>Contact Information</h2>
+            <div class="name-con">
+              <label for="fullName">Full name <span class="required-star">*</span></label>
+              <input type="text" id="fullName" name="fullName" placeholder="Bob Ndertuesi" required autofocus>
+            </div>
+            <div class="contact-info">
+              <div class="email-con">
+                <label for="email">Email <span class="required-star">*</span></label>
+                <input type="email" id="email" name="email" placeholder="bob@example.com"  required>
+              </div>
+              <div class="phone-con">
+                <label for="phone">Phone Number <span class="required-star">*</span></label>
+                <input type="phone" id="phone" name="phone" placeholder="+355 068 123 4567" required>
+                <p>We'll contact you via email or whatsapp for confirmation</p>
+              </div>
+            </div>
+          </div>
+          <div class="driver-form form-con">
+            <h2>Driver Information</h2>
+            <div class="driver-name">
+                <label for="driverName">Driver's Full Name <span class="required-star">*</span></label>
+                <input type="text" id="driverName" name="driverName" placeholder="Bob Ndertuesi" required>
+              </div>
+            <div class="driver-form-con">
+              <div class="driver-name">
+                <label for="driverAge">Driver's Age <span class="required-star">*</span></label>
+                <input type="number" id="driverAge" name="driverAge" placeholder="25-70" required>
+              </div>
+              <div class="driver-license">
+                <label for="driverLicense">License Expiry Date <span class="required-star">*</span></label>
+                <input type="text" id="driverLicense" name="driverLicense" placeholder="Select Date"  readonly required>
+              </div>
+            </div>
+          </div>
+          <div class="special-request-form form-con">
+            <h2>Special Requests</h2>
+            <textarea name="requests" id="requests" placeholder="Any special requests or additional information..."></textarea>
+            <p>Maximum 500 characters</p>
+          </div>
         </div>
-      </div>
-      <div class="car-specs">
-        <div class="spec-con">
-          <img src="/assets/icons/gears.svg" alt="gears icon" loading="lazy" draggable="false">
-          <p>car transmission</p>
+      </form>
+      <aside>
+        <div class="sidebar-header">
+          <div class="car-container">
+            <img src="https://jdhigikorvtxhslxudcs.supabase.co/storage/v1/object/public/duamakina-img/public/cover.avif" alt="car image" loading="lazy" draggable="false" id="mainImg">
+            <div class="car-info">
+              <h3 id="carName">Car data</h3>
+              <div class="car-spec-con">
+                <div class="car-spec-card">
+                  <img src="/assets/icons/person.svg" alt="person icon" loading="lazy" draggable="false">
+                  <span id="carSeats">0</span>
+                </div>
+                <div class="car-spec-card">
+                  <img src="/assets/icons/bag.svg" alt="beg icon" loading="lazy" draggable="false">
+                  <span id="carLuggage">0</span>
+                </div>
+                <div class="car-spec-card">
+                  <img src="/assets/icons/gears.svg" alt="gear icon" loading="lazy" draggable="false">
+                  <span id="carTransmission">car data</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="location-container">
+            <div class="pickup-loc-con">
+              <h4>Pick Up Location:</h4>
+              <p><span id="pickupLocationForm">Tirana Airport (TIA)</span> at <span id="pickupDateForm">Apr 15,2026</span> , <span id="pickupTimeForm">00:00</span></p>
+            </div>
+            <div class="dropoff-loc-con">
+              <h4>Drop Off Location:</h4>
+              <p><span id="dropOffLocationForm">Tirana Airport (TIA)</span> at <span id="dropOffDateForm">Apr 16,2026</span> , <span id="dropOffTimeForm">00:00</span></p>
+            </div>
+            <button popovertarget="locationFilterDialog" id="changeBtn">Change Now</button>
+          </div>
         </div>
-        <div class="spec-con">
-          <img src="/assets/icons/insurance-booking.svg" alt="insurance icon" loading="lazy" draggable="false">
-          <p>Insurance type</p>
-        </div>
-        <div class="spec-con">
-          <img src="/assets/icons/year.svg" alt="year icon" loading="lazy" draggable="false">
-          <p>Car year</p>
-        </div>
-        <div class="spec-con">
-          <img src="/assets/icons/license-plate.svg" alt="license-plate icon" loading="lazy" draggable="false">
-          <p>License plate</p>
-        </div>
-        <div class="spec-con">
-          <img src="/assets/icons/person.svg" alt="person icon" loading="lazy" draggable="false">
-          <p>car seats</p>
-        </div>
-        <div class="spec-con">
-          <img src="/assets/icons/bag.svg" alt="bag icon" loading="lazy" draggable="false">
-          <p>car trunk capacity</p>
-        </div>
-        <div class="spec-con">
-          <img src="/assets/icons/door.svg" alt="door icon" loading="lazy" draggable="false">
-          <p>car doors</p>
-        </div>
-        <div class="spec-con">
-          <img src="/assets/icons/ac.svg" alt="ac icon" loading="lazy" draggable="false">
-          <p>A/C</p>
-        </div>
-        <div class="spec-con">
-          <img src="/assets/icons/fuel.svg" alt="fuel icon" loading="lazy" draggable="false">
-          <p>car fuel type</p>
-        </div>
-      </div>
-      <div class="car-extra-info">
-        <div class="car-extra-info-nav">
-          <div class="btn-con">
-            <button id="faqBtn" class="selected-button">Faqs</button>
-            <button id="overviewBtn">Overview</button>
+        <hr>
+        <div class="sidebar-body">
+          <h3>Price Breakdown</h3>
+          <div class="price-per-day">
+            <div class="items">
+              <p id="carNamePrice">Car data</p>
+              <span>X</span>
+              <p class="days">
+                <span class="dayNum">X</span>
+                days
+              </p>
+            </div>
+            <div class="price-item"><span class="currency-sign">€</span><span class="currency-num" id="carFinalPrice">50</span></div>
+          </div>
+          <div class="addons-con" id="addonCon" style="display: none;">
+          </div>
+          <div class="taxes">
+            <p>Taxes & fees</p>
+            <p>Included</p>
           </div>
           <hr>
+          <div class="final-amount-con">
+            <p>Total</p>
+            <h1><span class="currency-sign">€</span><span class="currency-num" id="finalAmount">120</span></h1>
+          </div>
+          <div class="payment-warning">
+            <img src="/assets/icons/banknotes-color.svg" alt="payment warning icon" loading="lazy" draggable="false">
+            <div>
+              <h1>Cash Payment Only</h1>
+              <p>Pay in cash when you collect the vehicle. No credit card required.</p>
+            </div>
+          </div>
+          <div class="terms-service-check">
+            <input type="checkbox" id="termsCheck" name="tearmsCheck">
+            <label for="termsCheck">I agree to the <span>Terms & Conditions</span> and <span>Privacy Policy</span></label>
+          </div>
+          <button id="bookingNxtBtn" style="background-color: oklch(from var(--color-accent) calc(l + 0.15) c h);">Continue to driver details &#xFFEB;</button>
+          <button id="formSendBtn" style="display: none;" onclick="
+            Swal.fire({
+              title: `Booking isn't available at this time`,
+              text: `Please try again later`,
+              icon: 'error',
+              confirmButtonText: 'OK',
+              confirmButtonColor: 'var(--color-primary)'
+            });
+          ">Send Inquiry
+          </button>
         </div>
-        <div class="car-overview" id="carOverview" style="display: none;">
-          <h1 id="overviewTitle">Car overview title</h1>
-          <p id="overviewDesc">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Culpa quibusdam accusantium excepturi nemo blanditiis necessitatibus repellat nobis delectus quis vel minus voluptate dolore, dolores sunt reiciendis error aspernatur sapiente beatae?</p>
-          <div class="best-for-con">
-            <h2>Best for</h2>
-            <div class="best-for-card-con">
-              <div class="best-for-card">
-                <h3 id="quality1">Best for title</h3>
-              </div>
-              <div class="best-for-card">
-                <h3 id="quality2">Best for title</h3>
-              </div>
-              <div class="best-for-card">
-                <h3 id="quality3">Best for title</h3>
-              </div>
-            </div>
+        <hr>
+        <div class="sidebar-footer">
+          <div class="confirmation-check">
+            <img src="/assets/icons/checkmark.svg" alt="checkmark icon" loading="lazy" draggable="false">
+            <p>You will receive a confirmation email shortly</p>
           </div>
-        </div>
-        <div class="faq" id="carFaq">
-          <h1>Rental Conditions</h1>
-          <div class="faq-box">
-            <div class="faq-header">
-              <div>
-                <img src="/assets/icons/banknotes-color.svg" alt="payment icon" loading="lazy" draggable="false">
-                Depostit & Payment
-              </div>
-            </div>
-            <p>All payments are processed in CASH ONLY at the time of vehicle collection. No online payments required.</p>
-            <p>
-              <span>Deposit:</span>
-              <span class="currency-sign" style="font-weight: bold;">€</span>
-              <span class="currency-num" style="font-weight: bold;" id="depositAmount">400.00</span> 
-              (refundable upon return)
-            </p>
-          </div>
-          <div class="faq-box">
-            <div class="faq-header">
-              <div>
-                <img src="/assets/icons/speed.svg" alt="speed icon" loading="lazy" draggable="false">
-                Mileage Policy
-              </div>
-            </div>
-            <ul>
-              <li id="milage-policy">
-                <img src="/assets/icons/checkmark.svg" alt="checkmark icon" loading="lazy" draggable="false">
-                Unlimited mileage included
-              </li>
-            </ul>
-          </div>
-          <div class="faq-box">
-            <div class="faq-header">
-              <div>
-                <img src="/assets/icons/fuel-color.svg" alt="fuel icon" loading="lazy" draggable="false">
-                Fuel Policy
-              </div>
-            </div>
-            <p>
-              <span style="font-weight: bold;">Full-to-Full:</span> You receive the car with a full tank and return it with a full tank.
-            </p>
-          </div>
-          <div class="faq-box">
-            <div class="faq-header">
-              <div>
-                <img src="/assets/icons/world.svg" alt="world icon" loading="lazy" draggable="false">
-                Cross-Border Travel
-              </div>
-            </div>
-            <p>This vehicle is authorized for travel throughout Europe.</p>
-          </div>
-          <div class="faq-box">
-            <div class="faq-header">
-              <div>
-                <img src="/assets/icons/ship.svg" alt="ship icon" loading="lazy" draggable="false">
-                Ferry Travel
-              </div>
-            </div>
-            <p>Ferry travel to Greece (Saranda-Corfu) and Italy (Durres-Bari) is allowed with prior notice. Please inform us when booking.</p>
-          </div>
-          <div class="faq-box">
-            <div class="faq-header">
-              <img src="/assets/icons/documents.svg" alt="document icon" loading="lazy" draggable="false">
-              Documents Required
-            </div>
-            <ul>
-              <li>
-                <img src="/assets/icons/checkmark.svg" alt="checkmark icon" loading="lazy" draggable="false">
-                Valid passport or national ID card
-              </li>
-              <li>
-                <img src="/assets/icons/checkmark.svg" alt="checkmark icon" loading="lazy" draggable="false">
-                Valid driver's license (held for at least 2 years)
-              </li>
-              <li>
-                <img src="/assets/icons/checkmark.svg" alt="checkmark icon" loading="lazy" draggable="false">
-                International Driving Permit (for non-EU licenses)
-              </li>
-            </ul>
-          </div>
-          <div class="faq-box">
-            <div class="faq-header">
-              <div>
-                <img src="/assets/icons/people.svg" alt="people icon" loading="lazy" draggable="false">
-                Driver Requirements
-              </div>
-            </div>
-            <ul>
-              <li>
-                <img src="/assets/icons/checkmark.svg" alt="checkmark icon" loading="lazy" draggable="false">
-                Minimum age: 21 years
-              </li>
-              <li>
-                <img src="/assets/icons/checkmark.svg" alt="checkmark icon" loading="lazy" draggable="false">
-                Maximum age: 75 years
-              </li>
-              <li>
-                <img src="/assets/icons/checkmark.svg" alt="checkmark icon" loading="lazy" draggable="false">
-                License held for at least 2 years
-              </li>
-            </ul>
-          </div>
-          <div class="faq-box">
-            <div class="faq-header">
-              <div>
-                <img src="/assets/icons/clock-color.svg" alt="clock icon" loading="lazy" draggable="false">
-                Cancelation Policy
-              </div>
-            </div>
-            <ul>
-              <li>
-                <img src="/assets/icons/checkmark.svg" alt="checkmark icon" loading="lazy" draggable="false">
-                Free cancellation up to 48 hours before pickup
-              </li>
-              <li>
-                <img src="/assets/icons/checkmark.svg" alt="checkmark icon" loading="lazy" draggable="false">
-                Modifications allowed via email or WhatsApp
-              </li>
-            </ul>
+          <div class="cancelation-check">
+            <img src="/assets/icons/checkmark.svg" alt="checkmark icon" loading="lazy" draggable="false">
+            <p>Free cancellation (48h)</p>
           </div>
         </div>
-      </div>
+      </aside>
     </section>
-    <aside>
-      <h2>Price Summary</h2>
-      <div class="price-con">
-        <div class="days-con">
-          Daily rate x 
-          <span class="num-days" id="dayNum">3</span>
-          days
-        </div>
-        <div>
-          <span class="currency-sign price">€</span><span class="currency-num price total-price">150</span>
-        </div>
-      </div>
-      <div class="taxes-con">
-        <p>Taxes & fees</p>
-        <p>Included</p>
-      </div>
-      <hr>
-      <div class="total-price-con">
-        <p>Total</p>
-        <div>
-          <span class="currency-sign price">€</span><span class="currency-num price total-price">150</span>
-        </div>
-      </div>
-      <div class="price-per-day">
-        <div>
-          <span class="currency-sign">€</span><span class="currency-num" id="pricePerDay">50</span>
-        </div>
-        <p>per day</p>
-      </div>
-      <div class="payment-warning">
-        <img src="/assets/icons/banknotes-color.svg" alt="payment warning icon" loading="lazy" draggable="false">
-        <div>
-          <h1>Cash Payment Only</h1>
-          <p>Pay in cash when you collect the vehicle. No credit card required.</p>
-        </div>
-      </div>
-      <a href="/pages/form.html" id="bookNow">Book Now</a>
-      <hr>
-      <div class="confirmation-check">
-        <img src="/assets/icons/checkmark.svg" alt="checkmark icon" loading="lazy" draggable="false">
-        <p>You will receive a confirmation email shortly</p>
-      </div>
-      <div class="cancelation-check">
-        <img src="/assets/icons/checkmark.svg" alt="checkmark icon" loading="lazy" draggable="false">
-        <p>Free cancellation (48h)</p>
-      </div>
-      <a id="whatsappBtn" href="https://wa.me/1234567890" target="_blank">Questions? WhatsApp us</a>
-    </aside>
   </main>
+  <div id="locationFilterDialog" popover>
+    <div class="dialog-header">
+      <h1>Change the location</h1>
+      <button id="closeDialog">X</button>
+    </div>
+    <form id="filterBar">
+      <div class="locations-con">
+        <div class="pickup-loc location-inpt" >
+          <label for="changeFormPickup">Pickup Location</label>
+          <img src="/assets/icons/location.svg" alt="location icon" loading="lazy" draggable="false">
+          <select name="changeFormPickup" id="changeFormPickup">
+            <option value="Tirana City Center">Tirana City Center</option>
+            <option value="Tirana Airport (TIA)">Tirana Airport (TIA)</option>
+            <option value="Durrës">Durrës</option>
+            <option value="Saranda">Saranda</option>
+            <option value="Vlorë">Vlorë</option>
+        </select>
+        </div>
+        <div class="dropoff-loc location-inpt" id="dropoffLoc">
+          <label for="changeFormDropoff">Drop-off Location</label>
+          <img src="/assets/icons/location.svg" alt="location icon" loading="lazy" draggable="false">
+          <select name="changeFormDropoff" id="changeFormDropoff">
+              <option value="Tirana City Center">Tirana City Center</option>
+              <option value="Tirana Airport (TIA)">Tirana Airport (TIA)</option>
+              <option value="Durrës">Durrës</option>
+              <option value="Saranda">Saranda</option>
+              <option value="Vlorë">Vlorë</option>
+          </select>
+        </div>
+        <div class="dropoff-check">
+          <input type="checkbox" id="dropoffCheck" name="dropoff-check" checked>
+          <label for="dropoffCheck">Drop-off at same location</label>
+        </div>
+      </div>
+      <div class="date-time-con">
+        <div class="date-time">
+          <div class="date">
+            <label for="changeFormPickupDate">Pick-up Date</label>
+            <img src="/assets/icons/calendar.svg" alt="Calendar Icon" loading="lazy" draggable="false"> 
+            <input id="changeFormPickupDate" type="text" class="date-input" placeholder="Pickup date" readonly required>
+          </div>
+          <div class="time">
+            <label for="changeFormPickupTime">Pick-up Time</label>
+            <img src="/assets/icons/time.svg" alt="time" loading="lazy" draggable="false">
+            <select name="time" id="changeFormPickupTime">
+              <option value="00:00">00:00</option>
+              <option value="00:30">00:30</option>
+              <option value="01:00">01:00</option>
+              <option value="01:30">01:30</option>
+              <option value="02:00">02:00</option>
+              <option value="02:30">02:30</option>
+              <option value="03:00">03:00</option>
+              <option value="03:30">03:30</option>
+              <option value="04:00">04:00</option>
+              <option value="04:30">04:30</option>
+              <option value="05:00">05:00</option>
+              <option value="05:30">05:30</option>
+              <option value="06:00">06:00</option>
+              <option value="06:30">06:30</option>
+              <option value="07:00">07:00</option>
+              <option value="07:30">07:30</option>
+              <option value="08:00">08:00</option>
+              <option value="08:30">08:30</option>
+              <option value="09:00">09:00</option>
+              <option value="09:30">09:30</option>
+              <option value="10:00">10:00</option>
+              <option value="10:30">10:30</option>
+              <option value="11:00">11:00</option>
+              <option value="11:30">11:30</option>
+              <option value="12:00">12:00</option>
+              <option value="12:30">12:30</option>
+              <option value="13:00">13:00</option>
+              <option value="13:30">13:30</option>
+              <option value="14:00">14:00</option>
+              <option value="14:30">14:30</option>
+              <option value="15:00">15:00</option>
+              <option value="15:30">15:30</option>
+              <option value="16:00">16:00</option>
+              <option value="16:30">16:30</option>
+              <option value="17:00">17:00</option>
+              <option value="17:30">17:30</option>
+              <option value="18:00">18:00</option>
+              <option value="18:30">18:30</option>
+              <option value="19:00">19:00</option>
+              <option value="19:30">19:30</option>
+              <option value="20:00">20:00</option>
+              <option value="20:30">20:30</option>
+              <option value="21:00">21:00</option>
+              <option value="21:30">21:30</option>
+              <option value="22:00">22:00</option>
+              <option value="22:30">22:30</option>
+              <option value="23:00">23:00</option>
+              <option value="23:30">23:30</option>
+            </select>
+          </div>
+        </div>
+        <div class="date-time">
+          <div class="date">
+            <label for="changeFormDropoffDate">Drop-off Date</label>
+            <img src="/assets/icons/calendar.svg" alt="Calendar Icon" loading="lazy" draggable="false">
+            <input id="changeFormDropoffDate" type="text" class="date-input" placeholder="Dropoff date" readonly required>
+          </div>
+          <div class="time">
+            <label for="changeFormDropoffTime">Drop-off Time</label>
+            <img src="/assets/icons/time.svg" alt="time" loading="lazy" draggable="false">
+            <select name="time" id="changeFormDropoffTime">
+              <option value="00:00">00:00</option>
+              <option value="00:30">00:30</option>
+              <option value="01:00">01:00</option>
+              <option value="01:30">01:30</option>
+              <option value="02:00">02:00</option>
+              <option value="02:30">02:30</option>
+              <option value="03:00">03:00</option>
+              <option value="03:30">03:30</option>
+              <option value="04:00">04:00</option>
+              <option value="04:30">04:30</option>
+              <option value="05:00">05:00</option>
+              <option value="05:30">05:30</option>
+              <option value="06:00">06:00</option>
+              <option value="06:30">06:30</option>
+              <option value="07:00">07:00</option>
+              <option value="07:30">07:30</option>
+              <option value="08:00">08:00</option>
+              <option value="08:30">08:30</option>
+              <option value="09:00">09:00</option>
+              <option value="09:30">09:30</option>
+              <option value="10:00">10:00</option>
+              <option value="10:30">10:30</option>
+              <option value="11:00">11:00</option>
+              <option value="11:30">11:30</option>
+              <option value="12:00">12:00</option>
+              <option value="12:30">12:30</option>
+              <option value="13:00">13:00</option>
+              <option value="13:30">13:30</option>
+              <option value="14:00">14:00</option>
+              <option value="14:30">14:30</option>
+              <option value="15:00">15:00</option>
+              <option value="15:30">15:30</option>
+              <option value="16:00">16:00</option>
+              <option value="16:30">16:30</option>
+              <option value="17:00">17:00</option>
+              <option value="17:30">17:30</option>
+              <option value="18:00">18:00</option>
+              <option value="18:30">18:30</option>
+              <option value="19:00">19:00</option>
+              <option value="19:30">19:30</option>
+              <option value="20:00">20:00</option>
+              <option value="20:30">20:30</option>
+              <option value="21:00">21:00</option>
+              <option value="21:30">21:30</option>
+              <option value="22:00">22:00</option>
+              <option value="22:30">22:30</option>
+              <option value="23:00">23:00</option>
+              <option value="23:30">23:30</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <button type="button" onclick="updateLocationData();">
+        <img src="/assets/icons/search.svg" alt="Search Icon" loading="lazy" draggable="false">
+        <span>Update Filters</span>
+      </button>
+    </form>
+  </div>
   <footer id="footer" style="width: 99%; position: relative; bottom: 0;"></footer>
-  <script src="/scripts/lang.js"></script>
   <script src="/scripts/database.js"></script>
-  <script src="/scripts/currency.js"></script>
   <script src="/scripts/booking.js"></script>
+  <script src="/scripts/currency.js"></script>
+  <script src="/scripts/index.js"></script>
+  <script src="/scripts/lang.js"></script>
+  <script src="/scripts/calendar.js"></script>
   <script src="/scripts/analytics.js"></script>
 </body>
 </html>

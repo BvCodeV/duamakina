@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 
-
 :root {
   /* Backgrounds */
   --color-bg-main:#F5F7FA;
@@ -16,7 +15,7 @@
   /* Brand */
   --color-primary: #1A4A8A;
   --color-primary-hover:#133A6E;
-  --color-secondary: #1a4a8a59;
+  --color-secondary: #1a4a8a15;
 
   /* Accent */
   --color-accent:#E87C2B;
