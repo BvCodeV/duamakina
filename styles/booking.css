@@ -38,6 +38,9 @@ main {
       border: 1px solid var(--color-border);
       border-radius: 50%;
       font-size: 0.9em;
+      img {
+        width: 15px;
+      }
     }
   }
   .progress-active span {
@@ -123,9 +126,67 @@ form {
     display: flex;
     flex-direction: column;
     gap: 1em;
+  }
+  .addon-con,
+  .rules-con {
     background-color: var(--color-bg-surface);
     border-radius: 20px;
     padding: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+  }
+  .rules-con-title,
+  .addon-con-title {
+    font-size: 1.5em;
+  }
+  .rules-card-con {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+    details {
+      padding: 0em 1em 1em 1em;
+      border-bottom: 1px solid var(--color-border);
+      cursor: pointer;
+      summary {
+        display: flex;
+        gap: 1em;
+        align-items: center;
+        width: 100%;
+        h2 {
+          font-size: 0.95em;
+          font-weight: 600;
+        }
+        h1 {
+          font-size: 1em;
+          display: flex;
+          align-items: center;
+          gap: 0.3em;
+          ul {
+            list-style-type: none;
+            display: flex;
+            gap: 0.5em;
+          }
+        }
+        .down-arrow {
+          margin-left: auto;
+          transition: all 0.3s ease;
+        }
+      }
+      p {
+        padding-left: 2em;
+        padding-top: 1em;
+        font-size: 0.9em;
+        color: var(--color-txt-secondary);
+      }
+      &[open] {
+        .down-arrow{
+          transform: rotate(180deg) !important;
+        }
+      }
+    }
   }
   .addons-card-con {
     display: flex;

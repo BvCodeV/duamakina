@@ -28,7 +28,7 @@
   <nav role="navigation" id="navbar" style="width: 100%; z-index: 1000; position: sticky; top: 0px;" fetchpriority=high></nav>
   <div class="checkout-progress">
     <a id="carPageProgressBtn" class="progress-btn progress-completed">
-      <span>1</span>
+      <span><img src="/assets/icons/checkmark.svg" alt="chekmark icon" draggable="false"></span>
       Vehicle
     </a>
     <hr>
@@ -50,8 +50,81 @@
     <section>
       <form id="rental-form">
         <div class="addons-page" id="addonPage">
-          <h1>Optional Addons</h1>
-          <div class="addons-card-con" id="addonsCardCon">
+          <div class="addon-con">
+            <h1 class="addon-con-title">Optional Addons</h1>
+            <div class="addons-card-con" id="addonsCardCon">
+            </div>
+          </div>
+          <div class="rules-con">
+           <h1 class="rules-con-title">The fine print, made plain.</h1>
+           <div class="rules-card-con">
+            <details class="rules-card" style="padding-top: 1em;">
+              <summary>
+                <img src="/assets/icons/banknotes-color.svg" alt="banknotes icon" draggable="false" loading="lazy">
+                <div class="rules-info">
+                  <h2>Deposit & payment</h2>
+                  <h1>No card hold &middot; <span class="currency-sign">€</span><span class="currnecy-num" id="depositAmount">100</span></h1>
+                </div>
+                <img src="/assets/icons/down-arrow.svg" alt="down arrow icon" loading="lazy" draggable="false" class="down-arrow">
+              </summary>
+              <p>We never take a card hold. A small <span class="currnecy-sign">€</span><span class="currnecy-num" id="depositAmount2">100</span> cash deposit is collected at pickup, returned at drop-off. The full rental is also paid in cash on collection — EUR, USD, LEK, or GBP.</p>
+            </details>
+            <details class="rules-card">
+              <summary>
+                <img src="/assets/icons/world.svg" alt="world icon" draggable="false" loading="lazy">
+                <div class="rules-info">
+                  <h2>Cross-Border Travel</h2>
+                  <h1 class="summary-desc">Allowed: <ul class="allowed-countries" id="allowedCountriesCon"><li>Me</li></ul></h1>
+                </div>
+                <img src="/assets/icons/down-arrow.svg" alt="down arrow icon" loading="lazy" draggable="false" class="down-arrow">
+              </summary>
+              <p>Notify us at booking or by WhatsApp at least 24h before pickup. We provide green card insurance and translated documents. Fee varies based on  the country — ask at booking.</p>
+            </details>
+            <details class="rules-card">
+              <summary>
+                <img src="/assets/icons/speed.svg" alt="speed icon" draggable="false" loading="lazy">
+                <div class="rules-info">
+                  <h2>Milage policy</h2>
+                  <h1>Unlimited within albania</h1>
+                </div>
+                <img src="/assets/icons/down-arrow.svg" alt="down arrow icon" loading="lazy" draggable="false" class="down-arrow">
+              </summary>
+              <p>No daily cap within the Albanian borders.</p>
+            </details>
+            <details class="rules-card">
+              <summary>
+                <img src="/assets/icons/person.svg" alt="person icon" draggable="false" loading="lazy">
+                <div class="rules-info">
+                  <h2>Documents required</h2>
+                  <h1>Passport &middot; Driving license</h1>
+                </div>
+                <img src="/assets/icons/down-arrow.svg" alt="down arrow icon" loading="lazy" draggable="false" class="down-arrow">
+              </summary>
+              <p>Bring your original passport (not just a photo) and a driving license held for at least 2 years. EU, UK, US, CA, AU, NZ, JP, CH licenses are accepted directly. Other licenses need an International Driving Permit. We photograph documents at pickup; copies are stored for 12 months and then deleted.</p>
+            </details>
+            <details class="rules-card">
+              <summary>
+                <img src="/assets/icons/person.svg" alt="person icon" draggable="false" loading="lazy">
+                <div class="rules-info">
+                  <h2>Driver requirements</h2>
+                  <h1>Min age <span id="minAgeNum">xx</span> &middot; Max age 75 &middot; 2+ years license</h1>
+                </div>
+                <img src="/assets/icons/down-arrow.svg" alt="down arrow icon" loading="lazy" draggable="false" class="down-arrow">
+              </summary>
+              <p>The named driver must be present at pickup. Additional drivers (max 2) must also be present and add <span class="currency-sign">€</span><span class="currency-num" id="additionalDriverCharge">xx</span>/day each. Young driver surcharge of <span class="currency-sign">€</span><span class="currency-num" id="youngDriverSurcharge">xx</span>/day applies between ages 21-22.</p>
+            </details>
+            <details class="rules-card" style="border-bottom: none">
+              <summary>
+                <img src="/assets/icons/clock-color.svg" alt="clock icon" draggable="false" loading="lazy">
+                <div class="rules-info">
+                  <h2>Cancellation</h2>
+                  <h1>Free up to 48h before &middot; 50% within 48h &middot; No-show forfeits</h1>
+                </div>
+                <img src="/assets/icons/down-arrow.svg" alt="down arrow icon" loading="lazy" draggable="false" class="down-arrow">
+              </summary>
+              <p>Cancel via email or by WhatsApp. Inside 48h we keep <span class="currency-sign">€</span><span class="currency-num">30</span> admin fee or 50% of the rental, whichever is lower. Schedule changes up to 6h before pickup are free.</p>
+            </details>
+           </div>
           </div>
         </div>
         <div class="info-page" id="infoPage" style="display: none;">

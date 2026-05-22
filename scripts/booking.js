@@ -16,38 +16,41 @@ const formPickupTime = document.getElementById("changeFormPickupTime");
 const formDropoffTime = document.getElementById("changeFormDropoffTime");
 const changeBtn = document.getElementById("changeBtn");
 const locationForm = document.getElementById("locationFilterDialog");
-const carName = document.getElementById('carName');
-const carNamePrice = document.getElementById('carNamePrice');
-const carTransmission = document.getElementById('carTransmission');
-const carLuggage = document.getElementById('carLuggage');
-const carSeats = document.getElementById('carSeats');
-const mainImg = document.getElementById('mainImg');
-const addonPage = document.getElementById('addonPage');
-const infoPage = document.getElementById('infoPage');
-const bookingNxtBtn = document.getElementById('bookingNxtBtn');
-const formSendBtn = document.getElementById('formSendBtn');
-const addonsCardCon = document.getElementById('addonsCardCon');
+const carName = document.getElementById("carName");
+const carNamePrice = document.getElementById("carNamePrice");
+const carTransmission = document.getElementById("carTransmission");
+const carLuggage = document.getElementById("carLuggage");
+const carSeats = document.getElementById("carSeats");
+const mainImg = document.getElementById("mainImg");
+const addonPage = document.getElementById("addonPage");
+const infoPage = document.getElementById("infoPage");
+const bookingNxtBtn = document.getElementById("bookingNxtBtn");
+const formSendBtn = document.getElementById("formSendBtn");
+const addonsCardCon = document.getElementById("addonsCardCon");
 
 let pricePerDay = 0;
 const EXTRA_ICON_MAP = {
-  'baby-seat':          'baby-seat.svg',
-  'booster-seat':       'booster-seat.svg',
-  'child-seat':         'child-seat.svg',
-  'wifi':               'wifi.svg',
-  'insurance':          'insurance-booking.svg',
-  'insurance-booking':  'insurance-booking.svg',
-  'gps':                'gps.svg',
-  'additional-driver':  'driverPlus.svg',
-  'driver-plus':        'driverPlus.svg',
+  "baby-seat": "baby-seat.svg",
+  "booster-seat": "booster-seat.svg",
+  "child-seat": "child-seat.svg",
+  wifi: "wifi.svg",
+  insurance: "insurance-booking.svg",
+  "insurance-booking": "insurance-booking.svg",
+  gps: "gps.svg",
+  "additional-driver": "driverPlus.svg",
+  "driver-plus": "driverPlus.svg",
 };
 
-function getIconForSlug(slug) {  if (EXTRA_ICON_MAP[slug]) return EXTRA_ICON_MAP[slug];
-  const key = Object.keys(EXTRA_ICON_MAP).find(k => slug.includes(k) || k.includes(slug));
-  return key ? EXTRA_ICON_MAP[key] : 'default-addon.svg';
+function getIconForSlug(slug) {
+  if (EXTRA_ICON_MAP[slug]) return EXTRA_ICON_MAP[slug];
+  const key = Object.keys(EXTRA_ICON_MAP).find(
+    (k) => slug.includes(k) || k.includes(slug),
+  );
+  return key ? EXTRA_ICON_MAP[key] : "default-addon.svg";
 }
 
 function getCarIdFromUrl() {
-  return new URLSearchParams(window.location.search).get('id');
+  return new URLSearchParams(window.location.search).get("id");
 }
 
 const getStorageData = () => ({
@@ -60,37 +63,38 @@ const triggerPriceUpdate = () => window.updatePrice?.(getCurrencySelect());
 
 const getAddonChecks = () => document.querySelectorAll(".addonCheck");
 
-
 function displayData() {
   const { locationData } = getStorageData();
   if (!locationData) return;
-  pickupDateForm.textContent     = locationData.pickupDate;
-  dropoffDateForm.textContent    = locationData.dropoffDate;
-  pickupTimeForm.textContent     = locationData.pickupTime;
-  dropoffTimeForm.textContent    = locationData.dropoffTime;
+  pickupDateForm.textContent = locationData.pickupDate;
+  dropoffDateForm.textContent = locationData.dropoffDate;
+  pickupTimeForm.textContent = locationData.pickupTime;
+  dropoffTimeForm.textContent = locationData.dropoffTime;
   pickupLocationForm.textContent = locationData.pickupLoc;
   dropoffLocationForm.textContent = locationData.dropoffLoc;
 }
 
 function displayDate() {
   const { days } = getStorageData();
-  document.querySelectorAll(".dayNum").forEach(day => day.textContent = days);
+  document
+    .querySelectorAll(".dayNum")
+    .forEach((day) => (day.textContent = days));
 }
 
 function updateFinalPrice(currentPricePerDay = pricePerDay) {
   const { days } = getStorageData();
   const carPrice = currentPricePerDay * days;
 
-  carFinalPrice.textContent        = carPrice;
-  carFinalPrice.dataset.basePrice  = carPrice;
+  carFinalPrice.textContent = carPrice;
+  carFinalPrice.dataset.basePrice = carPrice;
 
   let finalPrice = carPrice;
-  getAddonChecks().forEach(check => {
+  getAddonChecks().forEach((check) => {
     if (check.checked) finalPrice += parseFloat(check.dataset.price) * days;
   });
 
   finalAmount.dataset.basePrice = finalPrice;
-  finalAmount.textContent       = finalPrice;
+  finalAmount.textContent = finalPrice;
   triggerPriceUpdate();
 }
 
@@ -98,14 +102,16 @@ function updateAddons() {
   const { days } = getStorageData();
   addonsCon.innerHTML = "";
 
-  getAddonChecks().forEach(check => {
+  getAddonChecks().forEach((check) => {
     const card = check.closest(".addons-card-check");
     if (check.checked) {
       addonsCon.style.display = "flex";
       card?.classList.add("checked");
 
       const addonPrice = parseFloat(check.dataset.price) * days;
-      addonsCon.insertAdjacentHTML("beforeend", `
+      addonsCon.insertAdjacentHTML(
+        "beforeend",
+        `
         <div class="addon-card">
           <div class="addon-item items">
             <p class="addon-name">${check.getAttribute("data-name")}</p>
@@ -116,7 +122,8 @@ function updateAddons() {
             <span class="currency-sign">€</span>
             <span class="currency-num">${addonPrice}</span>
           </div>
-        </div>`);
+        </div>`,
+      );
     } else {
       card?.classList.remove("checked");
     }
@@ -126,13 +133,12 @@ function updateAddons() {
   updateFinalPrice();
 }
 
-
 function getTodayPrice(pricingRows) {
   if (!pricingRows || pricingRows.length === 0) return null;
-  const today = new Date().toISOString().split('T')[0];
-  const match = pricingRows.find(p => {
-    const from = p.valid_from ?? '0000-01-01';
-    const to   = p.valid_to   ?? '9999-12-31';
+  const today = new Date().toISOString().split("T")[0];
+  const match = pricingRows.find((p) => {
+    const from = p.valid_from ?? "0000-01-01";
+    const to = p.valid_to ?? "9999-12-31";
     return today >= from && today <= to;
   });
   return match ?? pricingRows[0];
@@ -140,7 +146,7 @@ function getTodayPrice(pricingRows) {
 
 function getPrimaryPhoto(photos) {
   if (!photos || photos.length === 0) return null;
-  return photos.find(p => p.is_primary) ?? photos[0];
+  return photos.find((p) => p.is_primary) ?? photos[0];
 }
 
 function getPhotoUrl(storagePath) {
@@ -150,35 +156,99 @@ function getPhotoUrl(storagePath) {
   return `${SUPABASE_URL}/storage/v1/object/public/${storagePath}`;
 }
 
-function updatePage(car) {
-  const pricing            = getTodayPrice(car.car_pricing);
-  const currentPricePerDay = pricing ? parseFloat(pricing.price_per_day) : 0;
-  pricePerDay              = currentPricePerDay;
+function updateFaqSection(car, youngDriverData) {
+  const depositEls = document.querySelectorAll(
+    '[id="depositAmount"], [id="depositAmount2"]',
+  );
+  depositEls.forEach((el) => {
+    el.textContent = car.deposit_amount ?? "100";
+  });
 
-  const photo    = getPrimaryPhoto(car.car_photos);
+  const allowedCountriesCon = document.getElementById("allowedCountriesCon");
+  if (allowedCountriesCon) {
+    const permissions = car.car_cross_border_permissions ?? [];
+    if (permissions.length === 0) {
+      allowedCountriesCon.innerHTML = "<li>None</li>";
+    } else {
+      allowedCountriesCon.innerHTML = permissions
+        .filter((p) => p.cross_border_countries?.is_active)
+        .map((p) => `<li>${p.cross_border_countries.country_code},</li>`)
+        .join("");
+    }
+  }
+
+  const minAgeEl = document.getElementById("minAgeNum");
+  if (minAgeEl) {
+    if (youngDriverData && youngDriverData.length > 0) {
+      const sorted = [...youngDriverData].sort((a, b) => a.max_age - b.max_age);
+      const youngest = sorted[0];
+      minAgeEl.textContent = youngest.max_age ?? 21;
+    } else {
+      minAgeEl.textContent = 21;
+    }
+  }
+
+  const additionalDriverEl = document.getElementById("additionalDriverCharge");
+  if (additionalDriverEl) {
+    const additionalDriverExtra = document.querySelector(
+      '[data-name*="driver" i], [data-name*="additional" i]',
+    );
+    if (additionalDriverExtra) {
+      additionalDriverEl.textContent = parseFloat(
+        additionalDriverExtra.dataset.price,
+      ).toFixed(2);
+    }
+  }
+
+  const youngDriverEl = document.getElementById("youngDriverSurcharge");
+  if (youngDriverEl && youngDriverData && youngDriverData.length > 0) {
+    const sorted = [...youngDriverData].sort((a, b) => a.max_age - b.max_age);
+    const youngest = sorted[0];
+    if (youngest.surcharge_flat != null) {
+      youngDriverEl.textContent = parseFloat(youngest.surcharge_flat).toFixed(
+        2,
+      );
+    } else if (youngest.surcharge_pct != null) {
+      youngDriverEl.textContent =
+        parseFloat(youngest.surcharge_pct).toFixed(2) + "%";
+    }
+  }
+}
+
+function updatePage(car, youngDriverData) {
+  const pricing = getTodayPrice(car.car_pricing);
+  const currentPricePerDay = pricing ? parseFloat(pricing.price_per_day) : 0;
+  pricePerDay = currentPricePerDay;
+
+  const photo = getPrimaryPhoto(car.car_photos);
   const imageUrl = getPhotoUrl(photo?.storage_path);
   const imageAlt = photo?.alt_text ?? `${car.brand} ${car.model}`;
 
-  if (carName)         carName.textContent         = `${car.brand} ${car.model}`;
-  if (carNamePrice)    carNamePrice.textContent     = `${car.brand} ${car.model}`;
-  if (carLuggage)      carLuggage.textContent       = `${car.trunk_litres}`;
-  if (carSeats)        carSeats.textContent         = `${car.seats}`;
-  if (carTransmission) carTransmission.textContent  = `${car.transmission}`;
-  if (mainImg)        { mainImg.src      = imageUrl; mainImg.alt = imageAlt; }
+  if (carName) carName.textContent = `${car.brand} ${car.model}`;
+  if (carNamePrice) carNamePrice.textContent = `${car.brand} ${car.model}`;
+  if (carLuggage) carLuggage.textContent = `${car.trunk_litres}`;
+  if (carSeats) carSeats.textContent = `${car.seats}`;
+  if (carTransmission) carTransmission.textContent = `${car.transmission}`;
+  if (mainImg) {
+    mainImg.src = imageUrl;
+    mainImg.alt = imageAlt;
+  }
 
+  updateFaqSection(car, youngDriverData);
   updateFinalPrice(currentPricePerDay);
 }
 
 function buildAddonCard(extra, priceOverride) {
-  const effectivePrice = priceOverride !== null && priceOverride !== undefined
-    ? parseFloat(priceOverride)
-    : parseFloat(extra.price);
+  const effectivePrice =
+    priceOverride !== null && priceOverride !== undefined
+      ? parseFloat(priceOverride)
+      : parseFloat(extra.price);
 
-  const icon    = getIconForSlug(extra.slug);
-  const safeId  = `addon_${extra.slug.replace(/[^a-z0-9]/gi, '_')}`;
+  const icon = getIconForSlug(extra.slug);
+  const safeId = `addon_${extra.slug.replace(/[^a-z0-9]/gi, "_")}`;
 
-  const card = document.createElement('div');
-  card.className = 'addons-card addons-card-check';
+  const card = document.createElement("div");
+  card.className = "addons-card addons-card-check";
   card.innerHTML = `
     <input
       type="checkbox"
@@ -191,14 +261,14 @@ function buildAddonCard(extra, priceOverride) {
     <img src="/assets/icons/${icon}" alt="${extra.name}" loading="lazy" draggable="false">
     <div>
       <h3 class="addon-title">${extra.name}</h3>
-      <p class="addon-description">${extra.description ?? ''}</p>
+      <p class="addon-description">${extra.description ?? ""}</p>
       <p class="addon-price">
         <span class="currency-sign">€</span><span class="currency-num">${effectivePrice.toFixed(2)}</span>/dite
       </p>
     </div>
   `;
 
-  card.querySelector('.addonCheck').addEventListener('change', updateAddons);
+  card.querySelector(".addonCheck").addEventListener("change", updateAddons);
 
   return card;
 }
@@ -207,28 +277,40 @@ async function loadCarExtras(carId) {
   if (!addonsCardCon) return;
 
   const { data, error } = await supabaseClient
-    .from('car_extras')
-    .select(`
+    .from("car_extras")
+    .select(
+      `
       price_override,
       extras (
         id, slug, name, description, price, is_active
       )
-    `)
-    .eq('car_id', carId);
+    `,
+    )
+    .eq("car_id", carId);
 
   if (error || !data) {
-    console.error('Failed to load car extras:', error);
+    console.error("Failed to load car extras:", error);
     return;
   }
 
-  addonsCardCon.innerHTML = '';
+  addonsCardCon.innerHTML = "";
 
   data
-    .filter(row => row.extras?.is_active)
-    .forEach(row => {
+    .filter((row) => row.extras?.is_active)
+    .forEach((row) => {
       const card = buildAddonCard(row.extras, row.price_override);
       addonsCardCon.appendChild(card);
     });
+}
+
+async function loadYoungDriverSurcharges(carId) {
+  const { data, error } = await supabaseClient
+    .from("young_driver_surcharges")
+    .select("max_age, surcharge_pct, surcharge_flat")
+    .eq("car_id", carId);
+
+  if (error) return [];
+  return data ?? [];
 }
 
 async function loadCarDetails() {
@@ -236,8 +318,9 @@ async function loadCarDetails() {
   if (!carId) return;
 
   const { data: car, error } = await supabaseClient
-    .from('cars')
-    .select(`
+    .from("cars")
+    .select(
+      `
       id, brand, model, year, category, color, license_plate,
       fuel, transmission, seats, doors, has_ac, trunk_litres,
       mileage_unlimited, mileage_limit_km, extra_km_fee,
@@ -246,27 +329,30 @@ async function loadCarDetails() {
       car_pricing ( price_per_day, valid_from, valid_to ),
       car_photos  ( storage_path, alt_text, is_primary, sort_order ),
       car_cross_border_permissions (
-        cross_border_countries ( country_name, country_code, fee )
+        cross_border_countries ( country_name, country_code, fee, is_active )
       )
-    `)
-    .eq('id', carId)
+    `,
+    )
+    .eq("id", carId)
     .single();
 
   if (error || !car) return;
 
-  updatePage(car);
+  const youngDriverData = await loadYoungDriverSurcharges(carId);
+
+  updatePage(car, youngDriverData);
 
   await loadCarExtras(carId);
 
   updateFinalPrice();
 }
 
-bookingNxtBtn.addEventListener('click', () => {
-  addonPage.style.display    = 'none';
-  infoPage.style.display     = 'flex';
-  bookingNxtBtn.style.display = 'none';
-  formSendBtn.style.display  = 'block';
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+bookingNxtBtn.addEventListener("click", () => {
+  addonPage.style.display = "none";
+  infoPage.style.display = "flex";
+  bookingNxtBtn.style.display = "none";
+  formSendBtn.style.display = "block";
+  window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
 let calendarsInitialized = false;
@@ -281,24 +367,25 @@ locationForm.addEventListener("toggle", (e) => {
 changeBtn.onclick = () => {
   const { locationData } = getStorageData();
   if (!locationData) return;
-  formPickupLoc.value   = locationData.pickupLoc  || "";
-  formDropoffLoc.value  = locationData.dropoffLoc || "";
-  formPickupDate.value  = locationData.pickupDate || "";
+  formPickupLoc.value = locationData.pickupLoc || "";
+  formDropoffLoc.value = locationData.dropoffLoc || "";
+  formPickupDate.value = locationData.pickupDate || "";
   formDropoffDate.value = locationData.dropoffDate || "";
-  formPickupTime.value  = locationData.pickupTime  || "00:00";
+  formPickupTime.value = locationData.pickupTime || "00:00";
   formDropoffTime.value = locationData.dropoffTime || "00:00";
 };
 
 function updateLocationData() {
   const updatedLocationData = {
-    pickupLoc:    formPickupLoc.value,
-    dropoffLoc:   formDropoffLoc.value,
-    pickupDate:   formPickupDate.value,
-    dropoffDate:  formDropoffDate.value,
-    pickupTime:   formPickupTime.value,
-    dropoffTime:  formDropoffTime.value,
+    pickupLoc: formPickupLoc.value,
+    dropoffLoc: formDropoffLoc.value,
+    pickupDate: formPickupDate.value,
+    dropoffDate: formDropoffDate.value,
+    pickupTime: formPickupTime.value,
+    dropoffTime: formDropoffTime.value,
   };
-  if (dropoffCheck.checked) updatedLocationData.dropoffLoc = updatedLocationData.pickupLoc;
+  if (dropoffCheck.checked)
+    updatedLocationData.dropoffLoc = updatedLocationData.pickupLoc;
   localStorage.setItem("locationData", JSON.stringify(updatedLocationData));
   calcDays(updatedLocationData.pickupDate, updatedLocationData.dropoffDate);
   displayData();
@@ -308,8 +395,9 @@ function updateLocationData() {
   locationForm.hidePopover();
 }
 
-document.getElementById("closeDialog").onclick = () => locationForm.hidePopover();
-document.addEventListener('DOMContentLoaded', loadCarDetails);
+document.getElementById("closeDialog").onclick = () =>
+  locationForm.hidePopover();
+document.addEventListener("DOMContentLoaded", loadCarDetails);
 displayData();
 displayDate();
 updateFinalPrice();
