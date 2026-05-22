@@ -168,18 +168,17 @@ main {
   flex-shrink: 0;
   position: sticky;
   right: 0;
-  background-color: var(--color-bg-main);
-  border: 1.5px solid var(--color-border-strong);
-  color: var(--color-txt-primary);
-  border-radius: 20px;
-  padding: 0.5em 1em;
+  background-color: transparent;
+  border: none;
+
+  color: var(--color-txt-secondary);
   font-size: 0.8rem;
   font-weight: 600;
   cursor: pointer;
   white-space: nowrap;
   transition: all 0.3s ease;
   &:hover {
-      border-color: var(--color-border-strong);
+      color: var(--color-txt-primary);
   }
 }
 
@@ -622,7 +621,7 @@ section {
           height: 1rem;
         }
 
-        input {
+        select {
           padding: 0.5rem 0rem 0.5rem 2rem;
           width: 17rem;
           height: 35px;
@@ -977,11 +976,37 @@ section {
 }
 
 @media screen and (max-width: 745px) {
-  .desktop-only { display: none !important; }
-
+ .desktop-only {display: none !important;}
   main {
-    padding: 1em;
-    .mobile-only { display: flex; }
+    .mobile-only {display: flex;}
+    padding: 0;
+  }
+  .mobile-dates {
+    background-color: var(--color-bg-surface);
+    width: 100%;
+    position: relative;
+    left: 0;
+    right: 0;
+    padding: 0.3em 0.7em;
+    display: flex;
+    justify-content: space-between;
+    gap: 2em;
+    padding: 0 2em;
+    p {
+      font-size: 0.8em;
+    }
+    span {
+      color: var(--color-primary);
+      font-weight: 700;
+    }
+    button {
+      background-color: transparent;
+      color: var(--color-txt-secondary);
+      border: none;
+      font-size: 0.8em;
+      text-decoration: underline;
+      white-space: nowrap;
+    }
   }
   .page-header {
     padding: 0.5em 0;
@@ -992,7 +1017,7 @@ section {
     }
   }
   .page-second-header {
-    padding-left: 0em;
+    padding: 1em;
     select { border: none !important; }
   }
   .sidebar-btn {
@@ -1102,7 +1127,7 @@ section {
     ul { font-size: 14px; }
   }
   section {
-    margin-top: 1em;
+    padding: 0 1em;
     .filter-btn {
       display: flex;
       align-items: center;
@@ -1149,12 +1174,18 @@ section {
     .card-body {
       width: 100%;
       .car-title { font-size: 1.3em; }
-      .car-features { flex-wrap: wrap; }
+      .car-features { 
+        align-items: start;
+        justify-content: start;
+        li {
+          flex-direction: column;
+        }
+      }
       .car-amenities {
         font-size: 14px;
         width: 100%;
+        justify-content: start;
       }
-      .review-con { display: none; }
     }
     hr { display: none; }
     .card-end {

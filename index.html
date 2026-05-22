@@ -14,9 +14,6 @@
   <link rel="alternate" hreflang="en" href="https://www.duamakina.com/">
   <link rel="alternate" hreflang="sq" href="https://www.duamakina.com/sq/">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Damion&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
   <link rel="stylesheet" 
     href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" 
     integrity="sha384-RkASv+6KfBMW9eknReJIJ6b3UnjKOKC5bOUaNgIY778NFbQ8MtWq9Lr/khUgqtTt" 
@@ -43,7 +40,8 @@
     <section id="hero">
       <picture>
         <!-- mobile -->
-        <source media="(max-width: 768px)" srcset="https://jdhigikorvtxhslxudcs.supabase.co/storage/v1/object/public/duamakina-img/public/hero-bg-500.avif"/>
+        <!-- <source media="(max-width: 768px)" srcset="https://jdhigikorvtxhslxudcs.supabase.co/storage/v1/object/public/duamakina-img/public/hero-bg-500.avif"/> -->
+        <source media="(max-width: 768px)" srcset="/assets/icons/background.svg"/>
         <!-- Laptop -->
         <source media="(max-width: 1450px)" srcset="https://jdhigikorvtxhslxudcs.supabase.co/storage/v1/object/public/duamakina-img/public/hero-bg-1280px.avif" />
         <!-- Desktop -->
@@ -59,24 +57,29 @@
             <div class="pickup-loc location-inpt" >
               <label for="pickup">Pickup Location</label>
               <img src="/assets/icons/location.svg" alt="location icon" loading="lazy" draggable="false">
-              <input type="text" id="pickup" list="locations" name="pickup" placeholder="e.g Tirana City Center" required>
+              <select name="pickup" id="pickup">
+                <option value="Tirana City Center">Tirana City Center</option>
+                <option value="Tirana Airport (TIA)">Tirana Airport (TIA)</option>
+                <option value="Durrës">Durrës</option>
+                <option value="Saranda">Saranda</option>
+                <option value="Vlorë">Vlorë</option>
+              </select>
             </div>
             <div class="dropoff-loc location-inpt" id="dropoffLoc">
               <label for="dropoff">Drop-off Location</label>
               <img src="/assets/icons/location.svg" alt="location icon" loading="lazy" draggable="false">
-              <input type="text" id="dropoff" list="locations" name="dropoff" placeholder="e.g Tirana City Center" required>
+              <select name="dropoff" id="dropoff">
+                <option value="Tirana City Center">Tirana City Center</option>
+                <option value="Tirana Airport (TIA)">Tirana Airport (TIA)</option>
+                <option value="Durrës">Durrës</option>
+                <option value="Saranda">Saranda</option>
+                <option value="Vlorë">Vlorë</option>
+              </select>
             </div>
             <div class="dropoff-check">
               <input type="checkbox" id="dropoffCheck" name="dropoff-check" checked>
               <label for="dropoffCheck">Drop-off at same location</label>
             </div>
-            <datalist id="locations">
-                <option value="Tirana City Center" />
-                <option value="Tirana Airport (TIA)" />
-                <option value="Durrës" />
-                <option value="Saranda" />
-                <option value="Vlorë" />
-            </datalist>
           </div>
           <div class="date-time-con">
             <div class="date-time">
@@ -354,11 +357,9 @@
     </section>
   </main>
   <footer id="footer" style="width: 99%; position: absolute;"></footer>
-  <script src="/scripts/lang.js"></script>
   <script src="/scripts/index.js"></script>
-  <script src="/scripts/filterbar.js"></script>
   <script src="/scripts/calendar.js"></script>
-  <script src="/scripts/database.js"></script>
+  <script src="/scripts/filterbar.js"></script>
   <script src="/scripts/analytics.js"></script>
 </body>
 </html>
