@@ -14,6 +14,8 @@
   <link rel="alternate" hreflang="en" href="https://www.duamakina.com/pages/fleet.html">
   <link rel="alternate" hreflang="sq" href="https://www.duamakina.com/sq/pages/fleet.html">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <link rel="preconnect" href="https://https://jdhigikorvtxhslxudcs.supabase.co">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
   <link rel="stylesheet" href="/styles/global.css">
   <link rel="stylesheet" href="/styles/fleet.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
@@ -80,12 +82,12 @@
             <div class="track-container">
               <div class="track-bg"></div>
               <div class="track-fill" id="fill"></div>
-              <input type="range" class="range-input" id="min-range" min="0" max="1000" value="0" step="1">
-              <input type="range" class="range-input" id="max-range" min="0" max="1000" value="1000" step="1">
+              <input type="range" class="range-input" id="min-range" min="0" max="200" value="0" step="1">
+              <input type="range" class="range-input" id="max-range" min="0" max="200" value="200" step="1">
             </div>
             <div class="values">
               <p class="min-val"><span class="currency-sign">€</span> <span id="min-val" class="currency-num">0</span></p>
-              <p class="max-val"><span class="currency-sign">€</span> <span id="max-val" class="currency-num">1000</span></p>
+              <p class="max-val"><span class="currency-sign">€</span> <span id="max-val" class="currency-num">200</span></p>
             </div>
           </div>
           <ul class="suggested-filters desktop-only">
@@ -108,7 +110,7 @@
         <div class="section-body-info">
           <p class="car-count"><span id="carNumFilter">X</span> OF <span id="totalCars">X</span> VEHICLES</p>
           <div id="filterPillsCon"></div>
-          <p class="day-num desktop-only"><span id="dayNumFleet">X</span> DAYS</p>
+          <p class="day-num desktop-only"><span id="dayNumFleet">X</span>DAYS</p>
           <!-- <p class="dates-show mobile-only"><span id="pickupDateMobile">DD MM</span> &middot; <span id="droppoffDateMobile">DD MM</span> <span>Edit</span></p> -->
         </div>
         <div class="cars-card-con">
@@ -493,12 +495,11 @@
   <footer id="footer" style="width: 99%; position: relative; bottom: 0;"></footer>
   <script src="/scripts/components.js"></script>
   <script src="/scripts/database.js"></script>
-  <script src="/scripts/fleet.js"></script>
-  <script src="/scripts/fleet.js"></script>
-  <script src="/scripts/lang.js"></script>
-   <script src="/scripts/filterbar.js"></script>
-  <script src="/scripts/index.js"></script>
   <script src="/scripts/currency.js"></script>
+  <script src="/scripts/fleet.js" type="module"></script>
+  <script src="/scripts/lang.js"></script>
+  <script src="/scripts/filterbar.js"></script>
+  <script src="/scripts/index.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="/scripts/calendar.js"></script>
   <script src="/scripts/analytics.js"></script>

@@ -1,21 +1,36 @@
 if (document.getElementById('pickupDate')) {
+  const today = new Date();
+  const defaultDropoff = new Date();
+  defaultDropoff.setDate(today.getDate() + 5);
+
+  flatpickr('#dropoffDate', {
+    dateFormat: 'M j, Y',
+    minDate: today,
+    allowInput: false,
+    position: 'below',
+    defaultDate: defaultDropoff,
+  });
+
   const pickup = flatpickr('#pickupDate', {
     mode: 'range',
     dateFormat: 'M j, Y',
     minDate: 'today',
     allowInput: false,
     position: 'below',
+    defaultDate: "today",
     onChange(selectedDates) {
       if (selectedDates.length >= 1) {
         document.getElementById('pickupDate').value =
-          selectedDates[0].toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: "numeric" });
+          selectedDates[0].toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
       }
       if (selectedDates.length === 2) {
         document.getElementById('dropoffDate').value =
-          selectedDates[1].toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: "numeric" });
+          selectedDates[1].toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
       }
     }
   });
+  pickup.config.onChange(pickup.selectedDates, null, pickup);
+
   document.getElementById('dropoffDate').addEventListener('click', () => pickup.open());
 }
 

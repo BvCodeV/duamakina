@@ -13,10 +13,12 @@
   <link rel="alternate" hreflang="x-default" href="https://www.duamakina.com/pages/booking.html">
   <link rel="alternate" hreflang="en" href="https://www.duamakina.com/pages/booking.html">
   <link rel="alternate" hreflang="sq" href="https://www.duamakina.com/sq/pages/booking.html">
+  <link rel="preconnect" href="https://https://jdhigikorvtxhslxudcs.supabase.co">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
   <meta name="robots" content="noindex, nofollow">
   <link rel="stylesheet" href="/styles/global.css">
   <link rel="stylesheet" href="/styles/car.css">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script rel="preconnect" src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
   <header role="banner" id="header" style="width: 100%; z-index: 1000; position: relative;" fetchpriority=high></header>
@@ -33,6 +35,7 @@
       <div class="car-info">
         <div class="info">
           <p id="carInfoTxt"><span id="carType">Type</span> &middot; <span id="carYear">Year</span> &middot; <span id="carFuel">Fuel</span></p>
+          <hr class="car-info-divider">
           <h1 id="car-name">Car Name</h1>
         </div>
         <button id="shareBtn">
@@ -51,9 +54,7 @@
             <div id="dot"></div>
           </div>
         </div>
-        <div class="image-con-end">
-          <!-- other images are inserted via js -->
-        </div>
+        <div class="image-con-end"></div>
       </div>
       <div class="car-specs">
         <div class="spec-con">
@@ -67,10 +68,6 @@
         <div class="spec-con">
           <img src="/assets/icons/year.svg" alt="year icon" loading="lazy" draggable="false">
           <p>Car year</p>
-        </div>
-        <div class="spec-con">
-          <img src="/assets/icons/license-plate.svg" alt="license-plate icon" loading="lazy" draggable="false">
-          <p>License plate</p>
         </div>
         <div class="spec-con">
           <img src="/assets/icons/person.svg" alt="person icon" loading="lazy" draggable="false">
@@ -131,9 +128,9 @@
             <p>All payments are processed in CASH ONLY at the time of vehicle collection. No online payments required.</p>
             <p>
               <span>Deposit:</span>
-              <span class="currency-sign" style="font-weight: bold;">€</span>
+              <span class="currency-sign" style="font-weight: bold;"  id="depositSign">€</span>
               <span class="currency-num" style="font-weight: bold;" id="depositAmount">num</span> 
-              (refundable upon return)
+              <span id="refundableTxt">(refundable upon return)</span>
             </p>
           </div>
           <div class="faq-box">
@@ -292,9 +289,9 @@
     </aside>
   </main>
   <footer id="footer" style="width: 99%; position: relative; bottom: 0;"></footer>
-  <script src="/scripts/database.js"></script>
   <script src="/scripts/components.js"></script>
-  <script src="/scripts/car.js"></script>
+  <script src="/scripts/database.js"></script>
+  <script src="/scripts/car.js" type="module"></script>
   <script src="/scripts/currency.js"></script>
   <script src="/scripts/lang.js"></script>
   <script src="/scripts/analytics.js"></script>

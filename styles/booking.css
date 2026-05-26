@@ -15,6 +15,7 @@ main {
 
 .checkout-progress {
   padding: 0.5em 1em;
+  padding-left: 8em;
   width: 100%;
   background-color: var(--color-bg-surface);
   display: flex;
@@ -146,7 +147,7 @@ form {
     gap: 1em;
     border: 1px solid var(--color-border);
     border-radius: 20px;
-    details {
+    .rules-card {
       padding: 0em 1em 1em 1em;
       border-bottom: 1px solid var(--color-border);
       cursor: pointer;
@@ -188,13 +189,85 @@ form {
       }
     }
   }
-  .addons-card-con {
+  .rules-info {
     display: flex;
-    flex-wrap: wrap;
     gap: 1em;
+    align-items: center;
     width: 100%;
+  }
+  .rules-info-description {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    cursor: pointer;
+    width: 100%;
+    h2 {
+      font-size: 0.95em;
+      font-weight: 600;
+    }
+    h1 {
+      font-size: 1em;
+      display: flex;
+      align-items: center;
+      gap: 0.3em;
+    }
+  }
+  .allowed-countries-con {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(17em, 1fr));
+    gap: 1em;
+    margin: 0.5em 0;
+    .country-option {
+      width: 100%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5em;
+      color: var(--color-txt-primary);
+      padding: 0.5em 1em;
+      border-radius: 20px;
+      input { cursor: pointer; accent-color: var(--color-primary);}
+      input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 20px;
+        &:checked {
+          background-color: var(--color-secondary);
+        }
+        &:checked::after {
+          display: none;
+        }
+      }
+      label {
+        font-weight: 600;
+      }
+      p {
+        z-index: 2;
+        pointer-events: none;
+        color: var(--color-txt-primary);
+        padding: 0.5em 1em;
+      }
+      .country-fee {
+        font-size: 0.8em;
+        color: var(--color-txt-secondary);
+        span {
+          color: var(--color-txt-primary);
+          font-size: 1.2em;
+          font-weight: 700;
+        }
+      }
+    }
+  }
+  .addons-card-con {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20em, 1fr));
+    gap: 1em;
     .addons-card {
-      width: 45%;
+      width: 100%;
       position: relative;
       display: flex;
       align-items: center;
@@ -285,18 +358,31 @@ aside {
     gap: 1em;
     .car-container {
       display: flex;
+      flex-direction: column;
       gap: 1em;
       align-items: center;
+
       #mainImg {
-      width: 9em;
-      height: 100%;
-      border-radius: 20px;
+      width: 100%;
+      height: 10em;
       object-fit: cover;
+      object-position: center;
+      border-radius: 20px;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
       }
       .car-info {
         display: flex;
         flex-direction: column;
-        gap: 1em;
+        justify-content: center;
+        align-items: start;
+        gap: 0.5em;
+        width: 100%;
+        padding: 1em 2em;
+        padding-bottom: 0;
+        margin-top: -2em;
+        background-color: var(--color-bg-surface);
+        border-radius: 30px;
       }
       h3 {
         white-space: nowrap;
@@ -307,11 +393,13 @@ aside {
         gap: 0.5em;
         .car-spec-card {
           display: flex;
+          align-items: center;
           gap: 0.5em;
           img {width: 15px;}
           p {
             font-size: 14px;
           }
+          span::first-letter {text-transform: uppercase;}
         }
       }
     }
@@ -319,36 +407,50 @@ aside {
       display: flex;
       flex-direction: column;
       gap: 0.5em;
-      padding: 0.5em;
-      background-color: var(--color-secondary);
-      border-radius: 20px;
       div {
         display: flex;
         flex-direction: column;
-        gap: 0.3em;
+        gap: 0.2em;
+      }
+      .location-header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1em;
+        h2 {
+          font-size: 1.17em;
+          font-weight: 700;
+        }
+        button {
+          background-color: transparent;
+          border: none;
+          color: var(--color-txt-primary);
+          background-color: var(--color-secondary);
+          padding: 0.5em 1em;
+          border-radius: 20px;
+          font-size: 0.7em;
+          font-weight: 700;
+          cursor: pointer;
+          align-self: flex-end;
+          margin-right: 1em;
+          transition: all 0.3s ease;
+          &:hover {transform: scale(1.05);}
+        }
       }
       h4 {
-        font-size: 0.9em;
+        font-size: 0.8em;
         font-weight: 500;
+        color: var(--color-txt-secondary);
       }
       p {
-        font-size: 0.9em;
+        font-size: 0.85em;
         color: var(--color-txt-secondary);
         span {
           color: var(--color-txt-primary);
           font-size: 1.1em;
-          font-weight: 700
+          font-weight: 600
         }
-      }
-      button {
-        background-color: transparent;
-        border: none;
-        color: var(--color-primary);
-        font-size: 0.7em;
-        font-weight: 700;
-        cursor: pointer;
-        align-self: flex-end;
-        margin-right: 1em;
       }
     }
   }
@@ -356,8 +458,6 @@ aside {
     display: flex;
     flex-direction: column;
     gap: 1em;
-    .price-per-day,
-    .addon-card,
     .taxes {
       display: flex;
       justify-content: space-between;
@@ -365,6 +465,22 @@ aside {
       .items {
         display: flex;
         gap: 0.5em;
+      }
+    }
+    .price-per-day,
+    .addon-card {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.9em;
+      font-weight: 700;
+      .price-calculation {
+        display: flex;
+        gap: 0.5em;
+        color: var(--color-txt-secondary);
+        font-weight: 400;
+        font-size: 0.9em;
+        padding: 0.2em;
       }
     }
     #addonCon {
@@ -403,6 +519,9 @@ aside {
       }
     }
     .terms-service-check {
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
       label {
         font-size: 0.9em;
         span {
@@ -457,10 +576,9 @@ aside {
   border-radius: 40px;
   overflow: visible;
   position: fixed;
-  top: 50%; 
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  margin: 0;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   &::backdrop {
     background-color: rgba(0, 0, 0, 0.5);
@@ -471,19 +589,15 @@ aside {
     justify-content: space-between;
 
     button {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
+      color: var(--color-primary);
+      background-color: transparent;
       border: none;
-      background-color: var(--color-error);
-      color: var(--color-txt-inverse);
       font-weight: 700;
       font-size: 1em;
       text-align: center;
       cursor: pointer;
-      transition: transform 0.3s ease;
-      &:hover { transform: scale(1.05);}
-      &:active { transform: scale(0.95);}
+      transition: color 0.3s ease;
+      &:hover {color: var(--color-primary-hover);}
     }
   }
 
@@ -492,7 +606,6 @@ aside {
     flex-direction: column;
     gap: 1em;
     margin-top: 1em;
-    width: 100%;
 
     .locations-con {
       display: flex;
@@ -578,7 +691,6 @@ aside {
             left: 0.5rem;
             width: 1rem;
             height: 1rem;
-            z-index: 1;
           }
 
           input { 
@@ -666,19 +778,31 @@ aside {
   }
 }
 
-@media screen and (max-width: 1500px) {
+@media screen and (max-width: 1550px) {
   main {
-    margin: 1em;
+    margin: 20px 1em;
   }
+}
+
+@media screen and (max-width: 1500px) {
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  margin: 20px 1em;
+  gap: 2em;
+}
 }
 @media screen and (max-width: 745px) {
   .checkout-progress {
     gap: 0.3em;
+    padding: 0.5em 2.2em;
     .progress-btn {
       font-size: 0.8em;
       span {
-        width: 15px;
-        height: 15px;
+        width: 20px;
+        height: 20px;
       }
     }
     hr {
@@ -695,7 +819,8 @@ aside {
       }
     }
   }
-  .addons-card-check {
+  .addons-card-check,
+  .country-option-check {
     width: 100% !important;
   }
   #locationFilterDialog {

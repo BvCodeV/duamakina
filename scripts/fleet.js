@@ -1,3 +1,5 @@
+import { cacheGet, cacheSet } from '/scripts/cache.js';
+
 const filterBtn = document.getElementById("filterBtn");
 const automaticPopular = document.getElementById("automaticFilterBox");
 const milagePopular = document.getElementById("milageFilterBox");
@@ -27,7 +29,7 @@ const pickupTimeTxt = document.getElementById("pickupTimeTxt");
 const dropoffTimeTxt = document.getElementById("dropoffTimeTxt");
 const pickupDateMobile = document.getElementById('pickupDateMobile');
 const dropoffDateMobile = document.getElementById('dropoffDateMobile');
-const headerLoc = document.getElementById('headerLoc')
+const headerLoc = document.getElementById('headerLoc');
 
 const minR = document.getElementById("min-range");
 const maxR = document.getElementById("max-range");
@@ -103,13 +105,13 @@ function buildCarCard(car) {
   const trunkLitres = car.trunk_litres ?? "—";
 
   return `
-    <div class="car-card">
+    <div class="car-card" data-car-id="${car.id}">
       <img src="${imageUrl}" alt="${imageAlt}" class="car-image" loading="lazy" draggable="false">
       <div class="card-body">
         <h2 class="car-title">${car.brand} ${car.model}</h2>
         <ul class="car-features">
           <li><img src="/assets/icons/person.svg" alt="person icon" loading="lazy" draggable="false"> ${car.seats} Seats</li>
-          <li><img src="/assets/icons/bag.svg" alt="bag icon" loading="lazy" draggable="false"> ${trunkLitres}L Trunk</li>
+          <li><img src="/assets/icons/bag.svg" alt="bag icon" loading="lazy" draggable="false"> ${trunkLitres} Bags</li>
           <li><img src="/assets/icons/door.svg" alt="door icon" loading="lazy" draggable="false"> ${car.doors} Doors</li>
           <li><img src="/assets/icons/gears.svg" alt="gears icon" loading="lazy" draggable="false"> ${transmission}</li>
           ${car.has_ac ? `<li><img src="/assets/icons/ac.svg" alt="ac icon" loading="lazy" draggable="false"> A/C</li>` : ""}
@@ -228,6 +230,39 @@ function applyFilters(cars) {
 
 let allCars = [];
 
+function attachPrefetchListeners() {
+  container.querySelectorAll('.car-card[data-car-id]').forEach(card => {
+    const carId = card.dataset.carId;
+    const link = card.querySelector('a.rent-now-btn');
+    if (!link) return;
+
+    link.addEventListener('mouseenter', async () => {
+      if (cacheGet(`car_${carId}`)) return;
+
+      const pageLink = document.createElement('link');
+      pageLink.rel = 'prefetch';
+      pageLink.href = `/pages/car.html?id=${carId}`;
+      document.head.appendChild(pageLink);
+
+      const { data: car } = await supabaseClient
+        .from('cars')
+        .select(`
+          id, brand, model, year, category, color,
+          fuel, transmission, seats, doors, has_ac, trunk_litres,
+          mileage_unlimited, mileage_limit_km, extra_km_fee,
+          deposit_amount, ferry_allowed, cross_border_allowed, ferry_fee,
+          insurance_type, insurance_notes,
+          car_pricing ( price_per_day, valid_from, valid_to ),
+          car_photos  ( storage_path, alt_text, is_primary, sort_order )
+        `)
+        .eq('id', carId)
+        .single();
+
+      if (car) cacheSet(`car_${carId}`, car);
+    }, { once: true });
+  });
+}
+
 function renderCars(sortValue) {
   if (!container) return;
   const sort = sortValue ?? document.getElementById("carSort")?.value ?? "popular";
@@ -240,8 +275,7 @@ function renderCars(sortValue) {
   if (sorted.length === 0) {
     container.innerHTML = `
     <div class="match-con">
-      <img src="/assets/icons/match.svg" alt="match icon" loading="lazy" draggable="false">
-      <h1 style="color: var(--color-primary)">No cars match your filters.</h1>
+      <h1 style="color: var(--color-txt-secondary)">No cars match your filters.</h1>
       <p>Please reset your filters.</p>
     </div>
     `;
@@ -256,6 +290,8 @@ function renderCars(sortValue) {
   });
   container.innerHTML = "";
   container.appendChild(fragment);
+
+  attachPrefetchListeners();
 }
 
 const pillsConfig = [
@@ -569,27 +605,21 @@ const SKELETON_HTML = Array(4).fill(`
   </div>
 `).join("");
 
-const CACHE_KEY = "fleet_cars_v1";
-const CACHE_TTL = 90 * 1000;
+const FLEET_CACHE_KEY = "fleet_cars_v1";
 
 async function loadCars() {
   if (!container) return;
 
   container.innerHTML = SKELETON_HTML;
 
-  try {
-    const cached = localStorage.getItem(CACHE_KEY);
-    if (cached) {
-      const { data: cachedCars, ts } = JSON.parse(cached);
-      if (Date.now() - ts < CACHE_TTL) {
-        allCars = cachedCars;
-        if (carNum) carNum.textContent = cachedCars.length;
-        if (totalCarNum) totalCarNum.textContent = cachedCars.length;
-        renderCars(document.getElementById("carSort")?.value ?? "popular");
-        return;
-      }
-    }
-  } catch (_) {}
+  const cached = cacheGet(FLEET_CACHE_KEY);
+  if (cached) {
+    allCars = cached;
+    if (carNum) carNum.textContent = cached.length;
+    if (totalCarNum) totalCarNum.textContent = cached.length;
+    renderCars(document.getElementById("carSort")?.value ?? "popular");
+    return;
+  }
 
   const { data: cars, error } = await supabaseClient
     .from("cars")
@@ -627,14 +657,13 @@ async function loadCars() {
     return;
   }
 
-  try {
-    localStorage.setItem(CACHE_KEY, JSON.stringify({ data: cars, ts: Date.now() }));
-  } catch (_) {}
+  cacheSet(FLEET_CACHE_KEY, cars);
 
   allCars = cars;
   if (carNum) carNum.textContent = cars.length;
   if (totalCarNum) totalCarNum.textContent = cars.length;
   renderCars(document.getElementById("carSort")?.value ?? "popular");
+  fetchAllRates();
 }
 
 let flatpickrLoaded = false;
