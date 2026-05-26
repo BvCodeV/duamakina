@@ -221,7 +221,7 @@ function updateFaqSection(car, youngDriverData) {
   });
 
   if (allowedCountriesCon) {
-    const permissions = car.car_cross_border_permissions ?? [];
+    const permissions = car.car_cross_border_permissions;
     if (permissions.length === 0) {
       allowedCountriesCon.style.display = "none";
       cardDesc.textContent = "No cross-border travel allowed for this car.";
@@ -392,8 +392,8 @@ async function loadCarDetails() {
 
   if (cached) {
     const youngDriverData = await loadYoungDriverSurcharges(carId);
-    updatePage(cached, youngDriverData);
     await loadCarExtras(carId);
+    updatePage(cached, youngDriverData);
     fetchAllRates();
     updateFinalPrice();
     return;
@@ -423,10 +423,8 @@ async function loadCarDetails() {
   cacheSet(`car_${carId}`, car);
 
   const youngDriverData = await loadYoungDriverSurcharges(carId);
-
-  updatePage(car, youngDriverData);
-
   await loadCarExtras(carId);
+  updatePage(car, youngDriverData);
   fetchAllRates();
   updateFinalPrice();
 }
