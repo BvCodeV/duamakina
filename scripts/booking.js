@@ -221,24 +221,29 @@ function updateFaqSection(car, youngDriverData) {
   });
 
   if (allowedCountriesCon) {
-    const permissions = car.car_cross_border_permissions;
-    if (permissions.length === 0) {
+    const permissions = car.car_cross_border_permissions ?? [];
+    const availableCountries = permissions
+      .map((p) => p.cross_border_countries)
+      .filter((country) => country && (country.is_active ?? true));
+
+    if (availableCountries.length === 0) {
       allowedCountriesCon.style.display = "none";
       cardDesc.textContent = "No cross-border travel allowed for this car.";
     } else {
-      allowedCountriesCon.innerHTML = permissions
-        .filter((p) => p.cross_border_countries?.is_active)
-        .map((p) => {
-          const safeId = `country_${p.cross_border_countries.country_code.replace(/[^a-z0-9]/gi, "_")}`;
+      allowedCountriesCon.style.display = "";
+      cardDesc.textContent = "Select the countries you plan to visit from the list below.";
+      allowedCountriesCon.innerHTML = availableCountries
+        .map((country) => {
+          const safeId = `country_${country.country_code.replace(/[^a-z0-9]/gi, "_")}`;
           return `
         <div class="country-option country-option-check">
           <input type="checkbox" id="${safeId}" class="countryCheck" name="allowedCountry"
-            data-name="${p.cross_border_countries.country_name}"
-            data-price="${p.cross_border_countries.fee}"
+            data-name="${country.country_name}"
+            data-price="${country.fee}"
           >
-          <label for="${safeId}">${p.cross_border_countries.country_code}</label>
-          <p>${p.cross_border_countries.country_name}</p>
-          <p class="country-fee"><span class="currency-sign">€</span><span class="currency-num" id="countryFee_${p.cross_border_countries.country_code}">${p.cross_border_countries.fee}</span>/day</p>
+          <label for="${safeId}">${country.country_code}</label>
+          <p>${country.country_name}</p>
+          <p class="country-fee"><span class="currency-sign">€</span><span class="currency-num" id="countryFee_${country.country_code}">${country.fee}</span>/day</p>
         </div>
         `;
         })
