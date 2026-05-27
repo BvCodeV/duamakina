@@ -208,7 +208,8 @@ function updateFaqSection(car, youngDriverData) {
   const depositEls = document.querySelectorAll(".deposit-amount");
   depositEls.forEach((el) => {
     if (car.deposit_amount > 0) {
-      el.textContent = parseFloat(car.deposit_amount);
+      el.dataset.basePrice = car.deposit_amount;
+      el.textContent = car.deposit_amount;
     } else if (car.deposit_amount === 0) {
       depositRule.textContent = "No card hold · No deposit required";
       depositRulePagh.textContent = "No deposit required";
@@ -259,9 +260,9 @@ function updateFaqSection(car, youngDriverData) {
     if (youngDriverData && youngDriverData.length > 0) {
       const sorted = [...youngDriverData].sort((a, b) => a.max_age - b.max_age);
       const youngest = sorted[0];
-      minAgeEl.textContent = youngest.max_age ?? 21;
+      minAgeEl.textContent = youngest.max_age ?? 18;
     } else {
-      minAgeEl.textContent = 21;
+      minAgeEl.textContent = 18;
     }
   }
 
@@ -271,9 +272,11 @@ function updateFaqSection(car, youngDriverData) {
       '[data-name*="driver" i], [data-name*="additional" i]',
     );
     if (additionalDriverExtra) {
-      additionalDriverEl.textContent = parseFloat(
-        additionalDriverExtra.dataset.price,
-      ).toFixed(2);
+      additionalDriverEl.textContent = (() => {
+        const price = parseFloat(additionalDriverExtra.dataset.price);
+        additionalDriverEl.dataset.basePrice = price;
+        additionalDriverEl.textContent = price;
+      })();
     }
   }
 
@@ -282,10 +285,13 @@ function updateFaqSection(car, youngDriverData) {
     const sorted = [...youngDriverData].sort((a, b) => a.max_age - b.max_age);
     const youngest = sorted[0];
     if (youngest.surcharge_flat != null) {
-      youngDriverEl.textContent = parseFloat(youngest.surcharge_flat).toFixed(2);
+      const surcharge = parseFloat(youngest.surcharge_flat).toFixed(2);
+      youngDriverEl.dataset.basePrice = surcharge;
+      youngDriverEl.textContent = surcharge;
     } else if (youngest.surcharge_pct != null) {
-      youngDriverEl.textContent =
-        parseFloat(youngest.surcharge_pct).toFixed(2) + "%";
+      const surcharge = ((youngest.surcharge_pct / 100) * pricePerDay).toFixed(2);
+      youngDriverEl.dataset.basePrice = surcharge;
+      youngDriverEl.textContent = surcharge;
     }
   }
 }
@@ -395,7 +401,8 @@ async function loadCarDetails() {
 
   const cached = cacheGet(`car_${carId}`);
 
-  if (cached) {
+
+  if (cached && cached.car_cross_border_permissions !== undefined) {
     const youngDriverData = await loadYoungDriverSurcharges(carId);
     await loadCarExtras(carId);
     updatePage(cached, youngDriverData);

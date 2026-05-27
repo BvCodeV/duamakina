@@ -341,6 +341,10 @@ async function loadCarDetails() {
   }
 
   populatePage(car);
+
+  // Cache basic car data immediately so other pages aren't left waiting
+  cacheSet(`car_${carId}`, car);
+
   const loadExtra = async () => {
     const { data: extra } = await supabaseClient
       .from('cars')
@@ -354,10 +358,10 @@ async function loadCarDetails() {
       .single();
 
     if (extra) {
-      // Merge extra into car so the cache is complete
+      // Merge and update cache so booking page gets the full picture
       const fullCar = { ...car, ...extra };
       populateExtraDetails(fullCar);
-      sessionStorage.setItem(cacheKey, JSON.stringify(fullCar));
+      cacheSet(`car_${carId}`, fullCar);
     }
   };
 
@@ -367,9 +371,6 @@ async function loadCarDetails() {
   } else {
     setTimeout(loadExtra, 300);
   }
-
-  const fullCar = { ...car, ...extra };
-  cacheSet(`car_${carId}`, fullCar);
 }
 
 async function handleShare() {
@@ -407,5 +408,4 @@ overviewBtn.addEventListener('click', () => changeInfo('overview'));
 faqBtn.addEventListener('click', () => changeInfo('faq'));
 document.getElementById('shareBtn').addEventListener('click', handleShare);
 
-// ─── Init (defer handles DOM-ready, no DOMContentLoaded needed) ───────────────
 loadCarDetails();

@@ -630,7 +630,10 @@ async function loadCars() {
       transmission, fuel, mileage_unlimited,
       deposit_amount, insurance_type, created_at,
       car_pricing ( price_per_day, valid_from, valid_to, is_special_offer ),
-      car_photos  ( storage_path, alt_text, is_primary )
+      car_photos  ( storage_path, alt_text, is_primary ),
+      car_cross_border_permissions (
+        cross_border_countries ( country_name, country_code, fee, is_active )
+      )
     `
     )
     .eq("is_active", true)
