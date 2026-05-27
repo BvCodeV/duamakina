@@ -16,6 +16,7 @@ const formPickupDate = document.getElementById("changeFormPickupDate");
 const formDropoffDate = document.getElementById("changeFormDropoffDate");
 const formPickupTime = document.getElementById("changeFormPickupTime");
 const formDropoffTime = document.getElementById("changeFormDropoffTime");
+const dropoffCheck = document.getElementById("dropoffCheck");
 const changeBtn = document.getElementById("changeBtn");
 const locationForm = document.getElementById("locationFilterDialog");
 const carName = document.getElementById("carName");
@@ -37,6 +38,29 @@ const addonProgressBtn = document.getElementById("addonProgressBtn");
 const detailsProgressBtn = document.getElementById("detailsProgressBtn");
 const carPricePerDay = document.getElementById("carPricePerDay");
 const cardDesc = document.getElementById("cardDesc");
+
+function updateLocationData() {
+  const updatedLocationData = {
+    pickupLoc: formPickupLoc.value,
+    dropoffLoc: formDropoffLoc.value,
+    pickupDate: formPickupDate.value,
+    dropoffDate: formDropoffDate.value,
+    pickupTime: formPickupTime.value,
+    dropoffTime: formDropoffTime.value,
+  };
+  if (dropoffCheck?.checked)
+    updatedLocationData.dropoffLoc = updatedLocationData.pickupLoc;
+  localStorage.setItem("locationData", JSON.stringify(updatedLocationData));
+  calcDays(updatedLocationData.pickupDate, updatedLocationData.dropoffDate);
+  displayData();
+  displayDate();
+  updateFinalPrice();
+  locationForm.hidePopover();
+  locationForm.removeAttribute?.("open");
+  locationForm.open = false;
+}
+
+window.updateLocationData = updateLocationData;
 
 let pricePerDay = 0;
 const EXTRA_ICON_MAP = {
@@ -104,7 +128,7 @@ function updateFinalPrice(currentPricePerDay = pricePerDay) {
     if (check.checked) finalPrice += parseFloat(check.dataset.price) * days;
   });
   getCountryChecks().forEach((check) => {
-    if (check.checked) finalPrice += parseFloat(check.dataset.price) * days;
+    if (check.checked) finalPrice += parseFloat(check.dataset.price);
   });
 
   finalAmount.dataset.basePrice = finalPrice;
@@ -152,19 +176,13 @@ function updatePriceSummary() {
       addonsCon.style.display = "flex";
       card?.classList.add("checked");
 
-      const countryPrice = parseFloat(check.dataset.price) * days;
+      const countryPrice = parseFloat(check.dataset.price);
       addonsCon.insertAdjacentHTML(
         "beforeend",
         `
         <div class="addon-card">
           <div class="addon-item items">
             <p class="addon-name">${check.getAttribute("data-name")}</p>
-            <div class="price-calculation">
-              <p><span class="currency-sign">€</span><span class="currency-num">${parseFloat(check.dataset.price)}</span></p>
-              X
-              <span class="dayNum">${days}</span>
-              days
-            </div>
           </div>
           <div class="price-item">
             <span class="currency-sign">€</span>
@@ -244,7 +262,7 @@ function updateFaqSection(car, youngDriverData) {
           >
           <label for="${safeId}">${country.country_code}</label>
           <p>${country.country_name}</p>
-          <p class="country-fee"><span class="currency-sign">€</span><span class="currency-num" id="countryFee_${country.country_code}">${country.fee}</span>/day</p>
+          <p class="country-fee"><span class="currency-sign">€</span><span class="currency-num" id="countryFee_${country.country_code}">${country.fee}</span></p>
         </div>
         `;
         })
@@ -406,7 +424,7 @@ async function loadCarDetails() {
     const youngDriverData = await loadYoungDriverSurcharges(carId);
     await loadCarExtras(carId);
     updatePage(cached, youngDriverData);
-    fetchAllRates();
+    window.fetchAllRates?.();
     updateFinalPrice();
     return;
   }
@@ -437,7 +455,7 @@ async function loadCarDetails() {
   const youngDriverData = await loadYoungDriverSurcharges(carId);
   await loadCarExtras(carId);
   updatePage(car, youngDriverData);
-  fetchAllRates();
+  window.fetchAllRates?.();
   updateFinalPrice();
 }
 
@@ -501,28 +519,11 @@ carPageProgressBtn.addEventListener("click", () => {
   window.location.href = `/pages/car.html?id=${getCarIdFromUrl()}`;
 });
 
-function updateLocationData() {
-  const updatedLocationData = {
-    pickupLoc: formPickupLoc.value,
-    dropoffLoc: formDropoffLoc.value,
-    pickupDate: formPickupDate.value,
-    dropoffDate: formDropoffDate.value,
-    pickupTime: formPickupTime.value,
-    dropoffTime: formDropoffTime.value,
-  };
-  if (dropoffCheck.checked)
-    updatedLocationData.dropoffLoc = updatedLocationData.pickupLoc;
-  localStorage.setItem("locationData", JSON.stringify(updatedLocationData));
-  calcDays(updatedLocationData.pickupDate, updatedLocationData.dropoffDate);
-  displayData();
-  displayDate();
-  updateAddons();
-  updateFinalPrice();
-  locationForm.hidePopover();
-}
-
-document.getElementById("closeDialog").onclick = () =>
-  locationForm.hidePopover();
+document.getElementById("closeDialog").onclick = () => {
+    locationForm.hidePopover();
+    locationForm.removeAttribute?.("open");
+    locationForm.open = false;
+};
 
 loadCarDetails();
 displayData();

@@ -674,6 +674,7 @@ section {
             left: 0.5rem;
             width: 1rem;
             height: 1rem;
+            z-index: 2;
           }
 
           input { 
@@ -802,6 +803,19 @@ section {
   gap: 1em;
   hr { display: none;}
 
+  .make-filter,
+  .brand-filter  {
+     input {
+      background-color: transparent;
+      border: 1px solid var(--color-border);
+      border-radius: 20px;
+      outline: none;
+      padding: 0.5em 1em;
+      font-size: 0.9rem;
+      color: var(--color-txt-primary);
+    }
+  }
+
   div {
     display: flex;
     flex-direction: column;
@@ -888,7 +902,7 @@ section {
 
 .mobile-advanced-filters { display: none; }
 
-@media screen and (max-width: 1440px) {
+@media screen and (max-width: 1600px) {
   main {
     padding: 0 1em;
   }
@@ -905,12 +919,14 @@ section {
     }
   }
   .car-card {
+    flex: 0 0 1fr !important;
+    width: 100% !important;
     height: fit-content;
     gap: 1em;
     width: fit-content;
     .car-image {
       height: 12em;
-      width: 16em;
+      width: 30%;
     }
     .card-body {
       .car-amenities {

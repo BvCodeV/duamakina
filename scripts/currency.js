@@ -40,5 +40,6 @@ window.addEventListener('partialsLoaded', () => {
     window.updatePrice(e.target.value);
   });
 
+  window.fetchAllRates = fetchAllRates;
   fetchAllRates();
 });

@@ -49,6 +49,7 @@ function displayLocationDataSearch() {
   pickupDateMobile.textContent = locationData.dropoffDate;
   headerLoc.textContent = locationData.pickupLoc;
   dayTxt.textContent = days;
+  
 }
 displayLocationDataSearch();
 
@@ -81,7 +82,7 @@ function capitalize(str) {
 }
 
 function normalizeInsuranceValue(value) {
-  if (!value) return "none";
+  if (!value) return null;
   const normalized = value.toString().trim().toLowerCase();
   if (normalized === "full") return "premium";
   if (normalized === "third-party" || normalized === "third party" || normalized === "thirdparty") return "basic";
@@ -169,16 +170,43 @@ const activeFilters = {
   freeCancel: false,
   special: false,
   brand: "all",
+  make: "all",
   year: "any",
   transmission: [],
-  fuel: null,
-  seating: null,
+  fuel: [],
+  seating: [],
+  luggage: null,
   deposit: null,
   insurance: null,
+  driverExperience: null,
   minPrice: 0,
-  maxPrice: 1000,
+  maxPrice: 200,
   carType: null,
 };
+
+function getCarMinDriverAge(car) {
+  const surchargeData = car.young_driver_surcharges;
+  if (!Array.isArray(surchargeData) || surchargeData.length === 0) return 18;
+  const ages = surchargeData
+    .map((row) => parseInt(row.max_age, 10))
+    .filter((age) => !Number.isNaN(age));
+  return ages.length === 0 ? 18 : Math.min(...ages);
+}
+
+function carMatchesDriverExperience(car) {
+  if (!activeFilters.driverExperience) return true;
+  const minAge = getCarMinDriverAge(car);
+  switch (activeFilters.driverExperience) {
+    case "under21":
+      return minAge <= 20;
+    case "21-24":
+      return minAge <= 24;
+    case "over25":
+      return true;
+    default:
+      return true;
+  }
+}
 
 function applyFilters(cars) {
   return cars.filter((car) => {
@@ -191,6 +219,7 @@ function applyFilters(cars) {
     if (activeFilters.seats && car.seats < 4) return false;
     if (activeFilters.electric && car.fuel !== "electric") return false;
     if (activeFilters.brand !== "all" && car.brand !== activeFilters.brand) return false;
+    if (activeFilters.make !== "all" && car.model !== activeFilters.make) return false;
 
     if (activeFilters.year !== "any") {
       if (car.year < parseInt(activeFilters.year)) return false;
@@ -200,14 +229,19 @@ function applyFilters(cars) {
       if (!activeFilters.transmission.includes(car.transmission)) return false;
     }
 
-    if (activeFilters.fuel) {
-      const fuelMap = { petrol: "gasoline" };
-      const mapped = fuelMap[activeFilters.fuel] ?? activeFilters.fuel;
-      if (car.fuel !== mapped) return false;
+    if (activeFilters.fuel.length > 0) {
+      if (!activeFilters.fuel.includes(car.fuel)) return false;
     }
 
-    if (activeFilters.seating) {
-      if (car.seats < parseInt(activeFilters.seating)) return false;
+    if (activeFilters.seating.length > 0) {
+      if (!activeFilters.seating.map(s => parseInt(s)).includes(car.seats)) return false;
+    }
+
+    if (activeFilters.luggage) {
+      const trunk = car.trunk_litres ?? 0;
+      if (activeFilters.luggage === "1-2" && trunk > 200) return false;
+      if (activeFilters.luggage === "3-4" && (trunk <= 200 || trunk > 400)) return false;
+      if (activeFilters.luggage === "5-6" && trunk <= 400) return false;
     }
 
     if (activeFilters.deposit) {
@@ -221,6 +255,7 @@ function applyFilters(cars) {
       if (selectedInsurance !== carInsurance) return false;
     }
 
+    if (!carMatchesDriverExperience(car)) return false;
     if (price < activeFilters.minPrice || price > activeFilters.maxPrice) return false;
     if (activeFilters.carType && activeFilters.carType !== "all" && car.category !== activeFilters.carType) return false;
 
@@ -304,28 +339,64 @@ const pillsConfig = [
   { checkbox: specialPopular,    label: "Special Offers",    key: "special"    },
 ];
 
+const fuelDisplayNames = {
+  gasoline: "Petrol", diesel: "Diesel", electric: "Electric",
+  hybrid: "Hybrid", "plug-in hybrid": "Plug-in Hybrid", lpg: "LPG",
+};
+
 const advancedPillDefs = [
   {
     key: "brand",
     getLabel: () => activeFilters.brand !== "all" ? activeFilters.brand : null,
     reset: () => {
       activeFilters.brand = "all";
-      const el = document.getElementById("brandFilter");
+      const hidden = document.getElementById("brandFilter");
+      if (hidden) hidden.value = "all";
+      const search = document.getElementById("brandSearch");
+      if (search) search.value = "";
+      updateMakeFilter("all");
+    },
+  },
+  {
+    key: "make",
+    getLabel: () => activeFilters.make !== "all" ? activeFilters.make : null,
+    reset: () => {
+      activeFilters.make = "all";
+      const el = document.getElementById("makeFilter");
       if (el) el.value = "all";
     },
   },
   {
     key: "year",
-    getLabel: () => activeFilters.year !== "any" ? activeFilters.year : null,
+    getLabel: () => {
+      if (!activeFilters.year || activeFilters.year === "any") return null;
+      return `${parseInt(activeFilters.year)} or newer`;
+    },
     reset: () => {
       activeFilters.year = "any";
       uncheckRadioGroup("year");
     },
   },
   {
+    key: "driverExperience",
+    getLabel: () => {
+      if (!activeFilters.driverExperience) return null;
+      const labels = {
+        under21: "Under 21",
+        "21-24": "21–24",
+        over25: "Over 25",
+      };
+      return labels[activeFilters.driverExperience] ?? null;
+    },
+    reset: () => {
+      activeFilters.driverExperience = null;
+      uncheckRadioGroup("driverExperience");
+    },
+  },
+  {
     key: "transmission",
     getLabel: () => activeFilters.transmission.length > 0
-      ? `${activeFilters.transmission.join(", ")}`
+      ? activeFilters.transmission.map(t => capitalize(t)).join(", ")
       : null,
     reset: () => {
       activeFilters.transmission = [];
@@ -334,23 +405,42 @@ const advancedPillDefs = [
   },
   {
     key: "fuel",
-    getLabel: () => activeFilters.fuel ? activeFilters.fuel : null,
+    getLabel: () => activeFilters.fuel.length > 0
+      ? activeFilters.fuel.map(f => fuelDisplayNames[f] ?? capitalize(f)).join(", ")
+      : null,
     reset: () => {
-      activeFilters.fuel = null;
-      uncheckRadioGroup("fuel");
+      activeFilters.fuel = [];
+      uncheckCheckboxGroup("fuel");
     },
   },
   {
     key: "seating",
-    getLabel: () => activeFilters.seating ? activeFilters.seating : null,
+    getLabel: () => activeFilters.seating.length > 0
+      ? activeFilters.seating.map(s => `${s} Seats`).join(", ")
+      : null,
     reset: () => {
-      activeFilters.seating = null;
-      uncheckRadioGroup("seats");
+      activeFilters.seating = [];
+      uncheckCheckboxGroup("seats");
+    },
+  },
+  {
+    key: "luggage",
+    getLabel: () => {
+      if (!activeFilters.luggage) return null;
+      return `${activeFilters.luggage} Bags`;
+    },
+    reset: () => {
+      activeFilters.luggage = null;
+      uncheckRadioGroup("luggage");
     },
   },
   {
     key: "deposit",
-    getLabel: () => activeFilters.deposit ? activeFilters.deposit : null,
+    getLabel: () => {
+      if (!activeFilters.deposit) return null;
+      const labels = { none: "No Deposit", "500": "< €500", "750": "< €750", "1000": "< €1,000" };
+      return labels[activeFilters.deposit] ?? `< €${activeFilters.deposit}`;
+    },
     reset: () => {
       activeFilters.deposit = null;
       uncheckRadioGroup("deposit");
@@ -367,14 +457,14 @@ const advancedPillDefs = [
   {
     key: "price",
     getLabel: () =>
-      activeFilters.minPrice !== 0 || activeFilters.maxPrice !== 1000
+      activeFilters.minPrice !== 0 || activeFilters.maxPrice !== 200
         ? `Price: €${activeFilters.minPrice}–€${activeFilters.maxPrice}`
         : null,
     reset: () => {
       activeFilters.minPrice = 0;
-      activeFilters.maxPrice = 1000;
+      activeFilters.maxPrice = 200;
       if (minR) minR.value = 0;
-      if (maxR) maxR.value = 1000;
+      if (maxR) maxR.value = 200;
       updatePriceRange.call(minR);
     },
   },
@@ -492,18 +582,23 @@ function readAdvancedFilters() {
     document.querySelector(".mobile-advanced-filters .main-dialog");
 
   activeFilters.brand = document.getElementById("brandFilter")?.value ?? "all";
-  activeFilters.year = form?.querySelector('input[name="year"]:checked')?.value ?? "any";
-  activeFilters.fuel = form?.querySelector('input[name="fuel"]:checked')?.value ?? null;
-  activeFilters.seating = form?.querySelector('input[name="seats"]:checked')?.value ?? null;
-  activeFilters.deposit = form?.querySelector('input[name="deposit"]:checked')?.value ?? null;
+  activeFilters.make  = document.getElementById("makeFilter")?.value ?? "all";
+  activeFilters.year  = form?.querySelector('input[name="year"]:checked')?.value ?? "any";
+  activeFilters.driverExperience = form?.querySelector('input[name="driverExperience"]:checked')?.value ?? null;
+  activeFilters.luggage  = form?.querySelector('input[name="luggage"]:checked')?.value ?? null;
+  activeFilters.deposit  = form?.querySelector('input[name="deposit"]:checked')?.value ?? null;
   activeFilters.insurance = normalizeInsuranceValue(form?.querySelector('input[name="insurance"]:checked')?.value ?? null);
   activeFilters.minPrice = parseInt(minR?.value ?? 0);
-  activeFilters.maxPrice = parseInt(maxR?.value ?? 1000);
+  activeFilters.maxPrice = parseInt(maxR?.value ?? 200);
 
-  const checkedTransmissions = [
-    ...(form?.querySelectorAll('input[name="transmission"]:checked') ?? []),
-  ];
-  activeFilters.transmission = checkedTransmissions.map((i) => i.value);
+  const checkedTransmissions = [...(form?.querySelectorAll('input[name="transmission"]:checked') ?? [])];
+  activeFilters.transmission = checkedTransmissions.map(i => i.value);
+
+  const checkedFuels = [...(form?.querySelectorAll('input[name="fuel"]:checked') ?? [])];
+  activeFilters.fuel = checkedFuels.map(i => i.value);
+
+  const checkedSeats = [...(form?.querySelectorAll('input[name="seats"]:checked') ?? [])];
+  activeFilters.seating = checkedSeats.map(i => i.value);
 }
 
 document.getElementById("submitFiltersBtn")?.addEventListener("click", (e) => {
@@ -530,21 +625,33 @@ function resetAllFilters() {
   pillsCon.querySelector(".clear-all-btn")?.remove();
 
   activeFilters.brand = "all";
+  activeFilters.make = "all";
   activeFilters.year = "any";
   activeFilters.transmission = [];
-  activeFilters.fuel = null;
-  activeFilters.seating = null;
+  activeFilters.fuel = [];
+  activeFilters.seating = [];
+  activeFilters.luggage = null;
   activeFilters.deposit = null;
   activeFilters.insurance = null;
+  activeFilters.driverExperience = null;
   activeFilters.minPrice = 0;
-  activeFilters.maxPrice = 1000;
+  activeFilters.maxPrice = 200;
   activeFilters.carType = "all";
+
+  // Reset brand + make search UI
+  const brandSearch = document.getElementById("brandSearch");
+  const brandHidden  = document.getElementById("brandFilter");
+  if (brandSearch) brandSearch.value = "";
+  if (brandHidden)  brandHidden.value = "all";
+  if (makeSearchInput) makeSearchInput.value = "";
+  if (makeFilterHidden) makeFilterHidden.value = "all";
+  updateMakeFilter("all");
 
   const activeForm = getActiveForm();
   if (activeForm?.reset) activeForm.reset();
 
   if (minR) minR.value = 0;
-  if (maxR) maxR.value = 1000;
+  if (maxR) maxR.value = 200;
   if (minR) updatePriceRange.call(minR);
 
   if (activeCarType) {
@@ -606,6 +713,104 @@ const SKELETON_HTML = Array(4).fill(`
 `).join("");
 
 const FLEET_CACHE_KEY = "fleet_cars_v1";
+const brandSearchInput  = document.getElementById("brandSearch");
+const brandFilterHidden = document.getElementById("brandFilter");
+const makeSearchInput   = document.getElementById("makeSearch");
+const makeFilterHidden  = document.getElementById("makeFilter");
+let brandListAll = [];
+
+function populateBrandDatalist(brands) {
+  brandListAll = brands;
+  const dl = document.getElementById("brandDatalist");
+  if (dl) dl.innerHTML = brands.map(b => `<option value="${b}">`).join("");
+}
+
+function updateMakeDatalist(brand) {
+  const dl = document.getElementById("makeDatalist");
+  if (!dl) return;
+  const models = (brand === "all" || !brand)
+    ? [...new Set(allCars.map(c => c.model).filter(Boolean))].sort()
+    : [...new Set(allCars.filter(c => c.brand === brand).map(c => c.model))].sort();
+  dl.innerHTML = models.map(m => `<option value="${m}">`).join("");
+}
+
+function matchDatalist(id, val) {
+  const dl = document.getElementById(id);
+  if (!dl) return null;
+  return [...dl.options].find(o => o.value.toLowerCase() === val.toLowerCase())?.value ?? null;
+}
+
+brandSearchInput?.addEventListener("change", () => {
+  const val = brandSearchInput.value.trim();
+  const matched = val ? matchDatalist("brandDatalist", val) : null;
+
+  if (val && !matched) { brandSearchInput.value = ""; }
+
+  const newBrand = matched ?? "all";
+  brandFilterHidden.value = newBrand;
+
+  if (activeFilters.brand !== newBrand) {
+    makeSearchInput.value = "";
+    makeFilterHidden.value = "all";
+    activeFilters.make = "all";
+    updateMakeDatalist(newBrand);
+  }
+  activeFilters.brand = newBrand;
+});
+
+// Clearing the brand field live (user deletes text)
+brandSearchInput?.addEventListener("input", () => {
+  if (brandSearchInput.value.trim() === "") {
+    brandFilterHidden.value = "all";
+    if (activeFilters.brand !== "all") {
+      makeSearchInput.value = "";
+      makeFilterHidden.value = "all";
+      activeFilters.make = "all";
+      updateMakeDatalist("all");
+    }
+    activeFilters.brand = "all";
+  }
+});
+
+makeSearchInput?.addEventListener("change", () => {
+  const val = makeSearchInput.value.trim();
+  const matched = val ? matchDatalist("makeDatalist", val) : null;
+
+  if (val && !matched) { makeSearchInput.value = ""; }
+
+  makeFilterHidden.value = matched ?? "all";
+  activeFilters.make = matched ?? "all";
+});
+
+function updateMakeFilter(brand) {
+  makeSearchInput.value = "";
+  makeFilterHidden.value = "all";
+  activeFilters.make = "all";
+  updateMakeDatalist(brand);
+}
+
+function populateFiltersFromData(cars) {
+  populateBrandDatalist([...new Set(cars.map(c => c.brand).filter(Boolean))].sort());
+
+  updateMakeDatalist("all");
+
+  const dbFuels = [...new Set(cars.map(c => c.fuel).filter(Boolean))].sort();
+  const fuelList = document.getElementById("fuelFilterList");
+  if (fuelList) {
+    fuelList.innerHTML = dbFuels.map(f => {
+      const label = fuelDisplayNames[f] ?? capitalize(f);
+      return `<li class="checkbox-btn"><input type="checkbox" name="fuel" id="fuel_${f}" value="${f}"><label for="fuel_${f}">${label}</label></li>`;
+    }).join("");
+  }
+
+  const dbSeats = [...new Set(cars.map(c => c.seats).filter(Boolean))].sort((a, b) => a - b);
+  const seatList = document.getElementById("seatFilterList");
+  if (seatList) {
+    seatList.innerHTML = dbSeats.map(s =>
+      `<li class="checkbox-btn"><input type="checkbox" name="seats" id="seat_${s}" value="${s}"><label for="seat_${s}">${s} Seats</label></li>`
+    ).join("");
+  }
+}
 
 async function loadCars() {
   if (!container) return;
@@ -617,6 +822,7 @@ async function loadCars() {
     allCars = cached;
     if (carNum) carNum.textContent = cached.length;
     if (totalCarNum) totalCarNum.textContent = cached.length;
+    populateFiltersFromData(cached);
     renderCars(document.getElementById("carSort")?.value ?? "popular");
     return;
   }
@@ -631,6 +837,7 @@ async function loadCars() {
       deposit_amount, insurance_type, created_at,
       car_pricing ( price_per_day, valid_from, valid_to, is_special_offer ),
       car_photos  ( storage_path, alt_text, is_primary ),
+      young_driver_surcharges ( max_age ),
       car_cross_border_permissions (
         cross_border_countries ( country_name, country_code, fee, is_active )
       )
@@ -665,8 +872,9 @@ async function loadCars() {
   allCars = cars;
   if (carNum) carNum.textContent = cars.length;
   if (totalCarNum) totalCarNum.textContent = cars.length;
+  populateFiltersFromData(cars);
   renderCars(document.getElementById("carSort")?.value ?? "popular");
-  fetchAllRates();
+  window.fetchAllRates?.();
 }
 
 let flatpickrLoaded = false;
@@ -717,7 +925,10 @@ function updateLocationData() {
   calcDays(newFilter.pickupDate, newFilter.dropoffDate);
   displayLocationDataSearch();
   locationDialog.hidePopover();
+  locationDialog.removeAttribute?.("open");
+  locationDialog.open = false;
 }
+window.updateLocationData = updateLocationData;
 
 document.getElementById("closeDialog").onclick = () => locationDialog.hidePopover();
 

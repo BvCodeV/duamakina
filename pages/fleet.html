@@ -292,25 +292,16 @@
     </div>
     <form class="main-dialog">
       <div class="brand-filter filter-con">
-        <p>Vehicle Brand/Make</p>
-        <select name="brand" id="brandFilter">
-          <option value="all">All Brands</option>
-          <option value="Mercedes-Benz">Mercedes-Benz</option>
-          <option value="Volkswagen">Volkswagen</option>
-          <option value="Ford">Ford</option>
-          <option value="Opel">Opel</option>
-          <option value="Audi">Audi</option>
-          <option value="Fiat">Fiat</option>
-          <option value="Toyota">Toyota</option>
-          <option value="BMW">BMW</option>
-          <option value="Renault">Renault</option>
-          <option value="Peugeot">Peugeot</option>
-          <option value="Hyundai">Hyundai</option>
-          <option value="Kia">Kia</option>
-          <option value="Dacia">Dacia</option>
-          <option value="Nissan">Nissan</option>
-          <option value="Skoda">Skoda</option>
-        </select>
+        <p>Vehicle Brand</p>
+        <input type="text" id="brandSearch" list="brandDatalist" placeholder="All Brands" autocomplete="off" spellcheck="false">
+        <datalist id="brandDatalist"></datalist>
+        <input type="hidden" id="brandFilter" value="all">
+      </div>
+      <div class="make-filter filter-con" id="makeFilterCon">
+        <p>Vehicle Model</p>
+        <input type="text" id="makeSearch" list="makeDatalist" placeholder="All Models" autocomplete="off" spellcheck="false">
+        <datalist id="makeDatalist"></datalist>
+        <input type="hidden" id="makeFilter" value="all">
       </div>
       <div class="main-filters">
         <div class="seperator">
@@ -366,22 +357,22 @@
           </div>
           <div class="fuel-filters filter-con">
             <p>Fuel Type</p>
-            <ul class="radio-btn-cons btn-cons">
-              <li class="radio-btn">
-                <input type="radio" name="fuel" id="petrol" value="petrol">
-                <label for="petrol">Petrol</label>
+            <ul class="checkbox-btn-cons btn-cons" id="fuelFilterList">
+              <li class="checkbox-btn">
+                <input type="checkbox" name="fuel" id="fuel_gasoline" value="gasoline">
+                <label for="fuel_gasoline">Petrol</label>
               </li>
-              <li class="radio-btn">
-                <input type="radio" name="fuel" id="diesel" value="diesel">
-                <label for="diesel">Diesel</label>
+              <li class="checkbox-btn">
+                <input type="checkbox" name="fuel" id="fuel_diesel" value="diesel">
+                <label for="fuel_diesel">Diesel</label>
               </li>
-              <li class="radio-btn">
-                <input type="radio" name="fuel" id="electric" value="electric">
-                <label for="electric">Electric</label>
+              <li class="checkbox-btn">
+                <input type="checkbox" name="fuel" id="fuel_electric" value="electric">
+                <label for="fuel_electric">Electric</label>
               </li>
-              <li class="radio-btn">
-                <input type="radio" name="fuel" id="hybrid" value="hybrid">
-                <label for="hybrid">Hybrid</label>
+              <li class="checkbox-btn">
+                <input type="checkbox" name="fuel" id="fuel_hybrid" value="hybrid">
+                <label for="fuel_hybrid">Hybrid</label>
               </li>
             </ul>
           </div>
@@ -424,25 +415,25 @@
           </div>
           <div class="seating-filters filter-con">
             <p>Seating Capacity</p>
-            <ul class="radio-btn-cons btn-cons">
-              <li class="radio-btn">
-                <input type="radio" name="seats" id="seat2" value="2">
+            <ul class="checkbox-btn-cons btn-cons" id="seatFilterList">
+              <li class="checkbox-btn">
+                <input type="checkbox" name="seats" id="seat2" value="2">
                 <label for="seat2">2 Seats</label>
               </li>
-              <li class="radio-btn">
-                <input type="radio" name="seats" id="seat4" value="4">
+              <li class="checkbox-btn">
+                <input type="checkbox" name="seats" id="seat4" value="4">
                 <label for="seat4">4 Seats</label>
               </li>
-              <li class="radio-btn">
-                <input type="radio" name="seats" id="seat5" value="5">
+              <li class="checkbox-btn">
+                <input type="checkbox" name="seats" id="seat5" value="5">
                 <label for="seat5">5 Seats</label>
               </li>
-              <li class="radio-btn">
-                <input type="radio" name="seats" id="seat7" value="7">
+              <li class="checkbox-btn">
+                <input type="checkbox" name="seats" id="seat7" value="7">
                 <label for="seat7">7 Seats</label>
               </li>
-              <li class="radio-btn">
-                <input type="radio" name="seats" id="seat9" value="9">
+              <li class="checkbox-btn">
+                <input type="checkbox" name="seats" id="seat9" value="9">
                 <label for="seat9">9 Seats</label>
               </li>
             </ul>

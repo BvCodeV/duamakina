@@ -425,7 +425,7 @@ aside {
   100% { background-position: -200% 0; }
 }
 
-@media screen and (max-width: 1500px) {
+@media screen and (max-width: 1600px) {
   main {
     margin: 1em;
   }
@@ -439,6 +439,7 @@ aside {
     padding: 1rem;
     margin: 20px 0;
   }
+  .car-info h1 {font-size: 2em !important;}
   section, aside {
     width: 100%;
   }

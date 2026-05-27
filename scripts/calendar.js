@@ -45,6 +45,8 @@ if (document.getElementById('driverLicense')) {
 
 function displayCalendarFleet() {
   const pickup = flatpickr('#changePickupDate', {
+    static: true,
+    appendTo: document.querySelector(".date-time-con"),
     mode: 'range',
     dateFormat: 'M j, Y',
     minDate: 'today',
