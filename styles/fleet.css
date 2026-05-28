@@ -168,14 +168,15 @@ main {
   flex-shrink: 0;
   position: sticky;
   right: 0;
-  background-color: transparent;
+  background-color: var(--color-bg-main);
+  padding: 0.3em 0.5em;
   border: none;
-
   color: var(--color-txt-secondary);
   font-size: 0.8rem;
   font-weight: 600;
   cursor: pointer;
   white-space: nowrap;
+  z-index: 1;
   transition: all 0.3s ease;
   &:hover {
       color: var(--color-txt-primary);
@@ -185,7 +186,7 @@ main {
 aside {
   background-color: var(--color-bg-surface);
   color: var(--color-txt-primary);
-  width: fit-content;
+  width: 20em;
   height: fit-content;
   border-radius: 30px;
   padding: 1em 2em;
@@ -223,6 +224,7 @@ aside {
     .price-filter {
       height: fit-content;
       width: 100%;
+      align-self: center;
       .track-container {
         position: relative;
         height: 10px;
@@ -348,6 +350,8 @@ section {
     .day-num {
       margin-left: auto;
       margin-right: 2em;
+      display: flex;
+      gap: 0.3em;
     }
   }
 }
@@ -365,27 +369,23 @@ section {
     align-items: center;
     justify-content: center;
     height: 14em;
-    img {
-      width: 5em;
-      height: 5em;
-    }
     h1 {
       color: var(--color-error);
       font-weight: 900;
-      font-size: 3em;
+      font-size: 1.7em;
     }
-    p {font-size: 1.2em;}
+    p {font-size: 1.2em; color: var(--color-txt-placeholder);}
   }
 }
 
 .car-card {
+  flex: 0 0 1fr;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1em;
   background-color: var(--color-bg-surface);
   border-radius: 40px;  
-  width: 100%;
   .car-image {
     height: 13em;
     width: 23em;
@@ -572,19 +572,15 @@ section {
     justify-content: space-between;
 
     button {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
+      color: var(--color-primary);
+      background-color: transparent;
       border: none;
-      background-color: var(--color-error);
-      color: var(--color-txt-inverse);
       font-weight: 700;
       font-size: 1em;
       text-align: center;
       cursor: pointer;
-      transition: transform 0.3s ease;
-      &:hover { transform: scale(1.05);}
-      &:active { transform: scale(0.95);}
+      transition: color 0.3s ease;
+      &:hover {color: var(--color-primary-hover);}
     }
   }
 
@@ -678,6 +674,7 @@ section {
             left: 0.5rem;
             width: 1rem;
             height: 1rem;
+            z-index: 2;
           }
 
           input { 
@@ -787,20 +784,15 @@ section {
     h1 { font-size: 1.5em;}
 
     button {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
+      color: var(--color-primary);
+      background-color: transparent;
       border: none;
-      background-color: var(--color-error);
-      color: var(--color-txt-inverse);
       font-weight: 700;
       font-size: 1em;
       text-align: center;
       cursor: pointer;
-      transition: transform 0.3s ease;
-
-      &:hover { transform: scale(1.05);}
-      &:active { transform: scale(0.95);}
+      transition: color 0.3s ease;
+      &:hover {color: var(--color-primary-hover);}
     }
   }
 }
@@ -810,6 +802,19 @@ section {
   flex-direction: column;
   gap: 1em;
   hr { display: none;}
+
+  .make-filter,
+  .brand-filter  {
+     input {
+      background-color: transparent;
+      border: 1px solid var(--color-border);
+      border-radius: 20px;
+      outline: none;
+      padding: 0.5em 1em;
+      font-size: 0.9rem;
+      color: var(--color-txt-primary);
+    }
+  }
 
   div {
     display: flex;
@@ -897,7 +902,7 @@ section {
 
 .mobile-advanced-filters { display: none; }
 
-@media screen and (max-width: 1440px) {
+@media screen and (max-width: 1600px) {
   main {
     padding: 0 1em;
   }
@@ -914,12 +919,14 @@ section {
     }
   }
   .car-card {
+    flex: 0 0 1fr !important;
+    width: 100% !important;
     height: fit-content;
     gap: 1em;
     width: fit-content;
     .car-image {
       height: 12em;
-      width: 16em;
+      width: 30%;
     }
     .card-body {
       .car-amenities {

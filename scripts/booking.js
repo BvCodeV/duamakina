@@ -1,3 +1,5 @@
+import { cacheGet, cacheSet } from '/scripts/cache.js';
+
 const dayNumber = document.querySelectorAll(".dayNum");
 const addonsCon = document.getElementById("addonCon");
 const carFinalPrice = document.getElementById("carFinalPrice");
@@ -14,6 +16,7 @@ const formPickupDate = document.getElementById("changeFormPickupDate");
 const formDropoffDate = document.getElementById("changeFormDropoffDate");
 const formPickupTime = document.getElementById("changeFormPickupTime");
 const formDropoffTime = document.getElementById("changeFormDropoffTime");
+const dropoffCheck = document.getElementById("dropoffCheck");
 const changeBtn = document.getElementById("changeBtn");
 const locationForm = document.getElementById("locationFilterDialog");
 const carName = document.getElementById("carName");
@@ -27,6 +30,37 @@ const infoPage = document.getElementById("infoPage");
 const bookingNxtBtn = document.getElementById("bookingNxtBtn");
 const formSendBtn = document.getElementById("formSendBtn");
 const addonsCardCon = document.getElementById("addonsCardCon");
+const depositRule = document.getElementById("depositRule");
+const depositRulePagh = document.getElementById("depositRulePagh");
+const allowedCountriesCon = document.getElementById("allowedCountriesCon");
+const carPageProgressBtn = document.getElementById("carPageProgressBtn");
+const addonProgressBtn = document.getElementById("addonProgressBtn");
+const detailsProgressBtn = document.getElementById("detailsProgressBtn");
+const carPricePerDay = document.getElementById("carPricePerDay");
+const cardDesc = document.getElementById("cardDesc");
+
+function updateLocationData() {
+  const updatedLocationData = {
+    pickupLoc: formPickupLoc.value,
+    dropoffLoc: formDropoffLoc.value,
+    pickupDate: formPickupDate.value,
+    dropoffDate: formDropoffDate.value,
+    pickupTime: formPickupTime.value,
+    dropoffTime: formDropoffTime.value,
+  };
+  if (dropoffCheck?.checked)
+    updatedLocationData.dropoffLoc = updatedLocationData.pickupLoc;
+  localStorage.setItem("locationData", JSON.stringify(updatedLocationData));
+  calcDays(updatedLocationData.pickupDate, updatedLocationData.dropoffDate);
+  displayData();
+  displayDate();
+  updateFinalPrice();
+  locationForm.hidePopover();
+  locationForm.removeAttribute?.("open");
+  locationForm.open = false;
+}
+
+window.updateLocationData = updateLocationData;
 
 let pricePerDay = 0;
 const EXTRA_ICON_MAP = {
@@ -62,6 +96,7 @@ const getCurrencySelect = () => document.getElementById("currencySelect").value;
 const triggerPriceUpdate = () => window.updatePrice?.(getCurrencySelect());
 
 const getAddonChecks = () => document.querySelectorAll(".addonCheck");
+const getCountryChecks = () => document.querySelectorAll(".countryCheck");
 
 function displayData() {
   const { locationData } = getStorageData();
@@ -92,13 +127,16 @@ function updateFinalPrice(currentPricePerDay = pricePerDay) {
   getAddonChecks().forEach((check) => {
     if (check.checked) finalPrice += parseFloat(check.dataset.price) * days;
   });
+  getCountryChecks().forEach((check) => {
+    if (check.checked) finalPrice += parseFloat(check.dataset.price);
+  });
 
   finalAmount.dataset.basePrice = finalPrice;
   finalAmount.textContent = finalPrice;
   triggerPriceUpdate();
 }
 
-function updateAddons() {
+function updatePriceSummary() {
   const { days } = getStorageData();
   addonsCon.innerHTML = "";
 
@@ -115,12 +153,40 @@ function updateAddons() {
         <div class="addon-card">
           <div class="addon-item items">
             <p class="addon-name">${check.getAttribute("data-name")}</p>
-            <span>X</span>
-            <p class="days"><span class="dayNum">${days}</span> days</p>
+            <div class="price-calculation">
+              <p><span class="currency-sign">€</span><span class="currency-num">${parseFloat(check.dataset.price)}</span></p>
+              X
+              <span class="dayNum">${days}</span>
+              days
+            </div>
           </div>
           <div class="price-item">
             <span class="currency-sign">€</span>
             <span class="currency-num">${addonPrice}</span>
+          </div>
+        </div>`,
+      );
+    } else {
+      card?.classList.remove("checked");
+    }
+  });
+  getCountryChecks().forEach((check) => {
+    const card = check.closest(".country-option-check");
+    if (check.checked) {
+      addonsCon.style.display = "flex";
+      card?.classList.add("checked");
+
+      const countryPrice = parseFloat(check.dataset.price);
+      addonsCon.insertAdjacentHTML(
+        "beforeend",
+        `
+        <div class="addon-card">
+          <div class="addon-item items">
+            <p class="addon-name">${check.getAttribute("data-name")}</p>
+          </div>
+          <div class="price-item">
+            <span class="currency-sign">€</span>
+            <span class="currency-num">${countryPrice}</span>
           </div>
         </div>`,
       );
@@ -157,23 +223,53 @@ function getPhotoUrl(storagePath) {
 }
 
 function updateFaqSection(car, youngDriverData) {
-  const depositEls = document.querySelectorAll(
-    '[id="depositAmount"], [id="depositAmount2"]',
-  );
+  const depositEls = document.querySelectorAll(".deposit-amount");
   depositEls.forEach((el) => {
-    el.textContent = car.deposit_amount ?? "100";
+    if (car.deposit_amount > 0) {
+      el.dataset.basePrice = car.deposit_amount;
+      el.textContent = car.deposit_amount;
+    } else if (car.deposit_amount === 0) {
+      depositRule.textContent = "No card hold · No deposit required";
+      depositRulePagh.textContent = "No deposit required";
+    } else if (car.deposit_amount == null) {
+      depositRule.textContent = "No card hold · No deposit required";
+      depositRulePagh.textContent = "No deposit required";
+    } else {
+      el.textContent = "No data";
+    }
   });
 
-  const allowedCountriesCon = document.getElementById("allowedCountriesCon");
   if (allowedCountriesCon) {
     const permissions = car.car_cross_border_permissions ?? [];
-    if (permissions.length === 0) {
-      allowedCountriesCon.innerHTML = "<li>None</li>";
+    const availableCountries = permissions
+      .map((p) => p.cross_border_countries)
+      .filter((country) => country && (country.is_active ?? true));
+
+    if (availableCountries.length === 0) {
+      allowedCountriesCon.style.display = "none";
+      cardDesc.textContent = "No cross-border travel allowed for this car.";
     } else {
-      allowedCountriesCon.innerHTML = permissions
-        .filter((p) => p.cross_border_countries?.is_active)
-        .map((p) => `<li>${p.cross_border_countries.country_code},</li>`)
+      allowedCountriesCon.style.display = "";
+      cardDesc.textContent = "Select the countries you plan to visit from the list below.";
+      allowedCountriesCon.innerHTML = availableCountries
+        .map((country) => {
+          const safeId = `country_${country.country_code.replace(/[^a-z0-9]/gi, "_")}`;
+          return `
+        <div class="country-option country-option-check">
+          <input type="checkbox" id="${safeId}" class="countryCheck" name="allowedCountry"
+            data-name="${country.country_name}"
+            data-price="${country.fee}"
+          >
+          <label for="${safeId}">${country.country_code}</label>
+          <p>${country.country_name}</p>
+          <p class="country-fee"><span class="currency-sign">€</span><span class="currency-num" id="countryFee_${country.country_code}">${country.fee}</span></p>
+        </div>
+        `;
+        })
         .join("");
+      getCountryChecks().forEach((check) =>
+        check.addEventListener("change", updatePriceSummary),
+      );
     }
   }
 
@@ -182,9 +278,9 @@ function updateFaqSection(car, youngDriverData) {
     if (youngDriverData && youngDriverData.length > 0) {
       const sorted = [...youngDriverData].sort((a, b) => a.max_age - b.max_age);
       const youngest = sorted[0];
-      minAgeEl.textContent = youngest.max_age ?? 21;
+      minAgeEl.textContent = youngest.max_age ?? 18;
     } else {
-      minAgeEl.textContent = 21;
+      minAgeEl.textContent = 18;
     }
   }
 
@@ -194,9 +290,11 @@ function updateFaqSection(car, youngDriverData) {
       '[data-name*="driver" i], [data-name*="additional" i]',
     );
     if (additionalDriverExtra) {
-      additionalDriverEl.textContent = parseFloat(
-        additionalDriverExtra.dataset.price,
-      ).toFixed(2);
+      additionalDriverEl.textContent = (() => {
+        const price = parseFloat(additionalDriverExtra.dataset.price);
+        additionalDriverEl.dataset.basePrice = price;
+        additionalDriverEl.textContent = price;
+      })();
     }
   }
 
@@ -205,12 +303,13 @@ function updateFaqSection(car, youngDriverData) {
     const sorted = [...youngDriverData].sort((a, b) => a.max_age - b.max_age);
     const youngest = sorted[0];
     if (youngest.surcharge_flat != null) {
-      youngDriverEl.textContent = parseFloat(youngest.surcharge_flat).toFixed(
-        2,
-      );
+      const surcharge = parseFloat(youngest.surcharge_flat).toFixed(2);
+      youngDriverEl.dataset.basePrice = surcharge;
+      youngDriverEl.textContent = surcharge;
     } else if (youngest.surcharge_pct != null) {
-      youngDriverEl.textContent =
-        parseFloat(youngest.surcharge_pct).toFixed(2) + "%";
+      const surcharge = ((youngest.surcharge_pct / 100) * pricePerDay).toFixed(2);
+      youngDriverEl.dataset.basePrice = surcharge;
+      youngDriverEl.textContent = surcharge;
     }
   }
 }
@@ -226,9 +325,13 @@ function updatePage(car, youngDriverData) {
 
   if (carName) carName.textContent = `${car.brand} ${car.model}`;
   if (carNamePrice) carNamePrice.textContent = `${car.brand} ${car.model}`;
-  if (carLuggage) carLuggage.textContent = `${car.trunk_litres}`;
-  if (carSeats) carSeats.textContent = `${car.seats}`;
+  if (carLuggage) carLuggage.textContent = `${car.trunk_litres} Bags`;
+  if (carSeats) carSeats.textContent = `${car.seats} Seats`;
   if (carTransmission) carTransmission.textContent = `${car.transmission}`;
+  if (carPricePerDay) {
+    carPricePerDay.dataset.basePrice = currentPricePerDay;
+    carPricePerDay.textContent = parseFloat(currentPricePerDay);
+  }
   if (mainImg) {
     mainImg.src = imageUrl;
     mainImg.alt = imageAlt;
@@ -268,7 +371,7 @@ function buildAddonCard(extra, priceOverride) {
     </div>
   `;
 
-  card.querySelector(".addonCheck").addEventListener("change", updateAddons);
+  card.querySelector(".addonCheck").addEventListener("change", updatePriceSummary);
 
   return card;
 }
@@ -288,10 +391,7 @@ async function loadCarExtras(carId) {
     )
     .eq("car_id", carId);
 
-  if (error || !data) {
-    console.error("Failed to load car extras:", error);
-    return;
-  }
+  if (error || !data) return;
 
   addonsCardCon.innerHTML = "";
 
@@ -317,6 +417,18 @@ async function loadCarDetails() {
   const carId = getCarIdFromUrl();
   if (!carId) return;
 
+  const cached = cacheGet(`car_${carId}`);
+
+
+  if (cached && cached.car_cross_border_permissions !== undefined) {
+    const youngDriverData = await loadYoungDriverSurcharges(carId);
+    await loadCarExtras(carId);
+    updatePage(cached, youngDriverData);
+    window.fetchAllRates?.();
+    updateFinalPrice();
+    return;
+  }
+
   const { data: car, error } = await supabaseClient
     .from("cars")
     .select(
@@ -338,20 +450,48 @@ async function loadCarDetails() {
 
   if (error || !car) return;
 
+  cacheSet(`car_${carId}`, car);
+
   const youngDriverData = await loadYoungDriverSurcharges(carId);
-
-  updatePage(car, youngDriverData);
-
   await loadCarExtras(carId);
-
+  updatePage(car, youngDriverData);
+  window.fetchAllRates?.();
   updateFinalPrice();
 }
 
+function checkOutProgress(pageBtn) {
+  addonProgressBtn?.classList.remove("progress-active", "progress-completed");
+  detailsProgressBtn?.classList.remove("progress-active", "progress-completed");
+  carPageProgressBtn?.classList.remove("progress-active", "progress-completed");
+
+  if (pageBtn === "addon") {
+    carPageProgressBtn?.classList.add("progress-completed");
+    addonProgressBtn?.classList.add("progress-active");
+    infoPage.style.display = "none";
+    addonPage.style.display = "flex";
+    bookingNxtBtn.style.display = "block";
+    formSendBtn.style.display = "none";
+  } else if (pageBtn === "info") {
+    carPageProgressBtn?.classList.add("progress-completed");
+    addonProgressBtn?.classList.add("progress-completed");
+    detailsProgressBtn?.classList.add("progress-active");
+    infoPage.style.display = "flex";
+    addonPage.style.display = "none";
+    bookingNxtBtn.style.display = "none";
+    formSendBtn.style.display = "block";
+  } else {
+    carPageProgressBtn?.classList.add("progress-completed");
+    addonProgressBtn?.classList.remove("progress-active", "progress-completed");
+    detailsProgressBtn?.classList.remove("progress-active", "progress-completed");
+    addonPage.style.display = "flex";
+    infoPage.style.display = "none";
+    bookingNxtBtn.style.display = "block";
+    formSendBtn.style.display = "none";
+  }
+}
+
 bookingNxtBtn.addEventListener("click", () => {
-  addonPage.style.display = "none";
-  infoPage.style.display = "flex";
-  bookingNxtBtn.style.display = "none";
-  formSendBtn.style.display = "block";
+  checkOutProgress("info");
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
@@ -375,29 +515,17 @@ changeBtn.onclick = () => {
   formDropoffTime.value = locationData.dropoffTime || "00:00";
 };
 
-function updateLocationData() {
-  const updatedLocationData = {
-    pickupLoc: formPickupLoc.value,
-    dropoffLoc: formDropoffLoc.value,
-    pickupDate: formPickupDate.value,
-    dropoffDate: formDropoffDate.value,
-    pickupTime: formPickupTime.value,
-    dropoffTime: formDropoffTime.value,
-  };
-  if (dropoffCheck.checked)
-    updatedLocationData.dropoffLoc = updatedLocationData.pickupLoc;
-  localStorage.setItem("locationData", JSON.stringify(updatedLocationData));
-  calcDays(updatedLocationData.pickupDate, updatedLocationData.dropoffDate);
-  displayData();
-  displayDate();
-  updateAddons();
-  updateFinalPrice();
-  locationForm.hidePopover();
-}
+carPageProgressBtn.addEventListener("click", () => {
+  window.location.href = `/pages/car.html?id=${getCarIdFromUrl()}`;
+});
 
-document.getElementById("closeDialog").onclick = () =>
-  locationForm.hidePopover();
-document.addEventListener("DOMContentLoaded", loadCarDetails);
+document.getElementById("closeDialog").onclick = () => {
+    locationForm.hidePopover();
+    locationForm.removeAttribute?.("open");
+    locationForm.open = false;
+};
+
+loadCarDetails();
 displayData();
 displayDate();
 updateFinalPrice();

@@ -14,6 +14,8 @@
   <link rel="alternate" hreflang="en" href="https://www.duamakina.com/pages/fleet.html">
   <link rel="alternate" hreflang="sq" href="https://www.duamakina.com/sq/pages/fleet.html">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <link rel="preconnect" href="https://https://jdhigikorvtxhslxudcs.supabase.co">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
   <link rel="stylesheet" href="/styles/global.css">
   <link rel="stylesheet" href="/styles/fleet.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
@@ -80,12 +82,12 @@
             <div class="track-container">
               <div class="track-bg"></div>
               <div class="track-fill" id="fill"></div>
-              <input type="range" class="range-input" id="min-range" min="0" max="1000" value="0" step="1">
-              <input type="range" class="range-input" id="max-range" min="0" max="1000" value="1000" step="1">
+              <input type="range" class="range-input" id="min-range" min="0" max="200" value="0" step="1">
+              <input type="range" class="range-input" id="max-range" min="0" max="200" value="200" step="1">
             </div>
             <div class="values">
               <p class="min-val"><span class="currency-sign">€</span> <span id="min-val" class="currency-num">0</span></p>
-              <p class="max-val"><span class="currency-sign">€</span> <span id="max-val" class="currency-num">1000</span></p>
+              <p class="max-val"><span class="currency-sign">€</span> <span id="max-val" class="currency-num">200</span></p>
             </div>
           </div>
           <ul class="suggested-filters desktop-only">
@@ -108,7 +110,7 @@
         <div class="section-body-info">
           <p class="car-count"><span id="carNumFilter">X</span> OF <span id="totalCars">X</span> VEHICLES</p>
           <div id="filterPillsCon"></div>
-          <p class="day-num desktop-only"><span id="dayNumFleet">X</span> DAYS</p>
+          <p class="day-num desktop-only"><span id="dayNumFleet">X</span>DAYS</p>
           <!-- <p class="dates-show mobile-only"><span id="pickupDateMobile">DD MM</span> &middot; <span id="droppoffDateMobile">DD MM</span> <span>Edit</span></p> -->
         </div>
         <div class="cars-card-con">
@@ -290,25 +292,16 @@
     </div>
     <form class="main-dialog">
       <div class="brand-filter filter-con">
-        <p>Vehicle Brand/Make</p>
-        <select name="brand" id="brandFilter">
-          <option value="all">All Brands</option>
-          <option value="Mercedes-Benz">Mercedes-Benz</option>
-          <option value="Volkswagen">Volkswagen</option>
-          <option value="Ford">Ford</option>
-          <option value="Opel">Opel</option>
-          <option value="Audi">Audi</option>
-          <option value="Fiat">Fiat</option>
-          <option value="Toyota">Toyota</option>
-          <option value="BMW">BMW</option>
-          <option value="Renault">Renault</option>
-          <option value="Peugeot">Peugeot</option>
-          <option value="Hyundai">Hyundai</option>
-          <option value="Kia">Kia</option>
-          <option value="Dacia">Dacia</option>
-          <option value="Nissan">Nissan</option>
-          <option value="Skoda">Skoda</option>
-        </select>
+        <p>Vehicle Brand</p>
+        <input type="text" id="brandSearch" list="brandDatalist" placeholder="All Brands" autocomplete="off" spellcheck="false">
+        <datalist id="brandDatalist"></datalist>
+        <input type="hidden" id="brandFilter" value="all">
+      </div>
+      <div class="make-filter filter-con" id="makeFilterCon">
+        <p>Vehicle Model</p>
+        <input type="text" id="makeSearch" list="makeDatalist" placeholder="All Models" autocomplete="off" spellcheck="false">
+        <datalist id="makeDatalist"></datalist>
+        <input type="hidden" id="makeFilter" value="all">
       </div>
       <div class="main-filters">
         <div class="seperator">
@@ -364,22 +357,22 @@
           </div>
           <div class="fuel-filters filter-con">
             <p>Fuel Type</p>
-            <ul class="radio-btn-cons btn-cons">
-              <li class="radio-btn">
-                <input type="radio" name="fuel" id="petrol" value="petrol">
-                <label for="petrol">Petrol</label>
+            <ul class="checkbox-btn-cons btn-cons" id="fuelFilterList">
+              <li class="checkbox-btn">
+                <input type="checkbox" name="fuel" id="fuel_gasoline" value="gasoline">
+                <label for="fuel_gasoline">Petrol</label>
               </li>
-              <li class="radio-btn">
-                <input type="radio" name="fuel" id="diesel" value="diesel">
-                <label for="diesel">Diesel</label>
+              <li class="checkbox-btn">
+                <input type="checkbox" name="fuel" id="fuel_diesel" value="diesel">
+                <label for="fuel_diesel">Diesel</label>
               </li>
-              <li class="radio-btn">
-                <input type="radio" name="fuel" id="electric" value="electric">
-                <label for="electric">Electric</label>
+              <li class="checkbox-btn">
+                <input type="checkbox" name="fuel" id="fuel_electric" value="electric">
+                <label for="fuel_electric">Electric</label>
               </li>
-              <li class="radio-btn">
-                <input type="radio" name="fuel" id="hybrid" value="hybrid">
-                <label for="hybrid">Hybrid</label>
+              <li class="checkbox-btn">
+                <input type="checkbox" name="fuel" id="fuel_hybrid" value="hybrid">
+                <label for="fuel_hybrid">Hybrid</label>
               </li>
             </ul>
           </div>
@@ -422,25 +415,25 @@
           </div>
           <div class="seating-filters filter-con">
             <p>Seating Capacity</p>
-            <ul class="radio-btn-cons btn-cons">
-              <li class="radio-btn">
-                <input type="radio" name="seats" id="seat2" value="2">
+            <ul class="checkbox-btn-cons btn-cons" id="seatFilterList">
+              <li class="checkbox-btn">
+                <input type="checkbox" name="seats" id="seat2" value="2">
                 <label for="seat2">2 Seats</label>
               </li>
-              <li class="radio-btn">
-                <input type="radio" name="seats" id="seat4" value="4">
+              <li class="checkbox-btn">
+                <input type="checkbox" name="seats" id="seat4" value="4">
                 <label for="seat4">4 Seats</label>
               </li>
-              <li class="radio-btn">
-                <input type="radio" name="seats" id="seat5" value="5">
+              <li class="checkbox-btn">
+                <input type="checkbox" name="seats" id="seat5" value="5">
                 <label for="seat5">5 Seats</label>
               </li>
-              <li class="radio-btn">
-                <input type="radio" name="seats" id="seat7" value="7">
+              <li class="checkbox-btn">
+                <input type="checkbox" name="seats" id="seat7" value="7">
                 <label for="seat7">7 Seats</label>
               </li>
-              <li class="radio-btn">
-                <input type="radio" name="seats" id="seat9" value="9">
+              <li class="checkbox-btn">
+                <input type="checkbox" name="seats" id="seat9" value="9">
                 <label for="seat9">9 Seats</label>
               </li>
             </ul>
@@ -493,12 +486,11 @@
   <footer id="footer" style="width: 99%; position: relative; bottom: 0;"></footer>
   <script src="/scripts/components.js"></script>
   <script src="/scripts/database.js"></script>
-  <script src="/scripts/fleet.js"></script>
-  <script src="/scripts/fleet.js"></script>
-  <script src="/scripts/lang.js"></script>
-   <script src="/scripts/filterbar.js"></script>
-  <script src="/scripts/index.js"></script>
   <script src="/scripts/currency.js"></script>
+  <script src="/scripts/fleet.js" type="module"></script>
+  <script src="/scripts/lang.js"></script>
+  <script src="/scripts/filterbar.js"></script>
+  <script src="/scripts/index.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="/scripts/calendar.js"></script>
   <script src="/scripts/analytics.js"></script>

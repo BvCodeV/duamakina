@@ -4,7 +4,7 @@ const pickupDate = document.getElementById("pickupDate")
 const dropoffDate = document.getElementById("dropoffDate")
 const pickupTime = document.getElementById("pickupTime")
 const dropoffTime = document.getElementById("dropoffTime")
-const filterBtn = document.getElementById("filterBtn")
+const filterBarBtN = document.getElementById("filterBtn")
 const fields = [pickupInpt, dropoffDate, pickupDate, dropoffDate]
 let allFilled = true;
 
@@ -38,4 +38,4 @@ if (allFilled) {
 }
 }
 
-filterBtn.addEventListener("click", filterFunction);
+filterBarBtN.addEventListener("click", filterFunction);
