@@ -2,15 +2,8 @@ if (document.getElementById('pickupDate')) {
   const today = new Date();
   const defaultDropoff = new Date();
   defaultDropoff.setDate(today.getDate() + 5);
-
-  flatpickr('#dropoffDate', {
-    dateFormat: 'M j, Y',
-    minDate: today,
-    allowInput: false,
-    clickOpens: false,
-    position: 'below',
-    defaultDate: defaultDropoff,
-  });
+  document.getElementById('dropoffDate').value =
+    defaultDropoff.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 
   const pickup = flatpickr('#pickupDate', {
     mode: 'range',
@@ -32,7 +25,11 @@ if (document.getElementById('pickupDate')) {
   });
   pickup.config.onChange(pickup.selectedDates, null, pickup);
 
-  document.getElementById('dropoffDate').addEventListener('click', () => pickup.open());
+  const dropoffInput = document.getElementById('dropoffDate');
+  dropoffInput.addEventListener('click', (event) => {
+    event.preventDefault();
+    pickup.open();
+  });
 }
 
 if (document.getElementById('driverLicense')) {
