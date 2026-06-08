@@ -495,6 +495,12 @@ bookingNxtBtn.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
+addonProgressBtn?.addEventListener("click", () => checkOutProgress("addon"));
+detailsProgressBtn?.addEventListener("click", () => checkOutProgress("info"));
+
+const locationUpdateBtn = document.getElementById("locationUpdateBtn");
+locationUpdateBtn?.addEventListener("click", updateLocationData);
+
 let calendarsInitialized = false;
 locationForm.addEventListener("toggle", (e) => {
   document.body.style.overflow = e.newState === "open" ? "hidden" : "";

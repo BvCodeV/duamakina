@@ -42,36 +42,40 @@ if (document.getElementById('driverLicense')) {
 }
 
 function displayCalendarFleet() {
-  const pickup = flatpickr('#changePickupDate', {
+  const locationDialog = document.getElementById('locationFilterDialog');
+  const pickupElement = document.querySelector('#changePickupDate');
+  let pickup = flatpickr(pickupElement, {
     static: true,
-    appendTo: document.querySelector(".date-time-con"),
+    appendTo: locationDialog?.querySelector('.date-time-con') || document.querySelector('.date-time-con'),
     mode: 'range',
     dateFormat: 'M j, Y',
     minDate: 'today',
     allowInput: false,
     position: 'above left',
     onReady(_, __, fp) {
-      locationDialog.appendChild(fp.calendarContainer);
+      if (locationDialog) locationDialog.appendChild(fp.calendarContainer);
     },
     onChange(selectedDates) {
       if (selectedDates.length >= 1) {
         document.getElementById('changePickupDate').value =
-          selectedDates[0].toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: "numeric" });
+          selectedDates[0].toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
       }
       if (selectedDates.length === 2) {
         document.getElementById('changeDropoffDate').value =
-          selectedDates[1].toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: "numeric" });
-        pickup.close();
+          selectedDates[1].toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        if (pickup && typeof pickup.close === 'function') pickup.close();
       }
     }
   });
+  if (Array.isArray(pickup)) pickup = pickup[0];
   document.getElementById('changeDropoffDate').addEventListener('click', () => pickup.open());
 }
 
 function displayCalendarForm() {
-  const pickupForm = flatpickr('#changeFormPickupDate', {
+  const pickupFormElement = document.querySelector('#changeFormPickupDate');
+  let pickupForm = flatpickr(pickupFormElement, {
     static: true,
-    appendTo: document.querySelector(".date-time-con"),
+    appendTo: document.querySelector('.date-time-con'),
     mode: 'range',
     dateFormat: 'M j, Y',
     minDate: 'today',
@@ -85,9 +89,10 @@ function displayCalendarForm() {
       if (selectedDates.length === 2) {
         document.getElementById('changeFormDropoffDate').value =
           selectedDates[1].toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: "numeric" });
-        pickupForm.close();
+        if (pickupForm && typeof pickupForm.close === 'function') pickupForm.close();
       }
     }
   });
+  if (Array.isArray(pickupForm)) pickupForm = pickupForm[0];
   document.getElementById('changeFormDropoffDate').addEventListener('click', () => pickupForm.open());
 }
