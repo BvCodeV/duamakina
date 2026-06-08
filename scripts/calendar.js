@@ -7,6 +7,7 @@ if (document.getElementById('pickupDate')) {
     dateFormat: 'M j, Y',
     minDate: today,
     allowInput: false,
+    clickOpens: false,
     position: 'below',
     defaultDate: defaultDropoff,
   });
