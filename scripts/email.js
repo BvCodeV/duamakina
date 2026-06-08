@@ -486,7 +486,13 @@ async function sendInquiry(captchaToken) {
     data.captcha_token = captchaToken;
 
     // Send to owner
-    const ownerPayload = { ...data, to_email: OWNER_EMAIL, email: OWNER_EMAIL };
+    const ownerPayload = {
+      ...data,
+      to_email: OWNER_EMAIL,
+      email: OWNER_EMAIL,
+      to_name: "DuaMakina Team",
+      reply_to: data.email,
+    };
     await emailjs.send(
       EMAILJS_SERVICE_ID,
       EMAILJS_OWNER_TEMPLATE,
@@ -494,7 +500,15 @@ async function sendInquiry(captchaToken) {
     );
 
     // Send to user
-    const userPayload = { ...data, to_email: data.email, email: data.email };
+    const userPayload = {
+      ...data,
+      to_email: data.email,
+      email: data.email,
+      user_email: data.email,
+      user_name: data.full_name,
+      to_name: data.full_name,
+      reply_to: OWNER_EMAIL,
+    };
     await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_USER_TEMPLATE, userPayload);
 
     // // Subscribe to weekly marketing
