@@ -490,6 +490,8 @@ async function sendInquiry(captchaToken) {
       ...data,
       to_email: OWNER_EMAIL,
       email: OWNER_EMAIL,
+      from_name: data.full_name,
+      from_email: data.email,
       to_name: "DuaMakina Team",
       reply_to: data.email,
     };
@@ -507,6 +509,8 @@ async function sendInquiry(captchaToken) {
       user_email: data.email,
       user_name: data.full_name,
       to_name: data.full_name,
+      from_name: "DuaMakina",
+      from_email: OWNER_EMAIL,
       reply_to: OWNER_EMAIL,
     };
     await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_USER_TEMPLATE, userPayload);
