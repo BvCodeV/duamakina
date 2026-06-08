@@ -495,6 +495,22 @@ bookingNxtBtn.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
+addonProgressBtn?.addEventListener("click", () => checkOutProgress("addon"));
+detailsProgressBtn?.addEventListener("click", () => checkOutProgress("info"));
+
+const locationUpdateBtn = document.getElementById("locationUpdateBtn");
+locationUpdateBtn?.addEventListener("click", updateLocationData);
+
+formSendBtn?.addEventListener("click", () => {
+  Swal.fire({
+    title: `Booking isn't available at this time`,
+    text: `Please try again later`,
+    icon: "error",
+    confirmButtonText: "OK",
+    confirmButtonColor: "var(--color-primary)",
+  });
+});
+
 let calendarsInitialized = false;
 locationForm.addEventListener("toggle", (e) => {
   document.body.style.overflow = e.newState === "open" ? "hidden" : "";

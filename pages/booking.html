@@ -36,12 +36,12 @@
       Vehicle
     </a>
     <hr>
-    <a id="addonProgressBtn" class="progress-btn progress-active" onclick="checkOutProgress('addon');">
+    <a id="addonProgressBtn" class="progress-btn progress-active">
       <span>2</span>
       Extras & rules
     </a>
     <hr>
-    <a id="detailsProgressBtn" class="progress-btn" onclick="checkOutProgress('info');">
+    <a id="detailsProgressBtn" class="progress-btn">
       <span>3</span>
       Driver details
     </a>
@@ -249,15 +249,7 @@
             <label for="termsCheck">I agree to the <span>Terms & Conditions</span> and <span>Privacy Policy</span></label>
           </div>
           <button id="bookingNxtBtn" style="background-color: oklch(from var(--color-accent) calc(l + 0.15) c h);">Continue to driver details &#xFFEB;</button>
-          <button id="formSendBtn" style="display: none;" onclick="
-            Swal.fire({
-              title: `Booking isn't available at this time`,
-              text: `Please try again later`,
-              icon: 'error',
-              confirmButtonText: 'OK',
-              confirmButtonColor: 'var(--color-primary)'
-            });
-          ">Send Inquiry
+          <button id="formSendBtn" style="display: none;">Send Inquiry
           </button>
         </div>
         <hr>
@@ -432,7 +424,7 @@
           </div>
         </div>
       </div>
-      <button type="button" onclick="updateLocationData();">
+      <button type="button" id="locationUpdateBtn">
         <img src="/assets/icons/search.svg" alt="Search Icon" loading="lazy" draggable="false">
         <span>Update Filters</span>
       </button>

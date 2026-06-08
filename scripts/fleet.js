@@ -30,6 +30,7 @@ const dropoffTimeTxt = document.getElementById("dropoffTimeTxt");
 const pickupDateMobile = document.getElementById('pickupDateMobile');
 const dropoffDateMobile = document.getElementById('dropoffDateMobile');
 const headerLoc = document.getElementById('headerLoc');
+const locationUpdateBtn = document.getElementById("locationUpdateBtn");
 
 const minR = document.getElementById("min-range");
 const maxR = document.getElementById("max-range");
@@ -936,6 +937,8 @@ function updateLocationData() {
   locationDialog.hidePopover();
 }
 window.updateLocationData = updateLocationData;
+
+locationUpdateBtn?.addEventListener("click", updateLocationData);
 
 document.getElementById("closeDialog").onclick = () => locationDialog.hidePopover();
 
