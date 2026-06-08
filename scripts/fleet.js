@@ -912,12 +912,21 @@ document.getElementById("locationChangeBtn").onclick = () => {
 };
 
 function updateLocationData() {
+  const pickupDateVal = document.getElementById("changePickupDate").value;
+  const dropoffDateVal = document.getElementById("changeDropoffDate").value;
+  
+  // Validate dates are selected
+  if (!pickupDateVal || !dropoffDateVal) {
+    alert("Please select both pickup and drop-off dates");
+    return;
+  }
+  
   const newFilter = {
     pickupLoc: document.getElementById("changePickup").value,
-    pickupDate: document.getElementById("changePickupDate").value,
+    pickupDate: pickupDateVal,
     pickupTime: document.getElementById("changePickupTime").value,
     dropoffLoc: document.getElementById("changeDropoff").value,
-    dropoffDate: document.getElementById("changeDropoffDate").value,
+    dropoffDate: dropoffDateVal,
     dropoffTime: document.getElementById("changeDropoffTime").value,
   };
   if (dropoffCheck.checked) newFilter.dropoffLoc = newFilter.pickupLoc;
@@ -925,8 +934,6 @@ function updateLocationData() {
   calcDays(newFilter.pickupDate, newFilter.dropoffDate);
   displayLocationDataSearch();
   locationDialog.hidePopover();
-  locationDialog.removeAttribute?.("open");
-  locationDialog.open = false;
 }
 window.updateLocationData = updateLocationData;
 
