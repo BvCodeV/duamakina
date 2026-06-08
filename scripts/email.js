@@ -87,7 +87,8 @@ function clearFieldError(el) {
   if (msg) msg.remove();
 }
 
-function validateRequiredFields() {
+function validateRequiredFields(options = {}) {
+  const { showErrors = true } = options;
   let firstInvalid = null;
   const invalidLabels = [];
 
@@ -113,21 +114,21 @@ function validateRequiredFields() {
       (isNaN(Number(value)) || Number(value) < 18 || Number(value) > 75);
 
     if (isEmpty) {
-      markFieldError(el, "This field is required");
+      if (showErrors) markFieldError(el, "This field is required");
       invalidLabels.push(label);
       if (!firstInvalid) firstInvalid = el;
     } else if (isEmailBad) {
-      markFieldError(el, "Please enter a valid email address");
+      if (showErrors) markFieldError(el, "Please enter a valid email address");
       invalidLabels.push(label + " (invalid format)");
       if (!firstInvalid) firstInvalid = el;
     } else if (isAgeBad) {
-      markFieldError(el, "Please enter a valid age (18 – 75)");
+      if (showErrors) markFieldError(el, "Please enter a valid age (18 – 75)");
       invalidLabels.push(label + " (invalid age)");
       if (!firstInvalid) firstInvalid = el;
     }
   });
 
-  if (firstInvalid) {
+  if (showErrors && firstInvalid) {
     firstInvalid.scrollIntoView({ behavior: "smooth", block: "center" });
     // Small timeout so scroll completes before focus
     setTimeout(() => firstInvalid.focus(), 350);
@@ -136,11 +137,36 @@ function validateRequiredFields() {
   return { isValid: invalidLabels.length === 0, invalidLabels };
 }
 
+function updateSendButtonState() {
+  const btn = document.getElementById("formSendBtn");
+  if (!btn) return;
+
+  const termsCheck = document.getElementById("termsCheck");
+  const { isValid } = validateRequiredFields({ showErrors: false });
+  btn.disabled = !isValid || !termsCheck?.checked;
+}
+
+function wireRequiredFieldListeners() {
+  REQUIRED_FIELDS.forEach(({ id }) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    const eventName = el.tagName === "SELECT" || el.type === "checkbox" ? "change" : "input";
+    el.addEventListener(eventName, updateSendButtonState);
+    el.addEventListener("blur", () => validateRequiredFields({ showErrors: false }));
+  });
+
+  const termsCheck = document.getElementById("termsCheck");
+  termsCheck?.addEventListener("change", updateSendButtonState);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   emailjs.init(EMAILJS_PUBLIC_KEY);
   injectValidationStyles();
   injectHcaptchaModal();
   wireFormSendBtn();
+  wireRequiredFieldListeners();
+  updateSendButtonState();
 });
 
 function wireFormSendBtn() {
@@ -471,10 +497,10 @@ async function sendInquiry(captchaToken) {
     const userPayload = { ...data, to_email: data.email, email: data.email };
     await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_USER_TEMPLATE, userPayload);
 
-    // Subscribe to weekly marketing
-    if (BREVO_API_KEY && BREVO_LIST_ID) {
-      subscribeToMarketing(data.email, data.full_name).catch(() => {});
-    }
+    // // Subscribe to weekly marketing
+    // if (BREVO_API_KEY && BREVO_LIST_ID) {
+    //   subscribeToMarketing(data.email, data.full_name).catch(() => {});
+    // }
 
     localStorage.setItem(COOLDOWN_KEY, Date.now().toString());
 
