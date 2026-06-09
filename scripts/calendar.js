@@ -23,13 +23,21 @@ if (document.getElementById('pickupDate')) {
       }
     }
   });
-  pickup.config.onChange(pickup.selectedDates, null, pickup);
+
+  document.getElementById('pickupDate').value =
+    today.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 
   const dropoffInput = document.getElementById('dropoffDate');
-  dropoffInput.addEventListener('click', (event) => {
-    event.preventDefault();
-    pickup.open();
-  });
+  const dropoffDateField = dropoffInput?.closest('.date');
+
+  const openDropoffCalendar = () => {
+    if (pickup && typeof pickup.open === 'function') {
+      pickup.open();
+    }
+  };
+
+  dropoffInput?.addEventListener('click', openDropoffCalendar);
+  dropoffDateField?.addEventListener('click', openDropoffCalendar);
 }
 
 if (document.getElementById('driverLicense')) {
@@ -42,33 +50,38 @@ if (document.getElementById('driverLicense')) {
 }
 
 function displayCalendarFleet() {
-  const locationDialog = document.getElementById('locationFilterDialog');
   const pickupElement = document.querySelector('#changePickupDate');
-  let pickup = flatpickr(pickupElement, {
-    static: true,
-    appendTo: locationDialog?.querySelector('.date-time-con') || document.querySelector('.date-time-con'),
+  const dropoffElement = document.querySelector('#changeDropoffDate');
+
+  const updateDateFields = (selectedDates, fp) => {
+    if (selectedDates.length >= 1) {
+      document.getElementById('changePickupDate').value =
+        selectedDates[0].toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    }
+    if (selectedDates.length === 2) {
+      document.getElementById('changeDropoffDate').value =
+        selectedDates[1].toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+      if (fp && typeof fp.close === 'function') fp.close();
+    }
+  };
+
+  const calendarConfig = {
+    appendTo: document.querySelector('.date-time-con'),
     mode: 'range',
     dateFormat: 'M j, Y',
     minDate: 'today',
     allowInput: false,
-    position: 'above left',
-    onReady(_, __, fp) {
-      if (locationDialog) locationDialog.appendChild(fp.calendarContainer);
-    },
-    onChange(selectedDates) {
-      if (selectedDates.length >= 1) {
-        document.getElementById('changePickupDate').value =
-          selectedDates[0].toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-      }
-      if (selectedDates.length === 2) {
-        document.getElementById('changeDropoffDate').value =
-          selectedDates[1].toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-        if (pickup && typeof pickup.close === 'function') pickup.close();
-      }
+    position: 'below',
+    onChange(selectedDates, dateStr, fp) {
+      updateDateFields(selectedDates, fp);
     }
-  });
-  if (Array.isArray(pickup)) pickup = pickup[0];
-  document.getElementById('changeDropoffDate').addEventListener('click', () => pickup.open());
+  };
+
+  let pickupCalendar = flatpickr(pickupElement, calendarConfig);
+  let dropoffCalendar = flatpickr(dropoffElement, calendarConfig);
+
+  if (Array.isArray(pickupCalendar)) pickupCalendar = pickupCalendar[0];
+  if (Array.isArray(dropoffCalendar)) dropoffCalendar = dropoffCalendar[0];
 }
 
 function displayCalendarForm() {

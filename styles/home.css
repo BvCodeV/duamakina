@@ -434,7 +434,7 @@ main {
   to { transform: translateX(-100%); }
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1300px) {
   .mobile-only {display: none;}
   .desktop-only {display: block;}
 
@@ -450,11 +450,11 @@ main {
     .left-con {
       h1 { font-size: 3.5em;}
 
-      p { font-size: 1em;}
+      p { font-size: 1.2em;}
     }
 
     .right-con {
-      width: 38.5em;
+      width: fit-content;
       left: 0;
       transform: translateX(0);
 
@@ -478,13 +478,16 @@ main {
   .review-con { justify-content: center !important;}
 }
 
+
 @media screen and (min-width: 1600px) {
   
   #hero {
     height: 31em;
+    width: 100%;
     picture img { height: 31em;}
     .right-con { 
       height: fit-content;
+      width: 35% !important;
       .date-time-con {
         width: 100%;
         .date-time {
@@ -499,6 +502,10 @@ main {
         }
       }
       button { margin-top: 10em;}
+    }
+    .left-con {
+      h1 { font-size: 3.5em;}
+      p { font-size: 1.2em;}
     }
   }
 

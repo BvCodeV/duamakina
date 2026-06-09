@@ -55,9 +55,9 @@ function updateLocationData() {
   displayData();
   displayDate();
   updateFinalPrice();
-  locationForm.hidePopover();
-  locationForm.removeAttribute?.("open");
-  locationForm.open = false;
+  locationForm?.hidePopover();
+  locationForm?.removeAttribute?.("open");
+  if (locationForm) locationForm.open = false;
 }
 
 window.updateLocationData = updateLocationData;
@@ -490,7 +490,7 @@ function checkOutProgress(pageBtn) {
   }
 }
 
-bookingNxtBtn.addEventListener("click", () => {
+bookingNxtBtn?.addEventListener("click", () => {
   checkOutProgress("info");
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
@@ -502,7 +502,7 @@ const locationUpdateBtn = document.getElementById("locationUpdateBtn");
 locationUpdateBtn?.addEventListener("click", updateLocationData);
 
 let calendarsInitialized = false;
-locationForm.addEventListener("toggle", (e) => {
+locationForm?.addEventListener("toggle", (e) => {
   document.body.style.overflow = e.newState === "open" ? "hidden" : "";
   if (e.newState === "open" && !calendarsInitialized) {
     displayCalendarForm();
@@ -510,7 +510,7 @@ locationForm.addEventListener("toggle", (e) => {
   }
 });
 
-changeBtn.onclick = () => {
+if (changeBtn) changeBtn.onclick = () => {
   const { locationData } = getStorageData();
   if (!locationData) return;
   formPickupLoc.value = locationData.pickupLoc || "";
@@ -521,17 +521,21 @@ changeBtn.onclick = () => {
   formDropoffTime.value = locationData.dropoffTime || "00:00";
 };
 
-carPageProgressBtn.addEventListener("click", () => {
+carPageProgressBtn?.addEventListener("click", () => {
   window.location.href = `/pages/car.html?id=${getCarIdFromUrl()}`;
 });
 
-document.getElementById("closeDialog").onclick = () => {
-    locationForm.hidePopover();
-    locationForm.removeAttribute?.("open");
-    locationForm.open = false;
+const closeDialogBtn = document.getElementById("closeDialog");
+if (closeDialogBtn) closeDialogBtn.onclick = () => {
+    locationForm?.hidePopover();
+    locationForm?.removeAttribute?.("open");
+    if (locationForm) locationForm.open = false;
 };
 
-loadCarDetails();
-displayData();
-displayDate();
-updateFinalPrice();
+const canInitializeBookingPage = Boolean(addonPage && infoPage && carFinalPrice && finalAmount);
+if (canInitializeBookingPage) {
+  loadCarDetails();
+  displayData();
+  displayDate();
+  updateFinalPrice();
+}

@@ -1,22 +1,23 @@
 <html>
 <head></head>
 <body>
-    <style>
-      footer {
-        width: 95%;
-        margin: 20px 0;
-        background-color: var(--color-bg-subtle);
-        border-radius: 40px;
-        padding: 2em 2em;
-        display: flex;
-        flex-direction: column;
-        gap: 2em;
+  <style>
+    footer {
+      width: 95%;
+      margin: 20px 0;
+      background-color: var(--color-bg-subtle);
+      border-radius: 40px;
+      padding: 2em;
+      display: flex;
+      flex-direction: column;
+      gap: 2em;
 
-        h1 {
-          text-align: center;
-          color: var(--color-primary);
-        }
-        div {
+      h1 {
+        text-align: center;
+        color: var(--color-primary);
+      }
+
+      div {
         ul {
           display: flex;
           flex-direction: column;
@@ -24,69 +25,80 @@
           justify-content: center;
           list-style-type: none;
           gap: 0.3em;
-          li { 
-            color: var(--color-txt-secondary); 
+
+          li {
+            color: var(--color-txt-secondary);
             cursor: pointer;
-            &:hover {color: var(--color-accent);}
           }
+
+          li:hover {
+            color: var(--color-accent);
+          }
+
           a {
             text-decoration: none;
             color: var(--color-txt-secondary);
-            &:hover {color: var(--color-accent);}
+          }
+
+          a:hover {
+            color: var(--color-accent);
           }
         }
-        }
-
-        p {
-          font-size: 16px;
-          text-align: center;
-        }
       }
-      @media screen and (min-width: 745px) {
-        footer {
-          flex-direction: column;
-          z-index: 1;
 
-          div {
+      p {
+        font-size: 16px;
+        text-align: center;
+      }
+    }
+
+    @media screen and (min-width: 745px) {
+      footer {
+        flex-direction: column;
+        z-index: 1;
+
+        div {
+          display: flex;
+          justify-content: space-between;
+          padding-left: 3em;
+
+          ul {
             display: flex;
-            justify-content: space-between;
-            padding-left: 3em;
-
-            ul {
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-            }
+            flex-direction: column;
+            align-items: center;
           }
         }
       }
-    </style>
-    <footer>
-    <h1>RideShare</h1>
+    }
+  </style>
+  <footer>
+    <h1>Dua Makina</h1>
     <div>
       <ul class="quick-links">
         <li><h2>Quick Links</h2></li>
         <li><a href="/index.html">Home</a></li>
         <li><a href="/pages/fleet.html">Our Fleet</a></li>
-        <li><a href="/pages/faq.html">FAQ</a></li>
+        <li><a href="/pages/faqs.html">FAQ</a></li>
+        <li><a href="/pages/privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="/pages/terms-and-conditions.html">Terms & Conditions</a></li>
       </ul>
       <ul class="locations-footer">
         <li><h2>Locations</h2></li>
         <li><a href="https://www.google.com/maps/search/?api=1&query=Tirana+International+Airport+Nene+Tereza" target="_blank" rel="noopener noreferrer">Tirana Airport (TIA)</a></li>
         <li><a href="https://www.google.com/maps/search/?api=1&query=Tirana+City+Center" target="_blank" rel="noopener noreferrer">Tirana City Center</a></li>
         <li><a href="https://www.google.com/maps/search/?api=1&query=Saranda" target="_blank" rel="noopener noreferrer">Saranda</a></li>
-        <li><a href="https://www.google.com/maps/search/?api=1&query=Durrës" target="_blank" rel="noopener noreferrer">Durrës</a></li>
-        <li><a href="https://www.google.com/maps/search/?api=1&query=Vlorë" target="_blank" rel="noopener noreferrer">Vlorë</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=Durres" target="_blank" rel="noopener noreferrer">Durres</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=Vlore" target="_blank" rel="noopener noreferrer">Vlore</a></li>
       </ul>
       <ul class="contact-footer">
         <li><h2>Contact</h2></li>
-        <li><a href="https://wa.me/355696543102" target="_blank" rel="noopener">+355 68 123 4567</a></li>
+        <li><a href="https://wa.me/355696543102" target="_blank" rel="noopener">+355 69 654 3102</a></li>
         <li><a href="mailto:duamakina@outlook.com">duamakina@outlook.com</a></li>
-        <li><a href="https://wa.me/355696543102" target="_blank" rel="noopener">Contact us on Whatsapp</a></li>
+        <li><a href="https://wa.me/355696543102" target="_blank" rel="noopener">Contact us on WhatsApp</a></li>
       </ul>
     </div>
     <hr>
-    <p>© 2026 RideShare. All rights reserved. Payment method: Cash only.</p>
+    <p>&copy; 2026 Dua Makina. All rights reserved. Payment method: Cash only.</p>
   </footer>
   <script src="/scripts/lang.js"></script>
 </body>
