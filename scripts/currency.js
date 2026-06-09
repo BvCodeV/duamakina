@@ -1,6 +1,7 @@
 window.addEventListener('partialsLoaded', () => {
   const rates = {};
   const currencySelect = document.getElementById("currencySelect");
+  if (!currencySelect || typeof supabaseClient === "undefined") return;
   const currencyMap = { "€": "EUR", "$": "USD", "£": "GBP", "L": "ALL" };
 
   async function fetchAllRates() {

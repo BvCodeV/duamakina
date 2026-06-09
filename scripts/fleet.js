@@ -1,6 +1,8 @@
 import { cacheGet, cacheSet } from '/scripts/cache.js';
 
 const filterBtn = document.getElementById("filterBtn");
+const sidebarFilterEl = document.getElementById("sidebarFilter");
+const closeSidebarBtnEl = document.getElementById("closeSidebarBtn");
 const automaticPopular = document.getElementById("automaticFilterBox");
 const milagePopular = document.getElementById("milageFilterBox");
 const acPopular = document.getElementById("acFilterBox");
@@ -73,8 +75,8 @@ function displayLocationDataSearch() {
   dropoffDateTxt.textContent = locationData.dropoffDate;
   pickupTimeTxt.textContent = locationData.pickupTime;
   dropoffTimeTxt.textContent = locationData.dropoffTime;
-  dropoffDateMobile.textContent = locationData.pickupDate;
-  pickupDateMobile.textContent = locationData.dropoffDate;
+  if (pickupDateMobile) pickupDateMobile.textContent = locationData.pickupDate;
+  if (dropoffDateMobile) dropoffDateMobile.textContent = locationData.dropoffDate;
   headerLoc.textContent = locationData.pickupLoc;
   dayTxt.textContent = days;
 }
@@ -557,14 +559,14 @@ function removePillByData(label, advKey) {
     }
   } else {
     const match = pillsConfig.find((item) => item.label === label);
-    if (match) {
+    if (match?.checkbox) {
       match.checkbox.checked = false;
       match.checkbox.dispatchEvent(new Event("change", { bubbles: true }));
     }
   }
 }
 
-pillsCon.addEventListener("click", (e) => {
+pillsCon?.addEventListener("click", (e) => {
   const button = e.target.closest("button:not(.clear-all-btn)");
   if (!button) return;
   const pill = button.closest(".filter-pill");
@@ -596,7 +598,7 @@ function removePill(label) {
 }
 
 pillsConfig.forEach(({ checkbox, label, key }) => {
-  checkbox.addEventListener("change", () => {
+  checkbox?.addEventListener("change", () => {
     activeFilters[key] = checkbox.checked;
     checkbox.checked ? addPill(label) : removePill(label);
     renderCars();
@@ -635,8 +637,8 @@ document.getElementById("submitFiltersBtn")?.addEventListener("click", (e) => {
   renderCars();
   filtersDialog?.hidePopover?.();
   if (isMobile) {
-    if (sidebarFilter) {
-      sidebarFilter.style.display = "none";
+    if (sidebarFilterEl) {
+      sidebarFilterEl.style.display = "none";
       document.body.style.overflow = "";
     }
   }
@@ -644,7 +646,7 @@ document.getElementById("submitFiltersBtn")?.addEventListener("click", (e) => {
 
 function resetAllFilters() {
   pillsConfig.forEach(({ checkbox, key }) => {
-    checkbox.checked = false;
+    if (checkbox) checkbox.checked = false;
     activeFilters[key] = false;
   });
 
@@ -696,7 +698,7 @@ function resetAllFilters() {
   renderCars();
 }
 
-document.getElementById("resetAllBtn").addEventListener("click", resetAllFilters);
+document.getElementById("resetAllBtn")?.addEventListener("click", resetAllFilters);
 
 carTypePills.forEach((div) => {
   div.addEventListener("click", () => {
@@ -907,7 +909,7 @@ async function loadCars() {
 let flatpickrLoaded = false;
 let calendarsInitialized = false;
 
-locationDialog.addEventListener("toggle", (e) => {
+locationDialog?.addEventListener("toggle", (e) => {
   document.body.style.overflow = e.newState === "open" ? "hidden" : "";
   if (e.newState === "open" && !calendarsInitialized) {
     if (!flatpickrLoaded) {
@@ -926,7 +928,8 @@ locationDialog.addEventListener("toggle", (e) => {
   }
 });
 
-document.getElementById("locationChangeBtn").onclick = () => {
+const locationChangeBtn = document.getElementById("locationChangeBtn");
+if (locationChangeBtn) locationChangeBtn.onclick = () => {
   const filter = JSON.parse(localStorage.getItem("locationData"));
   if (filter) {
     document.getElementById("changePickup").value = filter.pickupLoc || "";
@@ -956,7 +959,7 @@ function updateLocationData() {
     dropoffDate: dropoffDateVal,
     dropoffTime: document.getElementById("changeDropoffTime").value,
   };
-  if (dropoffCheck.checked) newFilter.dropoffLoc = newFilter.pickupLoc;
+  if (dropoffCheck?.checked) newFilter.dropoffLoc = newFilter.pickupLoc;
   localStorage.setItem("locationData", JSON.stringify(newFilter));
   calcDays(newFilter.pickupDate, newFilter.dropoffDate);
   displayLocationDataSearch();
@@ -966,14 +969,17 @@ window.updateLocationData = updateLocationData;
 
 locationUpdateBtn?.addEventListener("click", updateLocationData);
 
-document.getElementById("closeDialog").onclick = () => locationDialog.hidePopover();
+const closeDialogBtn = document.getElementById("closeDialog");
+if (closeDialogBtn) closeDialogBtn.onclick = () => locationDialog?.hidePopover();
 
-filtersDialog.addEventListener("toggle", (e) => {
+filtersDialog?.addEventListener("toggle", (e) => {
   document.body.style.overflow = e.newState === "open" ? "hidden" : "";
 });
-document.getElementById("filtersCloseDialog").onclick = () => filtersDialog.hidePopover();
+const filtersCloseDialogBtn = document.getElementById("filtersCloseDialog");
+if (filtersCloseDialogBtn) filtersCloseDialogBtn.onclick = () => filtersDialog?.hidePopover();
 
 function updatePriceRange() {
+  if (!minR || !maxR || !fill) return;
   let min = +minR.value,
     max = +maxR.value;
   if (max - min < GAP) {
@@ -983,11 +989,13 @@ function updatePriceRange() {
   const total = +minR.max - +minR.min;
   fill.style.left = ((min - +minR.min) / total) * 100 + "%";
   fill.style.right = 100 - ((max - +minR.min) / total) * 100 + "%";
-  document.getElementById("min-val").textContent = min;
-  document.getElementById("max-val").textContent = max;
+  const minVal = document.getElementById("min-val");
+  const maxVal = document.getElementById("max-val");
+  if (minVal) minVal.textContent = min;
+  if (maxVal) maxVal.textContent = max;
 }
 [minR, maxR].forEach((r) => {
-  r.addEventListener("input", function () {
+  r?.addEventListener("input", function () {
     updatePriceRange.call(this);
     activeFilters.minPrice = parseInt(minR.value);
     activeFilters.maxPrice = parseInt(maxR.value);
@@ -995,23 +1003,26 @@ function updatePriceRange() {
     renderCars();
   });
 });
-updatePriceRange.call(minR);
+if (minR) updatePriceRange.call(minR);
 
 function mountAdvancedFilters() {
   const form = document.querySelector("#filtersDialog .main-dialog");
   const mobileSlot = document.querySelector(".mobile-advanced-filters");
-  if (isMobile) mobileSlot.appendChild(form);
-  else document.getElementById("filtersDialog").appendChild(form);
+  if (!form) return;
+  if (isMobile && mobileSlot) mobileSlot.appendChild(form);
+  else document.getElementById("filtersDialog")?.appendChild(form);
 }
 mountAdvancedFilters();
 window.matchMedia("(max-width: 1024px)").addEventListener("change", mountAdvancedFilters);
 
-filterBtn.onclick = () => {
-  sidebarFilter.style.display = "block";
+if (filterBtn) filterBtn.onclick = () => {
+  if (!sidebarFilterEl) return;
+  sidebarFilterEl.style.display = "block";
   document.body.style.overflow = "hidden";
 };
-closeSidebarBtn.onclick = () => {
-  sidebarFilter.style.display = "none";
+if (closeSidebarBtnEl) closeSidebarBtnEl.onclick = () => {
+  if (!sidebarFilterEl) return;
+  sidebarFilterEl.style.display = "none";
   document.body.style.overflow = "";
 };
 

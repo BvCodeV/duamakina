@@ -1,14 +1,16 @@
-const pickupInpt = document.getElementById("pickup")
-const dropoffInpt = document.getElementById("dropoff")
-const pickupDate = document.getElementById("pickupDate")
-const dropoffDate = document.getElementById("dropoffDate")
-const pickupTime = document.getElementById("pickupTime")
-const dropoffTime = document.getElementById("dropoffTime")
-const filterBarBtN = document.getElementById("filterBtn")
-const fields = [pickupInpt, dropoffDate, pickupDate, dropoffDate]
-let allFilled = true;
+const pickupInpt = document.getElementById("pickup");
+const dropoffInpt = document.getElementById("dropoff");
+const pickupDate = document.getElementById("pickupDate");
+const dropoffDate = document.getElementById("dropoffDate");
+const pickupTime = document.getElementById("pickupTime");
+const dropoffTime = document.getElementById("dropoffTime");
+const filterBarBtN = document.getElementById("filterBtn");
+const requiredElements = [pickupInpt, dropoffInpt, pickupDate, dropoffDate, pickupTime, dropoffTime, filterBarBtN];
+const isFilterbarPage = requiredElements.every(Boolean);
+const fields = [pickupInpt, dropoffInpt, pickupDate, dropoffDate, pickupTime, dropoffTime];
 
 function filterFunction() {
+  if (!isFilterbarPage) return;
   const filter = {
     pickupLoc: pickupInpt.value,
     pickupDate: pickupDate.value,
@@ -18,19 +20,15 @@ function filterFunction() {
     dropoffTime: dropoffTime.value,
   }
 
-  if (dropoffCheck.checked) {
+  if (dropoffCheck?.checked) {
     filter.dropoffLoc = filter.pickupLoc
   }
   calcDays(filter.pickupDate, filter.dropoffDate);
-  fields.forEach(field => {
-  if (!field.value) {
-    field.style.border = "1px solid var(--color-error)";
-    allFilled = false;
-  } else {
-    field.style.backgroundColor = "";
-    allFilled = true;
-  }
-});
+  const allFilled = fields.every((field) => {
+    const filled = Boolean(field.value);
+    field.style.border = filled ? "" : "1px solid var(--color-error)";
+    return filled;
+  });
 
 if (allFilled) {
   localStorage.setItem("locationData", JSON.stringify(filter));
@@ -38,4 +36,4 @@ if (allFilled) {
 }
 }
 
-filterBarBtN.addEventListener("click", filterFunction);
+filterBarBtN?.addEventListener("click", filterFunction);

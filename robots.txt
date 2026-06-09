@@ -8,5 +8,8 @@ Disallow: /pages/form
 # Block query strings
 Disallow: /*?*
 
+# Legal pages are reachable from the footer. Temporary indexing is controlled
+# with page-level noindex while the website is in demo/testing mode.
+
 # Sitemap location
 Sitemap: https://www.duamakina.com/sitemap.xml

@@ -168,11 +168,11 @@ function populatePage(car) {
   if (carFuel) carFuel.textContent = translateFuel(car.fuel);
 
   if (car.deposit_amount > 0) {
-    depositAmount.textContent = `${car.deposit_amount}`;
+    if (depositAmount) depositAmount.textContent = `${car.deposit_amount}`;
   } else {
-    depositAmount.style.display = 'none';
-    depositSign.style.display = 'none';
-    refundableTxt.textContent = 'No deposit required';
+    if (depositAmount) depositAmount.style.display = 'none';
+    if (depositSign) depositSign.style.display = 'none';
+    if (refundableTxt) refundableTxt.textContent = 'No deposit required';
   }
 
   const specMap = {
@@ -404,8 +404,8 @@ function changeInfo(carPage) {
   }
 }
 
-overviewBtn.addEventListener('click', () => changeInfo('overview'));
-faqBtn.addEventListener('click', () => changeInfo('faq'));
-document.getElementById('shareBtn').addEventListener('click', handleShare);
+overviewBtn?.addEventListener('click', () => changeInfo('overview'));
+faqBtn?.addEventListener('click', () => changeInfo('faq'));
+document.getElementById('shareBtn')?.addEventListener('click', handleShare);
 
 loadCarDetails();
