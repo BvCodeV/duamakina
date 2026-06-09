@@ -168,7 +168,11 @@ function populatePage(car) {
   if (carFuel) carFuel.textContent = translateFuel(car.fuel);
 
   if (car.deposit_amount > 0) {
-    if (depositAmount) depositAmount.textContent = `${car.deposit_amount}`;
+    if (depositAmount) {
+      const depositValue = parseFloat(car.deposit_amount);
+      depositAmount.dataset.basePrice = depositValue;
+      depositAmount.textContent = depositValue.toFixed(2);
+    }
   } else {
     if (depositAmount) depositAmount.style.display = 'none';
     if (depositSign) depositSign.style.display = 'none';
@@ -279,7 +283,9 @@ function populateExtraDetails(car) {
   if (depositDetails && car.deposit_amount != null) {
     const depositSpan = depositDetails.querySelector('#depositAmount');
     if (depositSpan) {
-      depositSpan.textContent = parseFloat(car.deposit_amount).toFixed(2);
+      const depositValue = parseFloat(car.deposit_amount);
+      depositSpan.dataset.basePrice = depositValue;
+      depositSpan.textContent = depositValue.toFixed(2);
     }
   }
 }

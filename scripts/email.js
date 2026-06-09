@@ -18,21 +18,9 @@ const REQUIRED_FIELDS = [
   { id: "driverLicense", label: "License Expiry Date" },
 ];
 
-// ---------------------------------------------------------------------------
-// Phone number formatting & validation
-// ---------------------------------------------------------------------------
-
-/**
- * Each entry maps a dial prefix (longest match wins) to:
- *   name        – country name (shown in the hint)
- *   pattern     – regex the *digits-only* local part must satisfy
- *   format      – function(digits) → formatted string (including the + prefix)
- *   localDigits – expected digit count AFTER the country code
- */
 const PHONE_PREFIXES = [
-  // Albania
   { prefix: "355",  name: "Albania",        localDigits: 9,  pattern: /^6[789]\d{7}$|^\d{8,9}$/,
-    format: (cc, d) => `+${cc} ${d.slice(0,2)} ${d.slice(2,5)} ${d.slice(5,7)} ${d.slice(7,9)}`.trimEnd() },
+    format: (cc, d) => `+${cc} ${d.slice(0,2)} ${d.slice(2,5)} ${d.slice(5,9)}`.trimEnd() },
 
   // Kosovo
   { prefix: "383",  name: "Kosovo",         localDigits: 8,  pattern: /^4[45]\d{6}$|^\d{7,8}$/,
@@ -154,10 +142,7 @@ const PHONE_PREFIXES = [
 // Sort so longest prefix is tried first (avoids "1" matching before "39" etc.)
 PHONE_PREFIXES.sort((a, b) => b.prefix.length - a.prefix.length);
 
-/**
- * Given a raw phone string, strip everything except digits.
- * If the result starts with a known prefix, return { entry, localDigits }.
- */
+
 function matchPhonePrefix(raw) {
   const digits = raw.replace(/\D/g, "");
   for (const entry of PHONE_PREFIXES) {
@@ -169,30 +154,21 @@ function matchPhonePrefix(raw) {
   return null;
 }
 
-/**
- * Format a raw phone string in real-time (called on every keystroke).
- * Returns the formatted string, or the raw input if no prefix is matched yet.
- */
 function formatPhoneNumber(raw) {
-  // Strip everything except digits and leading +
+
   const cleaned = raw.replace(/[^\d+]/g, "");
   // Remove leading + for digit matching
   const digitsOnly = cleaned.replace(/^\+/, "");
 
   const match = matchPhonePrefix(digitsOnly);
-  if (!match) return raw; // Unknown prefix — don't reformat yet
+  if (!match) return raw; 
 
   const { entry, local } = match;
-  // Only format once we have enough digits to do something useful
   if (local.length < 2) return raw;
 
   return entry.format(entry.prefix, local);
 }
 
-/**
- * Validate a fully-entered phone number.
- * Returns { valid: bool, message: string }
- */
 function validatePhoneNumber(raw) {
   const digitsOnly = raw.replace(/\D/g, "");
 
@@ -221,9 +197,6 @@ function validatePhoneNumber(raw) {
   return { valid: true, message: `✓ ${entry.name} number` };
 }
 
-/**
- * Show a small inline country hint below the phone field (green when valid).
- */
 function updatePhoneHint(el, message, isValid) {
   let hint = el.parentElement.querySelector(".dm-phone-hint");
   if (!hint) {
@@ -243,10 +216,6 @@ function removePhoneHint(el) {
   el.parentElement.querySelector(".dm-phone-hint")?.remove();
 }
 
-/**
- * Wire up live formatting + hint on the phone input.
- * Call once during initEmailModule.
- */
 function wirePhoneField() {
   const el = document.getElementById("phone");
   if (!el) return;
@@ -264,12 +233,10 @@ function wirePhoneField() {
     const formatted = formatPhoneNumber(el.value);
     el.value = formatted;
 
-    // Restore cursor roughly (accounts for added spaces/dashes)
     const newLen = el.value.length;
     const diff = newLen - oldLen;
     try { el.setSelectionRange(cursorPos + diff, cursorPos + diff); } catch (_) {}
 
-    // Live hint
     const raw = el.value;
     const digitsOnly = raw.replace(/\D/g, "");
     const match = matchPhonePrefix(digitsOnly);
@@ -283,7 +250,6 @@ function wirePhoneField() {
     }
   });
 
-  // On blur — run full validation if there's a value
   el.addEventListener("blur", () => {
     if (!el.value.trim()) return;
     const result = validatePhoneNumber(el.value);
@@ -297,7 +263,6 @@ function wirePhoneField() {
   });
 }
 
-// ---------------------------------------------------------------------------
 
 function injectValidationStyles() {
   if (document.getElementById("dm-validation-styles")) return;
@@ -810,8 +775,8 @@ function collectBookingData() {
     total_price: `${currencySign}${totalPrice}`,
     currency: currencySelect,
     full_name: fullName,
-    email,
-    phone,
+    email: email,
+    phone: phone,
     driver_name: driverName,
     driver_age: driverAge,
     driver_license_expiry: driverLicenseExpiry,
