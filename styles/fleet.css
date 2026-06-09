@@ -752,13 +752,14 @@ section {
     }
     .flatpickr-calendar {
       position: absolute !important;
-      top: -30% !important;
+      top: 100% !important;
       left: 30px !important;
       right: auto !important;
       width: 308px !important;
       display: flex !important;
       flex-direction: column !important;
       z-index: 999999 !important;
+      margin-top: 8px !important;
     }
   }
 }

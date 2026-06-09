@@ -840,7 +840,9 @@ main {
     font-size: 1em !important;
   }
   #dropOffLocationForm,
-  #pickupLocationForm {
+  #pickupLocationForm,
+  #dropOffDateForm,
+  #pickupDateForm {
     flex-wrap: nowrap !important;
     white-space: nowrap !important;
   }

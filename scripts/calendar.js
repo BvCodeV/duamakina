@@ -66,7 +66,7 @@ function displayCalendarFleet() {
   };
 
   const calendarConfig = {
-    appendTo: document.querySelector('.date-time-con'),
+    appendTo: document.querySelector('.date'),
     mode: 'range',
     dateFormat: 'M j, Y',
     minDate: 'today',
@@ -88,7 +88,7 @@ function displayCalendarForm() {
   const pickupFormElement = document.querySelector('#changeFormPickupDate');
   let pickupForm = flatpickr(pickupFormElement, {
     static: true,
-    appendTo: document.querySelector('.date-time-con'),
+    appendTo: document.querySelector('.date'),
     mode: 'range',
     dateFormat: 'M j, Y',
     minDate: 'today',
