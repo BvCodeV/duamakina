@@ -37,8 +37,35 @@ const maxR = document.getElementById("max-range");
 const fill = document.getElementById("fill");
 const GAP = 50;
 
+function getDefaultLocationData() {
+  const today = new Date();
+  const dropoff = new Date(today);
+  dropoff.setDate(today.getDate() + 5);
+
+  const fmt = (d) =>
+    `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+
+  return {
+    pickupLoc: "Tirana Airport (TIA)",
+    dropoffLoc: "Tirana Airport (TIA)",
+    pickupDate: fmt(today),
+    dropoffDate: fmt(dropoff),
+    pickupTime: "10:00",
+    dropoffTime: "10:00",
+  };
+}
+
 function displayLocationDataSearch() {
-  const locationData = JSON.parse(localStorage.getItem("locationData"));
+  let locationData = JSON.parse(localStorage.getItem("locationData"));
+
+  // No data means the user came straight from the nav link (no search performed).
+  // Seed sensible defaults so the fleet page works exactly like a search result.
+  if (!locationData) {
+    locationData = getDefaultLocationData();
+    localStorage.setItem("locationData", JSON.stringify(locationData));
+    calcDays(locationData.pickupDate, locationData.dropoffDate);
+  }
+
   const days = localStorage.getItem("daysCalc");
   pickupTxt.textContent = locationData.pickupLoc;
   dropoffTxt.textContent = locationData.dropoffLoc;
@@ -50,7 +77,6 @@ function displayLocationDataSearch() {
   pickupDateMobile.textContent = locationData.dropoffDate;
   headerLoc.textContent = locationData.pickupLoc;
   dayTxt.textContent = days;
-  
 }
 displayLocationDataSearch();
 
@@ -239,10 +265,10 @@ function applyFilters(cars) {
     }
 
     if (activeFilters.luggage) {
-      const trunk = car.trunk_litres ?? 0;
-      if (activeFilters.luggage === "1-2" && trunk > 200) return false;
-      if (activeFilters.luggage === "3-4" && (trunk <= 200 || trunk > 400)) return false;
-      if (activeFilters.luggage === "5-6" && trunk <= 400) return false;
+      const bags = car.trunk_litres ?? 0;
+      if (activeFilters.luggage === "1-2" && (bags < 1 || bags > 2)) return false;
+      if (activeFilters.luggage === "3-4" && (bags < 3 || bags > 4)) return false;
+      if (activeFilters.luggage === "5-6" && (bags < 5 || bags > 6)) return false;
     }
 
     if (activeFilters.deposit) {

@@ -18,6 +18,287 @@ const REQUIRED_FIELDS = [
   { id: "driverLicense", label: "License Expiry Date" },
 ];
 
+// ---------------------------------------------------------------------------
+// Phone number formatting & validation
+// ---------------------------------------------------------------------------
+
+/**
+ * Each entry maps a dial prefix (longest match wins) to:
+ *   name        – country name (shown in the hint)
+ *   pattern     – regex the *digits-only* local part must satisfy
+ *   format      – function(digits) → formatted string (including the + prefix)
+ *   localDigits – expected digit count AFTER the country code
+ */
+const PHONE_PREFIXES = [
+  // Albania
+  { prefix: "355",  name: "Albania",        localDigits: 9,  pattern: /^6[789]\d{7}$|^\d{8,9}$/,
+    format: (cc, d) => `+${cc} ${d.slice(0,2)} ${d.slice(2,5)} ${d.slice(5,7)} ${d.slice(7,9)}`.trimEnd() },
+
+  // Kosovo
+  { prefix: "383",  name: "Kosovo",         localDigits: 8,  pattern: /^4[45]\d{6}$|^\d{7,8}$/,
+    format: (cc, d) => `+${cc} ${d.slice(0,2)} ${d.slice(2,5)} ${d.slice(5)}`.trimEnd() },
+
+  // North Macedonia
+  { prefix: "389",  name: "N. Macedonia",   localDigits: 8,  pattern: /^7[0-9]\d{6}$|^\d{7,8}$/,
+    format: (cc, d) => `+${cc} ${d.slice(0,2)} ${d.slice(2,5)} ${d.slice(5)}`.trimEnd() },
+
+  // Serbia
+  { prefix: "381",  name: "Serbia",         localDigits: 9,  pattern: /^6[0-9]\d{7}$|^\d{8,9}$/,
+    format: (cc, d) => `+${cc} ${d.slice(0,2)} ${d.slice(2,5)} ${d.slice(5,7)} ${d.slice(7,9)}`.trimEnd() },
+
+  // Montenegro
+  { prefix: "382",  name: "Montenegro",     localDigits: 8,  pattern: /^6[0-9]\d{6}$|^\d{7,8}$/,
+    format: (cc, d) => `+${cc} ${d.slice(0,2)} ${d.slice(2,5)} ${d.slice(5)}`.trimEnd() },
+
+  // Bosnia
+  { prefix: "387",  name: "Bosnia",         localDigits: 8,  pattern: /^6[0-9]\d{6}$|^\d{7,8}$/,
+    format: (cc, d) => `+${cc} ${d.slice(0,2)} ${d.slice(2,5)} ${d.slice(5)}`.trimEnd() },
+
+  // Croatia
+  { prefix: "385",  name: "Croatia",        localDigits: 8,  pattern: /^9[1-9]\d{6,7}$|^\d{7,9}$/,
+    format: (cc, d) => `+${cc} ${d.slice(0,2)} ${d.slice(2,5)} ${d.slice(5)}`.trimEnd() },
+
+  // Greece
+  { prefix: "30",   name: "Greece",         localDigits: 10, pattern: /^[26]\d{9}$/,
+    format: (cc, d) => `+${cc} ${d.slice(0,3)} ${d.slice(3,6)} ${d.slice(6,8)} ${d.slice(8,10)}`.trimEnd() },
+
+  // Italy
+  { prefix: "39",   name: "Italy",          localDigits: 10, pattern: /^3\d{9}$|^0\d{9}$/,
+    format: (cc, d) => `+${cc} ${d.slice(0,3)} ${d.slice(3,6)} ${d.slice(6,8)} ${d.slice(8,10)}`.trimEnd() },
+
+  // Germany
+  { prefix: "49",   name: "Germany",        localDigits: 10, pattern: /^\d{10,11}$/,
+    format: (cc, d) => `+${cc} ${d.slice(0,3)} ${d.slice(3,6)} ${d.slice(6,8)} ${d.slice(8)}`.trimEnd() },
+
+  // France
+  { prefix: "33",   name: "France",         localDigits: 9,  pattern: /^[67]\d{8}$|^0[1-9]\d{8}$/,
+    format: (cc, d) => `+${cc} ${d.slice(0,1)} ${d.slice(1,3)} ${d.slice(3,5)} ${d.slice(5,7)} ${d.slice(7,9)}`.trimEnd() },
+
+  // Spain
+  { prefix: "34",   name: "Spain",          localDigits: 9,  pattern: /^[67]\d{8}$|^9\d{8}$/,
+    format: (cc, d) => `+${cc} ${d.slice(0,3)} ${d.slice(3,5)} ${d.slice(5,7)} ${d.slice(7,9)}`.trimEnd() },
+
+  // UK
+  { prefix: "44",   name: "UK",             localDigits: 10, pattern: /^7\d{9}$|^[12]\d{9}$/,
+    format: (cc, d) => `+${cc} ${d.slice(0,4)} ${d.slice(4,7)} ${d.slice(7,10)}`.trimEnd() },
+
+  // Turkey
+  { prefix: "90",   name: "Turkey",         localDigits: 10, pattern: /^5\d{9}$|^[23]\d{9}$/,
+    format: (cc, d) => `+${cc} ${d.slice(0,3)} ${d.slice(3,6)} ${d.slice(6,8)} ${d.slice(8,10)}`.trimEnd() },
+
+  // USA / Canada
+  { prefix: "1",    name: "US/Canada",      localDigits: 10, pattern: /^[2-9]\d{2}[2-9]\d{6}$/,
+    format: (cc, d) => `+${cc} (${d.slice(0,3)}) ${d.slice(3,6)}-${d.slice(6,10)}`.trimEnd() },
+
+  // Switzerland
+  { prefix: "41",   name: "Switzerland",    localDigits: 9,  pattern: /^[67]\d{8}$/,
+    format: (cc, d) => `+${cc} ${d.slice(0,2)} ${d.slice(2,5)} ${d.slice(5,7)} ${d.slice(7,9)}`.trimEnd() },
+
+  // Austria
+  { prefix: "43",   name: "Austria",        localDigits: 10, pattern: /^6[567]\d{8}$|^\d{9,11}$/,
+    format: (cc, d) => `+${cc} ${d.slice(0,3)} ${d.slice(3,6)} ${d.slice(6,8)} ${d.slice(8)}`.trimEnd() },
+
+  // Netherlands
+  { prefix: "31",   name: "Netherlands",    localDigits: 9,  pattern: /^6\d{8}$|^[1-9]\d{8}$/,
+    format: (cc, d) => `+${cc} ${d.slice(0,1)} ${d.slice(1,4)} ${d.slice(4,6)} ${d.slice(6,9)}`.trimEnd() },
+
+  // Belgium
+  { prefix: "32",   name: "Belgium",        localDigits: 9,  pattern: /^4[789]\d{7}$|^\d{8,9}$/,
+    format: (cc, d) => `+${cc} ${d.slice(0,3)} ${d.slice(3,5)} ${d.slice(5,7)} ${d.slice(7,9)}`.trimEnd() },
+
+  // Sweden
+  { prefix: "46",   name: "Sweden",         localDigits: 9,  pattern: /^7[02369]\d{7}$/,
+    format: (cc, d) => `+${cc} ${d.slice(0,2)} ${d.slice(2,5)} ${d.slice(5,7)} ${d.slice(7,9)}`.trimEnd() },
+
+  // Norway
+  { prefix: "47",   name: "Norway",         localDigits: 8,  pattern: /^[49]\d{7}$/,
+    format: (cc, d) => `+${cc} ${d.slice(0,2)} ${d.slice(2,4)} ${d.slice(4,6)} ${d.slice(6,8)}`.trimEnd() },
+
+  // Denmark
+  { prefix: "45",   name: "Denmark",        localDigits: 8,  pattern: /^\d{8}$/,
+    format: (cc, d) => `+${cc} ${d.slice(0,2)} ${d.slice(2,4)} ${d.slice(4,6)} ${d.slice(6,8)}`.trimEnd() },
+
+  // Poland
+  { prefix: "48",   name: "Poland",         localDigits: 9,  pattern: /^[5-9]\d{8}$/,
+    format: (cc, d) => `+${cc} ${d.slice(0,3)} ${d.slice(3,6)} ${d.slice(6,9)}`.trimEnd() },
+
+  // Romania
+  { prefix: "40",   name: "Romania",        localDigits: 9,  pattern: /^7\d{8}$|^\d{9}$/,
+    format: (cc, d) => `+${cc} ${d.slice(0,3)} ${d.slice(3,6)} ${d.slice(6,9)}`.trimEnd() },
+
+  // Bulgaria
+  { prefix: "359",  name: "Bulgaria",       localDigits: 9,  pattern: /^8[789]\d{7}$|^\d{8,9}$/,
+    format: (cc, d) => `+${cc} ${d.slice(0,2)} ${d.slice(2,5)} ${d.slice(5,7)} ${d.slice(7,9)}`.trimEnd() },
+
+  // UAE
+  { prefix: "971",  name: "UAE",            localDigits: 9,  pattern: /^5[0-9]\d{7}$|^[234]\d{7,8}$/,
+    format: (cc, d) => `+${cc} ${d.slice(0,2)} ${d.slice(2,5)} ${d.slice(5,9)}`.trimEnd() },
+
+  // Saudi Arabia
+  { prefix: "966",  name: "Saudi Arabia",   localDigits: 9,  pattern: /^5\d{8}$|^[23]\d{8}$/,
+    format: (cc, d) => `+${cc} ${d.slice(0,2)} ${d.slice(2,5)} ${d.slice(5,9)}`.trimEnd() },
+
+  // Australia
+  { prefix: "61",   name: "Australia",      localDigits: 9,  pattern: /^4\d{8}$|^[2-9]\d{8}$/,
+    format: (cc, d) => `+${cc} ${d.slice(0,3)} ${d.slice(3,6)} ${d.slice(6,9)}`.trimEnd() },
+
+  // China
+  { prefix: "86",   name: "China",          localDigits: 11, pattern: /^1[3-9]\d{9}$/,
+    format: (cc, d) => `+${cc} ${d.slice(0,3)} ${d.slice(3,7)} ${d.slice(7,11)}`.trimEnd() },
+
+  // India
+  { prefix: "91",   name: "India",          localDigits: 10, pattern: /^[6-9]\d{9}$/,
+    format: (cc, d) => `+${cc} ${d.slice(0,5)} ${d.slice(5,10)}`.trimEnd() },
+];
+
+// Sort so longest prefix is tried first (avoids "1" matching before "39" etc.)
+PHONE_PREFIXES.sort((a, b) => b.prefix.length - a.prefix.length);
+
+/**
+ * Given a raw phone string, strip everything except digits.
+ * If the result starts with a known prefix, return { entry, localDigits }.
+ */
+function matchPhonePrefix(raw) {
+  const digits = raw.replace(/\D/g, "");
+  for (const entry of PHONE_PREFIXES) {
+    if (digits.startsWith(entry.prefix)) {
+      const local = digits.slice(entry.prefix.length);
+      return { entry, local, digits };
+    }
+  }
+  return null;
+}
+
+/**
+ * Format a raw phone string in real-time (called on every keystroke).
+ * Returns the formatted string, or the raw input if no prefix is matched yet.
+ */
+function formatPhoneNumber(raw) {
+  // Strip everything except digits and leading +
+  const cleaned = raw.replace(/[^\d+]/g, "");
+  // Remove leading + for digit matching
+  const digitsOnly = cleaned.replace(/^\+/, "");
+
+  const match = matchPhonePrefix(digitsOnly);
+  if (!match) return raw; // Unknown prefix — don't reformat yet
+
+  const { entry, local } = match;
+  // Only format once we have enough digits to do something useful
+  if (local.length < 2) return raw;
+
+  return entry.format(entry.prefix, local);
+}
+
+/**
+ * Validate a fully-entered phone number.
+ * Returns { valid: bool, message: string }
+ */
+function validatePhoneNumber(raw) {
+  const digitsOnly = raw.replace(/\D/g, "");
+
+  if (!digitsOnly) return { valid: false, message: "Phone number is required" };
+  if (digitsOnly.length < 7) return { valid: false, message: "Phone number is too short" };
+
+  const match = matchPhonePrefix(digitsOnly);
+  if (!match) {
+    return {
+      valid: false,
+      message: "Unknown country code — start with + and your country code (e.g. +355 for Albania)",
+    };
+  }
+
+  const { entry, local } = match;
+  const tooShort = local.length < entry.localDigits - 1;
+  const tooLong  = local.length > entry.localDigits + 1;
+
+  if (tooShort) return { valid: false, message: `${entry.name} numbers need ${entry.localDigits} digits after +${entry.prefix}` };
+  if (tooLong)  return { valid: false, message: `${entry.name} numbers should have ${entry.localDigits} digits after +${entry.prefix}` };
+
+  if (!entry.pattern.test(local)) {
+    return { valid: false, message: `This doesn't look like a valid ${entry.name} number` };
+  }
+
+  return { valid: true, message: `✓ ${entry.name} number` };
+}
+
+/**
+ * Show a small inline country hint below the phone field (green when valid).
+ */
+function updatePhoneHint(el, message, isValid) {
+  let hint = el.parentElement.querySelector(".dm-phone-hint");
+  if (!hint) {
+    hint = document.createElement("span");
+    hint.className = "dm-phone-hint";
+    hint.style.cssText =
+      "display:block;font-size:0.78rem;margin-top:3px;padding-left:0.75em;transition:color .2s;";
+    el.insertAdjacentElement("afterend", hint);
+  }
+  hint.textContent = message;
+  hint.style.color = isValid
+    ? "var(--color-success, #2f855a)"
+    : "var(--color-text-muted, #888)";
+}
+
+function removePhoneHint(el) {
+  el.parentElement.querySelector(".dm-phone-hint")?.remove();
+}
+
+/**
+ * Wire up live formatting + hint on the phone input.
+ * Call once during initEmailModule.
+ */
+function wirePhoneField() {
+  const el = document.getElementById("phone");
+  if (!el) return;
+
+  // Show placeholder hint
+  if (!el.placeholder || el.placeholder === "") {
+    el.placeholder = "+355 69 123 4567";
+  }
+
+  el.addEventListener("input", () => {
+    // Remember cursor position
+    const cursorPos = el.selectionStart;
+    const oldLen = el.value.length;
+
+    const formatted = formatPhoneNumber(el.value);
+    el.value = formatted;
+
+    // Restore cursor roughly (accounts for added spaces/dashes)
+    const newLen = el.value.length;
+    const diff = newLen - oldLen;
+    try { el.setSelectionRange(cursorPos + diff, cursorPos + diff); } catch (_) {}
+
+    // Live hint
+    const raw = el.value;
+    const digitsOnly = raw.replace(/\D/g, "");
+    const match = matchPhonePrefix(digitsOnly);
+    if (match && digitsOnly.length > match.entry.prefix.length + 1) {
+      const result = validatePhoneNumber(raw);
+      updatePhoneHint(el, result.message, result.valid);
+    } else if (match) {
+      updatePhoneHint(el, `${match.entry.name} (+${match.entry.prefix})`, false);
+    } else {
+      removePhoneHint(el);
+    }
+  });
+
+  // On blur — run full validation if there's a value
+  el.addEventListener("blur", () => {
+    if (!el.value.trim()) return;
+    const result = validatePhoneNumber(el.value);
+    if (!result.valid) {
+      markFieldError(el, result.message);
+      removePhoneHint(el);
+    } else {
+      clearFieldError(el);
+      updatePhoneHint(el, result.message, true);
+    }
+  });
+}
+
+// ---------------------------------------------------------------------------
+
 function injectValidationStyles() {
   if (document.getElementById("dm-validation-styles")) return;
   const style = document.createElement("style");
@@ -25,9 +306,10 @@ function injectValidationStyles() {
   style.textContent = `
     /* Red border on invalid field */
     .dm-field-error {
-      border-color: var(--color-error, #e53e3e) !important;
-      background-color: oklch(from var(--color-error, #e53e3e) 0.97 0.01 h / 0.08) !important;
-      animation: dm-shake 0.35s ease;
+        border-color: var(--color-error, #e53e3e) !important;
+        outline: 2px solid rgba(229,62,62,0.12) !important;
+        background-color: rgba(229,62,62,0.03) !important;
+        animation: dm-shake 0.35s ease;
     }
 
     /* Shake animation on first validation attempt */
@@ -59,7 +341,16 @@ function injectValidationStyles() {
 }
 
 function markFieldError(el, message = "This field is required") {
+  try {
+    console.log("markFieldError:", el.id || el.name || el, message);
+  } catch (_) {}
   el.classList.add("dm-field-error");
+
+  try {
+    el.style.setProperty("border-color", "var(--color-error, #e53e3e)", "important");
+    el.style.setProperty("outline", "2px solid rgba(229,62,62,0.12)", "important");
+    el.style.setProperty("background-color", "rgba(229,62,62,0.03)", "important");
+  } catch (_) {}
 
   // Remove any existing error message first
   const existing = el.parentElement.querySelector(".dm-error-msg");
@@ -69,7 +360,20 @@ function markFieldError(el, message = "This field is required") {
   const msg = document.createElement("span");
   msg.className = "dm-error-msg";
   msg.textContent = message;
-  el.insertAdjacentElement("afterend", msg);
+  try {
+    msg.style.cssText = "display:block;color:var(--color-error,#e53e3e);font-size:0.78rem;margin-top:4px;padding-left:0.75em;z-index:999999;position:relative;";
+  } catch (_) {}
+  try {
+    if (el.parentElement) {
+      el.insertAdjacentElement("afterend", msg);
+    } else {
+      document.body.appendChild(msg);
+    }
+  } catch (err) {
+    try {
+      document.body.appendChild(msg);
+    } catch (_) {}
+  }
 
   // Auto-clear when user starts typing / changes value
   const clearOnInput = () => {
@@ -79,18 +383,36 @@ function markFieldError(el, message = "This field is required") {
   };
   el.addEventListener("input", clearOnInput);
   el.addEventListener("change", clearOnInput); // covers flatpickr / selects
+
+  try {
+    setTimeout(() => {
+      try {
+        el.style.setProperty("border-color", "var(--color-error, #e53e3e)", "important");
+        el.style.setProperty("outline", "2px solid rgba(229,62,62,0.12)", "important");
+        el.style.setProperty("background-color", "rgba(229,62,62,0.03)", "important");
+      } catch (_) {}
+    }, 60);
+  } catch (_) {}
 }
 
 function clearFieldError(el) {
   el.classList.remove("dm-field-error");
+  try {
+    el.style.borderColor = "";
+    el.style.outline = "";
+    el.style.backgroundColor = "";
+  } catch (_) {}
+
   const msg = el.parentElement?.querySelector(".dm-error-msg");
   if (msg) msg.remove();
 }
+
 
 function validateRequiredFields(options = {}) {
   const { showErrors = true } = options;
   let firstInvalid = null;
   const invalidLabels = [];
+  const invalidIds = [];
 
   REQUIRED_FIELDS.forEach(({ id, label }) => {
     const el = document.getElementById(id);
@@ -101,29 +423,44 @@ function validateRequiredFields(options = {}) {
     const value = el.value?.trim() || "";
     const isEmpty = value === "";
 
-    // Extra check: email format
     const isEmailBad =
       id === "email" &&
       value !== "" &&
       !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 
-    // Extra check: driver age range (matches booking.html placeholder 25-70 context)
     const isAgeBad =
       id === "driverAge" &&
       value !== "" &&
       (isNaN(Number(value)) || Number(value) < 18 || Number(value) > 75);
 
+    const phoneCheck =
+      id === "phone" && value !== ""
+        ? validatePhoneNumber(value)
+        : null;
+    const isPhoneBad = phoneCheck !== null && !phoneCheck.valid;
+
     if (isEmpty) {
       if (showErrors) markFieldError(el, "This field is required");
       invalidLabels.push(label);
+      invalidIds.push(id);
       if (!firstInvalid) firstInvalid = el;
     } else if (isEmailBad) {
       if (showErrors) markFieldError(el, "Please enter a valid email address");
       invalidLabels.push(label + " (invalid format)");
+      invalidIds.push(id);
       if (!firstInvalid) firstInvalid = el;
     } else if (isAgeBad) {
       if (showErrors) markFieldError(el, "Please enter a valid age (18 – 75)");
       invalidLabels.push(label + " (invalid age)");
+      invalidIds.push(id);
+      if (!firstInvalid) firstInvalid = el;
+    } else if (isPhoneBad) {
+      if (showErrors) {
+        markFieldError(el, phoneCheck.message);
+        removePhoneHint(el);
+      }
+      invalidLabels.push(label + " (invalid number)");
+      invalidIds.push(id);
       if (!firstInvalid) firstInvalid = el;
     }
   });
@@ -134,16 +471,15 @@ function validateRequiredFields(options = {}) {
     setTimeout(() => firstInvalid.focus(), 350);
   }
 
-  return { isValid: invalidLabels.length === 0, invalidLabels };
+  return { isValid: invalidLabels.length === 0, invalidLabels, invalidIds };
 }
 
 function updateSendButtonState() {
   const btn = document.getElementById("formSendBtn");
   if (!btn) return;
-
   const termsCheck = document.getElementById("termsCheck");
   const { isValid } = validateRequiredFields({ showErrors: false });
-  btn.disabled = !isValid || !termsCheck?.checked;
+  const ready = isValid && !!termsCheck?.checked;
 }
 
 function wireRequiredFieldListeners() {
@@ -160,23 +496,39 @@ function wireRequiredFieldListeners() {
   termsCheck?.addEventListener("change", updateSendButtonState);
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  emailjs.init(EMAILJS_PUBLIC_KEY);
+function initEmailModule() {
+  try {
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+  } catch (e) {
+    // ignore if emailjs not available yet
+  }
   injectValidationStyles();
   injectHcaptchaModal();
   wireFormSendBtn();
   wireRequiredFieldListeners();
+  wirePhoneField();
   updateSendButtonState();
-});
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initEmailModule);
+} else {
+  initEmailModule();
+}
 
 function wireFormSendBtn() {
   const btn = document.getElementById("formSendBtn");
   if (!btn) return;
 
   btn.removeAttribute("onclick");
+  btn.type = "button";
+  btn.disabled = false; // ensure it's never hard-disabled
 
-  btn.addEventListener("click", async () => {
-    const { isValid, invalidLabels } = validateRequiredFields();
+  const handler = async (e) => {
+    e.preventDefault();
+
+    const { isValid } = validateRequiredFields(); // marks red borders + error msgs
+    if (!isValid) return; // inline errors are already visible — no Swal needed
 
     const termsCheck = document.getElementById("termsCheck");
     if (!termsCheck?.checked) {
@@ -208,7 +560,9 @@ function wireFormSendBtn() {
     if (!token) return;
 
     await sendInquiry(token);
-  });
+  };
+
+  btn.addEventListener("click", handler);
 }
 
 function injectHcaptchaModal() {
