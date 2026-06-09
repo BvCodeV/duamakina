@@ -341,9 +341,6 @@ function injectValidationStyles() {
 }
 
 function markFieldError(el, message = "This field is required") {
-  try {
-    console.log("markFieldError:", el.id || el.name || el, message);
-  } catch (_) {}
   el.classList.add("dm-field-error");
 
   try {

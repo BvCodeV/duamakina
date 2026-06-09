@@ -434,18 +434,6 @@ main {
   to { transform: translateX(-100%); }
 }
 
-/* @media screen and (min-width: 1024px) and (max-width: 1299px) {
-  #hero {
-    flex-direction: column !important;
-  }
-  #hero .left-con h1 {
-    font-size: 2em !important;
-  }
-   #hero .left-con p {
-    display: none !important;
-   }
-} */
-
 @media screen and (min-width: 1300px) {
   .mobile-only {display: none;}
   .desktop-only {display: block;}
@@ -495,9 +483,11 @@ main {
   
   #hero {
     height: 31em;
+    width: 100%;
     picture img { height: 31em;}
     .right-con { 
       height: fit-content;
+      width: 35% !important;
       .date-time-con {
         width: 100%;
         .date-time {
