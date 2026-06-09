@@ -54,6 +54,7 @@ body {
   width: 308px !important;
   display: flex !important;
   flex-direction: column !important;
+  z-index: 999999 !important;
 }
 
 

@@ -434,7 +434,19 @@ main {
   to { transform: translateX(-100%); }
 }
 
-@media screen and (min-width: 1024px) {
+/* @media screen and (min-width: 1024px) and (max-width: 1299px) {
+  #hero {
+    flex-direction: column !important;
+  }
+  #hero .left-con h1 {
+    font-size: 2em !important;
+  }
+   #hero .left-con p {
+    display: none !important;
+   }
+} */
+
+@media screen and (min-width: 1300px) {
   .mobile-only {display: none;}
   .desktop-only {display: block;}
 
@@ -450,11 +462,11 @@ main {
     .left-con {
       h1 { font-size: 3.5em;}
 
-      p { font-size: 1em;}
+      p { font-size: 1.2em;}
     }
 
     .right-con {
-      width: 38.5em;
+      width: fit-content;
       left: 0;
       transform: translateX(0);
 
@@ -478,6 +490,7 @@ main {
   .review-con { justify-content: center !important;}
 }
 
+
 @media screen and (min-width: 1600px) {
   
   #hero {
@@ -499,6 +512,10 @@ main {
         }
       }
       button { margin-top: 10em;}
+    }
+    .left-con {
+      h1 { font-size: 3.5em;}
+      p { font-size: 1.2em;}
     }
   }
 
