@@ -783,6 +783,7 @@ function collectBookingData() {
     special_requests: specialRequests,
     submission_date: submissionDate,
     submission_time: submissionTime,
+    from_email: email,
     to_owner_email: OWNER_EMAIL,
   };
 }
@@ -831,10 +832,6 @@ async function sendInquiry(captchaToken) {
     };
     await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_USER_TEMPLATE, userPayload);
 
-    // // Subscribe to weekly marketing
-    // if (BREVO_API_KEY && BREVO_LIST_ID) {
-    //   subscribeToMarketing(data.email, data.full_name).catch(() => {});
-    // }
 
     localStorage.setItem(COOLDOWN_KEY, Date.now().toString());
 
