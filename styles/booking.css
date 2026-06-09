@@ -834,6 +834,16 @@ main {
   .country-option-check {
     width: 100% !important;
   }
+  .car-spec-card span {
+    flex-wrap: nowrap !important;
+    white-space: nowrap !important;
+    font-size: 1em !important;
+  }
+  #dropOffLocationForm,
+  #pickupLocationForm {
+    flex-wrap: nowrap !important;
+    white-space: nowrap !important;
+  }
   .rules-info {
     flex-direction: column;
     justify-content: start !important;
