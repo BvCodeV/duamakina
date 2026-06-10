@@ -66,7 +66,7 @@ function displayCalendarFleet() {
   };
 
   const calendarConfig = {
-    appendTo: document.querySelector('.date'),
+    appendTo: pickupElement.parentElement,
     mode: 'range',
     dateFormat: 'M j, Y',
     minDate: 'today',
@@ -88,12 +88,12 @@ function displayCalendarForm() {
   const pickupFormElement = document.querySelector('#changeFormPickupDate');
   let pickupForm = flatpickr(pickupFormElement, {
     static: true,
-    appendTo: document.querySelector('.date'),
+    appendTo: pickupFormElement.parentElement,
     mode: 'range',
     dateFormat: 'M j, Y',
     minDate: 'today',
     allowInput: false,
-    position: 'above right',
+    position: 'below right',
     onChange(selectedDates) {
       if (selectedDates.length >= 1) {
         document.getElementById('changeFormPickupDate').value =
