@@ -234,6 +234,7 @@ function populatePage(car) {
   }
 
   hideSkeletons();
+  window.DuaI18n?.translatePage?.();
 }
 
 function populateExtraDetails(car) {
@@ -288,6 +289,7 @@ function populateExtraDetails(car) {
       depositSpan.textContent = depositValue.toFixed(2);
     }
   }
+  window.DuaI18n?.translatePage?.();
 }
 
 

@@ -356,6 +356,7 @@ function renderCars(sortValue) {
   container.appendChild(fragment);
 
   attachPrefetchListeners();
+  window.DuaI18n?.translatePage?.();
 }
 
 const pillsConfig = [
@@ -748,6 +749,23 @@ const makeSearchInput   = document.getElementById("makeSearch");
 const makeFilterHidden  = document.getElementById("makeFilter");
 let brandListAll = [];
 
+function normalizeCachePart(value) {
+  return (value || "all").toString().trim().toLowerCase().replace(/[^a-z0-9]+/g, "_");
+}
+
+async function resolvePickupLocation(locationData) {
+  const pickupName = locationData?.pickupLoc;
+  if (!window.DuaLocations?.getLocationByName) return null;
+
+  if (pickupName) {
+    const location = await window.DuaLocations.getLocationByName(pickupName);
+    if (location) return location;
+  }
+
+  const locations = await window.DuaLocations.fetchLocations();
+  return locations.find((location) => location.is_airport) ?? locations[0] ?? null;
+}
+
 function populateBrandDatalist(brands) {
   brandListAll = brands;
   const dl = document.getElementById("brandDatalist");
@@ -839,14 +857,42 @@ function populateFiltersFromData(cars) {
       `<li class="checkbox-btn"><input type="checkbox" name="seats" id="seat_${s}" value="${s}"><label for="seat_${s}">${s} Seats</label></li>`
     ).join("");
   }
+  window.DuaI18n?.translatePage?.();
 }
 
 async function loadCars() {
   if (!container) return;
 
   container.innerHTML = SKELETON_HTML;
+  const client = await window.supabaseClientReady;
 
-  const cached = cacheGet(FLEET_CACHE_KEY);
+  if (!client) {
+    container.innerHTML = `
+      <div class="error-con">
+        <img src="/assets/icons/error.svg" alt="error icon" loading="lazy" draggable="false">
+        <h1>Failed to load cars.</h1>
+        <p>Please try again later.</p>
+      </div>`;
+    return;
+  }
+
+  let locationData = JSON.parse(localStorage.getItem("locationData"));
+  const selectedLocation = await resolvePickupLocation(locationData);
+
+  if (selectedLocation && locationData?.pickupLoc !== selectedLocation.name) {
+    locationData = {
+      ...(locationData ?? getDefaultLocationData()),
+      pickupLoc: selectedLocation.name,
+      dropoffLoc: selectedLocation.name,
+    };
+    localStorage.setItem("locationData", JSON.stringify(locationData));
+    displayLocationDataSearch();
+  }
+
+  const pickupLoc = selectedLocation?.name ?? locationData?.pickupLoc ?? "";
+  const locationId = selectedLocation?.id ?? null;
+  const cacheKey = `${FLEET_CACHE_KEY}_${normalizeCachePart(pickupLoc)}`;
+  const cached = cacheGet(cacheKey);
   if (cached) {
     allCars = cached;
     if (carNum) carNum.textContent = cached.length;
@@ -856,7 +902,46 @@ async function loadCars() {
     return;
   }
 
-  const { data: cars, error } = await supabaseClient
+  let availableCarIds = null;
+
+  if (pickupLoc) {
+    if (!locationId) {
+      allCars = [];
+      if (carNum) carNum.textContent = 0;
+      if (totalCarNum) totalCarNum.textContent = 0;
+      populateFiltersFromData([]);
+      renderCars(document.getElementById("carSort")?.value ?? "popular");
+      return;
+    }
+
+    const { data: locationCars, error: locationCarsError } = await client
+      .from("car_locations")
+      .select("car_id")
+      .eq("location_id", locationId);
+
+    if (locationCarsError) {
+      container.innerHTML = `
+        <div class="error-con">
+          <img src="/assets/icons/error.svg" alt="error icon" loading="lazy" draggable="false">
+          <h1>Failed to load cars.</h1>
+          <p>Please try again later.</p>
+        </div>`;
+      return;
+    }
+
+    availableCarIds = [...new Set((locationCars ?? []).map((row) => row.car_id).filter(Boolean))];
+
+    if (availableCarIds.length === 0) {
+      allCars = [];
+      if (carNum) carNum.textContent = 0;
+      if (totalCarNum) totalCarNum.textContent = 0;
+      populateFiltersFromData([]);
+      renderCars(document.getElementById("carSort")?.value ?? "popular");
+      return;
+    }
+  }
+
+  let carsQuery = client
     .from("cars")
     .select(
       `
@@ -873,8 +958,11 @@ async function loadCars() {
     `
     )
     .eq("is_active", true)
-    .eq("is_available", true)
-    .limit(50);
+    .eq("is_available", true);
+
+  if (availableCarIds) carsQuery = carsQuery.in("id", availableCarIds);
+
+  const { data: cars, error } = await carsQuery.limit(50);
 
   if (error) {
     container.innerHTML = `
@@ -896,7 +984,7 @@ async function loadCars() {
     return;
   }
 
-  cacheSet(FLEET_CACHE_KEY, cars);
+  cacheSet(cacheKey, cars);
 
   allCars = cars;
   if (carNum) carNum.textContent = cars.length;
@@ -963,6 +1051,7 @@ function updateLocationData() {
   localStorage.setItem("locationData", JSON.stringify(newFilter));
   calcDays(newFilter.pickupDate, newFilter.dropoffDate);
   displayLocationDataSearch();
+  loadCars();
   locationDialog.hidePopover();
 }
 window.updateLocationData = updateLocationData;

@@ -395,6 +395,11 @@ main {
         justify-content: center;
       }
 
+      .review-initial {
+        padding: 0.5em;
+        border-radius: 50%;
+      }
+
       .user {
         display: flex;
         flex-direction: column;
@@ -402,7 +407,7 @@ main {
         justify-content: center;
 
         h2 {
-          font-size: 18px;
+          font-size: 15px;
         }
 
         img { width: 12px;}
@@ -450,7 +455,7 @@ main {
     .left-con {
       h1 { font-size: 3.5em;}
 
-      p { font-size: 1.2em;}
+      p { font-size: 0.9em;}
     }
 
     .right-con {

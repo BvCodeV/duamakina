@@ -1,5 +1,4 @@
-const lang = localStorage.getItem('lang') || 'en';
-const base = lang === 'en' ? '/assets/components' : '/' + lang + '/assets/components';
+const base = '/assets/components';
 
 Promise.all([
   fetch(`${base}/nav.html`).then(r => r.text()),

@@ -10,7 +10,7 @@ if (document.getElementById('pickupDate')) {
     dateFormat: 'M j, Y',
     minDate: 'today',
     allowInput: false,
-    position: 'below',
+    position: 'below left',
     defaultDate: "today",
     onChange(selectedDates) {
       if (selectedDates.length >= 1) {
@@ -71,7 +71,7 @@ function displayCalendarFleet() {
     dateFormat: 'M j, Y',
     minDate: 'today',
     allowInput: false,
-    position: 'below',
+    position: 'below left',
     onChange(selectedDates, dateStr, fp) {
       updateDateFields(selectedDates, fp);
     }
@@ -93,7 +93,7 @@ function displayCalendarForm() {
     dateFormat: 'M j, Y',
     minDate: 'today',
     allowInput: false,
-    position: 'below right',
+    position: 'below left',
     onChange(selectedDates) {
       if (selectedDates.length >= 1) {
         document.getElementById('changeFormPickupDate').value =
