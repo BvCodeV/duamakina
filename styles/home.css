@@ -37,17 +37,22 @@ main {
     z-index: 2;
 
     h1 {
-      font-size: 1.6em;
+      font-size: 1.4em;
       color: var(--color-txt-inverse);
-      max-width: 450px;
       line-height: 1.2;
       text-align: center;
-
-      span {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.2em;
+      .highlight {
         background: linear-gradient(90deg, #89CFF0, #B8E4FF);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
+        white-space: wrap;
       }
     }
 
@@ -453,7 +458,7 @@ main {
     picture img { height: 22em;}
 
     .left-con {
-      h1 { font-size: 3.5em;}
+      h1 { font-size: 3.5em; flex-direction: column;}
 
       p { font-size: 0.9em;}
     }

@@ -445,6 +445,8 @@ aside {
         color: var(--color-txt-secondary);
       }
       p {
+        display: flex;
+        flex-wrap: wrap;
         font-size: 0.85em;
         color: var(--color-txt-secondary);
         display: flex;

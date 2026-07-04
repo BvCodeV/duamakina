@@ -404,12 +404,14 @@ section {
 
     .car-features {
       display: flex;
-      gap: 1em;
+      flex-wrap: wrap;
+      justify-content: start;
+      align-items: start;
       list-style-type: none;
       font-weight: 400;
-      white-space: nowrap;
 
       li {
+        flex: 1 1 auto;
         display: flex;
         align-items: center;
         gap: 0.3em;
@@ -428,6 +430,7 @@ section {
       white-space: nowrap;
       flex-wrap: wrap;
       li { 
+        flex: 1 1 auto;
         color: var(--color-primary);
         display: flex;
         align-items: center;
@@ -986,6 +989,25 @@ section {
 
 @media screen and (max-width: 745px) {
  .desktop-only {display: none !important;}
+  #navbar > nav > button.mobile-only {
+    display: flex !important;
+  }
+  #navbar > nav > .mobile-only:not(button):not(#menu) {
+    display: none !important;
+  }
+  #navbar > nav > #menu.mobile-only {
+    display: none;
+    visibility: visible;
+    opacity: 1;
+  }
+  #navbar > nav > #menu.mobile-only.is-open {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  #navbar > nav > .desktop-only {
+    display: none !important;
+  }
   main {
     .mobile-only {display: flex;}
     padding: 0;
@@ -1183,9 +1205,9 @@ section {
     .card-body {
       width: 100%;
       .car-title { font-size: 1.3em; }
-      .car-features { 
-        align-items: start;
-        justify-content: start;
+      .car-features {
+        gap: 0.5em;
+        align-content: start;
         li {
           flex-direction: column;
           font-size: 12px;
