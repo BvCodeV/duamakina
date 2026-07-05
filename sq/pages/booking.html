@@ -17,7 +17,6 @@
  
   <link rel="stylesheet" href="/styles/global.css">
   <link rel="stylesheet" href="/styles/booking.css">
-  <script src="/scripts/components.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
@@ -256,9 +255,11 @@
     </aside>
   </main>
   <footer id="footer" style="width: 99%; position: relative; bottom: 0;"></footer>
+  <script src="/scripts/components.js"></script>
   <script src="/scripts/lang.js"></script>
-  <script src="/scripts/database.js"></script>
+  <script src="/scripts/database.js?v=location-filter"></script>
+  <script src="/scripts/locations.js?v=location-filter"></script>
   <script src="/scripts/currency.js"></script>
-  <script src="/scripts/booking.js" type="module"></script>
+  <script src="/scripts/booking.js?v=car-locations" type="module"></script>
 </body>
 </html>

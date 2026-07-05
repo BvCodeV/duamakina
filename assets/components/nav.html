@@ -4,6 +4,7 @@
   <style>
     nav {
       position: sticky;
+      position: relative;
       top: 0;
       width: 100%;
       height: 70px;
@@ -33,16 +34,22 @@
       }
 
       #menu {
+        display: none;
         position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
         background-color: var(--color-bg-surface);
         border-radius: 0 0 20px 20px;
         border: none;
         width: 100%;
         padding: 1em 2em;
-        position-anchor: --menu;
-        left: 0;
-        right: 0;
-        position-area: bottom;
+        margin: 0;
+        z-index: 1001;
+
+        &.is-open {
+          display: block;
+        }
 
         ul {
           display: flex;
@@ -97,10 +104,10 @@
       <li><a href="/pages/fleet.html">Fleet</a></li>
       <li><a href="/pages/faqs.html">Faqs</a></li>
     </ul>
-    <button id="menuBtn" popovertarget="menu" class="mobile-only">
+    <button id="menuBtn" type="button" class="mobile-only" aria-controls="menu" aria-expanded="false">
       <img src="/assets/icons/hamburger.svg" alt="hamburger.svg" loading="lazy" draggable="false">
     </button>
-    <div popover id="menu" class="mobile-only">
+    <div id="menu" class="mobile-only">
       <ul>
         <li><a href="/index.html">Home</a></li>
         <li><a href="/pages/fleet.html">Our Fleet</a></li>

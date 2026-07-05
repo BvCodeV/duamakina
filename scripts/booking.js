@@ -83,8 +83,157 @@ function getIconForSlug(slug) {
   return key ? EXTRA_ICON_MAP[key] : "default-addon.svg";
 }
 
+// Translate an addon name based on its stable slug (falls back to the DB-provided English name).
+function translateAddonName(slug, fallbackName) {
+  const i18n = window.DuaI18n;
+  if (!i18n || !slug) return fallbackName;
+  const lang = i18n.lang;
+  if (!lang || lang === "en") return fallbackName;
+  // Normalise: DB slugs may use underscores (booster_seat) while valueMap uses hyphens (booster-seat).
+  const normalizedSlug = slug.replace(/_/g, "-");
+  const translated = i18n.tv?.("extra", normalizedSlug);
+  if (!translated) return fallbackName;
+  // tv() falls back to capitalize(slug) when no valueMap entry exists - detect and bail.
+  const cap = normalizedSlug.charAt(0).toUpperCase() + normalizedSlug.slice(1);
+  if (translated === normalizedSlug || translated === cap) return fallbackName;
+  return translated;
+}
+
+// Translate an addon description based on its stable slug.
+// Looks up "<slug>-desc" in valueMap.extra; falls back to the DB-provided text.
+function translateAddonDescription(slug, fallbackDesc) {
+  const i18n = window.DuaI18n;
+  if (!i18n || !slug) return fallbackDesc ?? "";
+  const lang = i18n.lang;
+  if (!lang || lang === "en") return fallbackDesc ?? "";
+  // Normalise: DB slugs may use underscores; valueMap uses hyphens.
+  const normalizedSlug = slug.replace(/_/g, "-");
+  const lookupKey = `${normalizedSlug}-desc`;
+  const translated = i18n.tv?.("extra", lookupKey);
+  if (!translated) return fallbackDesc ?? "";
+  // tv() falls back to capitalize(lookupKey) when no valueMap entry exists.
+  const cap = lookupKey.charAt(0).toUpperCase() + lookupKey.slice(1);
+  if (translated === lookupKey || translated === cap) return fallbackDesc ?? "";
+  return translated;
+}
+
+// Translate a country name based on its ISO country_code (e.g., "GR", "IT", "MK").
+// Falls back to the DB-provided country_name if no translation is found.
+function translateCountryName(countryCode, fallbackName) {
+  const i18n = window.DuaI18n;
+  if (!i18n || !countryCode) return fallbackName;
+  const lang = i18n.lang;
+  if (!lang || lang === "en") return fallbackName;
+  const translated = i18n.tv?.("country", countryCode);
+  if (!translated) return fallbackName;
+  // tv() falls back to capitalize(value) = first char upper + rest unchanged.
+  // For "XX" → "XX", for "xy" → "Xy". Detect both forms and bail.
+  const cap = countryCode.charAt(0).toUpperCase() + countryCode.slice(1);
+  if (translated === countryCode || translated === cap) return fallbackName;
+  return translated;
+}
+
+function escapeHtml(str) {
+  if (str == null) return "";
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+// Re-translate all slug-driven addon titles/descriptions and country names when the language changes.
+function retranslateAddonCards() {
+  // Addon titles
+  document.querySelectorAll("[data-extra-slug]:not([data-extra-desc])").forEach((el) => {
+    const slug = el.getAttribute("data-extra-slug");
+    const source = el.getAttribute("data-extra-slug-source");
+    el.textContent = translateAddonName(slug, source);
+  });
+  // Addon descriptions
+  document.querySelectorAll("[data-extra-desc]").forEach((el) => {
+    const slug = el.getAttribute("data-extra-slug");
+    const source = el.getAttribute("data-extra-slug-source");
+    el.textContent = translateAddonDescription(slug, source);
+  });
+  // Country names
+  document.querySelectorAll("[data-country-code]").forEach((el) => {
+    const code = el.getAttribute("data-country-code");
+    const source = el.getAttribute("data-country-source");
+    el.textContent = translateCountryName(code, source);
+  });
+  // Car transmission (aside panel)
+  const transmissionEl = document.getElementById("carTransmission");
+  if (transmissionEl && transmissionEl.dataset.transmissionRaw) {
+    const raw = transmissionEl.dataset.transmissionRaw;
+    transmissionEl.textContent =
+      window.DuaI18n?.tv?.("transmission", raw) ??
+      (raw ? raw.charAt(0).toUpperCase() + raw.slice(1) : "");
+  }
+}
+
+window.addEventListener("languageChanged", retranslateAddonCards);
+
 function getCarIdFromUrl() {
   return new URLSearchParams(window.location.search).get("id");
+}
+
+let bookingCarLocationsPromise = null;
+
+function populateSelectWithLocations(select, locations) {
+  if (!select || locations.length === 0) return;
+
+  const previousValue = select.value;
+  select.innerHTML = locations
+    .map((location) => `<option value="${location.name}">${location.name}</option>`)
+    .join("");
+
+  if (locations.some((location) => location.name === previousValue)) {
+    select.value = previousValue;
+  } else {
+    select.value = locations[0].name;
+  }
+}
+
+async function loadBookingCarLocations() {
+  const carId = getCarIdFromUrl();
+  if (!carId) return [];
+
+  const client = await window.supabaseClientReady;
+  if (!client) return [];
+
+  const { data: carLocationRows, error: carLocationError } = await client
+    .from("car_locations")
+    .select("location_id")
+    .eq("car_id", carId);
+
+  if (carLocationError || !carLocationRows?.length) return [];
+
+  const locationIds = [...new Set(carLocationRows.map((row) => row.location_id).filter(Boolean))];
+  if (locationIds.length === 0) return [];
+
+  const { data: locations, error: locationsError } = await client
+    .from("locations")
+    .select("id, name")
+    .in("id", locationIds)
+    .eq("is_active", true)
+    .order("name", { ascending: true });
+
+  if (locationsError || !locations) return [];
+  return locations;
+}
+
+async function populateBookingLocationDialog() {
+  if (!bookingCarLocationsPromise) {
+    bookingCarLocationsPromise = loadBookingCarLocations();
+  }
+
+  const locations = await bookingCarLocationsPromise;
+  if (locations.length === 0) return;
+
+  populateSelectWithLocations(formPickupLoc, locations);
+  populateSelectWithLocations(formDropoffLoc, locations);
 }
 
 const getStorageData = () => ({
@@ -197,6 +346,7 @@ function updatePriceSummary() {
 
   triggerPriceUpdate();
   updateFinalPrice();
+  window.DuaI18n?.translatePage?.();
 }
 
 function getTodayPrice(pricingRows) {
@@ -261,7 +411,7 @@ function updateFaqSection(car, youngDriverData) {
             data-price="${country.fee}"
           >
           <label for="${safeId}">${country.country_code}</label>
-          <p>${country.country_name}</p>
+          <p data-no-translate data-country-code="${country.country_code}" data-country-source="${escapeHtml(country.country_name)}">${translateCountryName(country.country_code, country.country_name)}</p>
           <p class="country-fee"><span class="currency-sign">€</span><span class="currency-num" id="countryFee_${country.country_code}">${country.fee}</span></p>
         </div>
         `;
@@ -327,7 +477,15 @@ function updatePage(car, youngDriverData) {
   if (carNamePrice) carNamePrice.textContent = `${car.brand} ${car.model}`;
   if (carLuggage) carLuggage.textContent = `${car.trunk_litres} Bags`;
   if (carSeats) carSeats.textContent = `${car.seats} Seats`;
-  if (carTransmission) carTransmission.textContent = `${car.transmission}`;
+  if (carTransmission) {
+    // Store the raw DB value (e.g. "automatic") so retranslateAddonCards can re-render it.
+    carTransmission.dataset.transmissionRaw = car.transmission ?? "";
+    const txDisplay = window.DuaI18n?.tv?.("transmission", car.transmission)
+      ?? (car.transmission
+          ? car.transmission.charAt(0).toUpperCase() + car.transmission.slice(1)
+          : "");
+    carTransmission.textContent = txDisplay;
+  }
   if (carPricePerDay) {
     carPricePerDay.dataset.basePrice = currentPricePerDay;
     carPricePerDay.textContent = parseFloat(currentPricePerDay);
@@ -339,6 +497,7 @@ function updatePage(car, youngDriverData) {
 
   updateFaqSection(car, youngDriverData);
   updateFinalPrice(currentPricePerDay);
+  window.DuaI18n?.translatePage?.();
 }
 
 function buildAddonCard(extra, priceOverride) {
@@ -363,10 +522,10 @@ function buildAddonCard(extra, priceOverride) {
     >
     <img src="/assets/icons/${icon}" alt="${extra.name}" loading="lazy" draggable="false">
     <div>
-      <h3 class="addon-title">${extra.name}</h3>
-      <p class="addon-description">${extra.description ?? ""}</p>
+      <h3 class="addon-title" data-no-translate data-extra-slug="${extra.slug}" data-extra-slug-source="${escapeHtml(extra.name)}">${translateAddonName(extra.slug, extra.name)}</h3>
+      <p class="addon-description" data-no-translate data-extra-desc data-extra-slug="${extra.slug}" data-extra-slug-source="${escapeHtml(extra.description ?? "")}">${translateAddonDescription(extra.slug, extra.description ?? "")}</p>
       <p class="addon-price">
-        <span class="currency-sign">€</span><span class="currency-num">${effectivePrice.toFixed(2)}</span>/dite
+        <span class="currency-sign">€</span><span class="currency-num">${effectivePrice.toFixed(2)}</span>/${window.DuaI18n?.t?.("day") ?? "day"}
       </p>
     </div>
   `;
@@ -401,6 +560,7 @@ async function loadCarExtras(carId) {
       const card = buildAddonCard(row.extras, row.price_override);
       addonsCardCon.appendChild(card);
     });
+  window.DuaI18n?.translatePage?.();
 }
 
 async function loadYoungDriverSurcharges(carId) {
@@ -513,8 +673,14 @@ locationForm?.addEventListener("toggle", (e) => {
 if (changeBtn) changeBtn.onclick = () => {
   const { locationData } = getStorageData();
   if (!locationData) return;
-  formPickupLoc.value = locationData.pickupLoc || "";
-  formDropoffLoc.value = locationData.dropoffLoc || "";
+  populateBookingLocationDialog().then(() => {
+    formPickupLoc.value = [...formPickupLoc.options].some((option) => option.value === locationData.pickupLoc)
+      ? locationData.pickupLoc
+      : formPickupLoc.value;
+    formDropoffLoc.value = [...formDropoffLoc.options].some((option) => option.value === locationData.dropoffLoc)
+      ? locationData.dropoffLoc
+      : formDropoffLoc.value;
+  });
   formPickupDate.value = locationData.pickupDate || "";
   formDropoffDate.value = locationData.dropoffDate || "";
   formPickupTime.value = locationData.pickupTime || "00:00";
@@ -534,6 +700,7 @@ if (closeDialogBtn) closeDialogBtn.onclick = () => {
 
 const canInitializeBookingPage = Boolean(addonPage && infoPage && carFinalPrice && finalAmount);
 if (canInitializeBookingPage) {
+  populateBookingLocationDialog();
   loadCarDetails();
   displayData();
   displayDate();

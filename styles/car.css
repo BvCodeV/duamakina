@@ -446,4 +446,11 @@ aside {
   .best-for-card-con {
     flex-wrap: wrap;
   }
+  .faq-header {
+    font-size: 1.1em !important;
+  }
+  .faq-box ul li,
+  .faq-box p {
+    font-size: 0.9em !important;
+  }
 }
