@@ -20,11 +20,14 @@ main {
   background-color: var(--color-bg-surface);
   display: flex;
   align-items: center;
-  gap: 1em;
+  flex-wrap: wrap;
+  gap: 0.75em 1em;
   .progress-btn {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 1em;
+    gap: 0.75em;
+    flex: 0 1 auto;
+    min-width: 0;
     background-color: transparent;
     color: var(--color-txt-primary);
     border: none;
@@ -39,9 +42,19 @@ main {
       border: 1px solid var(--color-border);
       border-radius: 50%;
       font-size: 0.9em;
+      flex-shrink: 0;
       img {
         width: 15px;
       }
+    }
+    > span:last-child {
+      width: auto;
+      height: auto;
+      border: none;
+      border-radius: 0;
+      white-space: normal;
+      line-height: 1.2;
+      max-width: 12rem;
     }
   }
   .progress-active span {

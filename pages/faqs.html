@@ -1,244 +1,608 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rent a Car in Tirana, Albania | Dua Makina | Faqs</title>
-  <meta name="application-name" content="duamakina">
-  <meta name="description" content="Affordable, reliable car rentals in Tirana, Albania. Explore Albania Your Way with DuaMakina. Best prices guaranteed – book online in minutes!">
-  <meta name="keywords" content="dua makine,dua makina, duamakina car rental Tirana, rent a car Albania, car hire Albania, cheap car rental Albania, affordable car rental Tirana, car rental Tirana airport, Albania road trip, explore Albania by car, reliable car rental Albania, makina me qera Tiranë, qera makine Shqiperi, makina me qera çmim të lirë, makina me qera aeroporti Tiranë, qera makine online Shqiperi, eksploroni Shqipërinë me makinë, makina me qera te besueshem, udhëtim me makinë Shqipëri">
-  <link rel="canonical" href="https://www.duamakina.com/">
-  <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
-  <link rel="icon" type="image/webp" href="/assets/icons/favicon.webp">
-  <link rel="alternate" hreflang="x-default" href="https://www.duamakina.com/pages/faqs.html">
-  <link rel="alternate" hreflang="en" href="https://www.duamakina.com/pages/faqs.html">
-  <link rel="alternate" hreflang="sq" href="https://www.duamakina.com/sq/pages/faqs.html">
-  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-  <link rel="stylesheet" href="/styles/global.css">
-  <link rel="stylesheet" href="/styles/faq.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-  <script src="/scripts/components.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-</head>
-<body>
-  <header role="banner" id="header" style="width: 100%; z-index: 1000; position: relative;" fetchpriority=high></header>
-  <nav role="navigation" id="navbar" style="width: 100%; z-index: 1000; position: sticky; top: 0px;" fetchpriority=high></nav>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rent a Car in Tirana, Albania | Dua Makina | Faqs</title>
+    <meta name="application-name" content="duamakina" />
+    <meta
+      name="description"
+      content="Affordable, reliable car rentals in Tirana, Albania. Explore Albania Your Way with DuaMakina. Best prices guaranteed – book online in minutes!"
+    />
+    <meta
+      name="keywords"
+      content="dua makine,dua makina, duamakina car rental Tirana, rent a car Albania, car hire Albania, cheap car rental Albania, affordable car rental Tirana, car rental Tirana airport, Albania road trip, explore Albania by car, reliable car rental Albania, makina me qera Tiranë, qera makine Shqiperi, makina me qera çmim të lirë, makina me qera aeroporti Tiranë, qera makine online Shqiperi, eksploroni Shqipërinë me makinë, makina me qera te besueshem, udhëtim me makinë Shqipëri"
+    />
+    <link rel="canonical" href="https://www.duamakina.com/" />
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg" />
+    <link rel="icon" type="image/webp" href="/assets/icons/favicon.webp" />
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href="https://www.duamakina.com/pages/faqs.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="en"
+      href="https://www.duamakina.com/pages/faqs.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="sq"
+      href="https://www.duamakina.com/sq/pages/faqs.html"
+    />
+    <meta
+      name="robots"
+      content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+    />
+    <link rel="stylesheet" href="/styles/global.css" />
+    <link rel="stylesheet" href="/styles/faq.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="/scripts/components.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/i18next@23/i18next.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/i18next-http-backend@2/i18next-http-backend.min.js"></script>
+    <script src="/scripts/lang.js"></script>
+  </head>
+  <body>
+    <header
+      role="banner"
+      id="header"
+      style="width: 100%; z-index: 1000; position: relative"
+      fetchpriority="high"
+    ></header>
+    <nav
+      role="navigation"
+      id="navbar"
+      style="width: 100%; z-index: 1000; position: sticky; top: 0px"
+      fetchpriority="high"
+    ></nav>
 
-  <main>
-    <section class="faq-section">
-      <div class="doc-faq faq-con">
-        <div class="faq-header">
-          <div class="img-con"><img src="/assets/icons/documents.svg" alt="document icon"  loading="lazy" draggable="false"></div>
-          <h3>Documents Required</h3>
+    <main>
+      <section class="faq-section">
+        <div class="doc-faq faq-con">
+          <div class="faq-header">
+            <div class="img-con">
+              <img
+                src="/assets/icons/documents.svg"
+                alt="document icon"
+                loading="lazy"
+                draggable="false"
+              />
+            </div>
+            <h3 data-i18n="car.faq.documents.title">Documents Required</h3>
+          </div>
+          <details>
+            <summary>
+              <span data-i18n="faqs.documents.q1"
+                >What documents do I need to rent a car?</span
+              >
+              <img
+                src="/assets/icons/down-arrow.svg"
+                alt="down arrow"
+                loading="lazy"
+                draggable="false"
+                class="arrow-img"
+              />
+            </summary>
+            <p data-i18n="faqs.documents.a1">
+              You will need a valid passport or national ID card, and a valid
+              driving license. If your license is not from an EU country, you
+              may also need an International Driving Permit (IDP).
+            </p>
+          </details>
+          <details>
+            <summary>
+              <span data-i18n="faqs.documents.q2"
+                >Is an International Driving Permit (IDP) required?</span
+              >
+              <img
+                src="/assets/icons/down-arrow.svg"
+                alt="down arrow"
+                loading="lazy"
+                draggable="false"
+                class="arrow-img"
+              />
+            </summary>
+            <p data-i18n="faqs.documents.a2">
+              An IDP is required for drivers with licenses issued outside the
+              European Union. EU driving licenses are accepted without an IDP.
+            </p>
+          </details>
+          <details>
+            <summary>
+              <span data-i18n="faqs.documents.q3"
+                >How long must I have held my driving license?</span
+              >
+              <img
+                src="/assets/icons/down-arrow.svg"
+                alt="down arrow"
+                loading="lazy"
+                draggable="false"
+                class="arrow-img"
+              />
+            </summary>
+            <p data-i18n="faqs.documents.a3">
+              You must have held your driving license for at least 2 years. Some
+              premium vehicles may require 3 or more years of driving
+              experience.
+            </p>
+          </details>
         </div>
-        <details>
-          <summary>
-            <span>What documents do I need to rent a car?</span>
-            <img src="/assets/icons/down-arrow.svg" alt="down arrow" loading="lazy" draggable="false" class="arrow-img">
-          </summary>
-          <p>You will need a valid passport or national ID card, and a valid driving license. If your license is not from an EU country, you may also need an International Driving Permit (IDP).</p>
-        </details>
-        <details>
-          <summary>
-            <span>Is an International Driving Permit (IDP) required?</span>
-            <img src="/assets/icons/down-arrow.svg" alt="down arrow" loading="lazy" draggable="false" class="arrow-img">
-          </summary>
-          <p>An IDP is required for drivers with licenses issued outside the European Union. EU driving licenses are accepted without an IDP.</p>
-        </details>
-        <details>
-          <summary>
-            <span>How long must I have held my driving license?</span>
-            <img src="/assets/icons/down-arrow.svg" alt="down arrow" loading="lazy" draggable="false" class="arrow-img">
-          </summary>
-          <p>You must have held your driving license for at least 2 years. Some premium vehicles may require 3 or more years of driving experience.</p>
-        </details>
-      </div>
-      <div class="age-faq faq-con">
-        <div class="faq-header">
-          <div class="img-con"><img src="/assets/icons/people.svg" alt="people icon"  loading="lazy" draggable="false"></div>
-          <h3>Age Requirements</h3>
+        <div class="age-faq faq-con">
+          <div class="faq-header">
+            <div class="img-con">
+              <img
+                src="/assets/icons/people.svg"
+                alt="people icon"
+                loading="lazy"
+                draggable="false"
+              />
+            </div>
+            <h3 data-i18n="faqs.age.title">Age Requirements</h3>
+          </div>
+          <details>
+            <summary>
+              <span data-i18n="faqs.age.q1"
+                >What is the minimum age to rent a vehicle?</span
+              >
+              <img
+                src="/assets/icons/down-arrow.svg"
+                alt="down arrow"
+                loading="lazy"
+                draggable="false"
+                class="arrow-img"
+              />
+            </summary>
+            <p data-i18n="faqs.age.a1">
+              The minimum age to rent a car is 18 years. Some premium and SUV
+              categories may require a different minimum age based on the
+              vehicle.
+            </p>
+          </details>
+          <details>
+            <summary>
+              <span data-i18n="faqs.age.q2"
+                >Is there a maximum age to rent a car?</span
+              >
+              <img
+                src="/assets/icons/down-arrow.svg"
+                alt="down arrow"
+                loading="lazy"
+                draggable="false"
+                class="arrow-img"
+              />
+            </summary>
+            <p data-i18n="faqs.age.a2">
+              Yes, the maximum age for renting a car is 75 years. Drivers over
+              70 may be asked to provide additional documentation.
+            </p>
+          </details>
+          <details>
+            <summary>
+              <span data-i18n="faqs.age.q3"
+                >Is there a young driver surcharge?</span
+              >
+              <img
+                src="/assets/icons/down-arrow.svg"
+                alt="down arrow"
+                loading="lazy"
+                draggable="false"
+                class="arrow-img"
+              />
+            </summary>
+            <p data-i18n="faqs.age.a3">
+              Drivers aged 18-24 may be subject to a young driver surcharge
+              depending on the vehicle.
+            </p>
+          </details>
         </div>
-        <details>
-          <summary>
-            <span>What is the minimum age to rent a vehicle?</span>
-            <img src="/assets/icons/down-arrow.svg" alt="down arrow" loading="lazy" draggable="false" class="arrow-img">
-          </summary>
-          <p>The minimum age to rent a car is 18 years. Some premium and SUV categories may require a different minimum age based on the vehicle.</p>
-        </details>
-        <details>
-          <summary>
-            <span>Is there a maximum age to rent a car?</span>
-            <img src="/assets/icons/down-arrow.svg" alt="down arrow" loading="lazy" draggable="false" class="arrow-img">
-          </summary>
-          <p>Yes, the maximum age for renting a car is 75 years. Drivers over 70 may be asked to provide additional documentation.</p>
-        </details>
-        <details>
-          <summary>
-            <span>Is there a young driver surcharge?</span>
-            <img src="/assets/icons/down-arrow.svg" alt="down arrow" loading="lazy" draggable="false" class="arrow-img">
-          </summary>
-          <p>Drivers aged 18-24 may be subject to a young driver surcharge depending on the vehicle.</p>
-        </details>
-      </div>
-      <div class="payment-faq faq-con">
-        <div class="faq-header">
-          <div class="img-con"><img src="/assets/icons/card-color.svg" alt="payment icon"  loading="lazy" draggable="false"></div>
-          <h3>Payment & Pricing</h3>
+        <div class="payment-faq faq-con">
+          <div class="faq-header">
+            <div class="img-con">
+              <img
+                src="/assets/icons/card-color.svg"
+                alt="payment icon"
+                loading="lazy"
+                draggable="false"
+              />
+            </div>
+            <h3 data-i18n="faqs.payment.title">Payment & Pricing</h3>
+          </div>
+          <details>
+            <summary>
+              <span data-i18n="faqs.payment.q1"
+                >Do I need a credit card to rent a car?</span
+              >
+              <img
+                src="/assets/icons/down-arrow.svg"
+                alt="down arrow"
+                loading="lazy"
+                draggable="false"
+                class="arrow-img"
+              />
+            </summary>
+            <p data-i18n="faqs.payment.a1">
+              No, we do not require a credit card. All payments are made in CASH
+              at the time of vehicle collection. This is our unique model that
+              makes renting easier for everyone.
+            </p>
+          </details>
+          <details>
+            <summary>
+              <span data-i18n="faqs.payment.q2"
+                >What currencies do you accept?</span
+              >
+              <img
+                src="/assets/icons/down-arrow.svg"
+                alt="down arrow"
+                loading="lazy"
+                draggable="false"
+                class="arrow-img"
+              />
+            </summary>
+            <p data-i18n="faqs.payment.a2">
+              We accept payments in Albanian Lek (ALL), Euro (EUR), US Dollar
+              (USD), and British Pound (GBP). We recommend paying in EUR or ALL
+              for the best rates.
+            </p>
+          </details>
+          <details>
+            <summary>
+              <span data-i18n="faqs.payment.q3"
+                >Is there a security deposit?</span
+              >
+              <img
+                src="/assets/icons/down-arrow.svg"
+                alt="down arrow"
+                loading="lazy"
+                draggable="false"
+                class="arrow-img"
+              />
+            </summary>
+            <p data-i18n="faqs.payment.a3">
+              A security deposit may be required depending on the vehicle.
+            </p>
+          </details>
+          <details>
+            <summary>
+              <span data-i18n="faqs.payment.q4"
+                >Are there any hidden fees?</span
+              >
+              <img
+                src="/assets/icons/down-arrow.svg"
+                alt="down arrow"
+                loading="lazy"
+                draggable="false"
+                class="arrow-img"
+              />
+            </summary>
+            <p data-i18n="faqs.payment.a4">
+              No hidden fees! Our prices include basic insurance, taxes, and
+              24/7 roadside assistance. Optional extras like GPS and child seats
+              are clearly priced.
+            </p>
+          </details>
         </div>
-        <details>
-          <summary>
-            <span>Do I need a credit card to rent a car?</span>
-            <img src="/assets/icons/down-arrow.svg" alt="down arrow" loading="lazy" draggable="false" class="arrow-img">
-          </summary>
-          <p>No, we do not require a credit card. All payments are made in CASH at the time of vehicle collection. This is our unique model that makes renting easier for everyone.</p>
-        </details>
-        <details>
-          <summary>
-            <span>What currencies do you accept?</span>
-            <img src="/assets/icons/down-arrow.svg" alt="down arrow" loading="lazy" draggable="false" class="arrow-img">
-          </summary>
-          <p>We accept payments in Albanian Lek (ALL), Euro (EUR), US Dollar (USD), and British Pound (GBP). We recommend paying in EUR or ALL for the best rates.</p>
-        </details>
-        <details>
-          <summary>
-            <span>Is there a security deposit?</span>
-            <img src="/assets/icons/down-arrow.svg" alt="down arrow" loading="lazy" draggable="false" class="arrow-img">
-          </summary>
-          <p>A security deposit may be  required depending on the vehicle.</p>
-        </details>
-        <details>
-          <summary>
-            <span>Are there any hidden fees?</span>
-            <img src="/assets/icons/down-arrow.svg" alt="down arrow" loading="lazy" draggable="false" class="arrow-img">
-          </summary>
-          <p>No hidden fees! Our prices include basic insurance, taxes, and 24/7 roadside assistance. Optional extras like GPS and child seats are clearly priced.</p>
-        </details>
-      </div>
-      <div class="vehicle-faq faq-con">
-        <div class="faq-header">
-          <div class="img-con"><img src="/assets/icons/car-color.svg" alt="car icon"  loading="lazy" draggable="false"></div>
-          <h3>Vehicle Selection</h3>
+        <div class="vehicle-faq faq-con">
+          <div class="faq-header">
+            <div class="img-con">
+              <img
+                src="/assets/icons/car-color.svg"
+                alt="car icon"
+                loading="lazy"
+                draggable="false"
+              />
+            </div>
+            <h3 data-i18n="faqs.vehicle.title">Vehicle Selection</h3>
+          </div>
+          <details>
+            <summary>
+              <span data-i18n="faqs.vehicle.q1"
+                >What types of vehicles do you offer?</span
+              >
+              <img
+                src="/assets/icons/down-arrow.svg"
+                alt="down arrow"
+                loading="lazy"
+                draggable="false"
+                class="arrow-img"
+              />
+            </summary>
+            <p data-i18n="faqs.vehicle.a1">
+              We offer a wide range of vehicles including Economy cars, Compact
+              sedans, SUVs, Premium vehicles, and Minivans. All vehicles are
+              regularly maintained and serviced.
+            </p>
+          </details>
+          <details>
+            <summary>
+              <span data-i18n="faqs.vehicle.q2"
+                >Which car should I choose for Albanian roads?</span
+              >
+              <img
+                src="/assets/icons/down-arrow.svg"
+                alt="down arrow"
+                loading="lazy"
+                draggable="false"
+                class="arrow-img"
+              />
+            </summary>
+            <p data-i18n="faqs.vehicle.a2">
+              For mountain areas and countryside exploration, we recommend SUVs
+              or vehicles with higher ground clearance. For city driving and
+              coastal roads, any vehicle category works well.
+            </p>
+          </details>
+          <details>
+            <summary>
+              <span data-i18n="faqs.vehicle.q3"
+                >Can I request a specific car model?</span
+              >
+              <img
+                src="/assets/icons/down-arrow.svg"
+                alt="down arrow"
+                loading="lazy"
+                draggable="false"
+                class="arrow-img"
+              />
+            </summary>
+            <p data-i18n="faqs.vehicle.a3">
+              You can request a specific model, but we guarantee the car
+              category, not the exact model. We display "or similar" for each
+              listing as availability varies.
+            </p>
+          </details>
         </div>
-        <details>
-          <summary>
-            <span>What types of vehicles do you offer?</span>
-            <img src="/assets/icons/down-arrow.svg" alt="down arrow" loading="lazy" draggable="false" class="arrow-img">
-          </summary>
-          <p>We offer a wide range of vehicles including Economy cars, Compact sedans, SUVs, Premium vehicles, and Minivans. All vehicles are regularly maintained and serviced.</p>
-        </details>
-        <details>
-          <summary>
-            <span>Which car should I choose for Albanian roads?</span>
-            <img src="/assets/icons/down-arrow.svg" alt="down arrow" loading="lazy" draggable="false" class="arrow-img">
-          </summary>
-          <p>For mountain areas and countryside exploration, we recommend SUVs or vehicles with higher ground clearance. For city driving and coastal roads, any vehicle category works well.</p>
-        </details>
-        <details>
-          <summary>
-            <span>Can I request a specific car model?</span>
-            <img src="/assets/icons/down-arrow.svg" alt="down arrow" loading="lazy" draggable="false" class="arrow-img">
-          </summary>
-          <p>You can request a specific model, but we guarantee the car category, not the exact model. We display "or similar" for each listing as availability varies.</p>
-        </details>
-      </div>
-      <div class="crossBorder-faq faq-con">
-        <div class="faq-header">
-          <div class="img-con"><img src="/assets/icons/world.svg" alt="world icon"  loading="lazy" draggable="false"></div>
-          <h3>Cross-Border & Travel</h3>
+        <div class="crossBorder-faq faq-con">
+          <div class="faq-header">
+            <div class="img-con">
+              <img
+                src="/assets/icons/world.svg"
+                alt="world icon"
+                loading="lazy"
+                draggable="false"
+              />
+            </div>
+            <h3 data-i18n="faqs.cross_border.title">Cross-Border & Travel</h3>
+          </div>
+          <details>
+            <summary>
+              <span data-i18n="faqs.cross_border.q1"
+                >Can I take the car outside Albania?</span
+              >
+              <img
+                src="/assets/icons/down-arrow.svg"
+                alt="down arrow"
+                loading="lazy"
+                draggable="false"
+                class="arrow-img"
+              />
+            </summary>
+            <p>
+              <span data-i18n="faqs.cross_border.a1_prefix"
+                >Yes! Our vehicles are authorized for travel throughout Europe.
+                However, you must inform us in advance and may need to purchase
+                Green Card insurance (</span
+              ><span class="currency-sign">€</span
+              ><span class="currency-num">25</span
+              ><span data-i18n="faqs.cross_border.a1_suffix"
+                >) for border crossings.</span
+              >
+            </p>
+          </details>
+          <details>
+            <summary>
+              <span data-i18n="faqs.cross_border.q2"
+                >Is ferry travel permitted?</span
+              >
+              <img
+                src="/assets/icons/down-arrow.svg"
+                alt="down arrow"
+                loading="lazy"
+                draggable="false"
+                class="arrow-img"
+              />
+            </summary>
+            <p data-i18n="faqs.cross_border.a2">
+              Yes, ferry travel to Greece (Saranda-Corfu) and Italy
+              (Durres-Bari) is permitted with prior notification. Please let us
+              know when booking.
+            </p>
+          </details>
+          <details>
+            <summary>
+              <span data-i18n="faqs.cross_border.q3"
+                >What about mileage limits?</span
+              >
+              <img
+                src="/assets/icons/down-arrow.svg"
+                alt="down arrow"
+                loading="lazy"
+                draggable="false"
+                class="arrow-img"
+              />
+            </summary>
+            <p data-i18n="faqs.cross_border.a3">
+              Most of our vehicles come with unlimited mileage. For vehicles
+              with limits, the daily allowance is typically 300km with
+              additional kilometers charged at €0.15/km.
+            </p>
+          </details>
         </div>
-        <details>
-          <summary>
-            <span>Can I take the car outside Albania?</span>
-            <img src="/assets/icons/down-arrow.svg" alt="down arrow" loading="lazy" draggable="false" class="arrow-img">
-          </summary>
-          <p>Yes! Our vehicles are authorized for travel throughout Europe. However, you must inform us in advance and may need to purchase Green Card insurance (<span class="currency-sign">€</span><span class="currency-num">25</span>) for border crossings.</p>
-        </details>
-        <details>
-          <summary>
-            <span>Is ferry travel permitted?</span>
-            <img src="/assets/icons/down-arrow.svg" alt="down arrow" loading="lazy" draggable="false" class="arrow-img">
-          </summary>
-          <p>Yes, ferry travel to Greece (Saranda-Corfu) and Italy (Durres-Bari) is permitted with prior notification. Please let us know when booking.</p>
-        </details>
-        <details>
-          <summary>
-            <span>What about mileage limits?</span>
-            <img src="/assets/icons/down-arrow.svg" alt="down arrow" loading="lazy" draggable="false" class="arrow-img">
-          </summary>
-          <p>Most of our vehicles come with unlimited mileage. For vehicles with limits, the daily allowance is typically 300km with additional kilometers charged at €0.15/km.</p>
-        </details>
-      </div>
-      <div class="pickup-faq faq-con">
-        <div class="faq-header">
-          <div class="img-con"><img src="/assets/icons/location-color.svg" alt="location icon"  loading="lazy" draggable="false"></div>
-          <h3>Pickup & Return</h3>
+        <div class="pickup-faq faq-con">
+          <div class="faq-header">
+            <div class="img-con">
+              <img
+                src="/assets/icons/location-color.svg"
+                alt="location icon"
+                loading="lazy"
+                draggable="false"
+              />
+            </div>
+            <h3 data-i18n="faqs.pickup.title">Pickup & Return</h3>
+          </div>
+          <details>
+            <summary>
+              <span data-i18n="faqs.pickup.q1"
+                >What are your pickup and return locations?</span
+              >
+              <img
+                src="/assets/icons/down-arrow.svg"
+                alt="down arrow"
+                loading="lazy"
+                draggable="false"
+                class="arrow-img"
+              />
+            </summary>
+            <p data-i18n="faqs.pickup.a1">
+              We offer pickup at various locations throughout Albania. Airport
+              pickups are available 24/7.
+            </p>
+          </details>
+          <details>
+            <summary>
+              <span data-i18n="faqs.pickup.q2"
+                >Can I return the car to a different location?</span
+              >
+              <img
+                src="/assets/icons/down-arrow.svg"
+                alt="down arrow"
+                loading="lazy"
+                draggable="false"
+                class="arrow-img"
+              />
+            </summary>
+            <p data-i18n="faqs.pickup.a2">
+              Yes, one-way rentals are available. There may be an additional fee
+              depending on the pickup and return locations.
+            </p>
+          </details>
+          <details>
+            <summary>
+              <span data-i18n="faqs.pickup.q3"
+                >What happens if my flight is delayed?</span
+              >
+              <img
+                src="/assets/icons/down-arrow.svg"
+                alt="down arrow"
+                loading="lazy"
+                draggable="false"
+                class="arrow-img"
+              />
+            </summary>
+            <p data-i18n="faqs.pickup.a3">
+              If your flight is delayed, please contact us immediately so we can
+              adjust your pickup time accordingly.
+            </p>
+          </details>
         </div>
-        <details>
-          <summary>
-            <span>What are your pickup and return locations?</span>
-            <img src="/assets/icons/down-arrow.svg" alt="down arrow" loading="lazy" draggable="false" class="arrow-img">
-          </summary>
-          <p>We offer pickup at various locations throughout Albania. Airport pickups are available 24/7.</p>
-        </details>
-        <details>
-          <summary>
-            <span>Can I return the car to a different location?</span>
-            <img src="/assets/icons/down-arrow.svg" alt="down arrow" loading="lazy" draggable="false" class="arrow-img">
-          </summary>
-          <p>Yes, one-way rentals are available. There may be an additional fee depending on the pickup and return locations.</p>
-        </details>
-        <details>
-          <summary>
-            <span>What happens if my flight is delayed?</span>
-            <img src="/assets/icons/down-arrow.svg" alt="down arrow" loading="lazy" draggable="false" class="arrow-img">
-          </summary>
-          <p>If your flight is delayed, please contact us immediately so we can adjust your pickup time accordingly.</p>
-        </details>
-      </div>
-      <div class="booking-faq faq-con">
-        <div class="faq-header">
-          <div class="img-con"><img src="/assets/icons/clock-color.svg" alt="clock icon"  loading="lazy" draggable="false"></div>
-          <h3>Booking & Modifications</h3>
+        <div class="booking-faq faq-con">
+          <div class="faq-header">
+            <div class="img-con">
+              <img
+                src="/assets/icons/clock-color.svg"
+                alt="clock icon"
+                loading="lazy"
+                draggable="false"
+              />
+            </div>
+            <h3 data-i18n="faqs.booking.title">Booking & Modifications</h3>
+          </div>
+          <details>
+            <summary>
+              <span data-i18n="faqs.booking.q1">How do I book a car?</span>
+              <img
+                src="/assets/icons/down-arrow.svg"
+                alt="down arrow"
+                loading="lazy"
+                draggable="false"
+                class="arrow-img"
+              />
+            </summary>
+            <p data-i18n="faqs.booking.a1">
+              Browse our fleet, select your dates and vehicle, and submit a
+              booking inquiry. Our team will confirm availability within 12
+              hours and provide payment instructions.
+            </p>
+          </details>
+          <details>
+            <summary>
+              <span data-i18n="faqs.booking.q2">Can I modify my booking?</span>
+              <img
+                src="/assets/icons/down-arrow.svg"
+                alt="down arrow"
+                loading="lazy"
+                draggable="false"
+                class="arrow-img"
+              />
+            </summary>
+            <p data-i18n="faqs.booking.a2">
+              Yes, you can modify your booking via email or WhatsApp up to 1
+              week before pickup. Changes are subject to availability.
+            </p>
+          </details>
+          <details>
+            <summary>
+              <span data-i18n="faqs.booking.q3"
+                >What is your cancellation policy?</span
+              >
+              <img
+                src="/assets/icons/down-arrow.svg"
+                alt="down arrow"
+                loading="lazy"
+                draggable="false"
+                class="arrow-img"
+              />
+            </summary>
+            <p data-i18n="faqs.booking.a3">
+              Free cancellation is available up to 48 hours before your
+              scheduled pickup time. Cancellations within 48 hours may be
+              subject to a fee.
+            </p>
+          </details>
         </div>
-        <details>
-          <summary>
-            <span>How do I book a car?</span>
-            <img src="/assets/icons/down-arrow.svg" alt="down arrow" loading="lazy" draggable="false" class="arrow-img">
-          </summary>
-          <p>Browse our fleet, select your dates and vehicle, and submit a booking inquiry. Our team will confirm availability within 12 hours and provide payment instructions.</p>
-        </details>
-        <details>
-          <summary>
-            <span>Can I modify my booking?</span>
-            <img src="/assets/icons/down-arrow.svg" alt="down arrow" loading="lazy" draggable="false" class="arrow-img">
-          </summary>
-          <p>Yes, you can modify your booking via email or WhatsApp up to 1 week before pickup. Changes are subject to availability.</p>
-        </details>
-        <details>
-          <summary>
-            <span>What is your cancellation policy?</span>
-            <img src="/assets/icons/down-arrow.svg" alt="down arrow" loading="lazy" draggable="false" class="arrow-img">
-          </summary>
-          <p>Free cancellation is available up to 48 hours before your scheduled pickup time. Cancellations within 48 hours may be subject to a fee.</p>
-        </details>
-      </div>
-    </section>
-    <section class="contact-sec">
-      <img src="/assets/icons/info.svg" alt="info icon" loading="lazy" draggable="false">
-      <h3>Still have questions?</h3>
-      <p>Our team is ready to help you with any questions about your car rental.</p>
-      <div class="btn-con">
-        <a href="https://wa.me/1234567890" target="_blank" class="whatsapp-btn">WhatsApp Us</a>
-        <a href="mailto:support@rideshare.com" class="email-btn">Email Us</a>
-      </div>
-    </section>
-  </main>
+      </section>
+      <section class="contact-sec">
+        <img
+          src="/assets/icons/info.svg"
+          alt="info icon"
+          loading="lazy"
+          draggable="false"
+        />
+        <h3 data-i18n="faqs.contact_cta.title">Still have questions?</h3>
+        <p data-i18n="faqs.contact_cta.body">
+          Our team is ready to help you with any questions about your car
+          rental.
+        </p>
+        <div class="btn-con">
+          <a
+            href="https://wa.me/1234567890"
+            target="_blank"
+            class="whatsapp-btn"
+            data-i18n="faqs.contact_cta.whatsapp"
+            >WhatsApp Us</a
+          >
+          <a
+            href="mailto:support@rideshare.com"
+            class="email-btn"
+            data-i18n="faqs.contact_cta.email"
+            >Email Us</a
+          >
+        </div>
+      </section>
+    </main>
 
-  <footer id="footer" style="width: 99%; position: relative; bottom: 0;"></footer>
-  <script src="/scripts/lang.js"></script>
-  <script src="/scripts/database.js"></script>
-  <script src="/scripts/currency.js"></script>
-  <script src="/scripts/analytics.js"></script>
-</body>
+    <footer
+      id="footer"
+      style="width: 99%; position: relative; bottom: 0"
+    ></footer>
+    <script src="/scripts/database.js"></script>
+    <script src="/scripts/currency.js"></script>
+    <script src="/scripts/analytics.js"></script>
+  </body>
 </html>

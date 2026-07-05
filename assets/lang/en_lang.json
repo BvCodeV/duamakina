@@ -1,0 +1,575 @@
+{
+  "lang": {
+    "english": "English",
+    "albanian": "Albanian",
+    "french": "French",
+    "italian": "Italian",
+    "german": "German"
+  },
+  "nav": {
+    "home": "Home",
+    "fleet": "Fleet",
+    "our_fleet": "Our Fleet",
+    "faqs": "Faqs",
+    "faq_short": "FAQ",
+    "quick_links": "Quick Links",
+    "locations": "Locations",
+    "contact": "Contact",
+    "whatsapp_contact": "Contact us on WhatsApp",
+    "privacy_policy": "Privacy Policy",
+    "terms_conditions": "Terms & Conditions",
+    "booking": "Booking"
+  },
+  "footer": {
+    "payment_cash_only": "Payment method: Cash only.",
+    "rights_reserved": "All rights reserved.",
+    "copyright_line": "© 2026 Dua Makina. All rights reserved. Payment method: Cash only."
+  },
+  "home": {
+    "hero": {
+      "title_line1": "Explore Albania",
+      "title_line2": "Your Way",
+      "subtitle": "Rent a car with zero hidden fees. Pay cash on arrival. No credit card needed."
+    },
+    "search": {
+      "pickup_location": "Pickup Location",
+      "dropoff_location": "Drop-off Location",
+      "dropoff_same_location": "Drop-off at same location",
+      "pickup_date": "Pick-up Date",
+      "pickup_time": "Pick-up Time",
+      "dropoff_date": "Drop-off Date",
+      "dropoff_time": "Drop-off Time",
+      "search_cta": "Search Available Cars"
+    },
+    "trust": {
+      "title": "Our Certifications",
+      "cert_tourism": "Ministry of Tourism Certified",
+      "cert_association": "Professional Rental Association",
+      "cert_clean_vehicle": "Clean Vehicle Guarantee",
+      "cert_insurance": "Full Insurance Coverage",
+      "cert_roadside": "24/7 Roadside Assistance",
+      "cash_only": {
+        "title": "Cash Only Payment",
+        "body": "No credit card needed. Pay in cash when you pick up your car."
+      },
+      "full_insurance": {
+        "title": "Full Insurance",
+        "body": "All vehicles come with comprehensive insurance coverage included."
+      },
+      "support": {
+        "title": "24/7 Support",
+        "body": "Reach us anytime via phone or WhatsApp for roadside assistance."
+      }
+    },
+    "reviews": {
+      "meta": {
+        "title": "What our guest say",
+        "avg_rating": "Average Rating",
+        "happy_customers": "Happy Customers",
+        "quality_vehicles": "Quality Vehicles"
+      },
+      "review1": "Excellent service! The car was spotless and the pickup at Tirana Airport was smooth. Will use DriveNow again.",
+      "review2": "Great value for money. The Duster was perfect for exploring the Albanian Riviera. Highly recommend!",
+      "review3": "Very transparent pricing with no hidden fees. Cash payment made everything simple. Good experience overall."
+    }
+  },
+  "common": {
+    "location": {
+      "pickup_locations": "Pickup Locations"
+    },
+    "date": {
+      "date": "Date",
+      "edit_dates": "Edit dates"
+    },
+    "unit": {
+      "seats": "Seats",
+      "seat": "Seat",
+      "bags": "Bags",
+      "bag": "Bag",
+      "doors": "Doors",
+      "door": "Door",
+      "assistance_247": "24/7 Assistance",
+      "no_insurance": "No insurance",
+      "premium_insurance": "Premium insurance",
+      "basic_insurance": "Basic insurance",
+      "no_deposit_required": "No deposit required"
+    }
+  },
+  "fleet": {
+    "header": {
+      "cars_available": "Cars Available"
+    },
+    "filters": {
+      "type": {
+        "all": "All",
+        "sedan": "Sedan",
+        "economy": "Economy",
+        "compact": "Compact",
+        "suv_lower": "Suv",
+        "suv": "SUV",
+        "van": "Van",
+        "luxury": "Luxury"
+      },
+      "show_filters": "Show Filters",
+      "sort_by": "Sort by:",
+      "sort_popular": "Most popular",
+      "sort_low_high": "Lowest to High Price",
+      "sort_high_low": "Highest to Low Price",
+      "sort_newest": "Newest Listings",
+      "filters_heading": "FILTERS",
+      "automatic_transmission": "Automatic Transmission",
+      "automatic_transmission_trailing": "Automatic Transmission ",
+      "seats_4plus": "4+ seats",
+      "air_conditioning": "Air Conditioning",
+      "electric": "Electric",
+      "unlimited_mileage": "Unlimited Mileage",
+      "free_cancellation": "Free Cancellation",
+      "special_offers": "Special Offers",
+      "reset_all": "Reset All",
+      "advanced_filters": "Advanced Filters",
+      "vehicles": "VEHICLES",
+      "days": "DAYS",
+      "change_location": "Change the location",
+      "update_filters": "Update Filters",
+      "vehicle_brand": "Vehicle Brand",
+      "vehicle_model": "Vehicle Model",
+      "vehicle_year": "Vehicle Year",
+      "drive_system": "Drive System",
+      "fuel_type": "Fuel Type",
+      "driver_experience": "Driver Experience",
+      "luggage_capacity": "Luggage Capacity",
+      "seating_capacity": "Seating Capacity",
+      "insurance": "Insurance",
+      "deposit_requirements": "Deposit Requirements",
+      "apply_filters": "Apply Filters",
+      "option": {
+        "manual": "Manual",
+        "automatic": "Automatic",
+        "petrol": "Petrol",
+        "diesel": "Diesel",
+        "hybrid": "Hybrid",
+        "plugin_hybrid": "Plug-in Hybrid",
+        "lpg": "LPG"
+      },
+      "clear_all": "Clear all"
+    },
+    "state": {
+      "of": "OF",
+      "no_match": "No cars match your filters.",
+      "reset_prompt": "Please reset your filters.",
+      "load_failed": "Failed to load cars.",
+      "try_again": "Please try again later.",
+      "none_available": "No cars available at this moment",
+      "from": "From",
+      "per_day": "per day",
+      "view_details": "View Details"
+    },
+    "pill": {
+      "year_or_newer": "{{year}} or newer"
+    }
+  },
+  "values": {
+    "misc": {
+      "under_21": "Under 21",
+      "over_25": "Over 25",
+      "any_year": "Any year",
+      "year_2025": "2025 or newer",
+      "year_2023": "2023 or newer",
+      "year_2020": "2020 or newer",
+      "no_insurance_included": "No Insurance Included",
+      "premium": "Premium",
+      "basic": "Basic",
+      "no_deposit": "No Deposit"
+    },
+    "category": {
+      "economy": "Economy",
+      "compact": "Compact",
+      "sedan": "Sedan",
+      "suv": "SUV",
+      "luxury": "Luxury",
+      "van": "Van",
+      "minivan": "Minivan",
+      "coupe": "Coupe",
+      "convertible": "Convertible",
+      "pickup": "Pickup"
+    },
+    "transmission": {
+      "automatic": "Automatic",
+      "manual": "Manual"
+    },
+    "insurance": {
+      "basic": "Basic",
+      "premium": "Premium",
+      "full": "Premium",
+      "third-party": "Basic",
+      "none": "No insurance"
+    },
+    "fuel": {
+      "gasoline": "Petrol",
+      "diesel": "Diesel",
+      "electric": "Electric",
+      "hybrid": "Hybrid",
+      "plug-in hybrid": "Plug-in Hybrid",
+      "lpg": "LPG"
+    }
+  },
+  "car": {
+    "name": {
+      "default": "Car Name"
+    },
+    "share": "Share",
+    "overview_tab": "Overview",
+    "best_for": "Best for",
+    "overview": {
+      "no_title": "No title available at this time",
+      "no_description": "No description available at this time. Please try again later.",
+      "no_quality": "No quality available"
+    },
+    "faq": {
+      "rental_conditions": "Rental Conditions",
+      "deposit_payment": {
+        "title_typo": "Depostit & Payment",
+        "title": "Deposit & Payment",
+        "deposit_label": "Deposit:",
+        "refundable": "(refundable upon return)",
+        "body": "All payments are processed in CASH ONLY at the time of vehicle collection. No online payments required."
+      },
+      "mileage": {
+        "title": "Mileage Policy",
+        "unlimited_included": "Unlimited mileage included",
+        "unlimited": "Unlimited mileage",
+        "km_limit": "{{km}} km limit · €{{fee}}/km extra"
+      },
+      "fuel": {
+        "title": "Fuel Policy",
+        "full_to_full_label": "Full-to-Full:",
+        "body": "You receive the car with a full tank and return it with a full tank."
+      },
+      "cross_border": {
+        "title": "Cross-Border Travel",
+        "body": "This vehicle is authorized for travel throughout Europe.",
+        "body_countries": "This vehicle is authorised for travel to: {{countries}}.",
+        "body_none": "This vehicle is not authorised for cross-border travel."
+      },
+      "ferry": {
+        "title": "Ferry Travel",
+        "body_full": "Ferry travel to Greece (Saranda-Corfu) and Italy (Durres-Bari) is allowed with prior notice. Please inform us when booking.",
+        "body_permitted": "Ferry travel is permitted with prior notice.",
+        "fee_line": "Ferry fee: €{{fee}}.",
+        "body_inform": "Please inform us when making your reservation.",
+        "body_not_permitted": "Ferry travel is not permitted for this vehicle."
+      },
+      "documents": {
+        "title": "Documents Required",
+        "item_passport": "Valid passport or national ID card",
+        "item_license": "Valid driver's license (held for at least 2 years)",
+        "item_idp": "International Driving Permit (for non-EU licenses)"
+      },
+      "driver_requirements": {
+        "title": "Driver Requirements",
+        "min_age": "Minimum age: 21 years",
+        "max_age": "Maximum age: 75 years",
+        "license_years": "License held for at least 2 years"
+      },
+      "cancellation": {
+        "title_typo": "Cancelation Policy",
+        "title": "Cancellation Policy",
+        "item_free": "Free cancellation up to 48 hours before pickup",
+        "item_modifications": "Modifications allowed via email or WhatsApp"
+      }
+    },
+    "price": {
+      "summary_title": "Price Summary",
+      "daily_rate": "Daily rate x",
+      "days": "days",
+      "taxes_fees": "Taxes & fees",
+      "included": "Included",
+      "total": "Total",
+      "cash_only": {
+        "title": "Cash Payment Only",
+        "body": "Pay in cash when you collect the vehicle. No credit card required."
+      },
+      "book_now": "Book Now",
+      "confirmation_email": "You will receive a confirmation email shortly",
+      "free_cancellation_48h": "Free cancellation (48h)",
+      "whatsapp_questions": "Questions? WhatsApp us"
+    },
+    "spec": {
+      "transmission_placeholder": "car transmission",
+      "insurance_placeholder": "Insurance type",
+      "year_placeholder": "Car year",
+      "seats_placeholder": "car seats",
+      "trunk_placeholder": "car trunk capacity",
+      "doors_placeholder": "car doors",
+      "ac_placeholder": "A/C",
+      "fuel_placeholder": "car fuel type"
+    }
+  },
+  "booking": {
+    "progress": {
+      "vehicle": "Vehicle",
+      "addons": "Extras & rules",
+      "driver_details": "Driver details"
+    },
+    "header": {
+      "title": "Complete Your Rental Inquiry",
+      "subtitle": "Submit your booking details below. Our team will confirm availability and send payment instructions via email within 12 hours."
+    },
+    "addons": {
+      "title": "Optional Addons"
+    },
+    "rules": {
+      "title": "The fine print, made plain.",
+      "deposit": {
+        "title": "Deposit & payment",
+        "no_card_hold": "No card hold",
+        "no_card_hold_no_deposit": "No card hold · No deposit required",
+        "no_card_hold_dot": "No card hold ·",
+        "never_card_hold": "We never take a card hold.",
+        "small_prefix": "A small",
+        "cash_deposit_desc": "cash deposit is collected at pickup, returned at drop-off",
+        "full_rental_suffix": ". The full rental is also paid in cash on collection — EUR, USD, LEK, or GBP."
+      },
+      "cross_border": {
+        "prompt": "Please select the countries you plan to visit from the list below",
+        "none": "No cross-border travel allowed for this car.",
+        "none_available": "No cross-border options available for this car.",
+        "select_prompt": "Select the countries you plan to visit from the list below."
+      },
+      "mileage": {
+        "title": "Milage policy",
+        "unlimited_albania": "Unlimited within albania",
+        "body": "No daily cap within the Albanian borders."
+      },
+      "documents": {
+        "title": "Documents required",
+        "summary": "Passport · Driving license",
+        "body": "Bring your original passport (not just a photo) and a driving license held for at least 2 years. EU, UK, US, CA, AU, NZ, JP, CH licenses are accepted directly. Other licenses need an International Driving Permit. We photograph documents at pickup; copies are stored for 12 months and then deleted."
+      },
+      "driver": {
+        "title": "Driver requirements",
+        "min_age_label": "Min age",
+        "max_age_label": "Max age 75",
+        "license_years_label": "2+ years license",
+        "named_driver_prefix": "The named driver must be present at pickup. Additional drivers (max 2) must also be present and add",
+        "per_day_young_prefix": "/day each. Young driver surcharge of",
+        "young_driver_suffix": "/day applies between ages 21-22."
+      },
+      "cancellation": {
+        "title": "Cancellation",
+        "summary": "Free up to 48h before · 50% within 48h · No-show forfeits",
+        "body_prefix": "Cancel via email or by WhatsApp. Inside 48h we keep",
+        "body_suffix": "admin fee or 50% of the rental, whichever is lower. Schedule changes up to 6h before pickup are free."
+      },
+      "no_data": "No data"
+    },
+    "form": {
+      "contact": {
+        "title": "Contact Information",
+        "full_name": "Full name",
+        "email": "Email",
+        "phone": "Phone Number",
+        "phone_note": "We'll contact you via email or whatsapp for confirmation"
+      },
+      "driver": {
+        "title": "Driver Information",
+        "full_name": "Driver's Full Name",
+        "age": "Driver's Age",
+        "license_expiry": "License Expiry Date"
+      },
+      "requests": {
+        "title": "Special Requests",
+        "max_chars": "Maximum 500 characters",
+        "placeholder": "Any special requests or additional information..."
+      }
+    },
+    "sidebar": {
+      "location": {
+        "title": "Location Details",
+        "change_now": "Change Now",
+        "pickup_label": "Pick Up Location:",
+        "dropoff_label": "Drop Off Location:"
+      },
+      "price": {
+        "title": "Price Breakdown"
+      },
+      "terms": {
+        "agree_prefix": "I agree to the",
+        "and": "and"
+      },
+      "continue": "Continue to driver details",
+      "send_inquiry": "Send Inquiry"
+    },
+    "dialog": {
+      "all_brands": "All Brands",
+      "all_models": "All Models",
+      "pickup_date_placeholder": "Pickup date",
+      "dropoff_date_placeholder": "Dropoff date",
+      "select_date": "Select Date"
+    }
+  },
+  "legal": {
+    "common": {
+      "last_updated": "Last updated: June 9, 2026",
+      "demo_notice_label": "Demo notice:",
+      "demo_notice": {
+        "privacy_body": "this website is currently for demonstration and testing only. Booking requests submitted through this website are not real reservations and do not create a rental contract.",
+        "terms_body": "this website is currently for demonstration and testing only. Booking requests are not real reservations, do not guarantee vehicle availability, and do not create a rental contract."
+      }
+    },
+    "privacy": {
+      "who_we_are": {
+        "title": "Who We Are",
+        "body": "Dua Makina is an Albania-based car rental website concept. You can contact us at"
+      },
+      "website_status": {
+        "title": "Current Website Status",
+        "body": "The website is not currently operating as a live booking platform. Any forms, prices, vehicle availability, booking confirmations, or inquiry emails are for testing and demonstration purposes unless Dua Makina separately confirms otherwise in writing."
+      },
+      "data_collect": {
+        "title": "Personal Data We May Collect",
+        "item1": "Contact details such as your name, email address, and phone number.",
+        "item2": "Driver details such as driver name, age, and licence expiry date.",
+        "item3": "Rental inquiry details such as pickup and drop-off locations, dates, vehicle, extras, selected countries, and special requests.",
+        "item4": "Technical and anti-spam data such as hCaptcha verification tokens, browser information, analytics events, and local storage preferences."
+      },
+      "data_use": {
+        "title": "How We Use Data",
+        "body": "We use submitted data to test the inquiry flow, respond to messages, prevent spam or abuse, improve the website, and understand basic website usage. We do not sell personal data."
+      },
+      "third_party": {
+        "title": "Third-Party Services",
+        "body": "The site may use Supabase for database and storage, EmailJS for inquiry email delivery, hCaptcha for spam protection, Vercel Analytics for basic website analytics, and jsDelivr for content delivery. These services may process data according to their own privacy terms."
+      },
+      "cookies": {
+        "title": "Cookies And Local Storage",
+        "body": "The website may use local storage or similar browser storage for selected language, currency, booking search details, cached vehicle data, and inquiry cooldown checks. Third-party services may use cookies or equivalent technologies for security, analytics, or delivery."
+      },
+      "retention": {
+        "title": "Data Retention",
+        "body": "Because the site is in testing mode, inquiry data should only be kept as long as needed for testing, support, abuse prevention, or legal requirements. Before the site goes live, retention periods should be reviewed and documented."
+      },
+      "rights": {
+        "title": "Your Rights",
+        "body": "Depending on applicable law, you may have rights to request access, correction, deletion, restriction, objection, or withdrawal of consent for your personal data. To make a request, contact"
+      }
+    },
+    "terms": {
+      "website_status": {
+        "title": "Website Status",
+        "body": "Dua Makina is currently presented as an Albania-based car rental website in demo/testing mode. The website is not currently a live rental booking service."
+      },
+      "no_bookings": {
+        "title": "No Real Bookings",
+        "body": "Submitting a search, inquiry, form, or booking request does not reserve a vehicle, does not create a rental agreement, and does not require payment. Any automated confirmation or message should be treated as test communication unless Dua Makina separately confirms a real arrangement in writing."
+      },
+      "no_guarantee": {
+        "title": "No Price Or Availability Guarantee",
+        "body": "Vehicle listings, prices, deposits, insurance descriptions, locations, extras, and availability shown on the site may be placeholder or test information. They should not be relied on as a final commercial offer."
+      },
+      "future_terms": {
+        "title": "Future Rental Terms Placeholder",
+        "body": "When the website becomes operational, real rental terms should clearly define payment, deposits, cancellation rules, pickup requirements, insurance coverage, mileage, cross-border permissions, ferry travel, driver eligibility, document checks, and vehicle return responsibilities."
+      },
+      "user_responsibilities": {
+        "title": "User Responsibilities",
+        "body": "You agree not to misuse the website, submit false or harmful information, attempt to interfere with the service, or use the site for unlawful purposes."
+      },
+      "liability": {
+        "title": "Limitation Of Liability",
+        "body": "Because the website is in testing mode, Dua Makina is not liable for losses arising from reliance on test prices, test availability, demo booking flows, or temporary website errors, to the maximum extent permitted by applicable law."
+      },
+      "contact": {
+        "body_prefix": "Questions about these terms can be sent to",
+        "body_suffix": "for questions about these terms."
+      },
+      "third_party": {
+        "body": "The website may rely on third-party services including Supabase, EmailJS, hCaptcha, Vercel, jsDelivr, and external map or communication links. Dua Makina is not responsible for third-party service availability, terms, or policies."
+      }
+    }
+  },
+  "plurals": {
+    "seats_one": "Seat",
+    "seats_other": "Seats",
+    "bags_one": "Bag",
+    "bags_other": "Bags",
+    "doors_one": "Door",
+    "doors_other": "Doors",
+    "days_one": "day",
+    "days_other": "days"
+  },
+  "faqs": {
+    "documents": {
+      "title": "Documents Required",
+      "q1": "What documents do I need to rent a car?",
+      "a1": "You will need a valid passport or national ID card, and a valid driving license. If your license is not from an EU country, you may also need an International Driving Permit (IDP).",
+      "q2": "Is an International Driving Permit (IDP) required?",
+      "a2": "An IDP is required for drivers with licenses issued outside the European Union. EU driving licenses are accepted without an IDP.",
+      "q3": "How long must I have held my driving license?",
+      "a3": "You must have held your driving license for at least 2 years. Some premium vehicles may require 3 or more years of driving experience."
+    },
+    "age": {
+      "title": "Age Requirements",
+      "q1": "What is the minimum age to rent a vehicle?",
+      "a1": "The minimum age to rent a car is 18 years. Some premium and SUV categories may require a different minimum age based on the vehicle.",
+      "q2": "Is there a maximum age to rent a car?",
+      "a2": "Yes, the maximum age for renting a car is 75 years. Drivers over 70 may be asked to provide additional documentation.",
+      "q3": "Is there a young driver surcharge?",
+      "a3": "Drivers aged 18-24 may be subject to a young driver surcharge depending on the vehicle."
+    },
+    "payment": {
+      "title": "Payment & Pricing",
+      "q1": "Do I need a credit card to rent a car?",
+      "a1": "No, we do not require a credit card. All payments are made in CASH at the time of vehicle collection. This is our unique model that makes renting easier for everyone.",
+      "q2": "What currencies do you accept?",
+      "a2": "We accept payments in Albanian Lek (ALL), Euro (EUR), US Dollar (USD), and British Pound (GBP). We recommend paying in EUR or ALL for the best rates.",
+      "q3": "Is there a security deposit?",
+      "a3": "A security deposit may be required depending on the vehicle.",
+      "q4": "Are there any hidden fees?",
+      "a4": "No hidden fees! Our prices include basic insurance, taxes, and 24/7 roadside assistance. Optional extras like GPS and child seats are clearly priced."
+    },
+    "vehicle": {
+      "title": "Vehicle Selection",
+      "q1": "What types of vehicles do you offer?",
+      "a1": "We offer a wide range of vehicles including Economy cars, Compact sedans, SUVs, Premium vehicles, and Minivans. All vehicles are regularly maintained and serviced.",
+      "q2": "Which car should I choose for Albanian roads?",
+      "a2": "For mountain areas and countryside exploration, we recommend SUVs or vehicles with higher ground clearance. For city driving and coastal roads, any vehicle category works well.",
+      "q3": "Can I request a specific car model?",
+      "a3": "You can request a specific model, but we guarantee the car category, not the exact model. We display \"or similar\" for each listing as availability varies."
+    },
+    "cross_border": {
+      "title": "Cross-Border & Travel",
+      "q1": "Can I take the car outside Albania?",
+      "a1_prefix": "Yes! Our vehicles are authorized for travel throughout Europe. However, you must inform us in advance and may need to purchase Green Card insurance (",
+      "a1_suffix": ") for border crossings.",
+      "q2": "Is ferry travel permitted?",
+      "a2": "Yes, ferry travel to Greece (Saranda-Corfu) and Italy (Durres-Bari) is permitted with prior notification. Please let us know when booking.",
+      "q3": "What about mileage limits?",
+      "a3": "Most of our vehicles come with unlimited mileage. For vehicles with limits, the daily allowance is typically 300km with additional kilometers charged at €0.15/km."
+    },
+    "pickup": {
+      "title": "Pickup & Return",
+      "q1": "What are your pickup and return locations?",
+      "a1": "We offer pickup at various locations throughout Albania. Airport pickups are available 24/7.",
+      "q2": "Can I return the car to a different location?",
+      "a2": "Yes, one-way rentals are available. There may be an additional fee depending on the pickup and return locations.",
+      "q3": "What happens if my flight is delayed?",
+      "a3": "If your flight is delayed, please contact us immediately so we can adjust your pickup time accordingly."
+    },
+    "booking": {
+      "title": "Booking & Modifications",
+      "q1": "How do I book a car?",
+      "a1": "Browse our fleet, select your dates and vehicle, and submit a booking inquiry. Our team will confirm availability within 12 hours and provide payment instructions.",
+      "q2": "Can I modify my booking?",
+      "a2": "Yes, you can modify your booking via email or WhatsApp up to 1 week before pickup. Changes are subject to availability.",
+      "q3": "What is your cancellation policy?",
+      "a3": "Free cancellation is available up to 48 hours before your scheduled pickup time. Cancellations within 48 hours may be subject to a fee."
+    },
+    "contact_cta": {
+      "title": "Still have questions?",
+      "body": "Our team is ready to help you with any questions about your car rental.",
+      "whatsapp": "WhatsApp Us",
+      "email": "Email Us"
+    }
+  }
+}

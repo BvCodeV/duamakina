@@ -1,0 +1,642 @@
+{
+  "lang": {
+    "english": "Anglisht",
+    "albanian": "Shqip",
+    "french": "Frengjisht",
+    "italian": "Italisht",
+    "german": "Gjermanisht"
+  },
+  "nav": {
+    "home": "Kryefaqja",
+    "fleet": "Flota",
+    "our_fleet": "Flota jone",
+    "faqs": "FAQ",
+    "faq_short": "FAQ",
+    "quick_links": "Lidhje te shpejta",
+    "locations": "Lokacionet",
+    "contact": "Kontakt",
+    "whatsapp_contact": "Na kontaktoni ne WhatsApp",
+    "privacy_policy": "Politika e Privatesise",
+    "terms_conditions": "Termat dhe Kushtet",
+    "booking": "Rezervimi"
+  },
+  "footer": {
+    "payment_cash_only": "Menyra e pageses: Vetem cash.",
+    "rights_reserved": "Te gjitha te drejtat e rezervuara.",
+    "copyright_line": "© 2025 Dua Makina. Te gjitha te drejtat e rezervuara. Menyra e pageses: Vetem cash."
+  },
+  "home": {
+    "hero": {
+      "title_line1": "Eksploro Shqiperine",
+      "title_line2": "Sipas menyres tende",
+      "subtitle": "Merr makine me qira pa tarifa te fshehura. Paguaj cash ne mbritje. Nuk duhet karte krediti."
+    },
+    "search": {
+      "pickup_location": "Vendi i marrjes",
+      "dropoff_location": "Vendi i dorezimit",
+      "dropoff_same_location": "Dorezoje ne te njejtin vend",
+      "pickup_date": "Data e marrjes",
+      "pickup_time": "Ora e marrjes",
+      "dropoff_date": "Data e dorezimit",
+      "dropoff_time": "Ora e dorezimit",
+      "search_cta": "Kerko makina te disponueshme"
+    },
+    "trust": {
+      "title": "Certifikimet tona",
+      "cert_tourism": "I certifikuar nga Ministria e Turizmit",
+      "cert_association": "Shoqate profesionale e qiradhenies",
+      "cert_clean_vehicle": "Garanci per automjete te pastra",
+      "cert_insurance": "Mbulim i plote sigurimi",
+      "cert_roadside": "Asistence rrugore 24/7",
+      "cash_only": {
+        "title": "Pagese vetem cash",
+        "body": "Nuk duhet karte krediti. Paguaj cash kur merr makinen."
+      },
+      "full_insurance": {
+        "title": "Sigurim i plote",
+        "body": "Te gjitha automjetet perfshijne mbulim te plote sigurimi."
+      },
+      "support": {
+        "title": "Mbeshtejte 24/7",
+        "body": "Na kontaktoni ne cdo kohe me telefon ose WhatsApp per asistence rrugore."
+      }
+    },
+    "reviews": {
+      "meta": {
+        "title": "Cfare thone klientet tane",
+        "avg_rating": "Vleresimi mesatar",
+        "happy_customers": "Kliente te kenaqur",
+        "quality_vehicles": "Automjete cilesore"
+      },
+      "review1": "\"Sherbim i shkelqyer! Makina ishte e paster dhe marrja ne Aeroportin e Tiranex kaloi pa probleme. Do te perdor serish DriveNow.\"",
+      "review2": "\"Vlere e shkelqyer per parate. Duster ishte perfekt per te eksploruar Riviera Shqiptare. E rekomandoj me force!\"",
+      "review3": "\"Cmime shum transparente pa tarifa te fshehura. Pagesa ne cash e beri gjithcka te thjeshte. Pervoje e mire nepergeth.\""
+    }
+  },
+  "common": {
+    "location": {
+      "pickup_locations": "Vende marrjeje"
+    },
+    "date": {
+      "date": "Data",
+      "edit_dates": "Ndrysho datat"
+    },
+    "unit": {
+      "seats": "Vende",
+      "seat": "Vend",
+      "bags": "Canta",
+      "bag": "Cante",
+      "doors": "Dyer",
+      "door": "Dere",
+      "assistance_247": "Asistence 24/7",
+      "no_insurance": "Pa sigurim",
+      "premium_insurance": "Sigurim premium",
+      "basic_insurance": "Sigurim baze",
+      "no_deposit_required": "Nuk kerkohet depozite"
+    }
+  },
+  "fleet": {
+    "header": {
+      "cars_available": "Makina te disponueshme"
+    },
+    "filters": {
+      "type": {
+        "all": "Te gjitha",
+        "sedan": "Sedan",
+        "economy": "Ekonomike",
+        "compact": "Kompakte",
+        "suv_lower": "SUV",
+        "suv": "SUV",
+        "van": "Furgon",
+        "luxury": "Luksoze"
+      },
+      "show_filters": "Shfaq filtrat",
+      "sort_by": "Rendit sipas:",
+      "sort_popular": "Me te njohurat",
+      "sort_low_high": "Cmimi nga i uleti te i larti",
+      "sort_high_low": "Cmimi nga i larti te i uleti",
+      "sort_newest": "Me te rejat",
+      "filters_heading": "FILTRAT",
+      "automatic_transmission": "Kambio automatike",
+      "automatic_transmission_trailing": "Kambio automatike",
+      "seats_4plus": "4+ vende",
+      "air_conditioning": "Kondicioner",
+      "electric": "Elektrike",
+      "unlimited_mileage": "Kilometrazh i pakufizuar",
+      "free_cancellation": "Anulim falas",
+      "special_offers": "Oferta speciale",
+      "reset_all": "Rivendos te gjitha",
+      "advanced_filters": "Filtra te avancuar",
+      "vehicles": "AUTOMJETE",
+      "days": "DITE",
+      "change_location": "Ndrysho vendin",
+      "update_filters": "Perditeso filtrat",
+      "vehicle_brand": "Marka e automjetit",
+      "vehicle_model": "Modeli i automjetit",
+      "vehicle_year": "Viti i automjetit",
+      "drive_system": "Sistemi i drejtimit",
+      "fuel_type": "Lloji i karburantit",
+      "driver_experience": "Eksperienca e shoferit",
+      "luggage_capacity": "Kapaciteti i bagazhit",
+      "seating_capacity": "Kapaciteti i vendeve",
+      "insurance": "Sigurimi",
+      "deposit_requirements": "Kerkesat e depozites",
+      "apply_filters": "Apliko filtrat",
+      "option": {
+        "manual": "Manuale",
+        "automatic": "Automatike",
+        "petrol": "Benzine",
+        "diesel": "Dizel",
+        "hybrid": "Hibride",
+        "plugin_hybrid": "Hibride plug-in",
+        "lpg": "LPG"
+      },
+      "clear_all": "Rivendos te gjitha"
+    },
+    "state": {
+      "no_match": "Asnje makine nuk perputhet me filtrat.",
+      "reset_prompt": "Ju lutemi rivendosni filtrat.",
+      "load_failed": "Ngarkimi i makinave deshtoi.",
+      "try_again": "Ju lutemi provoni perseri me vone.",
+      "none_available": "Nuk ka makina te disponueshme per momentin",
+      "from": "Nga",
+      "per_day": "ne dite",
+      "view_details": "Shiko detajet"
+    },
+    "pill": {
+      "year_or_newer": "{{year}} ose me i ri"
+    }
+  },
+  "values": {
+    "misc": {
+      "under_21": "Nen 21",
+      "over_25": "Mbi 25",
+      "any_year": "Cdo vit",
+      "year_2025": "2025 ose me i ri",
+      "year_2023": "2023 ose me i ri",
+      "year_2020": "2020 ose me i ri",
+      "no_insurance_included": "Pa sigurim te perfshire",
+      "premium": "Premium",
+      "basic": "Baze",
+      "no_deposit": "Pa depozite"
+    },
+    "category": {
+      "economy": "Ekonomike",
+      "compact": "Kompakte",
+      "sedan": "Sedan",
+      "suv": "SUV",
+      "luxury": "Luksoze",
+      "van": "Furgon",
+      "minivan": "Minivan",
+      "coupe": "Kupe",
+      "convertible": "Kabriolet",
+      "pickup": "Pickup"
+    },
+    "transmission": {
+      "automatic": "Automatike",
+      "manual": "Manuale"
+    },
+    "insurance": {
+      "basic": "Baze",
+      "premium": "Premium",
+      "full": "Premium",
+      "third-party": "Baze",
+      "none": "Pa sigurim"
+    },
+    "fuel": {
+      "gasoline": "Benzine",
+      "diesel": "Dizel",
+      "electric": "Elektrike",
+      "hybrid": "Hibride",
+      "plug-in hybrid": "Hibride plug-in",
+      "lpg": "LPG"
+    }
+  },
+  "car": {
+    "name": {
+      "default": "Emri i makines"
+    },
+    "share": "Shperndaj",
+    "overview_tab": "Permbledhje",
+    "best_for": "Me e mira per",
+    "overview": {
+      "no_title": "Nuk ka titull te disponueshem ne kete moment",
+      "no_description": "Nuk ka pershkrim te disponueshem ne kete moment. Ju lutemi provoni perseri me vone.",
+      "no_quality": "Nuk ka cilesi te disponueshme"
+    },
+    "faq": {
+      "rental_conditions": "Kushtet e qirase",
+      "deposit_payment": {
+        "title_typo": "Depozita dhe pagesa",
+        "title": "Depozita dhe pagesa",
+        "deposit_label": "Depozita:",
+        "refundable": "(e rimbursueshme pas kthimit)",
+        "body": "Te gjitha pagesat kryhen vetem CASH ne momentin e marrjes se automjetit. Nuk kerkohen pagesa online."
+      },
+      "mileage": {
+        "title": "Politika e kilometrazhit",
+        "unlimited_included": "Kilometrazh i pakufizuar i perfshire",
+        "unlimited": "Kilometrazh i pakufizuar",
+        "km_limit": "Limit {{km}} km · €{{fee}}/km shtese"
+      },
+      "fuel": {
+        "title": "Politika e karburantit",
+        "full_to_full_label": "Plot-me-plot:",
+        "body": "E merrni makinen me serbator plot dhe e ktheni me serbator plot."
+      },
+      "cross_border": {
+        "title": "Udhetim nderkufitar",
+        "body": "Ky automjet eshte i autorizuar per udhetime ne te gjithe Evropen.",
+        "body_countries": "Ky automjet eshte i autorizuar per udhetim ne: {{countries}}.",
+        "body_none": "Ky automjet nuk eshte i autorizuar per udhetim nderkufitar."
+      },
+      "ferry": {
+        "title": "Udhetim me traget",
+        "body_full": "Udhetimi me traget ne Greqi (Saranda-Korfuz) dhe Itali (Durres-Bari) lejohet me njoftim paraprak. Ju lutemi na njoftoni gjate rezervimit.",
+        "body_permitted": "Udhetimi me traget lejohet me njoftim paraprak.",
+        "fee_line": "Tarifa e tragetit: €{{fee}}.",
+        "body_inform": "Ju lutemi na informoni kur beni rezervimin.",
+        "body_not_permitted": "Udhetimi me traget nuk lejohet per kete automjet."
+      },
+      "documents": {
+        "title": "Dokumentet e nevojshme",
+        "item_passport": "Pasaporte ose karte identiteti e vlefshme",
+        "item_license": "Patente e vlefshme (e mbajtur te pakten 2 vjet)",
+        "item_idp": "Leje nderkombetare drejtimi (per patentat jo-BE)"
+      },
+      "driver_requirements": {
+        "title": "Kerkesat per shoferin",
+        "min_age": "Mosha minimale: 21 vjec",
+        "max_age": "Mosha maksimale: 75 vjec",
+        "license_years": "Patenta e mbajtur te pakten 2 vjet"
+      },
+      "cancellation": {
+        "title_typo": "Politika e anulimit",
+        "title": "Politika e anulimit",
+        "item_free": "Anulim falas deri 48 ore para marrjes",
+        "item_modifications": "Ndryshimet lejohen me email ose WhatsApp"
+      }
+    },
+    "price": {
+      "summary_title": "Permbledhja e cmimit",
+      "daily_rate": "Cmimi ditor x",
+      "days": "dite",
+      "taxes_fees": "Taksa dhe tarifa",
+      "included": "Te perfshira",
+      "total": "Totali",
+      "cash_only": {
+        "title": "Pagese vetem cash",
+        "body": "Paguani cash kur merrni automjetin. Nuk kerkohet karte krediti."
+      },
+      "book_now": "Rezervo tani",
+      "confirmation_email": "Do te merrni se shpejti nje email konfirmimi",
+      "free_cancellation_48h": "Anulim falas (48h)",
+      "whatsapp_questions": "Pyetje? Na shkruani ne WhatsApp"
+    },
+    "spec": {
+      "transmission_placeholder": "Kambio e makines",
+      "insurance_placeholder": "Lloji i sigurimit",
+      "year_placeholder": "Viti i makines",
+      "seats_placeholder": "Vendet e makines",
+      "trunk_placeholder": "Kapaciteti i bagazhit",
+      "doors_placeholder": "Dyer te makines",
+      "ac_placeholder": "Kondicioner",
+      "fuel_placeholder": "Lloji i karburantit"
+    }
+  },
+  "booking": {
+    "progress": {
+      "vehicle": "Automjeti",
+      "addons": "Shtesa dhe rregulla",
+      "driver_details": "Detajet e shoferit"
+    },
+    "header": {
+      "title": "Plotesoni kerkesen tuaj te qirase",
+      "subtitle": "Dergoni detajet e rezervimit me poshte. Ekipi yne do te konfirmoje disponueshmerine dhe do te dergoje udhezimet e pageses me email brenda 12 oresh."
+    },
+    "addons": {
+      "title": "Shtesa opsionale"
+    },
+    "rules": {
+      "title": "Kushtet, te shpjeguara thjesht.",
+      "deposit": {
+        "title": "Depozita dhe pagesa",
+        "no_card_hold": "Pa bllokim karte",
+        "no_card_hold_no_deposit": "Pa bllokim karte - nuk kerkohet depozite",
+        "no_card_hold_dot": "Pa bllokim karte ·",
+        "never_card_hold": "Ne nuk bllokojme kurre karte.",
+        "small_prefix": "Nje depozite e vogel",
+        "cash_deposit_desc": "cash mbledhet ne marrje, kthehet ne dorezim",
+        "full_rental_suffix": ". Qiraja e plote paguhet gjithashtu ne cash ne marrje — EUR, USD, LEK, ose GBP."
+      },
+      "cross_border": {
+        "prompt": "Zgjidhni vendet qe planifikoni te vizitoni nga lista me poshte",
+        "none": "Udhetimi nderkufitar nuk lejohet per kete makine.",
+        "none_available": "Nuk ka opsione per udhetim nderkufitar per kete makine.",
+        "select_prompt": "Zgjidhni vendet qe planifikoni te vizitoni nga lista me poshte."
+      },
+      "mileage": {
+        "title": "Politika e kilometrazhit",
+        "unlimited_albania": "Pa kufi brenda Shqiperise",
+        "body": "Nuk ka limit ditor brenda kufijve te Shqiperise."
+      },
+      "documents": {
+        "title": "Dokumentet e nevojshme",
+        "summary": "Pasaporte - patente",
+        "body": "Sillni pasaporten tuaj origjinale (jo vetem foto) dhe nje patente qe e keni pasur per te pakten 2 vjet. Patatentat e BE, UK, US, CA, AU, NZ, JP, CH pranohen direkt. Patatentat e tjera kane nevoje per Leje Nderkombetare Drejtimi. Ne fotografimojme dokumentet ne marrje; kopjet ruhen per 12 muaj dhe me pas fshihen."
+      },
+      "driver": {
+        "title": "Kerkesat per shoferin",
+        "min_age_label": "Mosha min.",
+        "max_age_label": "Mosha maks. 75",
+        "license_years_label": "2+ vjet patente",
+        "named_driver_prefix": "Shoferi i emeruar duhet te jete i pranishem ne marrje. Shoferet shtes (maks 2) duhet te jene gjithashtu te pranishem dhe shtojne",
+        "per_day_young_prefix": "/dite secili. Tatimi per shofer te ri prej",
+        "young_driver_suffix": "/dite zbatohet per moshen 21-22."
+      },
+      "cancellation": {
+        "title": "Anulimi",
+        "summary": "Falas deri 48h para · 50% brenda 48h · Humbje ne rast mosprezencie",
+        "body_prefix": "Anulo me email ose WhatsApp. Brenda 48h mbajme",
+        "body_suffix": "taksa administrimi ose 50% e qirases, cfaredo qe eshte me e ulet. Ndryshimet e orarit deri 6h para marrjes jane falas."
+      },
+      "no_data": "Pa te dhena"
+    },
+    "form": {
+      "contact": {
+        "title": "Informacioni i kontaktit",
+        "full_name": "Emri i plote",
+        "email": "Email",
+        "phone": "Numri i telefonit",
+        "phone_note": "Do t'ju kontaktojme me email ose WhatsApp per konfirmim"
+      },
+      "driver": {
+        "title": "Informacioni i shoferit",
+        "full_name": "Emri i plote i shoferit",
+        "age": "Mosha e shoferit",
+        "license_expiry": "Data e skadimit te patentes"
+      },
+      "requests": {
+        "title": "Kerkesa te vecanta",
+        "max_chars": "Maksimumi 500 karaktere",
+        "placeholder": "Cdo kerkese e vecante ose informacion shtese..."
+      }
+    },
+    "sidebar": {
+      "location": {
+        "title": "Detajet e lokacionit",
+        "change_now": "Ndrysho tani",
+        "pickup_label": "Vendi i marrjes:",
+        "dropoff_label": "Vendi i dorezimit:"
+      },
+      "price": {
+        "title": "Ndarja e cmimit"
+      },
+      "terms": {
+        "agree_prefix": "Pajtohem me",
+        "and": "dhe"
+      },
+      "continue": "Vazhdo te detajet e shoferit",
+      "send_inquiry": "Dergo kerkesen"
+    },
+    "dialog": {
+      "all_brands": "Te gjitha markat",
+      "all_models": "Te gjitha modelet",
+      "pickup_date_placeholder": "Data e marrjes",
+      "dropoff_date_placeholder": "Data e dorezimit",
+      "select_date": "Zgjidh daten"
+    }
+  },
+  "legal": {
+    "common": {
+      "last_updated": "Perditesuar se fundmi: 9 qershor 2026",
+      "demo_notice_label": "Njoftim demo:",
+      "demo_notice": {
+        "privacy_body": "kjo faqe eshte aktualisht vetem per demonstrim dhe testim. Kerkesat e rezervimit te derguara ne kete faqe nuk jane rezervime reale dhe nuk krijojne kontrate qiraje.",
+        "terms_body": "kjo faqe eshte aktualisht vetem per demonstrim dhe testim. Kerkesat e rezervimit nuk jane rezervime reale, nuk garantojne disponueshmeri automjeti dhe nuk krijojne kontrate qiraje."
+      }
+    },
+    "privacy": {
+      "who_we_are": {
+        "title": "Kush jemi",
+        "body": "Dua Makina eshte nje koncept faqe qeraje automjetesh me baze ne Shqiperi. Mund te na kontaktoni ne"
+      },
+      "website_status": {
+        "title": "Statusi aktual i faqes",
+        "body": "Faqja aktualisht nuk funksionon si platforme rezervimi live. Cdo formular, cmim, disponueshmeri automjeti, konfirmim rezervimi ose email kerkese eshte per qellime testimi dhe demonstrimi, perveq nese Dua Makina konfirmon ndryshe me shkrim."
+      },
+      "data_collect": {
+        "title": "Te dhenat personale qe mund te mbledhim",
+        "item1": "Detaje kontakti si emri, adresa email dhe numri i telefonit.",
+        "item2": "Detaje te shoferit si emri, mosha dhe data e skadences se patentes.",
+        "item3": "Detaje te kerkeses per qira si vendet e marrjes/dorezimit, datat, automjeti, shtesat, vendet e zgjedhura dhe kerkesat e vecanta.",
+        "item4": "Te dhena teknike dhe anti-spam si tokenat e verifikimit hCaptcha, informacioni i shfletuesit, ngjarjet analitike dhe preferencat e ruajtjes lokale."
+      },
+      "data_use": {
+        "title": "Si i perdorim te dhenat",
+        "body": "Ne perdorim te dhenat e derguara per te testuar procesin e kerkeses, per te pergjigjur mesazheve, per te parandaluar spam ose abuzim, per te permiresuar faqen dhe per te kuptuar perdorimin baze te saj. Nuk shesim te dhena personale."
+      },
+      "third_party": {
+        "title": "Sherbime te paleve te treta",
+        "body": "Faqja mund te perdore Supabase per baze te dhenash dhe ruajtje, EmailJS per dergimin e emaileve te kerkesave, hCaptcha per mbrojtje nga spam-i, Vercel Analytics per analitike baze dhe jsDelivr per shperndarje permbajtjeje. Keto sherbime mund te perpunojne te dhena sipas kushteve te tyre te privatesise."
+      },
+      "cookies": {
+        "title": "Cookies dhe ruajtja lokale",
+        "body": "Faqja mund te perdore ruajtje lokale ose forma te ngjashme te ruajtjes ne shfletues per gjuhen e zgjedhur, monedhen, detajet e kerkimit te rezervimit, te dhenat e ruajtura te automjeteve dhe kontrollet e pritjes se kerkesave. Sherbimet e paleve te treta mund te perdorin cookie ose teknologji te ngjashme per siguri, analitike ose shperndarje."
+      },
+      "retention": {
+        "title": "Ruajtja e te dhenave",
+        "body": "Meqe faqja eshte ne modalitet testimi, te dhenat e kerkesave duhet te mbahen vetem per aq kohe sa nevojitet per testim, mbeshtetje, parandalim abuzimi ose kerkesa ligjore. Para se faqja te behet aktive, periudhat e ruajtjes duhet te rishikohen dhe dokumentohen."
+      },
+      "rights": {
+        "title": "Te drejtat tuaja",
+        "body": "Ne varesi te ligjit ne fuqi, mund te keni te drejta per te kerkuar qasje, korrigjim, fshirje, kufizim, kundershtim, ose terheqje te pelqimit per te dhenat tuaja personale. Per te bere nje kerkese, kontaktoni"
+      }
+    },
+    "terms": {
+      "website_status": {
+        "title": "Statusi i faqes",
+        "body": "Dua Makina aktualisht prezantohet si nje faqe qeraje automjetesh me baze ne Shqiperi ne modalitet demo/testimi. Faqja nuk eshte aktualisht nje sherbim rezervimi qeraje live."
+      },
+      "no_bookings": {
+        "title": "Nuk ka rezervime reale",
+        "body": "Dergimi i nje kerkimi, kerkese, formulari, ose kerkese rezervimi nuk rezervon nje automjet, nuk krijon nje marreveshje qeraje dhe nuk kerkon pagese. Cdo konfirmim ose mesazh automatik duhet trajtuar si komunikim testimi, perveq nese Dua Makina konfirmon vecmas nje marreveshje reale me shkrim."
+      },
+      "no_guarantee": {
+        "title": "Pa garanci cmimi ose disponueshmerie",
+        "body": "Listimet e automjeteve, cmimet, depozitat, pershkrimet e sigurimit, vendndodhjet, shtesat dhe disponueshmeria e treguar ne faqe mund te jene informacion i perkohshem ose testimi. Ato nuk duhet konsideruar si oferte perfundimtare komerciale."
+      },
+      "future_terms": {
+        "title": "Kushtet e ardhshme te qirase",
+        "body": "Kur faqja te behet operacionale, kushtet reale te qerase duhet te percaktojne qarte pagesen, depozitat, rregullat e anulimit, kerkesat e marrjes, mbulimin e sigurimit, kilometrazhin, lejet nderkufitare, udhetimin me traget, pershtatshmerine e shoferit, kontrollet e dokumenteve dhe pergjegjesite e kthimit te automjetit."
+      },
+      "user_responsibilities": {
+        "title": "Pergjegjesite e perdoruesit",
+        "body": "Ju pranoni te mos keqperdorni faqen, te mos dergoni informacion te rreme ose te demshem, te mos perpiqeni te nderhyni ne sherbim, ose te mos e perdorni faqen per qellime te paligjshme."
+      },
+      "liability": {
+        "title": "Kufizimi i pergjegjesise",
+        "body": "Meqe faqja eshte ne modalitet testimi, Dua Makina nuk eshte pergjegjese per humbje qe rrjedhin nga mbeshtetja ne cmime testimi, disponueshmeri testimi, procese demo rezervimi, ose gabime te perkohshme te faqes, ne masen maksimale te lejuar nga ligji ne fuqi."
+      },
+      "contact": {
+        "body_prefix": "Pyetjet per keto kushte mund te dergohen te",
+        "body_suffix": "per pyetje rreth ketyre kushteve."
+      },
+      "third_party": {
+        "body": "Faqja mund te mbeshtetet ne sherbime te paleve te treta duke perfshire Supabase, EmailJS, hCaptcha, Vercel, jsDelivr dhe lidhje te jashtme harte ose komunikimi. Dua Makina nuk eshte pergjegjese per disponueshmerine, kushtet ose politikat e sherbimeve te paleve te treta."
+      }
+    }
+  },
+  "plurals": {
+    "seats_one": "Vend",
+    "seats_other": "Vende",
+    "bags_one": "Cante",
+    "bags_other": "Canta",
+    "doors_one": "Dere",
+    "doors_other": "Dyer",
+    "days_one": "dite",
+    "days_other": "dite"
+  },
+  "faqs": {
+    "documents": {
+      "title": "Dokumentet e nevojshme",
+      "q1": "Cfare dokumentesh me duhen per te marre nje makine me qera?",
+      "a1": "Do ju duhet nje pasaporte e vlefshme ose karte identiteti, dhe nje patente e vlefshme. Nese patenta juaj nuk eshte nga nje vend i BE-se, mund t'ju duhet edhe nje Leje Nderkombetare Drejtimi (IDP).",
+      "q2": "A kerkohet Leje Nderkombetare Drejtimi (IDP)?",
+      "a2": "Nje IDP kerkohet per shoferet me patenta te leshuara jashte Bashkimit Evropian. Patentat e BE-se pranohen pa IDP.",
+      "q3": "Sa kohe duhet ta kem mbajtur patenten time?",
+      "a3": "Duhet ta keni mbajtur patenten per te pakten 2 vjet. Disa automjete premium mund te kerkojne 3 ose me shume vite eksperience drejtimi."
+    },
+    "age": {
+      "title": "Kerkesat per moshen",
+      "q1": "Cila eshte mosha minimale per te marre me qera nje automjet?",
+      "a1": "Mosha minimale per te marre nje makine me qera eshte 18 vjec. Disa kategori premium dhe SUV mund te kerkojne nje moshe minimale te ndryshme ne varesi te automjetit.",
+      "q2": "A ka moshe maksimale per te marre me qera nje makine?",
+      "a2": "Po, mosha maksimale per te marre me qera nje makine eshte 75 vjec. Shoferet mbi 70 vjec mund t'ju kerkohet te sigurojne dokumentacion shtese.",
+      "q3": "A ka tarife shtese per shoferet e rinj?",
+      "a3": "Shoferet e moshes 18-24 vjec mund t'i nenshtrohen nje tarife shtese per shofere te rinj ne varesi te automjetit."
+    },
+    "payment": {
+      "title": "Pagesa dhe cmimet",
+      "q1": "A me duhet karte krediti per te marre me qera nje makine?",
+      "a1": "Jo, nuk kerkojme karte krediti. Te gjitha pagesat behen CASH ne momentin e marrjes se automjetit. Ky eshte modeli yne unik qe e ben qerane me te lehte per te gjithe.",
+      "q2": "Cilat monedha pranoni?",
+      "a2": "Ne pranojme pagesa ne Lek Shqiptar (ALL), Euro (EUR), Dollar Amerikan (USD), dhe Steling Britanik (GBP). Rekomandojme pagesen ne EUR ose ALL per kursin me te mire.",
+      "q3": "A ka depozite sigurie?",
+      "a3": "Nje depozite sigurie mund te kerkohet ne varesi te automjetit.",
+      "q4": "A ka tarifa te fshehura?",
+      "a4": "Asnje tarife e fshehur! Cmimet tona perfshijne sigurim baze, taksa dhe asistence rrugore 24/7. Shtesat opsionale si GPS dhe ulëset per femije cmimohen qarte."
+    },
+    "vehicle": {
+      "title": "Zgjedhja e automjetit",
+      "q1": "Cfare llojesh automjetesh ofroni?",
+      "a1": "Ne ofrojme nje game te gjere automjetesh duke perfshire makina Ekonomike, Sedan Kompakte, SUV, automjete Premium dhe Minivan. Te gjitha automjetet mirembahen dhe sherbehen rregullisht.",
+      "q2": "Cilen makine duhet te zgjedh per rruget shqiptare?",
+      "a2": "Per zona malore dhe eksplorim fshati, rekomandojme SUV ose automjete me lartesi me te madhe nga toka. Per drejtim ne qytet dhe rruget bregdetare, cdo kategori automjeti funksionon mire.",
+      "q3": "A mund te kerkoj nje model specifik makine?",
+      "a3": "Mund te kerkoni nje model specifik, por ne garantojme kategorine e makines, jo modelin e sakte. Ne shfaqim \"ose i ngjashem\" per cdo listim pasi disponueshmeria ndryshon."
+    },
+    "cross_border": {
+      "title": "Udhetime nderkufitare",
+      "q1": "A mund ta cojme makinen jashte Shqiperise?",
+      "a1_prefix": "Po! Automjetet tona jane te autorizuara per udhetim ne te gjithe Evropen. Megjithate, duhet te na informoni paraprakisht dhe mund t'ju duhet te blini sigurim Green Card (",
+      "a1_suffix": ") per kalimet kufitare.",
+      "q2": "A lejohet udhetimi me traget?",
+      "a2": "Po, udhetimi me traget per ne Greqi (Sarande-Korfuz) dhe Itali (Durres-Bari) lejohet me njoftim paraprak. Ju lutemi na informoni gjate rezervimit.",
+      "q3": "Po per limitet e kilometrazhit?",
+      "a3": "Shumica e automjeteve tona vijne me kilometrazh te pakufizuar. Per automjete me limit, alokimi ditor eshte zakonisht 300km me kilometra shtese te ngarkuar €0.15/km."
+    },
+    "pickup": {
+      "title": "Marrja dhe kthimi",
+      "q1": "Cilat jane vendet tuaja te marrjes dhe kthimit?",
+      "a1": "Ne ofrojme marrje ne vende te ndryshme ne te gjithe Shqiperine. Marrjet ne aeroport jane te disponueshme 24/7.",
+      "q2": "A mund ta kthej makinen ne nje vend tjeter?",
+      "a2": "Po, qerate nje-drejtimshe jane te disponueshme. Mund te kete nje tarife shtese ne varesi te vendeve te marrjes dhe kthimit.",
+      "q3": "C'ndodh nese fluturimi im vonon?",
+      "a3": "Nese fluturimi juaj vonon, ju lutemi na kontaktoni menjehere qe te mund te rregullojme oren e marrjes ne perputhje me rrethanat."
+    },
+    "booking": {
+      "title": "Rezervimi dhe ndryshimet",
+      "q1": "Si e rezervoj nje makine?",
+      "a1": "Shfletoni flotën tone, zgjidhni datat dhe automjetin, dhe dergoni nje kerkese rezervimi. Ekipi yne do te konfirmoje disponueshmerine brenda 12 oresh dhe do te ofroje udhezimet e pageses.",
+      "q2": "A mund ta ndryshoj rezervimin tim?",
+      "a2": "Po, mund ta ndryshoni rezervimin tuaj me email ose WhatsApp deri ne 1 jave para marrjes. Ndryshimet i nenshtrohen disponueshmerise.",
+      "q3": "Cila eshte politika juaj e anulimit?",
+      "a3": "Anulim falas eshte i disponueshem deri 48 ore para ores se planifikuar te marrjes. Anulimet brenda 48 oreve mund t'i nenshtrohen nje tarife."
+    },
+    "contact_cta": {
+      "title": "Ende keni pyetje?",
+      "body": "Ekipi yne eshte gati t'ju ndihmoje me cdo pyetje rreth qerase se automjetit tuaj.",
+      "whatsapp": "Na shkruani ne WhatsApp",
+      "email": "Na dergoni email"
+    }
+  },
+  "extras": {
+    "baby-seat": "Ulëse foshnje",
+    "booster-seat": "Ulëse ngritëse",
+    "child-seat": "Ulëse për fëmijë",
+    "wifi": "WiFi",
+    "gps": "GPS",
+    "navigation": "Navigim",
+    "navigation-system": "Sistem navigimi",
+    "additional-driver": "Shofer shtesë",
+    "driver-plus": "Shofer shtesë",
+    "insurance": "Sigurim",
+    "insurance-booking": "Sigurim",
+    "snow-chains": "Zinxhë dëbore",
+    "roof-box": "Kuti çatie",
+    "bike-rack": "Mbajtëse biçikletash",
+    "coolbox": "Kuti ftohëse",
+    "fridge": "Frigorifer",
+    "tent": "Tendë",
+    "camping": "Kampim",
+    "phone-mount": "Mbajtëse telefoni",
+    "usb-charger": "Karikues USB",
+    "baby-seat-desc": "Ulëse sigurie për foshnje (0-13 kg)",
+    "booster-seat-desc": "Ulëse ngritëse për fëmijë (4-12 vjeç)",
+    "child-seat-desc": "Ulëse sigurie për fëmijë (9-36 kg)",
+    "wifi-desc": "Hotspot WiFi 4G i pakufizuar në makinë",
+    "gps-desc": "Sistem navigimi GPS me harta lokale",
+    "navigation-desc": "Sistem navigimi GPS me harta lokale",
+    "navigation-system-desc": "GPS i integruar me udhëzime me zë",
+    "additional-driver-desc": "Regjistro një shofer shtesë për qiraja",
+    "driver-plus-desc": "Regjistro një shofer shtesë për qiraja",
+    "insurance-desc": "Mbulim shtesë sigurimi për qetësi",
+    "insurance-booking-desc": "Mbulim shtesë sigurimi për qetësi",
+    "snow-chains-desc": "Zinxhë dëbore për kushte dimri",
+    "roof-box-desc": "Kuti çatie për hapësirë shtesë bagazhi",
+    "bike-rack-desc": "Mbajtëse biçikletash për deri në 3 biçikleta",
+    "coolbox-desc": "Kuti ftohëse portative për ushqim dhe pije",
+    "fridge-desc": "Frigorifer 12V i integruar",
+    "tent-desc": "Tendë kampimi e përfshirë",
+    "camping-desc": "Paketë pajisjesh kampimi",
+    "phone-mount-desc": "Mbajtëse telefoni për navigim",
+    "usb-charger-desc": "Porta shtesë karikimi USB",
+    "wifi-hotspot": "WiFi",
+    "wifi-hotspot-desc": "Hotspot WiFi 4G i pakufizuar në makinë",
+    "insurance-upgrade": "Sigurim",
+    "insurance-upgrade-desc": "Mbulim shtesë sigurimi për qetësi"
+  },
+  "countries": {
+    "al": "Shqipëria",
+    "gr": "Greqia",
+    "it": "Italia",
+    "mk": "Maqedonia e Veriut",
+    "me": "Mali i Zi",
+    "rs": "Serbia",
+    "xk": "Kosova",
+    "bg": "Bullgaria",
+    "tr": "Turqia",
+    "de": "Gjermania",
+    "si": "Sllovenia",
+    "hr": "Kroacia",
+    "at": "Austria",
+    "fr": "Franca",
+    "es": "Spanja",
+    "gb": "Britania e Madhe",
+    "us": "SHBA",
+    "nl": "Holanda",
+    "be": "Belgjika",
+    "ch": "Zvicrra"
+  }
+}

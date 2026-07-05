@@ -1,0 +1,643 @@
+{
+  "lang": {
+    "english": "Englisch",
+    "albanian": "Albanisch",
+    "french": "Franzoesisch",
+    "italian": "Italienisch",
+    "german": "Deutsch"
+  },
+  "nav": {
+    "home": "Startseite",
+    "fleet": "Flotte",
+    "our_fleet": "Unsere Flotte",
+    "faqs": "FAQ",
+    "faq_short": "FAQ",
+    "quick_links": "Schnelllinks",
+    "locations": "Standorte",
+    "contact": "Kontakt",
+    "whatsapp_contact": "Kontaktieren Sie uns auf WhatsApp",
+    "privacy_policy": "Datenschutzrichtlinie",
+    "terms_conditions": "Allgemeine Geschaeftsbedingungen",
+    "booking": "Buchung"
+  },
+  "footer": {
+    "payment_cash_only": "Zahlungsart: Nur Barzahlung.",
+    "rights_reserved": "Alle Rechte vorbehalten.",
+    "copyright_line": "© 2025 Dua Makina. Alle Rechte vorbehalten. Zahlungsart: Nur Barzahlung."
+  },
+  "home": {
+    "hero": {
+      "title_line1": "Entdecken Sie Albanien",
+      "title_line2": "Auf Ihre Weise",
+      "subtitle": "Mieten Sie ein Auto ohne versteckte Gebuehren. Zahlen Sie bar bei Ankunft. Keine Kreditkarte erforderlich."
+    },
+    "search": {
+      "pickup_location": "Abholort",
+      "dropoff_location": "Rueckgabeort",
+      "dropoff_same_location": "Rueckgabe am selben Ort",
+      "pickup_date": "Abholdatum",
+      "pickup_time": "Abholzeit",
+      "dropoff_date": "Rueckgabedatum",
+      "dropoff_time": "Rueckgabezeit",
+      "search_cta": "Verfuegbare Autos suchen"
+    },
+    "trust": {
+      "title": "Unsere Zertifizierungen",
+      "cert_tourism": "Vom Tourismusministerium zertifiziert",
+      "cert_association": "Professioneller Vermietungsverband",
+      "cert_clean_vehicle": "Garantie fuer saubere Fahrzeuge",
+      "cert_insurance": "Vollversicherungsschutz",
+      "cert_roadside": "24/7 Pannenhilfe",
+      "cash_only": {
+        "title": "Nur Barzahlung",
+        "body": "Keine Kreditkarte noetig. Zahlen Sie bar bei der Abholung Ihres Autos."
+      },
+      "full_insurance": {
+        "title": "Vollversicherung",
+        "body": "Alle Fahrzeuge sind mit umfassendem Versicherungsschutz ausgestattet."
+      },
+      "support": {
+        "title": "24/7 Support",
+        "body": "Erreichen Sie uns jederzeit per Telefon oder WhatsApp fuer Pannenhilfe."
+      }
+    },
+    "reviews": {
+      "meta": {
+        "title": "Was unsere Gaeste sagen",
+        "avg_rating": "Durchschnittliche Bewertung",
+        "happy_customers": "Zufriedene Kunden",
+        "quality_vehicles": "Qualitaetsfahrzeuge"
+      },
+      "review1": "\"Ausgezeichneter Service! Das Auto war makellos und die Abholung am Flughafen Tirana verlief reibungslos. Werde DriveNow wieder nutzen.\"",
+      "review2": "\"Hervorragendes Preis-Leistungs-Verhaeltnis. Der Duster war perfekt, um die albanische Riviera zu erkunden. Sehr zu empfehlen!\"",
+      "review3": "\"Sehr transparente Preisgestaltung ohne versteckte Gebuehren. Barzahlung machte alles einfach. Insgesamt eine gute Erfahrung.\""
+    }
+  },
+  "common": {
+    "location": {
+      "pickup_locations": "Abholorte"
+    },
+    "date": {
+      "date": "Datum",
+      "edit_dates": "Daten bearbeiten"
+    },
+    "unit": {
+      "seats": "Sitze",
+      "seat": "Sitz",
+      "bags": "Gepaeckstuecke",
+      "bag": "Gepaeckstueck",
+      "doors": "Tueren",
+      "door": "Tuer",
+      "assistance_247": "24/7 Assistenz",
+      "no_insurance": "Keine Versicherung",
+      "premium_insurance": "Premium-Versicherung",
+      "basic_insurance": "Basisversicherung",
+      "no_deposit_required": "Keine Kaution erforderlich"
+    }
+  },
+  "fleet": {
+    "header": {
+      "cars_available": "Autos verfuegbar"
+    },
+    "filters": {
+      "type": {
+        "all": "Alle",
+        "sedan": "Limousine",
+        "economy": "Economy",
+        "compact": "Kompakt",
+        "suv_lower": "SUV",
+        "suv": "SUV",
+        "van": "Van",
+        "luxury": "Luxus"
+      },
+      "show_filters": "Filter anzeigen",
+      "sort_by": "Sortieren nach:",
+      "sort_popular": "Beliebteste",
+      "sort_low_high": "Preis aufsteigend",
+      "sort_high_low": "Preis absteigend",
+      "sort_newest": "Neueste Angebote",
+      "filters_heading": "FILTER",
+      "automatic_transmission": "Automatikgetriebe",
+      "automatic_transmission_trailing": "Automatikgetriebe",
+      "seats_4plus": "4+ Sitze",
+      "air_conditioning": "Klimaanlage",
+      "electric": "Elektrisch",
+      "unlimited_mileage": "Unbegrenzte Kilometer",
+      "free_cancellation": "Kostenlose Stornierung",
+      "special_offers": "Sonderangebote",
+      "reset_all": "Alles zuruecksetzen",
+      "advanced_filters": "Erweiterte Filter",
+      "vehicles": "FAHRZEUGE",
+      "days": "TAGE",
+      "change_location": "Standort aendern",
+      "update_filters": "Filter aktualisieren",
+      "vehicle_brand": "Fahrzeugmarke",
+      "vehicle_model": "Fahrzeugmodell",
+      "vehicle_year": "Baujahr",
+      "drive_system": "Antriebssystem",
+      "fuel_type": "Kraftstoffart",
+      "driver_experience": "Fahrererfahrung",
+      "luggage_capacity": "Gepaeckkapazitaet",
+      "seating_capacity": "Sitzkapazitaet",
+      "insurance": "Versicherung",
+      "deposit_requirements": "Kautionsanforderungen",
+      "apply_filters": "Filter anwenden",
+      "option": {
+        "manual": "Manuell",
+        "automatic": "Automatik",
+        "petrol": "Benzin",
+        "diesel": "Diesel",
+        "hybrid": "Hybrid",
+        "plugin_hybrid": "Plug-in-Hybrid",
+        "lpg": "Autogas"
+      },
+      "clear_all": "Alle löschen"
+    },
+    "state": {
+      "no_match": "Keine Autos entsprechen Ihren Filtern.",
+      "reset_prompt": "Bitte setzen Sie Ihre Filter zurueck.",
+      "load_failed": "Autos konnten nicht geladen werden.",
+      "try_again": "Bitte versuchen Sie es spaeter erneut.",
+      "none_available": "Derzeit keine Autos verfuegbar",
+      "from": "Ab",
+      "per_day": "pro Tag",
+      "view_details": "Details ansehen"
+    },
+    "pill": {
+      "year_or_newer": "{{year}} oder neuer"
+    }
+  },
+  "values": {
+    "misc": {
+      "under_21": "Unter 21",
+      "over_25": "Ueber 25",
+      "any_year": "Beliebiges Baujahr",
+      "year_2025": "2025 oder neuer",
+      "year_2023": "2023 oder neuer",
+      "year_2020": "2020 oder neuer",
+      "no_insurance_included": "Keine Versicherung enthalten",
+      "premium": "Premium",
+      "basic": "Basis",
+      "no_deposit": "Keine Kaution"
+    },
+    "category": {
+      "economy": "Economy",
+      "compact": "Kompakt",
+      "sedan": "Limousine",
+      "suv": "SUV",
+      "luxury": "Luxus",
+      "van": "Van",
+      "minivan": "Minivan",
+      "coupe": "Coupe",
+      "convertible": "Cabrio",
+      "pickup": "Pickup"
+    },
+    "transmission": {
+      "automatic": "Automatik",
+      "manual": "Manuell"
+    },
+    "insurance": {
+      "basic": "Basis",
+      "premium": "Premium",
+      "full": "Premium",
+      "third-party": "Basis",
+      "none": "Keine Versicherung"
+    },
+    "fuel": {
+      "gasoline": "Benzin",
+      "diesel": "Diesel",
+      "electric": "Elektrisch",
+      "hybrid": "Hybrid",
+      "plug-in hybrid": "Plug-in-Hybrid",
+      "lpg": "Autogas"
+    }
+  },
+  "car": {
+    "name": {
+      "default": "Autoname"
+    },
+    "share": "Teilen",
+    "overview_tab": "Uebersicht",
+    "best_for": "Am besten geeignet fuer",
+    "overview": {
+      "no_title": "Zurzeit kein Titel verfuegbar",
+      "no_description": "Zurzeit keine Beschreibung verfuegbar. Bitte versuchen Sie es spaeter erneut.",
+      "no_quality": "Keine Qualitaet verfuegbar"
+    },
+    "faq": {
+      "rental_conditions": "Mietbedingungen",
+      "deposit_payment": {
+        "title_typo": "Kaution & Zahlung",
+        "title": "Kaution & Zahlung",
+        "deposit_label": "Kaution:",
+        "refundable": "(bei Rueckgabe rueckerstattbar)",
+        "body": "Alle Zahlungen erfolgen NUR BAR bei der Fahrzeugabholung. Keine Online-Zahlungen erforderlich."
+      },
+      "mileage": {
+        "title": "Kilometerrichtlinie",
+        "unlimited_included": "Unbegrenzte Kilometer enthalten",
+        "unlimited": "Unbegrenzte Kilometer",
+        "km_limit": "{{km}} km Grenze · €{{fee}}/km zusaetzlich"
+      },
+      "fuel": {
+        "title": "Tankrichtlinie",
+        "full_to_full_label": "Voll-zu-voll:",
+        "body": "Sie erhalten das Auto mit vollem Tank und geben es mit vollem Tank zurueck."
+      },
+      "cross_border": {
+        "title": "Grenzueberschreitende Reisen",
+        "body": "Dieses Fahrzeug ist fuer Reisen in ganz Europa zugelassen.",
+        "body_countries": "Dieses Fahrzeug ist für Reisen nach folgenden Ländern zugelassen: {{countries}}.",
+        "body_none": "Dieses Fahrzeug ist nicht für grenzüberschreitende Reisen zugelassen."
+      },
+      "ferry": {
+        "title": "Faehrreisen",
+        "body_full": "Faehrreisen nach Griechenland (Saranda-Korfu) und Italien (Durres-Bari) sind mit vorheriger Ankuendigung erlaubt. Bitte informieren Sie uns bei der Buchung.",
+        "body_permitted": "Fährreisen sind mit vorheriger Ankündigung erlaubt.",
+        "fee_line": "Fährgebühr: €{{fee}}.",
+        "body_inform": "Bitte informieren Sie uns bei der Buchung.",
+        "body_not_permitted": "Fährreisen sind für dieses Fahrzeug nicht erlaubt."
+      },
+      "documents": {
+        "title": "Erforderliche Dokumente",
+        "item_passport": "Gueltiger Reisepass oder Personalausweis",
+        "item_license": "Gueltiger Fuehrerschein (seit mindestens 2 Jahren)",
+        "item_idp": "Internationaler Fuehrerschein (fuer Nicht-EU-Fuehrerscheine)"
+      },
+      "driver_requirements": {
+        "title": "Fahreranforderungen",
+        "min_age": "Mindestalter: 21 Jahre",
+        "max_age": "Hoechstalter: 75 Jahre",
+        "license_years": "Fuehrerschein seit mindestens 2 Jahren"
+      },
+      "cancellation": {
+        "title_typo": "Stornierungsrichtlinie",
+        "title": "Stornierungsrichtlinie",
+        "item_free": "Kostenlose Stornierung bis zu 48 Stunden vor Abholung",
+        "item_modifications": "Aenderungen per E-Mail oder WhatsApp moeglich"
+      }
+    },
+    "price": {
+      "summary_title": "Preisuebersicht",
+      "daily_rate": "Tagespreis x",
+      "days": "Tage",
+      "taxes_fees": "Steuern & Gebuehren",
+      "included": "Inbegriffen",
+      "total": "Gesamt",
+      "cash_only": {
+        "title": "Nur Barzahlung",
+        "body": "Zahlen Sie bar bei der Fahrzeugabholung. Keine Kreditkarte erforderlich."
+      },
+      "book_now": "Jetzt buchen",
+      "confirmation_email": "Sie erhalten in Kuerze eine Bestaetigungs-E-Mail",
+      "free_cancellation_48h": "Kostenlose Stornierung (48h)",
+      "whatsapp_questions": "Fragen? Schreiben Sie uns auf WhatsApp"
+    },
+    "spec": {
+      "transmission_placeholder": "Getriebe",
+      "insurance_placeholder": "Versicherungsart",
+      "year_placeholder": "Baujahr",
+      "seats_placeholder": "Sitze",
+      "trunk_placeholder": "Kofferraumkapazitaet",
+      "doors_placeholder": "Tueren",
+      "ac_placeholder": "Klima",
+      "fuel_placeholder": "Kraftstoffart"
+    }
+  },
+  "booking": {
+    "progress": {
+      "vehicle": "Fahrzeug",
+      "addons": "Extras & Regeln",
+      "driver_details": "Fahrerdaten"
+    },
+    "header": {
+      "title": "Vervollstaendigen Sie Ihre Mietanfrage",
+      "subtitle": "Senden Sie unten Ihre Buchungsdetails. Unser Team bestaetigt die Verfuegbarkeit und sendet innerhalb von 12 Stunden Zahlungsanweisungen per E-Mail."
+    },
+    "addons": {
+      "title": "Optionale Extras"
+    },
+    "rules": {
+      "title": "Das Kleingedruckte, einfach erklaert.",
+      "deposit": {
+        "title": "Kaution & Zahlung",
+        "no_card_hold": "Keine Kartensperre",
+        "no_card_hold_no_deposit": "Keine Kartensperre - keine Kaution erforderlich",
+        "no_card_hold_dot": "Keine Kartensperre ·",
+        "never_card_hold": "Wir sperren niemals eine Karte.",
+        "small_prefix": "Eine kleine Barkaution von",
+        "cash_deposit_desc": "wird bei der Abholung erhoben und bei Rueckgabe zurueckerstattet",
+        "full_rental_suffix": ". Die gesamte Miete wird ebenfalls bar bei Abholung bezahlt — EUR, USD, LEK oder GBP."
+      },
+      "cross_border": {
+        "prompt": "Bitte waehlen Sie die Laender aus, die Sie besuchen moechten, aus der Liste unten",
+        "none": "Fuer dieses Auto sind keine grenzueberschreitenden Reisen erlaubt.",
+        "none_available": "Für dieses Auto sind keine grenzüberschreitenden Optionen verfügbar.",
+        "select_prompt": "Waehlen Sie die Laender aus, die Sie besuchen moechten, aus der Liste unten."
+      },
+      "mileage": {
+        "title": "Kilometerrichtlinie",
+        "unlimited_albania": "Unbegrenzt innerhalb Albaniens",
+        "body": "Keine Tagesobergrenze innerhalb der albanischen Grenzen."
+      },
+      "documents": {
+        "title": "Erforderliche Dokumente",
+        "summary": "Reisepass · Fuehrerschein",
+        "body": "Bringen Sie Ihren Originalreisepass (nicht nur ein Foto) und einen Fuehrerschein mit, den Sie seit mindestens 2 Jahren besitzen. EU-, UK-, US-, CA-, AU-, NZ-, JP-, CH-Fuehrerscheine werden direkt akzeptiert. Andere Fuehrerscheine benoetigen einen Internationalen Fuehrerschein. Wir fotografieren Dokumente bei der Abholung; Kopien werden 12 Monate gespeichert und dann geloescht."
+      },
+      "driver": {
+        "title": "Fahreranforderungen",
+        "min_age_label": "Mindestalter",
+        "max_age_label": "Hoechstalter 75",
+        "license_years_label": "2+ Jahre Fuehrerschein",
+        "named_driver_prefix": "Der benannte Fahrer muss bei der Abholung anwesend sein. Zusaetzliche Fahrer (max. 2) muessen ebenfalls anwesend sein und kosten zusaetzlich",
+        "per_day_young_prefix": "/Tag pro Person. Jungfahrer-Zuschlag von",
+        "young_driver_suffix": "/Tag gilt zwischen 21 und 22 Jahren."
+      },
+      "cancellation": {
+        "title": "Stornierung",
+        "summary": "Kostenlos bis 48h vorher · 50% innerhalb 48h · Nichterscheinen verfaellt",
+        "body_prefix": "Stornieren Sie per E-Mail oder WhatsApp. Innerhalb von 48h behalten wir",
+        "body_suffix": "Bearbeitungsgebuehr oder 50% der Miete, je nachdem, was niedriger ist. Terminaenderungen bis 6h vor Abholung sind kostenlos."
+      },
+      "no_data": "Keine Daten"
+    },
+    "form": {
+      "contact": {
+        "title": "Kontaktinformationen",
+        "full_name": "Vollstaendiger Name",
+        "email": "E-Mail",
+        "phone": "Telefonnummer",
+        "phone_note": "Wir kontaktieren Sie per E-Mail oder WhatsApp zur Bestaetigung"
+      },
+      "driver": {
+        "title": "Fahrerinformationen",
+        "full_name": "Vollstaendiger Name des Fahrers",
+        "age": "Alter des Fahrers",
+        "license_expiry": "Ablaufdatum des Fuehrerscheins"
+      },
+      "requests": {
+        "title": "Besondere Wuensche",
+        "max_chars": "Maximal 500 Zeichen",
+        "placeholder": "Besondere Wuensche oder zusaetzliche Informationen..."
+      }
+    },
+    "sidebar": {
+      "location": {
+        "title": "Standortdetails",
+        "change_now": "Jetzt aendern",
+        "pickup_label": "Abholort:",
+        "dropoff_label": "Rueckgabeort:"
+      },
+      "price": {
+        "title": "Preisaufschluesselung"
+      },
+      "terms": {
+        "agree_prefix": "Ich stimme den",
+        "and": "und der"
+      },
+      "continue": "Weiter zu Fahrerdaten",
+      "send_inquiry": "Anfrage senden"
+    },
+    "dialog": {
+      "all_brands": "Alle Marken",
+      "all_models": "Alle Modelle",
+      "pickup_date_placeholder": "Abholdatum",
+      "dropoff_date_placeholder": "Rueckgabedatum",
+      "select_date": "Datum auswaehlen"
+    }
+  },
+  "legal": {
+    "common": {
+      "last_updated": "Zuletzt aktualisiert: 9. Juni 2026",
+      "demo_notice_label": "Demo-Hinweis:",
+      "demo_notice": {
+        "privacy_body": "diese Website dient derzeit ausschliesslich Demonstrations- und Testzwecken. Ueber diese Website eingereichte Buchungsanfragen sind keine echten Reservierungen und begruenden keinen Mietvertrag.",
+        "terms_body": "diese Website dient derzeit ausschliesslich Demonstrations- und Testzwecken. Buchungsanfragen sind keine echten Reservierungen, garantieren keine Fahrzeugverfuegbarkeit und begruenden keinen Mietvertrag."
+      }
+    },
+    "privacy": {
+      "who_we_are": {
+        "title": "Wer wir sind",
+        "body": "Dua Makina ist ein Konzept für eine Autovermietungs-Website mit Sitz in Albanien. Sie erreichen uns unter"
+      },
+      "website_status": {
+        "title": "Aktueller Website-Status",
+        "body": "Die Website ist derzeit nicht als Live-Buchungsplattform in Betrieb. Formulare, Preise, Fahrzeugverfügbarkeit, Buchungsbestätigungen oder Anfrage-E-Mails dienen Test- und Demonstrationszwecken, sofern Dua Makina nicht schriftlich etwas anderes bestätigt."
+      },
+      "data_collect": {
+        "title": "Personenbezogene Daten, die wir erheben koennen",
+        "item1": "Kontaktdaten wie Ihr Name, Ihre E-Mail-Adresse und Telefonnummer.",
+        "item2": "Fahrerdaten wie Name, Alter und Ablaufdatum des Führerscheins.",
+        "item3": "Details zur Mietanfrage wie Abhol- und Rückgabeorte, Daten, Fahrzeug, Extras, ausgewählte Länder und besondere Wünsche.",
+        "item4": "Technische und Anti-Spam-Daten wie hCaptcha-Verifizierungstoken, Browserinformationen, Analyseereignisse und Einstellungen zum lokalen Speicher."
+      },
+      "data_use": {
+        "title": "Wie wir Daten verwenden",
+        "body": "Wir verwenden übermittelte Daten, um den Anfrageprozess zu testen, auf Nachrichten zu antworten, Spam oder Missbrauch zu verhindern, die Website zu verbessern und die grundlegende Website-Nutzung zu verstehen. Wir verkaufen keine personenbezogenen Daten."
+      },
+      "third_party": {
+        "title": "Dienste Dritter",
+        "body": "Die Website kann Supabase für Datenbank und Speicher, EmailJS für den Versand von Anfrage-E-Mails, hCaptcha für Spam-Schutz, Vercel Analytics für grundlegende Website-Analysen und jsDelivr für Content-Delivery nutzen. Diese Dienste verarbeiten Daten möglicherweise gemäß ihren eigenen Datenschutzbestimmungen."
+      },
+      "cookies": {
+        "title": "Cookies und lokaler Speicher",
+        "body": "Die Website kann lokalen Speicher oder ähnliche Browser-Speicherformen für die gewählte Sprache, Währung, Buchungssuchdetails, zwischengespeicherte Fahrzeugdaten und Anfrage-Wartezeitprüfungen verwenden. Drittanbieterdienste können Cookies oder gleichwertige Technologien für Sicherheit, Analyse oder Bereitstellung verwenden."
+      },
+      "retention": {
+        "title": "Datenspeicherung",
+        "body": "Da sich die Website im Testmodus befindet, sollten Anfragedaten nur so lange aufbewahrt werden, wie es für Tests, Support, Missbrauchsprävention oder gesetzliche Anforderungen erforderlich ist. Vor dem Livegang der Website sollten Aufbewahrungsfristen überprüft und dokumentiert werden."
+      },
+      "rights": {
+        "title": "Ihre Rechte",
+        "body": "Je nach geltendem Recht haben Sie möglicherweise das Recht, Zugang, Berichtigung, Löschung, Einschränkung, Widerspruch oder Widerruf der Einwilligung für Ihre personenbezogenen Daten zu verlangen. Um eine Anfrage zu stellen, kontaktieren Sie"
+      }
+    },
+    "terms": {
+      "website_status": {
+        "title": "Website-Status",
+        "body": "Dua Makina wird derzeit als Autovermietungs-Website mit Sitz in Albanien im Demo-/Testmodus präsentiert. Die Website ist derzeit kein Live-Mietbuchungsdienst."
+      },
+      "no_bookings": {
+        "title": "Keine echten Buchungen",
+        "body": "Das Absenden einer Suche, Anfrage, eines Formulars oder einer Buchungsanfrage reserviert kein Fahrzeug, begründet keinen Mietvertrag und erfordert keine Zahlung. Jede automatische Bestätigung oder Nachricht sollte als Testkommunikation betrachtet werden, sofern Dua Makina nicht separat schriftlich eine echte Vereinbarung bestätigt."
+      },
+      "no_guarantee": {
+        "title": "Keine Preis- oder Verfuegbarkeitsgarantie",
+        "body": "Fahrzeuganzeigen, Preise, Kautionen, Versicherungsbeschreibungen, Standorte, Extras und die auf der Website angezeigte Verfügbarkeit können Platzhalter- oder Testinformationen sein. Sie sollten nicht als endgültiges kommerzielles Angebot betrachtet werden."
+      },
+      "future_terms": {
+        "title": "Platzhalter fuer zukuenftige Mietbedingungen",
+        "body": "Sobald die Website in Betrieb geht, sollten echte Mietbedingungen klar Zahlung, Kautionen, Stornierungsregeln, Abholanforderungen, Versicherungsschutz, Kilometerstand, grenzüberschreitende Genehmigungen, Fährreisen, Fahrerberechtigung, Dokumentenprüfungen und Verantwortlichkeiten bei der Fahrzeugrückgabe definieren."
+      },
+      "user_responsibilities": {
+        "title": "Verantwortlichkeiten des Nutzers",
+        "body": "Sie verpflichten sich, die Website nicht zu missbrauchen, keine falschen oder schädlichen Informationen einzureichen, nicht zu versuchen, den Dienst zu stören, oder die Website nicht für rechtswidrige Zwecke zu nutzen."
+      },
+      "liability": {
+        "title": "Haftungsbeschraenkung",
+        "body": "Da sich die Website im Testmodus befindet, haftet Dua Makina im gesetzlich zulässigen Höchstmaß nicht für Verluste, die sich aus dem Vertrauen auf Testpreise, Testverfügbarkeit, Demo-Buchungsabläufe oder vorübergehende Website-Fehler ergeben."
+      },
+      "contact": {
+        "body_prefix": "Fragen zu diesen Bedingungen koennen gesendet werden an",
+        "body_suffix": "bei Fragen zu diesen Bedingungen."
+      },
+      "third_party": {
+        "body": "Die Website kann sich auf Dienste Dritter stützen, darunter Supabase, EmailJS, hCaptcha, Vercel, jsDelivr sowie externe Karten- oder Kommunikationslinks. Dua Makina ist nicht verantwortlich für die Verfügbarkeit, Bedingungen oder Richtlinien von Drittanbieterdiensten."
+      }
+    }
+  },
+  "plurals": {
+    "seats_one": "Sitz",
+    "seats_other": "Sitze",
+    "bags_one": "Gepaeckstueck",
+    "bags_other": "Gepaeckstuecke",
+    "doors_one": "Tuer",
+    "doors_other": "Tueren",
+    "days_one": "Tag",
+    "days_other": "Tage",
+    "day": "Tag"
+  },
+  "faqs": {
+    "documents": {
+      "title": "Erforderliche Dokumente",
+      "q1": "Welche Dokumente benötige ich, um ein Auto zu mieten?",
+      "a1": "Sie benötigen einen gültigen Reisepass oder Personalausweis sowie einen gültigen Führerschein. Wenn Ihr Führerschein nicht aus einem EU-Land stammt, benötigen Sie möglicherweise auch einen Internationalen Führerschein (IDP).",
+      "q2": "Ist ein Internationaler Führerschein (IDP) erforderlich?",
+      "a2": "Ein IDP ist für Fahrer mit außerhalb der Europäischen Union ausgestellten Führerscheinen erforderlich. EU-Führerscheine werden ohne IDP akzeptiert.",
+      "q3": "Wie lange muss ich meinen Führerschein bereits besitzen?",
+      "a3": "Sie müssen Ihren Führerschein seit mindestens 2 Jahren besitzen. Einige Premiumfahrzeuge erfordern möglicherweise 3 oder mehr Jahre Fahrerfahrung."
+    },
+    "age": {
+      "title": "Altersanforderungen",
+      "q1": "Was ist das Mindestalter, um ein Fahrzeug zu mieten?",
+      "a1": "Das Mindestalter für die Anmietung eines Autos beträgt 18 Jahre. Einige Premium- und SUV-Kategorien erfordern je nach Fahrzeug möglicherweise ein anderes Mindestalter.",
+      "q2": "Gibt es ein Höchstalter für die Anmietung eines Autos?",
+      "a2": "Ja, das Höchstalter für die Anmietung eines Autos beträgt 75 Jahre. Fahrer über 70 werden möglicherweise um zusätzliche Dokumentation gebeten.",
+      "q3": "Gibt es einen Jungfahrer-Aufschlag?",
+      "a3": "Fahrer im Alter von 18-24 Jahren unterliegen je nach Fahrzeug möglicherweise einem Jungfahrer-Aufschlag."
+    },
+    "payment": {
+      "title": "Zahlung & Preise",
+      "q1": "Benötige ich eine Kreditkarte, um ein Auto zu mieten?",
+      "a1": "Nein, wir benötigen keine Kreditkarte. Alle Zahlungen erfolgen in BAR bei der Fahrzeugübernahme. Dies ist unser einzigartiges Modell, das die Miete für alle einfacher macht.",
+      "q2": "Welche Währungen akzeptieren Sie?",
+      "a2": "Wir akzeptieren Zahlungen in Albanischem Lek (ALL), Euro (EUR), US-Dollar (USD) und Britischem Pfund (GBP). Wir empfehlen die Zahlung in EUR oder ALL für die besten Kurse.",
+      "q3": "Gibt es eine Kaution?",
+      "a3": "Je nach Fahrzeug kann eine Kaution erforderlich sein.",
+      "q4": "Gibt es versteckte Gebühren?",
+      "a4": "Keine versteckten Gebühren! Unsere Preise beinhalten Basisversicherung, Steuern und 24/7-Pannenhilfe. Optionale Extras wie GPS und Kindersitze sind klar bepreist."
+    },
+    "vehicle": {
+      "title": "Fahrzeugauswahl",
+      "q1": "Welche Fahrzeugtypen bieten Sie an?",
+      "a1": "Wir bieten eine breite Palette von Fahrzeugen an, darunter Economy-Autos, Kompaktlimousinen, SUVs, Premiumfahrzeuge und Minivans. Alle Fahrzeuge werden regelmäßig gewartet und instand gehalten.",
+      "q2": "Welches Auto sollte ich für albanische Straßen wählen?",
+      "a2": "Für Bergregionen und die Erkundung der Landschaft empfehlen wir SUVs oder Fahrzeuge mit höherer Bodenfreiheit. Für Stadtfahrten und Küstenstraßen eignet sich jede Fahrzeugkategorie gut.",
+      "q3": "Kann ich ein bestimmtes Automodell anfragen?",
+      "a3": "Sie können ein bestimmtes Modell anfragen, aber wir garantieren die Fahrzeugkategorie, nicht das genaue Modell. Wir zeigen \"oder ähnlich\" für jedes Angebot, da die Verfügbarkeit variiert."
+    },
+    "cross_border": {
+      "title": "Grenzüberschreitende Reisen",
+      "q1": "Kann ich das Auto außerhalb Albaniens nutzen?",
+      "a1_prefix": "Ja! Unsere Fahrzeuge sind für Reisen in ganz Europa zugelassen. Sie müssen uns jedoch im Voraus informieren und benötigen möglicherweise eine Grüne-Karte-Versicherung (",
+      "a1_suffix": ") für Grenzübertritte.",
+      "q2": "Ist eine Fährreise erlaubt?",
+      "a2": "Ja, eine Fährreise nach Griechenland (Saranda-Korfu) und Italien (Durrës-Bari) ist mit vorheriger Ankündigung erlaubt. Bitte informieren Sie uns bei der Buchung.",
+      "q3": "Wie sieht es mit Kilometerbegrenzungen aus?",
+      "a3": "Die meisten unserer Fahrzeuge haben unbegrenzte Kilometerleistung. Bei Fahrzeugen mit Begrenzung beträgt die tägliche Freimenge in der Regel 300km, zusätzliche Kilometer werden mit €0.15/km berechnet."
+    },
+    "pickup": {
+      "title": "Abholung & Rückgabe",
+      "q1": "Wo sind Ihre Abhol- und Rückgabeorte?",
+      "a1": "Wir bieten Abholung an verschiedenen Orten in ganz Albanien an. Flughafenabholungen sind rund um die Uhr verfügbar.",
+      "q2": "Kann ich das Auto an einem anderen Ort zurückgeben?",
+      "a2": "Ja, Einwegmieten sind verfügbar. Je nach Abhol- und Rückgabeort kann eine zusätzliche Gebühr anfallen.",
+      "q3": "Was passiert, wenn sich mein Flug verspätet?",
+      "a3": "Wenn sich Ihr Flug verspätet, kontaktieren Sie uns bitte umgehend, damit wir Ihre Abholzeit entsprechend anpassen können."
+    },
+    "booking": {
+      "title": "Buchung & Änderungen",
+      "q1": "Wie buche ich ein Auto?",
+      "a1": "Durchsuchen Sie unsere Flotte, wählen Sie Ihre Daten und Ihr Fahrzeug aus und senden Sie eine Buchungsanfrage. Unser Team bestätigt die Verfügbarkeit innerhalb von 12 Stunden und stellt Zahlungsanweisungen bereit.",
+      "q2": "Kann ich meine Buchung ändern?",
+      "a2": "Ja, Sie können Ihre Buchung bis zu 1 Woche vor der Abholung per E-Mail oder WhatsApp ändern. Änderungen unterliegen der Verfügbarkeit.",
+      "q3": "Wie lautet Ihre Stornierungsrichtlinie?",
+      "a3": "Kostenlose Stornierung ist bis zu 48 Stunden vor der geplanten Abholzeit möglich. Stornierungen innerhalb von 48 Stunden können gebührenpflichtig sein."
+    },
+    "contact_cta": {
+      "title": "Haben Sie noch Fragen?",
+      "body": "Unser Team hilft Ihnen gerne bei allen Fragen zu Ihrer Autovermietung.",
+      "whatsapp": "Schreiben Sie uns auf WhatsApp",
+      "email": "Schreiben Sie uns eine E-Mail"
+    }
+  },
+  "extras": {
+    "baby-seat": "Babysitz",
+    "booster-seat": "Sitzerhoehung",
+    "child-seat": "Kindersitz",
+    "wifi": "WLAN",
+    "gps": "GPS",
+    "navigation": "Navigation",
+    "navigation-system": "Navigationssystem",
+    "additional-driver": "Zusaetzlicher Fahrer",
+    "driver-plus": "Zusaetzlicher Fahrer",
+    "insurance": "Versicherung",
+    "insurance-booking": "Versicherung",
+    "snow-chains": "Schneeketten",
+    "roof-box": "Dachbox",
+    "bike-rack": "Fahrradtraeger",
+    "coolbox": "Kuehlbox",
+    "fridge": "Kuehlschrank",
+    "tent": "Zelt",
+    "camping": "Camping",
+    "phone-mount": "Handyhalterung",
+    "usb-charger": "USB-Ladegeraet",
+    "baby-seat-desc": "Sicherheitssitz fuer Babys (0-13 kg)",
+    "booster-seat-desc": "Sitzerhoehung fuer Kinder (4-12 Jahre)",
+    "child-seat-desc": "Sicherheitssitz fuer Kinder (9-36 kg)",
+    "wifi-desc": "Unbegrenzter 4G-WLAN-Hotspot im Auto",
+    "gps-desc": "GPS-Navigationssystem mit lokalen Karten",
+    "navigation-desc": "GPS-Navigationssystem mit lokalen Karten",
+    "navigation-system-desc": "Integriertes GPS mit Sprachausgabe",
+    "additional-driver-desc": "Zusaetzlichen Fahrer registrieren",
+    "driver-plus-desc": "Zusaetzlichen Fahrer registrieren",
+    "insurance-desc": "Zusaetzliche Versicherungsdeckung",
+    "insurance-booking-desc": "Zusaetzliche Versicherungsdeckung",
+    "snow-chains-desc": "Schneeketten fuer winterliche Bedingungen",
+    "roof-box-desc": "Dachbox fuer zusaetzlichen Gepaeckplatz",
+    "bike-rack-desc": "Fahrradtraeger fuer bis zu 3 Fahrraeder",
+    "coolbox-desc": "Tragbare Kuehlbox fuer Essen und Getraenke",
+    "fridge-desc": "Integrierter 12V-Kuehlschrank",
+    "tent-desc": "Campingzelt inklusive",
+    "camping-desc": "Campingausruestungs-Set",
+    "phone-mount-desc": "Handyhalterung fuer Navigation",
+    "usb-charger-desc": "Zusaetzliche USB-Ladeanschluesse",
+    "wifi-hotspot": "WLAN",
+    "wifi-hotspot-desc": "Unbegrenzter 4G-WLAN-Hotspot im Auto",
+    "insurance-upgrade": "Versicherung",
+    "insurance-upgrade-desc": "Zusaetzliche Versicherungsdeckung"
+  },
+  "countries": {
+    "al": "Albanien",
+    "gr": "Griechenland",
+    "it": "Italien",
+    "mk": "Nordmazedonien",
+    "me": "Montenegro",
+    "rs": "Serbien",
+    "xk": "Kosovo",
+    "bg": "Bulgarien",
+    "tr": "Tuerkei",
+    "de": "Deutschland",
+    "si": "Slowenien",
+    "hr": "Kroatien",
+    "at": "Oesterreich",
+    "fr": "Frankreich",
+    "es": "Spanien",
+    "gb": "Grossbritannien",
+    "us": "USA",
+    "nl": "Niederlande",
+    "be": "Belgien",
+    "ch": "Schweiz"
+  }
+}

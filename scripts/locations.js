@@ -1,12 +1,16 @@
 const LOCATION_CACHE_KEY = "locations_v1";
-const LOCATION_CACHE_TTL_MS = 5 * 60 * 1000;
+const LOCATION_CACHE_TTL_MS = 24 * 60 * 60 * 1000;
+let locationFetchPromise = null;
 
 function readLocationCache() {
   try {
-    const raw = sessionStorage.getItem(LOCATION_CACHE_KEY);
+    const raw =
+      localStorage.getItem(LOCATION_CACHE_KEY) ??
+      sessionStorage.getItem(LOCATION_CACHE_KEY);
     if (!raw) return null;
     const { data, ts } = JSON.parse(raw);
     if (Date.now() - ts > LOCATION_CACHE_TTL_MS) {
+      localStorage.removeItem(LOCATION_CACHE_KEY);
       sessionStorage.removeItem(LOCATION_CACHE_KEY);
       return null;
     }
@@ -17,10 +21,16 @@ function readLocationCache() {
 }
 
 function writeLocationCache(data) {
-  sessionStorage.setItem(LOCATION_CACHE_KEY, JSON.stringify({ data, ts: Date.now() }));
+  const payload = JSON.stringify({ data, ts: Date.now() });
+  try {
+    localStorage.setItem(LOCATION_CACHE_KEY, payload);
+  } catch {}
+  try {
+    sessionStorage.setItem(LOCATION_CACHE_KEY, payload);
+  } catch {}
 }
 
-function getExistingLocationOptions() {s
+function getExistingLocationOptions() {
   const values = new Set();
 
   [
@@ -48,20 +58,27 @@ function getExistingLocationOptions() {s
 async function fetchLocations() {
   const cached = readLocationCache();
   if (cached) return cached;
+  if (locationFetchPromise) return locationFetchPromise;
 
-  const client = await window.supabaseClientReady;
-  if (!client) return getExistingLocationOptions();
+  locationFetchPromise = (async () => {
+    const client = await window.supabaseClientReady;
+    if (!client) return getExistingLocationOptions();
 
-  const { data, error } = await client
-    .from("locations")
-    .select("id, name, is_airport")
-    .eq("is_active", true)
-    .order("name", { ascending: true });
+    const { data, error } = await client
+      .from("locations")
+      .select("id, name, is_airport")
+      .eq("is_active", true)
+      .order("name", { ascending: true });
 
-  if (error || !data) return getExistingLocationOptions();
+    if (error || !data) return getExistingLocationOptions();
 
-  writeLocationCache(data);
-  return data;
+    writeLocationCache(data);
+    return data;
+  })().finally(() => {
+    locationFetchPromise = null;
+  });
+
+  return locationFetchPromise;
 }
 
 function setControlValue(control, preferredValue, locations) {
@@ -119,5 +136,10 @@ window.DuaLocations = {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-  populateLocationControls();
+  const run = () => populateLocationControls();
+  if ("requestIdleCallback" in window) {
+    requestIdleCallback(run, { timeout: 1500 });
+  } else {
+    setTimeout(run, 0);
+  }
 });
