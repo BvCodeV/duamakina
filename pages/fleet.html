@@ -1,499 +1,980 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no">
-  <title>Rent a Car in Tirana, Albania | Dua Makina | Our Fleet</title>
-  <meta name="application-name" content="duamakina">
-  <meta name="description" content="Affordable, reliable car rentals in Tirana, Albania. Explore Albania Your Way with DuaMakina. Best prices guaranteed – book online in minutes!">
-  <meta name="keywords" content="dua makine,dua makina, duamakina car rental Tirana, rent a car Albania, car hire Albania, cheap car rental Albania, affordable car rental Tirana, car rental Tirana airport, Albania road trip, explore Albania by car, reliable car rental Albania, makina me qera Tiranë, qera makine Shqiperi, makina me qera çmim të lirë, makina me qera aeroporti Tiranë, qera makine online Shqiperi, eksploroni Shqipërinë me makinë, makina me qera te besueshem, udhëtim me makinë Shqipëri">
-  <link rel="canonical" href="https://www.duamakina.com/">
-  <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
-  <link rel="icon" type="image/webp" href="/assets/icons/favicon.webp">
-  <link rel="alternate" hreflang="x-default" href="https://www.duamakina.com/pages/fleet.html">
-  <link rel="alternate" hreflang="en" href="https://www.duamakina.com/pages/fleet.html">
-  <link rel="alternate" hreflang="sq" href="https://www.duamakina.com/sq/pages/fleet.html">
-  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-  <link rel="preconnect" href="https://jdhigikorvtxhslxudcs.supabase.co">
-  <link rel="preconnect" href="https://cdn.jsdelivr.net">
-  <link rel="stylesheet" href="/styles/global.css">
-  <link rel="stylesheet" href="/styles/fleet.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-</head>
-<body>
-  <header role="banner" id="header" style="width: 100%; z-index: 1000; position: relative;" fetchpriority=high></header>
-  <nav role="navigation" id="navbar" style="width: 100%; z-index: 1000; position: sticky; top: 0px;" fetchpriority=high></nav>
-  <main>
-    <div class="mobile-dates mobile-only">
-      <p><span id="pickupDateMobile">Date</span> &middot; <span id="dropoffDateMobile">Date</span></p>
-      <button popovertarget="locationFilterDialog" id="editDateMobile">Edit dates</button>
-    </div>
-    <div class="page-header desktop-only">
-      <div class="header-left">
-        <p class="header-info">Fleet<span>&middot;</span><span id="headerLoc">Durres</p>
-        <h1 class="cars-available"><span id="carNum">XX</span> Cars Available</h1>
+<!doctype html>
+<html lang="en" translate="no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Rent a Car in Tirana, Albania | Dua Makina | Our Fleet</title>
+    <meta name="application-name" content="duamakina" />
+    <meta
+      name="description"
+      content="Affordable, reliable car rentals in Tirana, Albania. Explore Albania Your Way with DuaMakina. Best prices guaranteed – book online in minutes!"
+    />
+    <meta
+      name="keywords"
+      content="dua makine,dua makina, duamakina car rental Tirana, rent a car Albania, car hire Albania, cheap car rental Albania, affordable car rental Tirana, car rental Tirana airport, Albania road trip, explore Albania by car, reliable car rental Albania, makina me qera Tiranë, qera makine Shqiperi, makina me qera çmim të lirë, makina me qera aeroporti Tiranë, qera makine online Shqiperi, eksploroni Shqipërinë me makinë, makina me qera te besueshem, udhëtim me makinë Shqipëri"
+    />
+    <link rel="canonical" href="https://www.duamakina.com/" />
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg" />
+    <link rel="icon" type="image/webp" href="/assets/icons/favicon.webp" />
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href="https://www.duamakina.com/pages/fleet.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="en"
+      href="https://www.duamakina.com/pages/fleet.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="sq"
+      href="https://www.duamakina.com/sq/pages/fleet.html"
+    />
+    <meta
+      name="robots"
+      content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+    />
+    <link rel="preconnect" href="https://jdhigikorvtxhslxudcs.supabase.co" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+    <link rel="stylesheet" href="/styles/global.css" />
+    <link rel="stylesheet" href="/styles/fleet.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tom-select@2.4.3/dist/css/tom-select.default.min.css"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+      defer
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/i18next@23/i18next.min.js"
+      defer
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/i18next-http-backend@2/i18next-http-backend.min.js"
+      defer
+    ></script>
+    <script src="/scripts/lang.js" defer></script>
+  </head>
+  <body>
+    <header
+      role="banner"
+      id="header"
+      style="width: 100%; z-index: 1000; position: relative"
+      fetchpriority="high"
+    ></header>
+    <nav
+      role="navigation"
+      id="navbar"
+      style="width: 100%; z-index: 1000; position: sticky; top: 0px"
+      fetchpriority="high"
+    ></nav>
+    <main>
+      <div class="mobile-dates mobile-only">
+        <p>
+          <span id="pickupDateMobile">Date</span> &middot;
+          <span id="dropoffDateMobile">Date</span>
+        </p>
+        <button
+          popovertarget="locationFilterDialog"
+          id="editDateMobile"
+          data-i18n="common.date.edit_dates"
+        >
+          Edit dates
+        </button>
       </div>
-      <div class="filterLocationInfo">
-          <p class="editLocationTxt">Booking</p>
+      <div class="page-header desktop-only">
+        <div class="header-left">
+          <p class="header-info">
+            <span data-i18n="nav.fleet">Fleet</span><span>&middot;</span
+            ><span id="headerLoc">Durres</span>
+          </p>
+          <h1 class="cars-available">
+            <span id="carNum">XX</span>
+            <span data-i18n="fleet.header.cars_available">Cars Available</span>
+          </h1>
+        </div>
+        <div class="filterLocationInfo">
+          <p class="editLocationTxt" data-i18n="nav.booking">Booking</p>
           <div class="pickup-group info-groups">
-            <img src="/assets/icons/location-color.svg" alt="location icon" loading="lazy" draggable="false">
-            <p><span id="pickupTxt">Durres</span> &middot; <span id="pickupDateTxt">28 May</span>, <span id="pickupTimeTxt">10:00</span></p>
+            <img
+              src="/assets/icons/location-color.svg"
+              alt="location icon"
+              loading="lazy"
+              draggable="false"
+            />
+            <p>
+              <span id="pickupTxt">Durres</span> &middot;
+              <span id="pickupDateTxt">28 May</span>,
+              <span id="pickupTimeTxt">10:00</span>
+            </p>
           </div>
           <div class="dropoff-group info-groups">
-            <img src="/assets/icons/location-color.svg" alt="location icon" loading="lazy" draggable="false">
-            <p><span id="dropoffTxt">Durres</span> &middot; <span id="dropoffDateTxt">28 May</span>, <span id="dropoffTimeTxt">10:00</span></p>
+            <img
+              src="/assets/icons/location-color.svg"
+              alt="location icon"
+              loading="lazy"
+              draggable="false"
+            />
+            <p>
+              <span id="dropoffTxt">Durres</span> &middot;
+              <span id="dropoffDateTxt">28 May</span>,
+              <span id="dropoffTimeTxt">10:00</span>
+            </p>
           </div>
-          <button id="locationChangeBtn" popovertarget="locationFilterDialog">Edit dates</button>
+          <button
+            id="locationChangeBtn"
+            popovertarget="locationFilterDialog"
+            data-i18n="common.date.edit_dates"
+          >
+            Edit dates
+          </button>
+        </div>
       </div>
-    </div>
-    <div class="page-second-header">
-      <div class="car-type-filter desktop-only">
-        <p id="allPill" class="type-pill selected-type" data-type="all">All</p>
-        <p id="sedanPill" class="type-pill" data-type="sedan">Sedan</p>
-        <p id="economyPill" class="type-pill" data-type="economy">Economy</p>
-        <p id="compactPill" class="type-pill" data-type="compact">Compact</p>
-        <p id="suvPill" class="type-pill" data-type="suv">Suv</p>
-        <p id="vanPill" class="type-pill" data-type="van">Van</p>
-        <p id="luxuryPill" class="type-pill" data-type="luxury">Luxury</p>
-      </div>
+      <div class="page-second-header">
+        <div class="car-type-filter desktop-only">
+          <p id="allPill" class="type-pill selected-type" data-type="all">
+            All
+          </p>
+          <p
+            id="sedanPill"
+            class="type-pill"
+            data-type="sedan"
+            data-i18n="fleet.filters.type.sedan"
+          >
+            Sedan
+          </p>
+          <p
+            id="economyPill"
+            class="type-pill"
+            data-type="economy"
+            data-i18n="fleet.filters.type.economy"
+          >
+            Economy
+          </p>
+          <p
+            id="compactPill"
+            class="type-pill"
+            data-type="compact"
+            data-i18n="fleet.filters.type.compact"
+          >
+            Compact
+          </p>
+          <p
+            id="suvPill"
+            class="type-pill"
+            data-type="suv"
+            data-i18n="fleet.filters.type.suv_lower"
+          >
+            Suv
+          </p>
+          <p
+            id="vanPill"
+            class="type-pill"
+            data-type="van"
+            data-i18n="fleet.filters.type.van"
+          >
+            Van
+          </p>
+          <p
+            id="luxuryPill"
+            class="type-pill"
+            data-type="luxury"
+            data-i18n="fleet.filters.type.luxury"
+          >
+            Luxury
+          </p>
+        </div>
 
-      <button id="filterBtn" class="sidebar-btn mobile-only">
-        <img src="/assets/icons/gears.svg" alt="filter icon" loading="lazy" draggable="false">
-        Show Filters
-      </button>
+        <button id="filterBtn" class="sidebar-btn mobile-only">
+          <img
+            src="/assets/icons/gears.svg"
+            alt="filter icon"
+            loading="lazy"
+            draggable="false"
+          />
+          <span data-i18n="fleet.filters.show_filters">Show Filters</span>
+        </button>
 
-      <div class="sortSltcCon">
-        <label for="carSort">Sort by:</label>
-        <select name="sort" id="carSort">
-          <option value="popular">Most popular</option>
-          <option value="lToH">Lowest to High Price</option>
-          <option value="hToL">Highest to Low Price</option>
-          <option value="newest">Newest Listings</option>
-        </select>
-      </div>
-    </div>
-    <div class="section-body">
-      <aside id="sidebarFilter">
-        <button id="closeSidebarBtn" class="mobile-only">X</button>
-        <div class="filterBarFilters">
-          <h1>FILTERS</h1>
-          <div class="price-filter">
-            <div class="track-container">
-              <div class="track-bg"></div>
-              <div class="track-fill" id="fill"></div>
-              <input type="range" class="range-input" id="min-range" min="0" max="200" value="0" step="1">
-              <input type="range" class="range-input" id="max-range" min="0" max="200" value="200" step="1">
-            </div>
-            <div class="values">
-              <p class="min-val"><span class="currency-sign">€</span> <span id="min-val" class="currency-num">0</span></p>
-              <p class="max-val"><span class="currency-sign">€</span> <span id="max-val" class="currency-num">200</span></p>
-            </div>
-          </div>
-          <ul class="suggested-filters desktop-only">
-            <li><input type="checkbox" name="automatic" value="Automatic" id="automaticFilterBox" aria-label="automatic transition filter">Automatic Transmission </li>
-            <li><input type="checkbox" name="seats" value="4+ Seats" id="seatsFilterBox" aria-label="4+ seats filter">4+ seats </li>
-            <li><input type="checkbox" name="ac" value="Air Conditioning" id="acFilterBox" aria-label="air conditioning filter">Air Conditioning</li>
-            <li><input type="checkbox" name="electric" value="electric" id="electricFilterBox" aria-label="electric vehicle filter">Electric</li>
-            <li><input type="checkbox" name="milage" value="Unlimited Milage" id="milageFilterBox" aria-label="unlimited mileage filter">Unlimited Mileage</li>
-            <li><input type="checkbox" name="freeCancel" value="Free cancellation" id="freeCancelFilterBox" aria-label="free cancellation filter">Free Cancellation</li>
-            <li><input type="checkbox" name="special" value="Special Offers" id="specialFilterBox" aria-label="special offers filter">Special Offers</li>
-          </ul>
-          <div class="mobile-advanced-filters"></div>
-        </div>
-        <div class="btn-con">
-          <button id="resetAllBtn">Reset All</button>
-          <button id="advancedFiltersBtn" popovertarget="filtersDialog">Advanced Filters</button>
-        </div>
-      </aside>
-      <section>
-        <div class="section-body-info">
-          <p class="car-count"><span id="carNumFilter">X</span> OF <span id="totalCars">X</span> VEHICLES</p>
-          <div id="filterPillsCon"></div>
-          <p class="day-num desktop-only"><span id="dayNumFleet">X</span>DAYS</p>
-          <!-- <p class="dates-show mobile-only"><span id="pickupDateMobile">DD MM</span> &middot; <span id="droppoffDateMobile">DD MM</span> <span>Edit</span></p> -->
-        </div>
-        <div class="cars-card-con">
-          <!-- Car cards will be dynamically inserted here -->
-        </div>
-      </section>
-    </div>
-  </main>
-
-  <div id="locationFilterDialog" popover>
-    <div class="dialog-header">
-      <h1>Change the location</h1>
-      <button id="closeDialog">X</button>
-    </div>
-    <form id="filterBar">
-      <div class="locations-con">
-        <div class="pickup-loc location-inpt" >
-          <label for="changePickup">Pickup Location</label>
-          <img src="/assets/icons/location.svg" alt="location icon" loading="lazy" draggable="false">
-          <select name="changePickup" id="changePickup">
-            <option value="Tirana City Center">Tirana City Center</option>
-            <option value="Tirana Airport (TIA)">Tirana Airport (TIA)</option>
-            <option value="Durrës">Durrës</option>
-            <option value="Saranda">Saranda</option>
-            <option value="Vlorë">Vlorë</option>
+        <div class="sortSltcCon">
+          <label for="carSort" data-i18n="fleet.filters.sort_by"
+            >Sort by:</label
+          >
+          <select name="sort" id="carSort">
+            <option value="popular" data-i18n="fleet.filters.sort_popular">
+              Most popular
+            </option>
+            <option value="lToH" data-i18n="fleet.filters.sort_low_high">
+              Lowest to High Price
+            </option>
+            <option value="hToL" data-i18n="fleet.filters.sort_high_low">
+              Highest to Low Price
+            </option>
+            <option value="newest" data-i18n="fleet.filters.sort_newest">
+              Newest Listings
+            </option>
           </select>
         </div>
-        <div class="dropoff-loc location-inpt" id="dropoffLoc">
-          <label for="changeDropoff">Drop-off Location</label>
-          <img src="/assets/icons/location.svg" alt="location icon" loading="lazy" draggable="false">
-          <select name="changeDropoff" id="changeDropoff">
-            <option value="Tirana City Center">Tirana City Center</option>
-            <option value="Tirana Airport (TIA)">Tirana Airport (TIA)</option>
-            <option value="Durrës">Durrës</option>
-            <option value="Saranda">Saranda</option>
-            <option value="Vlorë">Vlorë</option>
-          </select>
-        </div>
-        <div class="dropoff-check">
-          <input type="checkbox" id="dropoffCheck" name="dropoff-check" checked>
-          <label for="dropoffCheck">Drop-off at same location</label>
-        </div>
       </div>
-      <div class="date-time-con">
-        <div class="date-time">
-          <div class="date">
-            <label for="changePickupDate">Pick-up Date</label>
-            <img src="/assets/icons/calendar.svg" alt="Calendar Icon" loading="lazy" draggable="false"> 
-            <input id="changePickupDate" type="text" class="date-input" placeholder="Pickup date" readonly required>
+      <div class="section-body">
+        <aside id="sidebarFilter">
+          <button id="closeSidebarBtn" class="mobile-only">X</button>
+          <div class="filterBarFilters">
+            <h1 data-i18n="fleet.filters.filters_heading">FILTERS</h1>
+            <div class="price-filter">
+              <div class="track-container">
+                <div class="track-bg"></div>
+                <div class="track-fill" id="fill"></div>
+                <input
+                  type="range"
+                  class="range-input"
+                  id="min-range"
+                  min="0"
+                  max="200"
+                  value="0"
+                  step="1"
+                />
+                <input
+                  type="range"
+                  class="range-input"
+                  id="max-range"
+                  min="0"
+                  max="200"
+                  value="200"
+                  step="1"
+                />
+              </div>
+              <div class="values">
+                <p class="min-val">
+                  <span class="currency-sign">€</span>
+                  <span id="min-val" class="currency-num">0</span>
+                </p>
+                <p class="max-val">
+                  <span class="currency-sign">€</span>
+                  <span id="max-val" class="currency-num">200</span>
+                </p>
+              </div>
+            </div>
+            <ul class="suggested-filters desktop-only">
+              <li>
+                <input
+                  type="checkbox"
+                  name="automatic"
+                  value="Automatic"
+                  id="automaticFilterBox"
+                  aria-label="automatic transition filter"
+                /><span data-i18n="fleet.filters.automatic_transmission"
+                  >Automatic Transmission</span
+                >
+              </li>
+              <li>
+                <input
+                  type="checkbox"
+                  name="seats"
+                  value="4+ Seats"
+                  id="seatsFilterBox"
+                  aria-label="4+ seats filter"
+                /><span data-i18n="fleet.filters.seats_4plus">4+ seats</span>
+              </li>
+              <li>
+                <input
+                  type="checkbox"
+                  name="ac"
+                  value="Air Conditioning"
+                  id="acFilterBox"
+                  aria-label="air conditioning filter"
+                /><span data-i18n="fleet.filters.air_conditioning"
+                  >Air Conditioning</span
+                >
+              </li>
+              <li>
+                <input
+                  type="checkbox"
+                  name="electric"
+                  value="electric"
+                  id="electricFilterBox"
+                  aria-label="electric vehicle filter"
+                /><span data-i18n="fleet.filters.electric">Electric</span>
+              </li>
+              <li>
+                <input
+                  type="checkbox"
+                  name="milage"
+                  value="Unlimited Milage"
+                  id="milageFilterBox"
+                  aria-label="unlimited mileage filter"
+                /><span data-i18n="fleet.filters.unlimited_mileage"
+                  >Unlimited Mileage</span
+                >
+              </li>
+              <li>
+                <input
+                  type="checkbox"
+                  name="freeCancel"
+                  value="Free cancellation"
+                  id="freeCancelFilterBox"
+                  aria-label="free cancellation filter"
+                /><span data-i18n="fleet.filters.free_cancellation"
+                  >Free Cancellation</span
+                >
+              </li>
+              <li>
+                <input
+                  type="checkbox"
+                  name="special"
+                  value="Special Offers"
+                  id="specialFilterBox"
+                  aria-label="special offers filter"
+                /><span data-i18n="fleet.filters.special_offers"
+                  >Special Offers</span
+                >
+              </li>
+            </ul>
+            <div class="mobile-advanced-filters"></div>
           </div>
-          <div class="time">
-            <label for="changePickupTime">Pick-up Time</label>
-            <img src="/assets/icons/time.svg" alt="time" loading="lazy" draggable="false">
-            <select name="time" id="changePickupTime">
-              <option value="00:00">00:00</option>
-              <option value="00:30">00:30</option>
-              <option value="01:00">01:00</option>
-              <option value="01:30">01:30</option>
-              <option value="02:00">02:00</option>
-              <option value="02:30">02:30</option>
-              <option value="03:00">03:00</option>
-              <option value="03:30">03:30</option>
-              <option value="04:00">04:00</option>
-              <option value="04:30">04:30</option>
-              <option value="05:00">05:00</option>
-              <option value="05:30">05:30</option>
-              <option value="06:00">06:00</option>
-              <option value="06:30">06:30</option>
-              <option value="07:00">07:00</option>
-              <option value="07:30">07:30</option>
-              <option value="08:00">08:00</option>
-              <option value="08:30">08:30</option>
-              <option value="09:00">09:00</option>
-              <option value="09:30">09:30</option>
-              <option value="10:00">10:00</option>
-              <option value="10:30">10:30</option>
-              <option value="11:00">11:00</option>
-              <option value="11:30">11:30</option>
-              <option value="12:00">12:00</option>
-              <option value="12:30">12:30</option>
-              <option value="13:00">13:00</option>
-              <option value="13:30">13:30</option>
-              <option value="14:00">14:00</option>
-              <option value="14:30">14:30</option>
-              <option value="15:00">15:00</option>
-              <option value="15:30">15:30</option>
-              <option value="16:00">16:00</option>
-              <option value="16:30">16:30</option>
-              <option value="17:00">17:00</option>
-              <option value="17:30">17:30</option>
-              <option value="18:00">18:00</option>
-              <option value="18:30">18:30</option>
-              <option value="19:00">19:00</option>
-              <option value="19:30">19:30</option>
-              <option value="20:00">20:00</option>
-              <option value="20:30">20:30</option>
-              <option value="21:00">21:00</option>
-              <option value="21:30">21:30</option>
-              <option value="22:00">22:00</option>
-              <option value="22:30">22:30</option>
-              <option value="23:00">23:00</option>
-              <option value="23:30">23:30</option>
-            </select>
+          <div class="btn-con">
+            <button id="resetAllBtn" data-i18n="fleet.filters.reset_all">
+              Reset All
+            </button>
+            <button
+              id="advancedFiltersBtn"
+              popovertarget="filtersDialog"
+              data-i18n="fleet.filters.advanced_filters"
+            >
+              Advanced Filters
+            </button>
           </div>
-        </div>
-        <div class="date-time">
-          <div class="date">
-            <label for="changeDropoffDate">Drop-off Date</label>
-            <img src="/assets/icons/calendar.svg" alt="Calendar Icon" loading="lazy" draggable="false">
-            <input id="changeDropoffDate" type="text" class="date-input" placeholder="Dropoff date" readonly required>
+        </aside>
+        <section>
+          <div class="section-body-info">
+            <p class="car-count">
+              <span id="carNumFilter">X</span>
+              <span data-i18n="fleet.state.of">OF</span>
+              <span id="totalCars">X</span>
+              <span data-i18n="fleet.filters.vehicles">VEHICLES</span>
+            </p>
+            <div id="filterPillsCon"></div>
+            <p class="day-num desktop-only">
+              <span id="dayNumFleet">X</span>
+              <span data-i18n="fleet.filters.days">DAYS</span>
+            </p>
           </div>
-          <div class="time">
-            <label for="changeDropoffTime">Drop-off Time</label>
-            <img src="/assets/icons/time.svg" alt="time" loading="lazy" draggable="false">
-            <select name="time" id="changeDropoffTime">
-              <option value="00:00">00:00</option>
-              <option value="00:30">00:30</option>
-              <option value="01:00">01:00</option>
-              <option value="01:30">01:30</option>
-              <option value="02:00">02:00</option>
-              <option value="02:30">02:30</option>
-              <option value="03:00">03:00</option>
-              <option value="03:30">03:30</option>
-              <option value="04:00">04:00</option>
-              <option value="04:30">04:30</option>
-              <option value="05:00">05:00</option>
-              <option value="05:30">05:30</option>
-              <option value="06:00">06:00</option>
-              <option value="06:30">06:30</option>
-              <option value="07:00">07:00</option>
-              <option value="07:30">07:30</option>
-              <option value="08:00">08:00</option>
-              <option value="08:30">08:30</option>
-              <option value="09:00">09:00</option>
-              <option value="09:30">09:30</option>
-              <option value="10:00">10:00</option>
-              <option value="10:30">10:30</option>
-              <option value="11:00">11:00</option>
-              <option value="11:30">11:30</option>
-              <option value="12:00">12:00</option>
-              <option value="12:30">12:30</option>
-              <option value="13:00">13:00</option>
-              <option value="13:30">13:30</option>
-              <option value="14:00">14:00</option>
-              <option value="14:30">14:30</option>
-              <option value="15:00">15:00</option>
-              <option value="15:30">15:30</option>
-              <option value="16:00">16:00</option>
-              <option value="16:30">16:30</option>
-              <option value="17:00">17:00</option>
-              <option value="17:30">17:30</option>
-              <option value="18:00">18:00</option>
-              <option value="18:30">18:30</option>
-              <option value="19:00">19:00</option>
-              <option value="19:30">19:30</option>
-              <option value="20:00">20:00</option>
-              <option value="20:30">20:30</option>
-              <option value="21:00">21:00</option>
-              <option value="21:30">21:30</option>
-              <option value="22:00">22:00</option>
-              <option value="22:30">22:30</option>
-              <option value="23:00">23:00</option>
-              <option value="23:30">23:30</option>
-            </select>
-          </div>
-        </div>
+          <div class="cars-card-con"></div>
+        </section>
       </div>
-      <button type="button" id="locationUpdateBtn">
-        <img src="/assets/icons/search.svg" alt="Search Icon" loading="lazy" draggable="false">
-        <span>Update Filters</span>
-      </button>
-    </form>
-  </div>
+    </main>
 
-  <div id="filtersDialog" popover>
-    <div class="dialog-header">
-      <h1>Advanced Filters</h1>
-      <button id="filtersCloseDialog">X</button>
+    <div id="locationFilterDialog" popover>
+      <div class="dialog-header">
+        <h1 data-i18n="fleet.filters.change_location">Change the location</h1>
+        <button id="closeDialog">X</button>
+      </div>
+      <form id="filterBar">
+        <div class="locations-con">
+          <div class="pickup-loc location-inpt">
+            <label for="changePickup" data-i18n="home.search.pickup_location"
+              >Pickup Location</label
+            >
+            <img
+              src="/assets/icons/location.svg"
+              alt="location icon"
+              loading="lazy"
+              draggable="false"
+            />
+            <select name="changePickup" id="changePickup">
+              <option value="Tirana City Center">Tirana City Center</option>
+              <option value="Tirana Airport (TIA)">Tirana Airport (TIA)</option>
+              <option value="Durrës">Durrës</option>
+              <option value="Saranda">Saranda</option>
+              <option value="Vlorë">Vlorë</option>
+            </select>
+          </div>
+          <div class="dropoff-loc location-inpt" id="dropoffLoc">
+            <label for="changeDropoff" data-i18n="home.search.dropoff_location"
+              >Drop-off Location</label
+            >
+            <img
+              src="/assets/icons/location.svg"
+              alt="location icon"
+              loading="lazy"
+              draggable="false"
+            />
+            <select name="changeDropoff" id="changeDropoff">
+              <option value="Tirana City Center">Tirana City Center</option>
+              <option value="Tirana Airport (TIA)">Tirana Airport (TIA)</option>
+              <option value="Durrës">Durrës</option>
+              <option value="Saranda">Saranda</option>
+              <option value="Vlorë">Vlorë</option>
+            </select>
+          </div>
+          <div class="dropoff-check">
+            <input
+              type="checkbox"
+              id="dropoffCheck"
+              name="dropoff-check"
+              checked
+            />
+            <label
+              for="dropoffCheck"
+              data-i18n="home.search.dropoff_same_location"
+              >Drop-off at same location</label
+            >
+          </div>
+        </div>
+        <div class="date-time-con">
+          <div class="date-time">
+            <div class="date">
+              <label for="changePickupDate" data-i18n="home.search.pickup_date"
+                >Pick-up Date</label
+              >
+              <img
+                src="/assets/icons/calendar.svg"
+                alt="Calendar Icon"
+                loading="lazy"
+                draggable="false"
+              />
+              <input
+                id="changePickupDate"
+                type="text"
+                class="date-input"
+                placeholder="Pickup date"
+                readonly
+                required
+              />
+            </div>
+            <div class="time">
+              <label for="changePickupTime" data-i18n="home.search.pickup_time"
+                >Pick-up Time</label
+              >
+              <img
+                src="/assets/icons/time.svg"
+                alt="time"
+                loading="lazy"
+                draggable="false"
+              />
+              <select name="time" id="changePickupTime">
+                <option value="00:00">00:00</option>
+                <option value="00:30">00:30</option>
+                <option value="01:00">01:00</option>
+                <option value="01:30">01:30</option>
+                <option value="02:00">02:00</option>
+                <option value="02:30">02:30</option>
+                <option value="03:00">03:00</option>
+                <option value="03:30">03:30</option>
+                <option value="04:00">04:00</option>
+                <option value="04:30">04:30</option>
+                <option value="05:00">05:00</option>
+                <option value="05:30">05:30</option>
+                <option value="06:00">06:00</option>
+                <option value="06:30">06:30</option>
+                <option value="07:00">07:00</option>
+                <option value="07:30">07:30</option>
+                <option value="08:00">08:00</option>
+                <option value="08:30">08:30</option>
+                <option value="09:00">09:00</option>
+                <option value="09:30">09:30</option>
+                <option value="10:00">10:00</option>
+                <option value="10:30">10:30</option>
+                <option value="11:00">11:00</option>
+                <option value="11:30">11:30</option>
+                <option value="12:00">12:00</option>
+                <option value="12:30">12:30</option>
+                <option value="13:00">13:00</option>
+                <option value="13:30">13:30</option>
+                <option value="14:00">14:00</option>
+                <option value="14:30">14:30</option>
+                <option value="15:00">15:00</option>
+                <option value="15:30">15:30</option>
+                <option value="16:00">16:00</option>
+                <option value="16:30">16:30</option>
+                <option value="17:00">17:00</option>
+                <option value="17:30">17:30</option>
+                <option value="18:00">18:00</option>
+                <option value="18:30">18:30</option>
+                <option value="19:00">19:00</option>
+                <option value="19:30">19:30</option>
+                <option value="20:00">20:00</option>
+                <option value="20:30">20:30</option>
+                <option value="21:00">21:00</option>
+                <option value="21:30">21:30</option>
+                <option value="22:00">22:00</option>
+                <option value="22:30">22:30</option>
+                <option value="23:00">23:00</option>
+                <option value="23:30">23:30</option>
+              </select>
+            </div>
+          </div>
+          <div class="date-time">
+            <div class="date">
+              <label
+                for="changeDropoffDate"
+                data-i18n="home.search.dropoff_date"
+                >Drop-off Date</label
+              >
+              <img
+                src="/assets/icons/calendar.svg"
+                alt="Calendar Icon"
+                loading="lazy"
+                draggable="false"
+              />
+              <input
+                id="changeDropoffDate"
+                type="text"
+                class="date-input"
+                placeholder="Dropoff date"
+                readonly
+                required
+              />
+            </div>
+            <div class="time">
+              <label
+                for="changeDropoffTime"
+                data-i18n="home.search.dropoff_time"
+                >Drop-off Time</label
+              >
+              <img
+                src="/assets/icons/time.svg"
+                alt="time"
+                loading="lazy"
+                draggable="false"
+              />
+              <select name="time" id="changeDropoffTime">
+                <option value="00:00">00:00</option>
+                <option value="00:30">00:30</option>
+                <option value="01:00">01:00</option>
+                <option value="01:30">01:30</option>
+                <option value="02:00">02:00</option>
+                <option value="02:30">02:30</option>
+                <option value="03:00">03:00</option>
+                <option value="03:30">03:30</option>
+                <option value="04:00">04:00</option>
+                <option value="04:30">04:30</option>
+                <option value="05:00">05:00</option>
+                <option value="05:30">05:30</option>
+                <option value="06:00">06:00</option>
+                <option value="06:30">06:30</option>
+                <option value="07:00">07:00</option>
+                <option value="07:30">07:30</option>
+                <option value="08:00">08:00</option>
+                <option value="08:30">08:30</option>
+                <option value="09:00">09:00</option>
+                <option value="09:30">09:30</option>
+                <option value="10:00">10:00</option>
+                <option value="10:30">10:30</option>
+                <option value="11:00">11:00</option>
+                <option value="11:30">11:30</option>
+                <option value="12:00">12:00</option>
+                <option value="12:30">12:30</option>
+                <option value="13:00">13:00</option>
+                <option value="13:30">13:30</option>
+                <option value="14:00">14:00</option>
+                <option value="14:30">14:30</option>
+                <option value="15:00">15:00</option>
+                <option value="15:30">15:30</option>
+                <option value="16:00">16:00</option>
+                <option value="16:30">16:30</option>
+                <option value="17:00">17:00</option>
+                <option value="17:30">17:30</option>
+                <option value="18:00">18:00</option>
+                <option value="18:30">18:30</option>
+                <option value="19:00">19:00</option>
+                <option value="19:30">19:30</option>
+                <option value="20:00">20:00</option>
+                <option value="20:30">20:30</option>
+                <option value="21:00">21:00</option>
+                <option value="21:30">21:30</option>
+                <option value="22:00">22:00</option>
+                <option value="22:30">22:30</option>
+                <option value="23:00">23:00</option>
+                <option value="23:30">23:30</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <button type="button" id="locationUpdateBtn">
+          <img
+            src="/assets/icons/search.svg"
+            alt="Search Icon"
+            loading="lazy"
+            draggable="false"
+          />
+          <span data-i18n="fleet.filters.update_filters">Update Filters</span>
+        </button>
+      </form>
     </div>
-    <form class="main-dialog">
-      <div class="brand-filter filter-con">
-        <p>Vehicle Brand</p>
-        <input type="text" id="brandSearch" list="brandDatalist" placeholder="All Brands" autocomplete="off" spellcheck="false">
-        <datalist id="brandDatalist"></datalist>
-        <input type="hidden" id="brandFilter" value="all">
+
+    <div id="filtersDialog" popover>
+      <div class="dialog-header">
+        <h1 data-i18n="fleet.filters.advanced_filters">Advanced Filters</h1>
+        <button id="filtersCloseDialog">X</button>
       </div>
-      <div class="make-filter filter-con" id="makeFilterCon">
-        <p>Vehicle Model</p>
-        <input type="text" id="makeSearch" list="makeDatalist" placeholder="All Models" autocomplete="off" spellcheck="false">
-        <datalist id="makeDatalist"></datalist>
-        <input type="hidden" id="makeFilter" value="all">
-      </div>
-      <div class="main-filters">
-        <div class="seperator">
-          <div class="year-filters filter-con">
-            <p>Vehicle Year</p>
-            <ul class="radio-btn-cons btn-cons">
-              <li class="radio-btn">
-                <input type="radio" name="year" id="year2025" value="2025+">
-                <label for="year2025">2025 or newer</label>
-              </li>
-              <li class="radio-btn">
-                <input type="radio" name="year" id="year2023" value="2023+">
-                <label for="year2023">2023 or newer</label>
-              </li>
-              <li class="radio-btn">
-                <input type="radio" name="year" id="year2020" value="2020+">
-                <label for="year2020">2020 or newer</label>
-              </li>
-              <li class="radio-btn">
-                <input type="radio" name="year" id="yearAny" value="any">
-                <label for="yearAny">Any year</label>
-              </li>
-            </ul>
+      <form class="main-dialog">
+        <div class="brand-filter filter-con">
+          <p data-i18n="fleet.filters.vehicle_brand">Vehicle Brand</p>
+          <select
+            id="brandSearch"
+            multiple
+            placeholder="All Brands"
+            autocomplete="off"
+          ></select>
+        </div>
+        <div class="make-filter filter-con" id="makeFilterCon">
+          <p data-i18n="fleet.filters.vehicle_model">Vehicle Model</p>
+          <select
+            id="makeSearch"
+            multiple
+            placeholder="All Models"
+            autocomplete="off"
+          ></select>
+        </div>
+        <div class="main-filters">
+          <div class="seperator">
+            <div class="year-filters filter-con">
+              <p data-i18n="fleet.filters.vehicle_year">Vehicle Year</p>
+              <ul class="radio-btn-cons btn-cons">
+                <li class="radio-btn">
+                  <input type="radio" name="year" id="year2025" value="2025+" />
+                  <label for="year2025" data-i18n="values.misc.year_2025"
+                    >2025 or newer</label
+                  >
+                </li>
+                <li class="radio-btn">
+                  <input type="radio" name="year" id="year2023" value="2023+" />
+                  <label for="year2023" data-i18n="values.misc.year_2023"
+                    >2023 or newer</label
+                  >
+                </li>
+                <li class="radio-btn">
+                  <input type="radio" name="year" id="year2020" value="2020+" />
+                  <label for="year2020" data-i18n="values.misc.year_2020"
+                    >2020 or newer</label
+                  >
+                </li>
+                <li class="radio-btn">
+                  <input type="radio" name="year" id="yearAny" value="any" />
+                  <label for="yearAny" data-i18n="values.misc.any_year"
+                    >Any year</label
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="drive-system-filters filter-con">
+              <p data-i18n="fleet.filters.drive_system">Drive System</p>
+              <ul class="checkbox-btn-cons btn-cons">
+                <li class="checkbox-btn">
+                  <input
+                    type="checkbox"
+                    id="manual"
+                    name="transmission"
+                    value="manual"
+                  />
+                  <label for="manual" data-i18n="fleet.filters.option.manual"
+                    >Manual</label
+                  >
+                </li>
+                <li class="checkbox-btn">
+                  <input
+                    type="checkbox"
+                    id="automatic"
+                    name="transmission"
+                    value="automatic"
+                  />
+                  <label
+                    for="automatic"
+                    data-i18n="fleet.filters.option.automatic"
+                    >Automatic</label
+                  >
+                </li>
+                <li class="checkbox-btn">
+                  <input
+                    type="checkbox"
+                    id="awd"
+                    name="drivetrain"
+                    value="awd"
+                  />
+                  <label for="awd">AWD</label>
+                </li>
+                <li class="checkbox-btn">
+                  <input
+                    type="checkbox"
+                    id="fwd"
+                    name="drivetrain"
+                    value="fwd"
+                  />
+                  <label for="fwd">FWD</label>
+                </li>
+                <li class="checkbox-btn">
+                  <input
+                    type="checkbox"
+                    id="rwd"
+                    name="drivetrain"
+                    value="rwd"
+                  />
+                  <label for="rwd">RWD</label>
+                </li>
+                <li class="checkbox-btn">
+                  <input
+                    type="checkbox"
+                    id="x4"
+                    name="drivetrain"
+                    value="4x4"
+                  />
+                  <label for="x4">4X4</label>
+                </li>
+              </ul>
+            </div>
+            <div class="fuel-filters filter-con">
+              <p data-i18n="fleet.filters.fuel_type">Fuel Type</p>
+              <ul class="checkbox-btn-cons btn-cons" id="fuelFilterList">
+                <li class="checkbox-btn">
+                  <input
+                    type="checkbox"
+                    name="fuel"
+                    id="fuel_gasoline"
+                    value="gasoline"
+                  />
+                  <label
+                    for="fuel_gasoline"
+                    data-i18n="fleet.filters.option.petrol"
+                    >Petrol</label
+                  >
+                </li>
+                <li class="checkbox-btn">
+                  <input
+                    type="checkbox"
+                    name="fuel"
+                    id="fuel_diesel"
+                    value="diesel"
+                  />
+                  <label
+                    for="fuel_diesel"
+                    data-i18n="fleet.filters.option.diesel"
+                    >Diesel</label
+                  >
+                </li>
+                <li class="checkbox-btn">
+                  <input
+                    type="checkbox"
+                    name="fuel"
+                    id="fuel_electric"
+                    value="electric"
+                  />
+                  <label for="fuel_electric" data-i18n="fleet.filters.electric"
+                    >Electric</label
+                  >
+                </li>
+                <li class="checkbox-btn">
+                  <input
+                    type="checkbox"
+                    name="fuel"
+                    id="fuel_hybrid"
+                    value="hybrid"
+                  />
+                  <label
+                    for="fuel_hybrid"
+                    data-i18n="fleet.filters.option.hybrid"
+                    >Hybrid</label
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="driver-filters filter-con">
+              <p data-i18n="fleet.filters.driver_experience">
+                Driver Experience
+              </p>
+              <ul class="radio-btn-cons btn-cons">
+                <li class="radio-btn">
+                  <input
+                    type="radio"
+                    name="driverExperience"
+                    id="under21"
+                    value="under21"
+                  />
+                  <label for="under21" data-i18n="values.misc.under_21"
+                    >Under 21</label
+                  >
+                </li>
+                <li class="radio-btn">
+                  <input
+                    type="radio"
+                    name="driverExperience"
+                    id="age21to24"
+                    value="21-24"
+                  />
+                  <label for="age21to24">21–24</label>
+                </li>
+                <li class="radio-btn">
+                  <input
+                    type="radio"
+                    name="driverExperience"
+                    id="over25"
+                    value="over25"
+                  />
+                  <label for="over25" data-i18n="values.misc.over_25"
+                    >Over 25</label
+                  >
+                </li>
+              </ul>
+            </div>
           </div>
-          <div class="drive-system-filters filter-con">
-            <p>Drive System</p>
-            <ul class="checkbox-btn-cons btn-cons">
-              <li class="checkbox-btn">
-                <input type="checkbox" id="manual" name="transmission" value="manual">
-                <label for="manual">Manual</label>
-              </li>
-              <li class="checkbox-btn">
-                <input type="checkbox" id="automatic" name="transmission" value="automatic">
-                <label for="automatic">Automatic</label>
-              </li>
-              <li class="checkbox-btn">
-                <input type="checkbox" id="awd" name="drivetrain" value="awd">
-                <label for="awd">AWD</label>
-              </li>
-              <li class="checkbox-btn">
-                <input type="checkbox" id="fwd" name="drivetrain" value="fwd">
-                <label for="fwd">FWD</label>
-              </li>
-              <li class="checkbox-btn">
-                <input type="checkbox" id="rwd" name="drivetrain" value="rwd">
-                <label for="rwd">RWD</label>
-              </li>
-              <li class="checkbox-btn">
-                <input type="checkbox" id="x4" name="drivetrain" value="4x4">
-                <label for="x4">4X4</label>
-              </li>
-            </ul>
-          </div>
-          <div class="fuel-filters filter-con">
-            <p>Fuel Type</p>
-            <ul class="checkbox-btn-cons btn-cons" id="fuelFilterList">
-              <li class="checkbox-btn">
-                <input type="checkbox" name="fuel" id="fuel_gasoline" value="gasoline">
-                <label for="fuel_gasoline">Petrol</label>
-              </li>
-              <li class="checkbox-btn">
-                <input type="checkbox" name="fuel" id="fuel_diesel" value="diesel">
-                <label for="fuel_diesel">Diesel</label>
-              </li>
-              <li class="checkbox-btn">
-                <input type="checkbox" name="fuel" id="fuel_electric" value="electric">
-                <label for="fuel_electric">Electric</label>
-              </li>
-              <li class="checkbox-btn">
-                <input type="checkbox" name="fuel" id="fuel_hybrid" value="hybrid">
-                <label for="fuel_hybrid">Hybrid</label>
-              </li>
-            </ul>
-          </div>
-          <div class="driver-filters filter-con">
-            <p>Driver Experience</p>
-            <ul class="radio-btn-cons btn-cons">
-              <li class="radio-btn">
-                <input type="radio" name="driverExperience" id="under21" value="under21">
-                <label for="under21">Under 21</label>
-              </li>
-              <li class="radio-btn">
-                <input type="radio" name="driverExperience" id="age21to24" value="21-24">
-                <label for="age21to24">21–24</label>
-              </li>
-              <li class="radio-btn">
-                <input type="radio" name="driverExperience" id="over25" value="over25">
-                <label for="over25">Over 25</label>
-              </li>
-            </ul>
+          <hr />
+          <div class="seperator">
+            <div class="luggage-filters filter-con">
+              <p data-i18n="fleet.filters.luggage_capacity">Luggage Capacity</p>
+              <ul class="radio-btn-cons btn-cons">
+                <li class="radio-btn">
+                  <input type="radio" name="luggage" id="bags12" value="1-2" />
+                  <label for="bags12">1–2 Bags</label>
+                </li>
+                <li class="radio-btn">
+                  <input type="radio" name="luggage" id="bags34" value="3-4" />
+                  <label for="bags34">3–4 Bags</label>
+                </li>
+                <li class="radio-btn">
+                  <input type="radio" name="luggage" id="bags56" value="5-6" />
+                  <label for="bags56">5–6 Bags</label>
+                </li>
+              </ul>
+            </div>
+            <div class="seating-filters filter-con">
+              <p data-i18n="fleet.filters.seating_capacity">Seating Capacity</p>
+              <ul class="checkbox-btn-cons btn-cons" id="seatFilterList">
+                <li class="checkbox-btn">
+                  <input type="checkbox" name="seats" id="seat2" value="2" />
+                  <label for="seat2">2 Seats</label>
+                </li>
+                <li class="checkbox-btn">
+                  <input type="checkbox" name="seats" id="seat4" value="4" />
+                  <label for="seat4">4 Seats</label>
+                </li>
+                <li class="checkbox-btn">
+                  <input type="checkbox" name="seats" id="seat5" value="5" />
+                  <label for="seat5">5 Seats</label>
+                </li>
+                <li class="checkbox-btn">
+                  <input type="checkbox" name="seats" id="seat7" value="7" />
+                  <label for="seat7">7 Seats</label>
+                </li>
+                <li class="checkbox-btn">
+                  <input type="checkbox" name="seats" id="seat9" value="9" />
+                  <label for="seat9">9 Seats</label>
+                </li>
+              </ul>
+            </div>
+            <div class="insurance-filters filter-con">
+              <p data-i18n="fleet.filters.insurance">Insurance</p>
+              <ul class="radio-btn-cons btn-cons">
+                <li class="radio-btn">
+                  <input
+                    type="radio"
+                    name="insurance"
+                    id="premium"
+                    value="full"
+                  />
+                  <label for="premium" data-i18n="values.misc.premium"
+                    >Premium</label
+                  >
+                </li>
+                <li class="radio-btn">
+                  <input
+                    type="radio"
+                    name="insurance"
+                    id="basic"
+                    value="third-party"
+                  />
+                  <label for="basic" data-i18n="values.misc.basic">Basic</label>
+                </li>
+                <li class="radio-btn">
+                  <input
+                    type="radio"
+                    name="insurance"
+                    id="noInsurance"
+                    value="none"
+                  />
+                  <label
+                    for="noInsurance"
+                    data-i18n="values.misc.no_insurance_included"
+                    >No Insurance Included</label
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="deposit-filters filter-con">
+              <p data-i18n="fleet.filters.deposit_requirements">
+                Deposit Requirements
+              </p>
+              <ul class="radio-btn-cons btn-cons">
+                <li class="radio-btn">
+                  <input
+                    type="radio"
+                    name="deposit"
+                    id="depositNone"
+                    value="none"
+                  />
+                  <label for="depositNone" data-i18n="values.misc.no_deposit"
+                    >No Deposit</label
+                  >
+                </li>
+                <li class="radio-btn">
+                  <input
+                    type="radio"
+                    name="deposit"
+                    id="deposit500"
+                    value="500"
+                  />
+                  <label for="deposit500">< €500</label>
+                </li>
+                <li class="radio-btn">
+                  <input
+                    type="radio"
+                    name="deposit"
+                    id="deposit750"
+                    value="750"
+                  />
+                  <label for="deposit750">< €750</label>
+                </li>
+                <li class="radio-btn">
+                  <input
+                    type="radio"
+                    name="deposit"
+                    id="deposit1000"
+                    value="1000"
+                  />
+                  <label for="deposit1000">< €1,000</label>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
-        <hr>
-        <div class="seperator">
-          <div class="luggage-filters filter-con">
-            <p>Luggage Capacity</p>
-            <ul class="radio-btn-cons btn-cons">
-              <li class="radio-btn">
-                <input type="radio" name="luggage" id="bags12" value="1-2">
-                <label for="bags12">1–2 Bags</label>
-              </li>
-              <li class="radio-btn">
-                <input type="radio" name="luggage" id="bags34" value="3-4">
-                <label for="bags34">3–4 Bags</label>
-              </li>
-              <li class="radio-btn">
-                <input type="radio" name="luggage" id="bags56" value="5-6">
-                <label for="bags56">5–6 Bags</label>
-              </li>
-            </ul>
-          </div>
-          <div class="seating-filters filter-con">
-            <p>Seating Capacity</p>
-            <ul class="checkbox-btn-cons btn-cons" id="seatFilterList">
-              <li class="checkbox-btn">
-                <input type="checkbox" name="seats" id="seat2" value="2">
-                <label for="seat2">2 Seats</label>
-              </li>
-              <li class="checkbox-btn">
-                <input type="checkbox" name="seats" id="seat4" value="4">
-                <label for="seat4">4 Seats</label>
-              </li>
-              <li class="checkbox-btn">
-                <input type="checkbox" name="seats" id="seat5" value="5">
-                <label for="seat5">5 Seats</label>
-              </li>
-              <li class="checkbox-btn">
-                <input type="checkbox" name="seats" id="seat7" value="7">
-                <label for="seat7">7 Seats</label>
-              </li>
-              <li class="checkbox-btn">
-                <input type="checkbox" name="seats" id="seat9" value="9">
-                <label for="seat9">9 Seats</label>
-              </li>
-            </ul>
-          </div>
-          <div class="insurance-filters filter-con">
-            <p>Insurance</p>
-            <ul class="radio-btn-cons btn-cons">
-              <li class="radio-btn">
-                <input type="radio" name="insurance" id="premium" value="full">
-                <label for="premium">Premium</label>
-              </li>
-              <li class="radio-btn">
-                <input type="radio" name="insurance" id="basic" value="third-party">
-                <label for="basic">Basic</label>
-              </li>
-              <li class="radio-btn">
-                <input type="radio" name="insurance" id="noInsurance" value="none">
-                <label for="noInsurance">No Insurance Included</label>
-              </li>
-            </ul>
-          </div>
-          <div class="deposit-filters filter-con">
-            <p>Deposit Requirements</p>
-            <ul class="radio-btn-cons btn-cons">
-              <li class="radio-btn">
-                <input type="radio" name="deposit" id="depositNone" value="none">
-                <label for="depositNone">No Deposit</label>
-              </li>
-              <li class="radio-btn">
-                <input type="radio" name="deposit" id="deposit500" value="500">
-                <label for="deposit500">&lt; €500</label>
-              </li>
-              <li class="radio-btn">
-                <input type="radio" name="deposit" id="deposit750" value="750">
-                <label for="deposit750">&lt; €750</label>
-              </li>
-              <li class="radio-btn">
-                <input type="radio" name="deposit" id="deposit1000" value="1000">
-                <label for="deposit1000">&lt; €1,000</label>
-              </li>
-            </ul>
-          </div>
+        <div class="submitBtnWrapper">
+          <button id="submitFiltersBtn" data-i18n="fleet.filters.apply_filters">
+            Apply Filters
+          </button>
         </div>
-      </div>
-      <div class="submitBtnWrapper">
-        <button id="submitFiltersBtn">Apply Filters</button>
-      </div>
-    </form>
-  </div>
-  <footer id="footer" style="width: 99%; position: relative; bottom: 0;"></footer>
-  <script src="/scripts/components.js"></script>
-  <script src="/scripts/database.js?v=location-filter"></script>
-  <script src="/scripts/locations.js?v=location-filter"></script>
-  <script src="/scripts/currency.js"></script>
-  <script src="/scripts/fleet.js" type="module"></script>
-  <script src="/scripts/lang.js"></script>
-  <script src="/scripts/filterbar.js"></script>
-  <script src="/scripts/index.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-  <script src="/scripts/calendar.js"></script>
-  <script src="/scripts/analytics.js"></script>
-</body>
+      </form>
+    </div>
+    <footer
+      id="footer"
+      style="width: 99%; position: relative; bottom: 0"
+    ></footer>
+    <script src="/scripts/components.js"></script>
+    <script src="/scripts/database.js?v=location-filter"></script>
+    <script src="/scripts/locations.js?v=location-filter"></script>
+    <script src="/scripts/currency.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.4.3/dist/js/tom-select.complete.min.js"></script>
+    <script src="/scripts/fleet.js" type="module"></script>
+    <script src="/scripts/filterbar.js"></script>
+    <script src="/scripts/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="/scripts/calendar.js"></script>
+    <script src="/scripts/analytics.js"></script>
+  </body>
 </html>

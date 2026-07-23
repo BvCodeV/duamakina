@@ -1,0 +1,642 @@
+{
+  "lang": {
+    "english": "Inglese",
+    "albanian": "Albanese",
+    "french": "Francese",
+    "italian": "Italiano",
+    "german": "Tedesco"
+  },
+  "nav": {
+    "home": "Home",
+    "fleet": "Flotta",
+    "our_fleet": "La nostra flotta",
+    "faqs": "FAQ",
+    "faq_short": "FAQ",
+    "quick_links": "Link rapidi",
+    "locations": "Localita",
+    "contact": "Contatto",
+    "whatsapp_contact": "Contattaci su WhatsApp",
+    "privacy_policy": "Informativa sulla privacy",
+    "terms_conditions": "Termini e condizioni",
+    "booking": "Prenotazione"
+  },
+  "footer": {
+    "payment_cash_only": "Metodo di pagamento: solo contanti.",
+    "rights_reserved": "Tutti i diritti riservati.",
+    "copyright_line": "© 2025 Dua Makina. Tutti i diritti riservati. Metodo di pagamento: solo contanti."
+  },
+  "home": {
+    "hero": {
+      "title_line1": "Esplora l'Albania",
+      "title_line2": "A modo tuo",
+      "subtitle": "Noleggia un'auto senza costi nascosti. Paga in contanti all'arrivo. Nessuna carta di credito richiesta."
+    },
+    "search": {
+      "pickup_location": "Luogo di ritiro",
+      "dropoff_location": "Luogo di riconsegna",
+      "dropoff_same_location": "Riconsegna nello stesso luogo",
+      "pickup_date": "Data di ritiro",
+      "pickup_time": "Ora di ritiro",
+      "dropoff_date": "Data di riconsegna",
+      "dropoff_time": "Ora di riconsegna",
+      "search_cta": "Cerca auto disponibili"
+    },
+    "trust": {
+      "title": "Le nostre certificazioni",
+      "cert_tourism": "Certificato dal Ministero del Turismo",
+      "cert_association": "Associazione professionale di noleggio",
+      "cert_clean_vehicle": "Garanzia veicolo pulito",
+      "cert_insurance": "Copertura assicurativa completa",
+      "cert_roadside": "Assistenza stradale 24/7",
+      "cash_only": {
+        "title": "Pagamento solo in contanti",
+        "body": "Nessuna carta di credito richiesta. Paga in contanti al ritiro dell'auto."
+      },
+      "full_insurance": {
+        "title": "Assicurazione completa",
+        "body": "Tutti i veicoli includono copertura assicurativa completa."
+      },
+      "support": {
+        "title": "Supporto 24/7",
+        "body": "Contattaci in qualsiasi momento per telefono o WhatsApp per assistenza stradale."
+      }
+    },
+    "reviews": {
+      "meta": {
+        "title": "Cosa dicono i nostri clienti",
+        "avg_rating": "Valutazione media",
+        "happy_customers": "Clienti soddisfatti",
+        "quality_vehicles": "Veicoli di qualita"
+      },
+      "review1": "\"Servizio eccellente! L'auto era pulitissima e il ritiro all'Aeroporto di Tirana e stato senza problemi. Usero DriveNow di nuovo.\"",
+      "review2": "\"Ottimo rapporto qualita-prezzo. Il Duster era perfetto per esplorare la Riviera Albanese. Altamente raccomandato!\"",
+      "review3": "\"Prezzi molto trasparenti senza costi nascosti. Il pagamento in contanti ha reso tutto semplice. Buona esperienza generale.\""
+    }
+  },
+  "common": {
+    "location": {
+      "pickup_locations": "Luoghi di ritiro"
+    },
+    "date": {
+      "date": "Data",
+      "edit_dates": "Modifica date"
+    },
+    "unit": {
+      "seats": "Posti",
+      "seat": "Posto",
+      "bags": "Bagagli",
+      "bag": "Bagaglio",
+      "doors": "Porte",
+      "door": "Porta",
+      "assistance_247": "Assistenza 24/7",
+      "no_insurance": "Nessuna assicurazione",
+      "premium_insurance": "Assicurazione premium",
+      "basic_insurance": "Assicurazione base",
+      "no_deposit_required": "Nessun deposito richiesto"
+    }
+  },
+  "fleet": {
+    "header": {
+      "cars_available": "Auto disponibili"
+    },
+    "filters": {
+      "type": {
+        "all": "Tutte",
+        "sedan": "Berlina",
+        "economy": "Economica",
+        "compact": "Compatta",
+        "suv_lower": "SUV",
+        "suv": "SUV",
+        "van": "Van",
+        "luxury": "Lusso"
+      },
+      "show_filters": "Mostra filtri",
+      "sort_by": "Ordina per:",
+      "sort_popular": "Piu popolari",
+      "sort_low_high": "Prezzo dal piu basso",
+      "sort_high_low": "Prezzo dal piu alto",
+      "sort_newest": "Annunci piu recenti",
+      "filters_heading": "FILTRI",
+      "automatic_transmission": "Cambio automatico",
+      "automatic_transmission_trailing": "Cambio automatico",
+      "seats_4plus": "4+ posti",
+      "air_conditioning": "Aria condizionata",
+      "electric": "Elettrica",
+      "unlimited_mileage": "Chilometraggio illimitato",
+      "free_cancellation": "Cancellazione gratuita",
+      "special_offers": "Offerte speciali",
+      "reset_all": "Reimposta tutto",
+      "advanced_filters": "Filtri avanzati",
+      "vehicles": "VEICOLI",
+      "days": "GIORNI",
+      "change_location": "Cambia localita",
+      "update_filters": "Aggiorna filtri",
+      "vehicle_brand": "Marca veicolo",
+      "vehicle_model": "Modello veicolo",
+      "vehicle_year": "Anno veicolo",
+      "drive_system": "Sistema di trazione",
+      "fuel_type": "Tipo carburante",
+      "driver_experience": "Esperienza del conducente",
+      "luggage_capacity": "Capacita bagagli",
+      "seating_capacity": "Capacita posti",
+      "insurance": "Assicurazione",
+      "deposit_requirements": "Requisiti deposito",
+      "apply_filters": "Applica filtri",
+      "option": {
+        "manual": "Manuale",
+        "automatic": "Automatico",
+        "petrol": "Benzina",
+        "diesel": "Diesel",
+        "hybrid": "Ibrida",
+        "plugin_hybrid": "Ibrida plug-in",
+        "lpg": "GPL"
+      },
+      "clear_all": "Cancella tutto"
+    },
+    "state": {
+      "no_match": "Nessuna auto corrisponde ai filtri.",
+      "reset_prompt": "Reimposta i filtri.",
+      "load_failed": "Impossibile caricare le auto.",
+      "try_again": "Riprova piu tardi.",
+      "none_available": "Nessuna auto disponibile al momento",
+      "from": "Da",
+      "per_day": "al giorno",
+      "view_details": "Vedi dettagli"
+    },
+    "pill": {
+      "year_or_newer": "{{year}} o più recente"
+    }
+  },
+  "values": {
+    "misc": {
+      "under_21": "Sotto 21",
+      "over_25": "Oltre 25",
+      "any_year": "Qualsiasi anno",
+      "year_2025": "2025 o piu recente",
+      "year_2023": "2023 o piu recente",
+      "year_2020": "2020 o piu recente",
+      "no_insurance_included": "Nessuna assicurazione inclusa",
+      "premium": "Premium",
+      "basic": "Base",
+      "no_deposit": "Nessun deposito"
+    },
+    "category": {
+      "economy": "Economica",
+      "compact": "Compatta",
+      "sedan": "Berlina",
+      "suv": "SUV",
+      "luxury": "Lusso",
+      "van": "Van",
+      "minivan": "Minivan",
+      "coupe": "Coupe",
+      "convertible": "Cabriolet",
+      "pickup": "Pickup"
+    },
+    "transmission": {
+      "automatic": "Automatico",
+      "manual": "Manuale"
+    },
+    "insurance": {
+      "basic": "Base",
+      "premium": "Premium",
+      "full": "Premium",
+      "third-party": "Base",
+      "none": "Nessuna assicurazione"
+    },
+    "fuel": {
+      "gasoline": "Benzina",
+      "diesel": "Diesel",
+      "electric": "Elettrica",
+      "hybrid": "Ibrida",
+      "plug-in hybrid": "Ibrida plug-in",
+      "lpg": "GPL"
+    }
+  },
+  "car": {
+    "name": {
+      "default": "Nome auto"
+    },
+    "share": "Condividi",
+    "overview_tab": "Panoramica",
+    "best_for": "Ideale per",
+    "overview": {
+      "no_title": "Nessun titolo disponibile al momento",
+      "no_description": "Nessuna descrizione disponibile al momento. Riprova più tardi.",
+      "no_quality": "Nessuna qualità disponibile"
+    },
+    "faq": {
+      "rental_conditions": "Condizioni di noleggio",
+      "deposit_payment": {
+        "title_typo": "Deposito e pagamento",
+        "title": "Deposito e pagamento",
+        "deposit_label": "Deposito:",
+        "refundable": "(rimborsabile alla riconsegna)",
+        "body": "Tutti i pagamenti vengono effettuati solo in contanti al ritiro del veicolo. Nessun pagamento online richiesto."
+      },
+      "mileage": {
+        "title": "Politica chilometraggio",
+        "unlimited_included": "Chilometraggio illimitato incluso",
+        "unlimited": "Chilometraggio illimitato",
+        "km_limit": "Limite {{km}} km · €{{fee}}/km extra"
+      },
+      "fuel": {
+        "title": "Politica carburante",
+        "full_to_full_label": "Pieno-pieno:",
+        "body": "Ricevi l'auto con il pieno e la riconsegni con il pieno."
+      },
+      "cross_border": {
+        "title": "Viaggi transfrontalieri",
+        "body": "Questo veicolo e autorizzato a viaggiare in tutta Europa.",
+        "body_countries": "Questo veicolo è autorizzato a viaggiare verso: {{countries}}.",
+        "body_none": "Questo veicolo non è autorizzato per viaggi transfrontalieri."
+      },
+      "ferry": {
+        "title": "Viaggi in traghetto",
+        "body_full": "I viaggi in traghetto verso la Grecia (Saranda-Corfu) e l'Italia (Durazzo-Bari) sono consentiti con preavviso. Vi preghiamo di informarci al momento della prenotazione.",
+        "body_permitted": "Il viaggio in traghetto è consentito con preavviso.",
+        "fee_line": "Costo traghetto: €{{fee}}.",
+        "body_inform": "Ti preghiamo di informarci al momento della prenotazione.",
+        "body_not_permitted": "Il viaggio in traghetto non è consentito per questo veicolo."
+      },
+      "documents": {
+        "title": "Documenti richiesti",
+        "item_passport": "Passaporto o carta d'identita valida",
+        "item_license": "Patente valida (posseduta da almeno 2 anni)",
+        "item_idp": "Permesso internazionale di guida (per patenti extra UE)"
+      },
+      "driver_requirements": {
+        "title": "Requisiti conducente",
+        "min_age": "Eta minima: 21 anni",
+        "max_age": "Eta massima: 75 anni",
+        "license_years": "Patente posseduta da almeno 2 anni"
+      },
+      "cancellation": {
+        "title_typo": "Politica di cancellazione",
+        "title": "Politica di cancellazione",
+        "item_free": "Cancellazione gratuita fino a 48 ore prima del ritiro",
+        "item_modifications": "Modifiche consentite via email o WhatsApp"
+      }
+    },
+    "price": {
+      "summary_title": "Riepilogo prezzo",
+      "daily_rate": "Tariffa giornaliera x",
+      "days": "giorni",
+      "taxes_fees": "Tasse e commissioni",
+      "included": "Incluse",
+      "total": "Totale",
+      "cash_only": {
+        "title": "Pagamento solo in contanti",
+        "body": "Paga in contanti al ritiro del veicolo. Nessuna carta di credito richiesta."
+      },
+      "book_now": "Prenota ora",
+      "confirmation_email": "Riceverai presto un'email di conferma",
+      "free_cancellation_48h": "Cancellazione gratuita (48h)",
+      "whatsapp_questions": "Domande? Scrivici su WhatsApp"
+    },
+    "spec": {
+      "transmission_placeholder": "Cambio dell'auto",
+      "insurance_placeholder": "Tipo di assicurazione",
+      "year_placeholder": "Anno dell'auto",
+      "seats_placeholder": "Posti dell'auto",
+      "trunk_placeholder": "Capacita del bagagliaio",
+      "doors_placeholder": "Porte dell'auto",
+      "ac_placeholder": "Climatizzatore",
+      "fuel_placeholder": "Tipo di carburante"
+    }
+  },
+  "booking": {
+    "progress": {
+      "vehicle": "Veicolo",
+      "addons": "Extra e regole",
+      "driver_details": "Dati conducente"
+    },
+    "header": {
+      "title": "Completa la richiesta di noleggio",
+      "subtitle": "Invia i dettagli della prenotazione qui sotto. Il nostro team confermera la disponibilita e inviera le istruzioni di pagamento via email entro 12 ore."
+    },
+    "addons": {
+      "title": "Extra opzionali"
+    },
+    "rules": {
+      "title": "Le condizioni, spiegate chiaramente.",
+      "deposit": {
+        "title": "Deposito e pagamento",
+        "no_card_hold": "Nessun blocco carta",
+        "no_card_hold_no_deposit": "Nessun blocco carta - nessun deposito richiesto",
+        "no_card_hold_dot": "Nessun blocco carta ·",
+        "never_card_hold": "Non blocchiamo mai la carta.",
+        "small_prefix": "Una piccola",
+        "cash_deposit_desc": "di deposito in contanti viene ritirato al ritiro e restituito alla riconsegna",
+        "full_rental_suffix": ". Il noleggio completo viene anch'esso pagato in contanti al ritiro — EUR, USD, LEK o GBP."
+      },
+      "cross_border": {
+        "prompt": "Seleziona dall'elenco i paesi che prevedi di visitare",
+        "none": "Per questa auto non sono consentiti viaggi transfrontalieri.",
+        "none_available": "Nessuna opzione di viaggio transfrontaliero disponibile per questa auto.",
+        "select_prompt": "Seleziona dall'elenco i paesi che prevedi di visitare."
+      },
+      "mileage": {
+        "title": "Politica chilometraggio",
+        "unlimited_albania": "Illimitato in Albania",
+        "body": "Nessun limite giornaliero entro i confini albanesi."
+      },
+      "documents": {
+        "title": "Documenti richiesti",
+        "summary": "Passaporto - patente",
+        "body": "Porta il passaporto originale (non solo una foto) e una patente posseduta da almeno 2 anni. Le patenti di UE, UK, US, CA, AU, NZ, JP, CH sono accettate direttamente. Altre patenti richiedono un Permesso Internazionale di Guida. Fotografiamo i documenti al ritiro; le copie vengono conservate per 12 mesi e poi cancellate."
+      },
+      "driver": {
+        "title": "Requisiti conducente",
+        "min_age_label": "Eta min.",
+        "max_age_label": "Eta max 75",
+        "license_years_label": "Patente 2+ anni",
+        "named_driver_prefix": "Il conducente indicato deve essere presente al ritiro. Anche i conducenti aggiuntivi (max 2) devono essere presenti e aggiungere",
+        "per_day_young_prefix": "/giorno ciascuno. Soprattassa per conducente giovane di",
+        "young_driver_suffix": "/giorno si applica tra le eta 21-22."
+      },
+      "cancellation": {
+        "title": "Cancellazione",
+        "summary": "Gratis fino a 48h prima · 50% entro 48h · No-show: perdita",
+        "body_prefix": "Cancella via email o WhatsApp. Entro 48h tratteniamo",
+        "body_suffix": "commissione amministrativa o 50% del noleggio, qualunque sia inferiore. Le modifiche di orario fino a 6h prima del ritiro sono gratuite."
+      },
+      "no_data": "Nessun dato"
+    },
+    "form": {
+      "contact": {
+        "title": "Informazioni di contatto",
+        "full_name": "Nome completo",
+        "email": "Email",
+        "phone": "Numero di telefono",
+        "phone_note": "Ti contatteremo via email o WhatsApp per conferma"
+      },
+      "driver": {
+        "title": "Informazioni conducente",
+        "full_name": "Nome completo del conducente",
+        "age": "Eta del conducente",
+        "license_expiry": "Scadenza patente"
+      },
+      "requests": {
+        "title": "Richieste speciali",
+        "max_chars": "Massimo 500 caratteri",
+        "placeholder": "Richieste speciali o informazioni aggiuntive..."
+      }
+    },
+    "sidebar": {
+      "location": {
+        "title": "Dettagli localita",
+        "change_now": "Cambia ora",
+        "pickup_label": "Luogo di ritiro:",
+        "dropoff_label": "Luogo di riconsegna:"
+      },
+      "price": {
+        "title": "Dettaglio prezzo"
+      },
+      "terms": {
+        "agree_prefix": "Accetto i",
+        "and": "e"
+      },
+      "continue": "Continua ai dati conducente",
+      "send_inquiry": "Invia richiesta"
+    },
+    "dialog": {
+      "all_brands": "Tutte le marche",
+      "all_models": "Tutti i modelli",
+      "pickup_date_placeholder": "Data di ritiro",
+      "dropoff_date_placeholder": "Data di riconsegna",
+      "select_date": "Seleziona data"
+    }
+  },
+  "legal": {
+    "common": {
+      "last_updated": "Ultimo aggiornamento: 9 giugno 2026",
+      "demo_notice_label": "Avviso demo:",
+      "demo_notice": {
+        "privacy_body": "questo sito e attualmente solo per dimostrazione e test. Le richieste di prenotazione inviate tramite questo sito non sono prenotazioni reali e non creano un contratto di noleggio.",
+        "terms_body": "questo sito e attualmente solo per dimostrazione e test. Le richieste di prenotazione non sono prenotazioni reali, non garantiscono la disponibilita del veicolo e non creano un contratto di noleggio."
+      }
+    },
+    "privacy": {
+      "who_we_are": {
+        "title": "Chi siamo",
+        "body": "Dua Makina è un concetto di sito web di noleggio auto con sede in Albania. Puoi contattarci a"
+      },
+      "website_status": {
+        "title": "Stato attuale del sito",
+        "body": "Il sito web non è attualmente operativo come piattaforma di prenotazione live. Moduli, prezzi, disponibilità dei veicoli, conferme di prenotazione o email di richiesta sono a scopo di test e dimostrazione, salvo diversa conferma scritta di Dua Makina."
+      },
+      "data_collect": {
+        "title": "Dati personali che possiamo raccogliere",
+        "item1": "Dati di contatto come nome, indirizzo email e numero di telefono.",
+        "item2": "Dati del conducente come nome, età e data di scadenza della patente.",
+        "item3": "Dettagli della richiesta di noleggio come luoghi di ritiro/riconsegna, date, veicolo, extra, paesi selezionati e richieste speciali.",
+        "item4": "Dati tecnici e anti-spam come token di verifica hCaptcha, informazioni sul browser, eventi analitici e preferenze di archiviazione locale."
+      },
+      "data_use": {
+        "title": "Come usiamo i dati",
+        "body": "Utilizziamo i dati inviati per testare il flusso di richiesta, rispondere ai messaggi, prevenire spam o abusi, migliorare il sito e comprendere l'utilizzo di base del sito. Non vendiamo dati personali."
+      },
+      "third_party": {
+        "title": "Servizi di terze parti",
+        "body": "Il sito può utilizzare Supabase per database e archiviazione, EmailJS per l'invio delle email di richiesta, hCaptcha per la protezione anti-spam, Vercel Analytics per analisi di base e jsDelivr per la distribuzione dei contenuti. Questi servizi possono trattare i dati secondo i propri termini sulla privacy."
+      },
+      "cookies": {
+        "title": "Cookie e archiviazione locale",
+        "body": "Il sito può utilizzare l'archiviazione locale o forme simili di archiviazione del browser per la lingua selezionata, la valuta, i dettagli di ricerca della prenotazione, i dati dei veicoli memorizzati nella cache e i controlli di attesa delle richieste. I servizi di terze parti possono utilizzare cookie o tecnologie equivalenti per sicurezza, analisi o distribuzione."
+      },
+      "retention": {
+        "title": "Conservazione dei dati",
+        "body": "Poiché il sito è in modalità di test, i dati delle richieste dovrebbero essere conservati solo per il tempo necessario a test, supporto, prevenzione degli abusi o requisiti legali. Prima che il sito diventi operativo, i periodi di conservazione dovrebbero essere rivisti e documentati."
+      },
+      "rights": {
+        "title": "I tuoi diritti",
+        "body": "A seconda della legge applicabile, potresti avere il diritto di richiedere accesso, correzione, cancellazione, limitazione, opposizione o revoca del consenso per i tuoi dati personali. Per fare una richiesta, contatta"
+      }
+    },
+    "terms": {
+      "website_status": {
+        "title": "Stato del sito",
+        "body": "Dua Makina è attualmente presentato come un sito web di noleggio auto con sede in Albania in modalità demo/test. Il sito non è attualmente un servizio di prenotazione noleggio live."
+      },
+      "no_bookings": {
+        "title": "Nessuna prenotazione reale",
+        "body": "L'invio di una ricerca, richiesta, modulo o richiesta di prenotazione non riserva un veicolo, non crea un contratto di noleggio e non richiede pagamento. Qualsiasi conferma o messaggio automatico deve essere considerato una comunicazione di test, salvo diversa conferma scritta di Dua Makina di un accordo reale."
+      },
+      "no_guarantee": {
+        "title": "Nessuna garanzia di prezzo o disponibilita",
+        "body": "Gli annunci dei veicoli, i prezzi, i depositi, le descrizioni assicurative, le sedi, gli extra e la disponibilità mostrati sul sito potrebbero essere informazioni segnaposto o di test. Non dovrebbero essere considerati un'offerta commerciale definitiva."
+      },
+      "future_terms": {
+        "title": "Termini futuri di noleggio",
+        "body": "Quando il sito diventerà operativo, i termini di noleggio reali dovranno definire chiaramente pagamento, depositi, regole di cancellazione, requisiti di ritiro, copertura assicurativa, chilometraggio, permessi transfrontalieri, viaggi in traghetto, idoneità del conducente, controlli dei documenti e responsabilità di riconsegna del veicolo."
+      },
+      "user_responsibilities": {
+        "title": "Responsabilita dell'utente",
+        "body": "Accetti di non abusare del sito, di non inviare informazioni false o dannose, di non tentare di interferire con il servizio o di non utilizzare il sito per scopi illeciti."
+      },
+      "liability": {
+        "title": "Limitazione di responsabilita",
+        "body": "Poiché il sito è in modalità di test, Dua Makina non è responsabile per perdite derivanti dall'affidamento su prezzi di test, disponibilità di test, flussi di prenotazione demo o errori temporanei del sito, nella misura massima consentita dalla legge applicabile."
+      },
+      "contact": {
+        "body_prefix": "Le domande su questi termini possono essere inviate a",
+        "body_suffix": "per domande su questi termini."
+      },
+      "third_party": {
+        "body": "Il sito può fare affidamento su servizi di terze parti tra cui Supabase, EmailJS, hCaptcha, Vercel, jsDelivr e link esterni a mappe o comunicazioni. Dua Makina non è responsabile per la disponibilità, i termini o le politiche dei servizi di terze parti."
+      }
+    }
+  },
+  "plurals": {
+    "seats_one": "Posto",
+    "seats_other": "Posti",
+    "bags_one": "Bagaglio",
+    "bags_other": "Bagagli",
+    "doors_one": "Porta",
+    "doors_other": "Porte",
+    "days_one": "giorno",
+    "days_other": "giorni"
+  },
+  "faqs": {
+    "documents": {
+      "title": "Documenti richiesti",
+      "q1": "Quali documenti mi servono per noleggiare un'auto?",
+      "a1": "Avrai bisogno di un passaporto valido o carta d'identità nazionale, e una patente di guida valida. Se la tua patente non è di un paese UE, potresti aver bisogno anche di una Patente di Guida Internazionale (IDP).",
+      "q2": "È richiesta una Patente di Guida Internazionale (IDP)?",
+      "a2": "Un IDP è richiesto per i conducenti con patenti rilasciate al di fuori dell'Unione Europea. Le patenti UE sono accettate senza IDP.",
+      "q3": "Da quanto tempo devo possedere la patente?",
+      "a3": "Devi possedere la patente da almeno 2 anni. Alcuni veicoli premium potrebbero richiedere 3 o più anni di esperienza di guida."
+    },
+    "age": {
+      "title": "Requisiti di età",
+      "q1": "Qual è l'età minima per noleggiare un veicolo?",
+      "a1": "L'età minima per noleggiare un'auto è 18 anni. Alcune categorie premium e SUV potrebbero richiedere un'età minima diversa in base al veicolo.",
+      "q2": "C'è un'età massima per noleggiare un'auto?",
+      "a2": "Sì, l'età massima per noleggiare un'auto è 75 anni. Ai conducenti oltre i 70 anni potrebbe essere richiesta documentazione aggiuntiva.",
+      "q3": "C'è un supplemento per i conducenti giovani?",
+      "a3": "I conducenti di età compresa tra 18 e 24 anni potrebbero essere soggetti a un supplemento per conducenti giovani a seconda del veicolo."
+    },
+    "payment": {
+      "title": "Pagamento e prezzi",
+      "q1": "Ho bisogno di una carta di credito per noleggiare un'auto?",
+      "a1": "No, non richiediamo una carta di credito. Tutti i pagamenti sono effettuati in CONTANTI al momento del ritiro del veicolo. Questo è il nostro modello unico che rende il noleggio più semplice per tutti.",
+      "q2": "Quali valute accettate?",
+      "a2": "Accettiamo pagamenti in Lek Albanese (ALL), Euro (EUR), Dollaro USA (USD), e Sterlina Britannica (GBP). Consigliamo di pagare in EUR o ALL per i tassi migliori.",
+      "q3": "C'è un deposito cauzionale?",
+      "a3": "Un deposito cauzionale potrebbe essere richiesto a seconda del veicolo.",
+      "q4": "Ci sono costi nascosti?",
+      "a4": "Nessun costo nascosto! I nostri prezzi includono assicurazione base, tasse e assistenza stradale 24/7. Extra opzionali come GPS e seggiolini per bambini hanno prezzi chiari."
+    },
+    "vehicle": {
+      "title": "Selezione del veicolo",
+      "q1": "Che tipo di veicoli offrite?",
+      "a1": "Offriamo un'ampia gamma di veicoli tra cui auto Economy, berline Compatte, SUV, veicoli Premium e Minivan. Tutti i veicoli sono regolarmente mantenuti e sottoposti a manutenzione.",
+      "q2": "Quale auto dovrei scegliere per le strade albanesi?",
+      "a2": "Per le zone montane e l'esplorazione della campagna, consigliamo SUV o veicoli con maggiore altezza da terra. Per la guida in città e sulle strade costiere, qualsiasi categoria di veicolo funziona bene.",
+      "q3": "Posso richiedere un modello specifico?",
+      "a3": "Puoi richiedere un modello specifico, ma garantiamo la categoria dell'auto, non il modello esatto. Mostriamo \"o simile\" per ogni annuncio poiché la disponibilità varia."
+    },
+    "cross_border": {
+      "title": "Viaggi transfrontalieri",
+      "q1": "Posso portare l'auto fuori dall'Albania?",
+      "a1_prefix": "Sì! I nostri veicoli sono autorizzati per viaggi in tutta Europa. Tuttavia, devi informarci in anticipo e potresti dover acquistare l'assicurazione Carta Verde (",
+      "a1_suffix": ") per gli attraversamenti di frontiera.",
+      "q2": "È consentito il viaggio in traghetto?",
+      "a2": "Sì, il viaggio in traghetto verso la Grecia (Saranda-Corfù) e l'Italia (Durazzo-Bari) è consentito con preavviso. Ti preghiamo di comunicarcelo al momento della prenotazione.",
+      "q3": "E i limiti di chilometraggio?",
+      "a3": "La maggior parte dei nostri veicoli ha chilometraggio illimitato. Per i veicoli con limiti, l'assegnazione giornaliera è tipicamente di 300km con chilometri aggiuntivi addebitati a €0.15/km."
+    },
+    "pickup": {
+      "title": "Ritiro e riconsegna",
+      "q1": "Quali sono i vostri luoghi di ritiro e riconsegna?",
+      "a1": "Offriamo il ritiro in vari luoghi in tutta l'Albania. I ritiri in aeroporto sono disponibili 24/7.",
+      "q2": "Posso restituire l'auto in un luogo diverso?",
+      "a2": "Sì, i noleggi one-way sono disponibili. Potrebbe esserci un costo aggiuntivo a seconda dei luoghi di ritiro e riconsegna.",
+      "q3": "Cosa succede se il mio volo è in ritardo?",
+      "a3": "Se il tuo volo è in ritardo, contattaci immediatamente in modo da poter adattare di conseguenza l'orario di ritiro."
+    },
+    "booking": {
+      "title": "Prenotazione e modifiche",
+      "q1": "Come prenoto un'auto?",
+      "a1": "Sfoglia la nostra flotta, seleziona le date e il veicolo, e invia una richiesta di prenotazione. Il nostro team confermerà la disponibilità entro 12 ore e fornirà le istruzioni di pagamento.",
+      "q2": "Posso modificare la mia prenotazione?",
+      "a2": "Sì, puoi modificare la tua prenotazione via email o WhatsApp fino a 1 settimana prima del ritiro. Le modifiche sono soggette a disponibilità.",
+      "q3": "Qual è la vostra politica di cancellazione?",
+      "a3": "La cancellazione gratuita è disponibile fino a 48 ore prima dell'orario di ritiro previsto. Le cancellazioni entro 48 ore potrebbero essere soggette a una tariffa."
+    },
+    "contact_cta": {
+      "title": "Hai ancora domande?",
+      "body": "Il nostro team è pronto ad aiutarti con qualsiasi domanda sul tuo noleggio auto.",
+      "whatsapp": "Scrivici su WhatsApp",
+      "email": "Scrivici una email"
+    }
+  },
+  "extras": {
+    "baby-seat": "Seggiolino neonati",
+    "booster-seat": "Rialzo",
+    "child-seat": "Seggiolino bambini",
+    "wifi": "WiFi",
+    "gps": "GPS",
+    "navigation": "Navigazione",
+    "navigation-system": "Sistema di navigazione",
+    "additional-driver": "Autista aggiuntivo",
+    "driver-plus": "Autista aggiuntivo",
+    "insurance": "Assicurazione",
+    "insurance-booking": "Assicurazione",
+    "snow-chains": "Catene da neve",
+    "roof-box": "Box portatutto",
+    "bike-rack": "Portabici",
+    "coolbox": "Borsa termica",
+    "fridge": "Frigorifero",
+    "tent": "Tenda",
+    "camping": "Camping",
+    "phone-mount": "Supporto telefono",
+    "usb-charger": "Caricatore USB",
+    "baby-seat-desc": "Seggiolino di sicurezza per neonati (0-13 kg)",
+    "booster-seat-desc": "Rialzo per bambini (4-12 anni)",
+    "child-seat-desc": "Seggiolino di sicurezza per bambini (9-36 kg)",
+    "wifi-desc": "Hotspot WiFi 4G illimitato in auto",
+    "gps-desc": "Sistema di navigazione GPS con mappe locali",
+    "navigation-desc": "Sistema di navigazione GPS con mappe locali",
+    "navigation-system-desc": "GPS integrato con indicazioni vocali",
+    "additional-driver-desc": "Registra un autista aggiuntivo per il noleggio",
+    "driver-plus-desc": "Registra un autista aggiuntivo per il noleggio",
+    "insurance-desc": "Copertura assicurativa aggiuntiva per tranquillita",
+    "insurance-booking-desc": "Copertura assicurativa aggiuntiva per tranquillita",
+    "snow-chains-desc": "Catene da neve per condizioni invernali",
+    "roof-box-desc": "Box portatutto per spazio extra bagagli",
+    "bike-rack-desc": "Portabici per fino a 3 biciclette",
+    "coolbox-desc": "Borsa termica portatile per cibo e bevande",
+    "fridge-desc": "Frigorifero 12V integrato",
+    "tent-desc": "Tenda da campeggio inclusa",
+    "camping-desc": "Set attrezzatura da campeggio",
+    "phone-mount-desc": "Supporto telefono per navigazione",
+    "usb-charger-desc": "Porte di ricarica USB aggiuntive",
+    "wifi-hotspot": "WiFi",
+    "wifi-hotspot-desc": "Hotspot WiFi 4G illimitato in auto",
+    "insurance-upgrade": "Assicurazione",
+    "insurance-upgrade-desc": "Copertura assicurativa aggiuntiva per tranquillita"
+  },
+  "countries": {
+    "al": "Albania",
+    "gr": "Grecia",
+    "it": "Italia",
+    "mk": "Macedonia del Nord",
+    "me": "Montenegro",
+    "rs": "Serbia",
+    "xk": "Kosovo",
+    "bg": "Bulgaria",
+    "tr": "Turchia",
+    "de": "Germania",
+    "si": "Slovenia",
+    "hr": "Croazia",
+    "at": "Austria",
+    "fr": "Francia",
+    "es": "Spagna",
+    "gb": "Regno Unito",
+    "us": "Stati Uniti",
+    "nl": "Paesi Bassi",
+    "be": "Belgio",
+    "ch": "Svizzera"
+  }
+}

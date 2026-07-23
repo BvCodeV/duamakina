@@ -1,11 +1,49 @@
 window.addEventListener('partialsLoaded', () => {
   const rates = {};
   const currencySelect = document.getElementById("currencySelect");
-  if (!currencySelect || typeof supabaseClient === "undefined") return;
+  if (!currencySelect) return;
   const currencyMap = { "€": "EUR", "$": "USD", "£": "GBP", "L": "ALL" };
+  const CACHE_KEY = "currency_rates_v1";
+  const CACHE_TTL_MS = 24 * 60 * 60 * 1000;
+
+  function readCachedRates() {
+    try {
+      const raw = localStorage.getItem(CACHE_KEY);
+      if (!raw) return null;
+      const { data, ts } = JSON.parse(raw);
+      if (Date.now() - ts > CACHE_TTL_MS) {
+        localStorage.removeItem(CACHE_KEY);
+        return null;
+      }
+      return data;
+    } catch {
+      return null;
+    }
+  }
+
+  function writeCachedRates(data) {
+    try {
+      localStorage.setItem(CACHE_KEY, JSON.stringify({ data, ts: Date.now() }));
+    } catch {}
+  }
+
+  function applyRates(data) {
+    Object.keys(rates).forEach((key) => delete rates[key]);
+    data.forEach(row => rates[row.currency_code] = row.covertion_rate);
+    updatePrice(currencySelect.value);
+  }
 
   async function fetchAllRates() {
-    const { data, error } = await supabaseClient
+    const cached = readCachedRates();
+    if (cached) {
+      applyRates(cached);
+      return;
+    }
+
+    const client = await window.supabaseClientReady;
+    if (!client) return;
+
+    const { data, error } = await client
       .from('currency')
       .select('currency_code, covertion_rate');
 
@@ -14,8 +52,8 @@ window.addEventListener('partialsLoaded', () => {
       return;
     }
 
-    data.forEach(row => rates[row.currency_code] = row.covertion_rate);
-    updatePrice(currencySelect.value);
+    writeCachedRates(data);
+    applyRates(data);
   }
 
   window.updatePrice = function(currency) {

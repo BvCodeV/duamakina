@@ -1,299 +1,560 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rent a Car in Tirana, Albania | Dua Makina</title>
-  <meta name="application-name" content="duamakina">
-  <meta name="description" content="Affordable, reliable car rentals in Tirana, Albania. Explore Albania Your Way with DuaMakina. Best prices guaranteed – book online in minutes!">
-  <meta name="keywords" content="dua makine,dua makina, duamakina car rental Tirana, rent a car Albania, car hire Albania, cheap car rental Albania, affordable car rental Tirana, car rental Tirana airport, Albania road trip, explore Albania by car, reliable car rental Albania, makina me qera Tiranë, qera makine Shqiperi, makina me qera çmim të lirë, makina me qera aeroporti Tiranë, qera makine online Shqiperi, eksploroni Shqipërinë me makinë, makina me qera te besueshem, udhëtim me makinë Shqipëri">
-  <link rel="canonical" href="https://www.duamakina.com/">
-  <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
-  <link rel="icon" type="image/webp" href="/assets/icons/favicon.webp">
-  <link rel="alternate" hreflang="x-default" href="https://www.duamakina.com/pages/booking.html">
-  <link rel="alternate" hreflang="en" href="https://www.duamakina.com/pages/booking.html">
-  <link rel="alternate" hreflang="sq" href="https://www.duamakina.com/sq/pages/booking.html">
-  <link rel="preconnect" href="https://jdhigikorvtxhslxudcs.supabase.co">
-  <link rel="preconnect" href="https://cdn.jsdelivr.net">
-  <meta name="robots" content="noindex, nofollow">
-  <link rel="stylesheet" href="/styles/global.css">
-  <link rel="stylesheet" href="/styles/car.css">
-  <script rel="preconnect" src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-</head>
-<body>
-  <header role="banner" id="header" style="width: 100%; z-index: 1000; position: relative;" fetchpriority=high></header>
-  <nav role="navigation" id="navbar" style="width: 100%; z-index: 1000; position: sticky; top: 0px;" fetchpriority=high></nav>
-  <div class="page-nav">
-    <a href="/index.html">Home</a>
-    <span>/</span>
-    <a href="/pages/fleet.html">Fleet</a>
-    <span>/</span>
-    <a href="">Booking</a>
-  </div>
-  <main>
-    <section>
-      <div class="car-info">
-        <div class="info">
-          <p id="carInfoTxt"><span id="carType">Type</span> &middot; <span id="carYear">Year</span> &middot; <span id="carFuel">Fuel</span></p>
-          <hr class="car-info-divider">
-          <h1 id="car-name">Car Name</h1>
-        </div>
-        <button id="shareBtn">
-          <img src="/assets/icons/share.svg" alt="share icon" loading="lazy" draggable="false">
-          Share
-        </button>
-      </div>
-      <div class="image-con">
-        <div class="main-img-con">
-          <img src="" alt="main-img" id="main-img" loading="lazy" draggable="false">
-          <div id="leftArrow"><img src="/assets/icons/left-arrow.svg" alt="left arrow" draggable="false" loading="lazy"></div>
-          <div id="rightArrow"><img src="/assets/icons/right-arrow.svg" alt="right arrow" draggable="false" loading="lazy"></div>
-          <div class="dots">
-            <div id="dot"></div>
-            <div id="dot"></div>
-            <div id="dot"></div>
+<!doctype html>
+<html lang="en" translate="no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rent a Car in Tirana, Albania | Dua Makina</title>
+    <meta name="application-name" content="duamakina" />
+    <meta
+      name="description"
+      content="Affordable, reliable car rentals in Tirana, Albania. Explore Albania Your Way with DuaMakina. Best prices guaranteed – book online in minutes!"
+    />
+    <meta
+      name="keywords"
+      content="dua makine,dua makina, duamakina car rental Tirana, rent a car Albania, car hire Albania, cheap car rental Albania, affordable car rental Tirana, car rental Tirana airport, Albania road trip, explore Albania by car, reliable car rental Albania, makina me qera Tiranë, qera makine Shqiperi, makina me qera çmim të lirë, makina me qera aeroporti Tiranë, qera makine online Shqiperi, eksploroni Shqipërinë me makinë, makina me qera te besueshem, udhëtim me makinë Shqipëri"
+    />
+    <link rel="canonical" href="https://www.duamakina.com/" />
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg" />
+    <link rel="icon" type="image/webp" href="/assets/icons/favicon.webp" />
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href="https://www.duamakina.com/pages/booking.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="en"
+      href="https://www.duamakina.com/pages/booking.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="sq"
+      href="https://www.duamakina.com/sq/pages/booking.html"
+    />
+    <link rel="preconnect" href="https://jdhigikorvtxhslxudcs.supabase.co" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="stylesheet" href="/styles/global.css" />
+    <link rel="stylesheet" href="/styles/car.css" />
+    <script
+      rel="preconnect"
+      src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/i18next@23/i18next.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/i18next-http-backend@2/i18next-http-backend.min.js"></script>
+    <script src="/scripts/lang.js"></script>
+  </head>
+  <body>
+    <header
+      role="banner"
+      id="header"
+      style="width: 100%; z-index: 1000; position: relative"
+      fetchpriority="high"
+    ></header>
+    <nav
+      role="navigation"
+      id="navbar"
+      style="width: 100%; z-index: 1000; position: sticky; top: 0px"
+      fetchpriority="high"
+    ></nav>
+    <div class="page-nav">
+      <a href="/index.html" data-i18n="nav.home">Home</a>
+      <span>/</span>
+      <a href="/pages/fleet.html" data-i18n="nav.fleet">Fleet</a>
+      <span>/</span>
+      <a href="" data-i18n="nav.booking">Booking</a>
+    </div>
+    <main>
+      <section>
+        <div class="car-info">
+          <div class="info">
+            <p id="carInfoTxt">
+              <span id="carType">Type</span> &middot;
+              <span id="carYear">Year</span> &middot;
+              <span id="carFuel">Fuel</span>
+            </p>
+            <hr class="car-info-divider" />
+            <h1 id="car-name">Car Name</h1>
           </div>
+          <button id="shareBtn">
+            <img
+              src="/assets/icons/share.svg"
+              alt="share icon"
+              loading="lazy"
+              draggable="false"
+            />
+            <span data-i18n="car.share">Share</span>
+          </button>
         </div>
-        <div class="image-con-end"></div>
-      </div>
-      <div class="car-specs">
-        <div class="spec-con">
-          <img src="/assets/icons/gears.svg" alt="gears icon" loading="lazy" draggable="false">
-          <p>car transmission</p>
-        </div>
-        <div class="spec-con">
-          <img src="/assets/icons/insurance-booking.svg" alt="insurance icon" loading="lazy" draggable="false">
-          <p>Insurance type</p>
-        </div>
-        <div class="spec-con">
-          <img src="/assets/icons/year.svg" alt="year icon" loading="lazy" draggable="false">
-          <p>Car year</p>
-        </div>
-        <div class="spec-con">
-          <img src="/assets/icons/person.svg" alt="person icon" loading="lazy" draggable="false">
-          <p>car seats</p>
-        </div>
-        <div class="spec-con">
-          <img src="/assets/icons/bag.svg" alt="bag icon" loading="lazy" draggable="false">
-          <p>car trunk capacity</p>
-        </div>
-        <div class="spec-con">
-          <img src="/assets/icons/door.svg" alt="door icon" loading="lazy" draggable="false">
-          <p>car doors</p>
-        </div>
-        <div class="spec-con">
-          <img src="/assets/icons/ac.svg" alt="ac icon" loading="lazy" draggable="false">
-          <p>A/C</p>
-        </div>
-        <div class="spec-con">
-          <img src="/assets/icons/fuel.svg" alt="fuel icon" loading="lazy" draggable="false">
-          <p>car fuel type</p>
-        </div>
-      </div>
-      <div class="car-extra-info">
-        <div class="car-extra-info-nav">
-          <div class="btn-con">
-            <button id="faqBtn" class="selected-button">Faqs</button>
-            <button id="overviewBtn">Overview</button>
-          </div>
-          <hr>
-        </div>
-        <div class="car-overview" id="carOverview" style="display: none;">
-          <h1 id="overviewTitle">Car overview title</h1>
-          <p id="overviewDesc">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Culpa quibusdam accusantium excepturi nemo blanditiis necessitatibus repellat nobis delectus quis vel minus voluptate dolore, dolores sunt reiciendis error aspernatur sapiente beatae?</p>
-          <div class="best-for-con">
-            <h2>Best for</h2>
-            <div class="best-for-card-con">
-              <div class="best-for-card">
-                <h3 id="quality1">Best for title</h3>
-              </div>
-              <div class="best-for-card">
-                <h3 id="quality2">Best for title</h3>
-              </div>
-              <div class="best-for-card">
-                <h3 id="quality3">Best for title</h3>
-              </div>
+        <div class="image-con">
+          <div class="main-img-con">
+            <img
+              src=""
+              alt="main-img"
+              id="main-img"
+              loading="lazy"
+              draggable="false"
+            />
+            <div id="leftArrow">
+              <img
+                src="/assets/icons/left-arrow.svg"
+                alt="left arrow"
+                draggable="false"
+                loading="lazy"
+              />
+            </div>
+            <div id="rightArrow">
+              <img
+                src="/assets/icons/right-arrow.svg"
+                alt="right arrow"
+                draggable="false"
+                loading="lazy"
+              />
+            </div>
+            <div class="dots">
+              <div id="dot"></div>
+              <div id="dot"></div>
+              <div id="dot"></div>
             </div>
           </div>
+          <div class="image-con-end"></div>
         </div>
-        <div class="faq" id="carFaq">
-          <h1>Rental Conditions</h1>
-          <div class="faq-box">
-            <div class="faq-header">
-              <div>
-                <img src="/assets/icons/banknotes-color.svg" alt="payment icon" loading="lazy" draggable="false">
-                Depostit & Payment
-              </div>
-            </div>
-            <p>All payments are processed in CASH ONLY at the time of vehicle collection. No online payments required.</p>
-            <p>
-              <span>Deposit:</span>
-              <span class="currency-sign" style="font-weight: bold;"  id="depositSign">€</span>
-              <span class="currency-num" style="font-weight: bold;" id="depositAmount">num</span> 
-              <span id="refundableTxt">(refundable upon return)</span>
+        <div class="car-specs">
+          <div class="spec-con">
+            <img
+              src="/assets/icons/gears.svg"
+              alt="gears icon"
+              loading="lazy"
+              draggable="false"
+            />
+            <p data-i18n="car.spec.transmission_placeholder">
+              car transmission
             </p>
           </div>
-          <div class="faq-box">
-            <div class="faq-header">
-              <div>
-                <img src="/assets/icons/speed.svg" alt="speed icon" loading="lazy" draggable="false">
-                Mileage Policy
-              </div>
-            </div>
-            <ul>
-              <li id="milage-policy">
-                <img src="/assets/icons/checkmark.svg" alt="checkmark icon" loading="lazy" draggable="false">
-                Unlimited mileage included
-              </li>
-            </ul>
+          <div class="spec-con">
+            <img
+              src="/assets/icons/insurance-booking.svg"
+              alt="insurance icon"
+              loading="lazy"
+              draggable="false"
+            />
+            <p data-i18n="car.spec.insurance_placeholder">Insurance type</p>
           </div>
-          <div class="faq-box">
-            <div class="faq-header">
-              <div>
-                <img src="/assets/icons/fuel-color.svg" alt="fuel icon" loading="lazy" draggable="false">
-                Fuel Policy
+          <div class="spec-con">
+            <img
+              src="/assets/icons/year.svg"
+              alt="year icon"
+              loading="lazy"
+              draggable="false"
+            />
+            <p data-i18n="car.spec.year_placeholder">Car year</p>
+          </div>
+          <div class="spec-con">
+            <img
+              src="/assets/icons/person.svg"
+              alt="person icon"
+              loading="lazy"
+              draggable="false"
+            />
+            <p data-i18n="car.spec.seats_placeholder">car seats</p>
+          </div>
+          <div class="spec-con">
+            <img
+              src="/assets/icons/bag.svg"
+              alt="bag icon"
+              loading="lazy"
+              draggable="false"
+            />
+            <p data-i18n="car.spec.trunk_placeholder">car trunk capacity</p>
+          </div>
+          <div class="spec-con">
+            <img
+              src="/assets/icons/door.svg"
+              alt="door icon"
+              loading="lazy"
+              draggable="false"
+            />
+            <p data-i18n="car.spec.doors_placeholder">car doors</p>
+          </div>
+          <div class="spec-con">
+            <img
+              src="/assets/icons/ac.svg"
+              alt="ac icon"
+              loading="lazy"
+              draggable="false"
+            />
+            <p data-i18n="car.spec.ac_placeholder">A/C</p>
+          </div>
+          <div class="spec-con">
+            <img
+              src="/assets/icons/fuel.svg"
+              alt="fuel icon"
+              loading="lazy"
+              draggable="false"
+            />
+            <p data-i18n="car.spec.fuel_placeholder">car fuel type</p>
+          </div>
+        </div>
+        <div class="car-extra-info">
+          <div class="car-extra-info-nav">
+            <div class="btn-con">
+              <button id="faqBtn" class="selected-button" data-i18n="nav.faqs">
+                Faqs
+              </button>
+              <button id="overviewBtn" data-i18n="car.overview_tab">
+                Overview
+              </button>
+            </div>
+            <hr />
+          </div>
+          <div class="car-overview" id="carOverview" style="display: none">
+            <h1 id="overviewTitle">Car overview title</h1>
+            <p id="overviewDesc">
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Culpa
+              quibusdam accusantium excepturi nemo blanditiis necessitatibus
+              repellat nobis delectus quis vel minus voluptate dolore, dolores
+              sunt reiciendis error aspernatur sapiente beatae?
+            </p>
+            <div class="best-for-con">
+              <h2 data-i18n="car.best_for">Best for</h2>
+              <div class="best-for-card-con">
+                <div class="best-for-card">
+                  <h3 id="quality1">Best for title</h3>
+                </div>
+                <div class="best-for-card">
+                  <h3 id="quality2">Best for title</h3>
+                </div>
+                <div class="best-for-card">
+                  <h3 id="quality3">Best for title</h3>
+                </div>
               </div>
             </div>
-            <p>
-              <span style="font-weight: bold;">Full-to-Full:</span> You receive the car with a full tank and return it with a full tank.
+          </div>
+          <div class="faq" id="carFaq">
+            <h1 data-i18n="car.faq.rental_conditions">Rental Conditions</h1>
+            <div class="faq-box">
+              <div class="faq-header">
+                <div>
+                  <img
+                    src="/assets/icons/banknotes-color.svg"
+                    alt="payment icon"
+                    loading="lazy"
+                    draggable="false"
+                  />
+                  <span data-i18n="car.faq.deposit_payment.title">Depostit & Payment</span>
+                </div>
+              </div>
+              <p data-i18n="car.faq.deposit_payment.body">
+                All payments are processed in CASH ONLY at the time of vehicle
+                collection. No online payments required.
+              </p>
+              <p>
+                <span data-i18n="car.faq.deposit_payment.deposit_label"
+                  >Deposit:</span
+                >
+                <span
+                  class="currency-sign"
+                  style="font-weight: bold"
+                  id="depositSign"
+                  >€</span
+                >
+                <span
+                  class="currency-num"
+                  style="font-weight: bold"
+                  id="depositAmount"
+                  >num</span
+                >
+                <span id="refundableTxt" data-i18n="car.faq.deposit_payment.refundable">(refundable upon return)</span>
+              </p>
+            </div>
+            <div class="faq-box">
+              <div class="faq-header">
+                <div>
+                  <img
+                    src="/assets/icons/speed.svg"
+                    alt="speed icon"
+                    loading="lazy"
+                    draggable="false"
+                  />
+                  <span data-i18n="car.faq.mileage.title">Mileage Policy</span>
+                </div>
+              </div>
+              <ul>
+                <li id="milage-policy">
+                  <img
+                    src="/assets/icons/checkmark.svg"
+                    alt="checkmark icon"
+                    loading="lazy"
+                    draggable="false"
+                  />
+                  Unlimited mileage included
+                </li>
+              </ul>
+            </div>
+            <div class="faq-box">
+              <div class="faq-header">
+                <div>
+                  <img
+                    src="/assets/icons/fuel-color.svg"
+                    alt="fuel icon"
+                    loading="lazy"
+                    draggable="false"
+                  />
+                  <span data-i18n="car.faq.fuel.title">Fuel Policy</span>
+                </div>
+              </div>
+              <p>
+                <span
+                  style="font-weight: bold"
+                  data-i18n="car.faq.fuel.full_to_full_label"
+                  >Full-to-Full:</span
+                >
+                <span data-i18n="car.faq.fuel.body">You receive the car with a full tank and return it with a full tank.</span>
+              </p>
+            </div>
+            <div class="faq-box">
+              <div class="faq-header">
+                <div>
+                  <img
+                    src="/assets/icons/world.svg"
+                    alt="world icon"
+                    loading="lazy"
+                    draggable="false"
+                  />
+                  <span data-i18n="car.faq.cross_border.title">Cross-Border Travel</span>
+                </div>
+              </div>
+              <p id="crossBorderBody" data-i18n="car.faq.cross_border.body">
+                This vehicle is authorized for travel throughout Europe.
+              </p>
+            </div>
+            <div class="faq-box">
+              <div class="faq-header">
+                <div>
+                  <img
+                    src="/assets/icons/ship.svg"
+                    alt="ship icon"
+                    loading="lazy"
+                    draggable="false"
+                  />
+                  <span data-i18n="car.faq.ferry.title">Ferry Travel</span>
+                </div>
+              </div>
+              <p id="ferryBody" data-i18n="car.faq.ferry.body_full">
+                Ferry travel to Greece (Saranda-Corfu) and Italy (Durres-Bari)
+                is allowed with prior notice. Please inform us when booking.
+              </p>
+            </div>
+            <div class="faq-box">
+              <div class="faq-header">
+                <img
+                  src="/assets/icons/documents.svg"
+                  alt="document icon"
+                  loading="lazy"
+                  draggable="false"
+                />
+                <span data-i18n="car.faq.documents.title">Documents Required</span>
+              </div>
+              <ul>
+                <li>
+                  <img
+                    src="/assets/icons/checkmark.svg"
+                    alt="checkmark icon"
+                    loading="lazy"
+                    draggable="false"
+                  />
+                  <span data-i18n="car.faq.documents.item_passport">Valid passport or national ID card</span>
+                </li>
+                <li>
+                  <img
+                    src="/assets/icons/checkmark.svg"
+                    alt="checkmark icon"
+                    loading="lazy"
+                    draggable="false"
+                  />
+                  <span data-i18n="car.faq.documents.item_license">Valid driver's license (held for at least 2 years)</span>
+                </li>
+                <li>
+                  <img
+                    src="/assets/icons/checkmark.svg"
+                    alt="checkmark icon"
+                    loading="lazy"
+                    draggable="false"
+                  />
+                  <span data-i18n="car.faq.documents.item_idp">International Driving Permit (for non-EU licenses)</span>
+                </li>
+              </ul>
+            </div>
+            <div class="faq-box">
+              <div class="faq-header">
+                <div>
+                  <img
+                    src="/assets/icons/people.svg"
+                    alt="people icon"
+                    loading="lazy"
+                    draggable="false"
+                  />
+                  <span data-i18n="car.faq.driver_requirements.title">Driver Requirements</span>
+                </div>
+              </div>
+              <ul>
+                <li>
+                  <img
+                    src="/assets/icons/checkmark.svg"
+                    alt="checkmark icon"
+                    loading="lazy"
+                    draggable="false"
+                  />
+                  <span data-i18n="car.faq.driver_requirements.min_age">Minimum age: 21 years</span>
+                </li>
+                <li>
+                  <img
+                    src="/assets/icons/checkmark.svg"
+                    alt="checkmark icon"
+                    loading="lazy"
+                    draggable="false"
+                  />
+                  <span data-i18n="car.faq.driver_requirements.max_age">Maximum age: 75 years</span>
+                </li>
+                <li>
+                  <img
+                    src="/assets/icons/checkmark.svg"
+                    alt="checkmark icon"
+                    loading="lazy"
+                    draggable="false"
+                  />
+                  <span data-i18n="car.faq.driver_requirements.license_years">License held for at least 2 years</span>
+                </li>
+              </ul>
+            </div>
+            <div class="faq-box">
+              <div class="faq-header">
+                <div>
+                  <img
+                    src="/assets/icons/clock-color.svg"
+                    alt="clock icon"
+                    loading="lazy"
+                    draggable="false"
+                  />
+                  <span data-i18n="car.faq.cancellation.title">Cancelation Policy</span>
+                </div>
+              </div>
+              <ul>
+                <li>
+                  <img
+                    src="/assets/icons/checkmark.svg"
+                    alt="checkmark icon"
+                    loading="lazy"
+                    draggable="false"
+                  />
+                  <span data-i18n="car.faq.cancellation.item_free">Free cancellation up to 48 hours before pickup</span>
+                </li>
+                <li>
+                  <img
+                    src="/assets/icons/checkmark.svg"
+                    alt="checkmark icon"
+                    loading="lazy"
+                    draggable="false"
+                  />
+                  <span data-i18n="car.faq.cancellation.item_modifications">Modifications allowed via email or WhatsApp</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+      <aside>
+        <h2 data-i18n="car.price.summary_title">Price Summary</h2>
+        <div class="price-con">
+          <div class="days-con">
+            <span data-i18n="car.price.daily_rate">Daily rate x</span>
+            <span class="num-days" id="dayNum">3</span>
+            <span data-i18n="car.price.days">days</span>
+          </div>
+          <div>
+            <span class="currency-sign price">€</span
+            ><span class="currency-num price total-price">150</span>
+          </div>
+        </div>
+        <div class="taxes-con">
+          <p data-i18n="car.price.taxes_fees">Taxes & fees</p>
+          <p data-i18n="car.price.included">Included</p>
+        </div>
+        <hr />
+        <div class="total-price-con">
+          <p data-i18n="car.price.total">Total</p>
+          <div>
+            <span class="currency-sign price">€</span
+            ><span class="currency-num price total-price">150</span>
+          </div>
+        </div>
+        <div class="price-per-day">
+          <div>
+            <span class="currency-sign">€</span
+            ><span class="currency-num" id="pricePerDay">50</span>
+          </div>
+          <p data-i18n="fleet.state.per_day">per day</p>
+        </div>
+        <div class="payment-warning">
+          <img
+            src="/assets/icons/banknotes-color.svg"
+            alt="payment warning icon"
+            loading="lazy"
+            draggable="false"
+          />
+          <div>
+            <h1 data-i18n="car.price.cash_only.title">Cash Payment Only</h1>
+            <p data-i18n="car.price.cash_only.body">
+              Pay in cash when you collect the vehicle. No credit card required.
             </p>
           </div>
-          <div class="faq-box">
-            <div class="faq-header">
-              <div>
-                <img src="/assets/icons/world.svg" alt="world icon" loading="lazy" draggable="false">
-                Cross-Border Travel
-              </div>
-            </div>
-            <p>This vehicle is authorized for travel throughout Europe.</p>
-          </div>
-          <div class="faq-box">
-            <div class="faq-header">
-              <div>
-                <img src="/assets/icons/ship.svg" alt="ship icon" loading="lazy" draggable="false">
-                Ferry Travel
-              </div>
-            </div>
-            <p>Ferry travel to Greece (Saranda-Corfu) and Italy (Durres-Bari) is allowed with prior notice. Please inform us when booking.</p>
-          </div>
-          <div class="faq-box">
-            <div class="faq-header">
-              <img src="/assets/icons/documents.svg" alt="document icon" loading="lazy" draggable="false">
-              Documents Required
-            </div>
-            <ul>
-              <li>
-                <img src="/assets/icons/checkmark.svg" alt="checkmark icon" loading="lazy" draggable="false">
-                Valid passport or national ID card
-              </li>
-              <li>
-                <img src="/assets/icons/checkmark.svg" alt="checkmark icon" loading="lazy" draggable="false">
-                Valid driver's license (held for at least 2 years)
-              </li>
-              <li>
-                <img src="/assets/icons/checkmark.svg" alt="checkmark icon" loading="lazy" draggable="false">
-                International Driving Permit (for non-EU licenses)
-              </li>
-            </ul>
-          </div>
-          <div class="faq-box">
-            <div class="faq-header">
-              <div>
-                <img src="/assets/icons/people.svg" alt="people icon" loading="lazy" draggable="false">
-                Driver Requirements
-              </div>
-            </div>
-            <ul>
-              <li>
-                <img src="/assets/icons/checkmark.svg" alt="checkmark icon" loading="lazy" draggable="false">
-                Minimum age: 21 years
-              </li>
-              <li>
-                <img src="/assets/icons/checkmark.svg" alt="checkmark icon" loading="lazy" draggable="false">
-                Maximum age: 75 years
-              </li>
-              <li>
-                <img src="/assets/icons/checkmark.svg" alt="checkmark icon" loading="lazy" draggable="false">
-                License held for at least 2 years
-              </li>
-            </ul>
-          </div>
-          <div class="faq-box">
-            <div class="faq-header">
-              <div>
-                <img src="/assets/icons/clock-color.svg" alt="clock icon" loading="lazy" draggable="false">
-                Cancelation Policy
-              </div>
-            </div>
-            <ul>
-              <li>
-                <img src="/assets/icons/checkmark.svg" alt="checkmark icon" loading="lazy" draggable="false">
-                Free cancellation up to 48 hours before pickup
-              </li>
-              <li>
-                <img src="/assets/icons/checkmark.svg" alt="checkmark icon" loading="lazy" draggable="false">
-                Modifications allowed via email or WhatsApp
-              </li>
-            </ul>
-          </div>
         </div>
-      </div>
-    </section>
-    <aside>
-      <h2>Price Summary</h2>
-      <div class="price-con">
-        <div class="days-con">
-          Daily rate x 
-          <span class="num-days" id="dayNum">3</span>
-          days
+        <a
+          href="/pages/booking.html"
+          id="bookNow"
+          data-i18n="car.price.book_now"
+          >Book Now</a
+        >
+        <hr />
+        <div class="confirmation-check">
+          <img
+            src="/assets/icons/checkmark.svg"
+            alt="checkmark icon"
+            loading="lazy"
+            draggable="false"
+          />
+          <p data-i18n="car.price.confirmation_email">
+            You will receive a confirmation email shortly
+          </p>
         </div>
-        <div>
-          <span class="currency-sign price">€</span><span class="currency-num price total-price">150</span>
+        <div class="cancelation-check">
+          <img
+            src="/assets/icons/checkmark.svg"
+            alt="checkmark icon"
+            loading="lazy"
+            draggable="false"
+          />
+          <p data-i18n="car.price.free_cancellation_48h">
+            Free cancellation (48h)
+          </p>
         </div>
-      </div>
-      <div class="taxes-con">
-        <p>Taxes & fees</p>
-        <p>Included</p>
-      </div>
-      <hr>
-      <div class="total-price-con">
-        <p>Total</p>
-        <div>
-          <span class="currency-sign price">€</span><span class="currency-num price total-price">150</span>
-        </div>
-      </div>
-      <div class="price-per-day">
-        <div>
-          <span class="currency-sign">€</span><span class="currency-num" id="pricePerDay">50</span>
-        </div>
-        <p>per day</p>
-      </div>
-      <div class="payment-warning">
-        <img src="/assets/icons/banknotes-color.svg" alt="payment warning icon" loading="lazy" draggable="false">
-        <div>
-          <h1>Cash Payment Only</h1>
-          <p>Pay in cash when you collect the vehicle. No credit card required.</p>
-        </div>
-      </div>
-      <a href="/pages/booking.html" id="bookNow">Book Now</a>
-      <hr>
-      <div class="confirmation-check">
-        <img src="/assets/icons/checkmark.svg" alt="checkmark icon" loading="lazy" draggable="false">
-        <p>You will receive a confirmation email shortly</p>
-      </div>
-      <div class="cancelation-check">
-        <img src="/assets/icons/checkmark.svg" alt="checkmark icon" loading="lazy" draggable="false">
-        <p>Free cancellation (48h)</p>
-      </div>
-      <a id="whatsappBtn" href="https://wa.me/1234567890" target="_blank">Questions? WhatsApp us</a>
-    </aside>
-  </main>
-  <footer id="footer" style="width: 99%; position: relative; bottom: 0;"></footer>
-  <script src="/scripts/components.js"></script>
-  <script src="/scripts/database.js"></script>
-  <script src="/scripts/car.js" type="module"></script>
-  <script src="/scripts/currency.js"></script>
-  <script src="/scripts/lang.js"></script>
-  <script src="/scripts/analytics.js"></script>
-</body>
+        <a
+          id="whatsappBtn"
+          href="https://wa.me/1234567890"
+          target="_blank"
+          data-i18n="car.price.whatsapp_questions"
+          >Questions? WhatsApp us</a
+        >
+      </aside>
+    </main>
+    <footer
+      id="footer"
+      style="width: 99%; position: relative; bottom: 0"
+    ></footer>
+    <script src="/scripts/components.js"></script>
+    <script src="/scripts/database.js"></script>
+    <script src="/scripts/car.js" type="module"></script>
+    <script src="/scripts/currency.js"></script>
+    <script src="/scripts/analytics.js"></script>
+  </body>
 </html>
