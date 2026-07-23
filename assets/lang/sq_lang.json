@@ -125,7 +125,7 @@
       "unlimited_mileage": "Kilometrazh i pakufizuar",
       "free_cancellation": "Anulim falas",
       "special_offers": "Oferta speciale",
-      "reset_all": "Rivendos te gjitha",
+      "reset_all": "Fshi te gjitha",
       "advanced_filters": "Filtra te avancuar",
       "vehicles": "AUTOMJETE",
       "days": "DITE",
@@ -146,12 +146,12 @@
         "manual": "Manuale",
         "automatic": "Automatike",
         "petrol": "Benzine",
-        "diesel": "Dizel",
+        "diesel": "Nafte",
         "hybrid": "Hibride",
         "plugin_hybrid": "Hibride plug-in",
         "lpg": "LPG"
       },
-      "clear_all": "Rivendos te gjitha"
+      "clear_all": "Fshi te gjitha"
     },
     "state": {
       "no_match": "Asnje makine nuk perputhet me filtrat.",

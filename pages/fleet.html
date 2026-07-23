@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" translate="no">
   <head>
     <meta charset="UTF-8" />
     <meta
@@ -46,9 +46,22 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
     />
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/i18next@23/i18next.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/i18next-http-backend@2/i18next-http-backend.min.js" defer></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tom-select@2.4.3/dist/css/tom-select.default.min.css"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+      defer
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/i18next@23/i18next.min.js"
+      defer
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/i18next-http-backend@2/i18next-http-backend.min.js"
+      defer
+    ></script>
     <script src="/scripts/lang.js" defer></script>
   </head>
   <body>
@@ -85,7 +98,8 @@
             ><span id="headerLoc">Durres</span>
           </p>
           <h1 class="cars-available">
-            <span id="carNum">XX</span> <span data-i18n="fleet.header.cars_available">Cars Available</span>
+            <span id="carNum">XX</span>
+            <span data-i18n="fleet.header.cars_available">Cars Available</span>
           </h1>
         </div>
         <div class="filterLocationInfo">
@@ -342,12 +356,15 @@
         <section>
           <div class="section-body-info">
             <p class="car-count">
-              <span id="carNumFilter">X</span> <span data-i18n="fleet.state.of">OF</span>
-              <span id="totalCars">X</span> <span data-i18n="fleet.filters.vehicles">VEHICLES</span>
+              <span id="carNumFilter">X</span>
+              <span data-i18n="fleet.state.of">OF</span>
+              <span id="totalCars">X</span>
+              <span data-i18n="fleet.filters.vehicles">VEHICLES</span>
             </p>
             <div id="filterPillsCon"></div>
             <p class="day-num desktop-only">
-              <span id="dayNumFleet">X</span> <span data-i18n="fleet.filters.days">DAYS</span>
+              <span id="dayNumFleet">X</span>
+              <span data-i18n="fleet.filters.days">DAYS</span>
             </p>
           </div>
           <div class="cars-card-con"></div>
@@ -602,29 +619,21 @@
       <form class="main-dialog">
         <div class="brand-filter filter-con">
           <p data-i18n="fleet.filters.vehicle_brand">Vehicle Brand</p>
-          <input
-            type="text"
+          <select
             id="brandSearch"
-            list="brandDatalist"
+            multiple
             placeholder="All Brands"
             autocomplete="off"
-            spellcheck="false"
-          />
-          <datalist id="brandDatalist"></datalist>
-          <input type="hidden" id="brandFilter" value="all" />
+          ></select>
         </div>
         <div class="make-filter filter-con" id="makeFilterCon">
           <p data-i18n="fleet.filters.vehicle_model">Vehicle Model</p>
-          <input
-            type="text"
+          <select
             id="makeSearch"
-            list="makeDatalist"
+            multiple
             placeholder="All Models"
             autocomplete="off"
-            spellcheck="false"
-          />
-          <datalist id="makeDatalist"></datalist>
-          <input type="hidden" id="makeFilter" value="all" />
+          ></select>
         </div>
         <div class="main-filters">
           <div class="seperator">
@@ -960,6 +969,7 @@
     <script src="/scripts/database.js?v=location-filter"></script>
     <script src="/scripts/locations.js?v=location-filter"></script>
     <script src="/scripts/currency.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.4.3/dist/js/tom-select.complete.min.js"></script>
     <script src="/scripts/fleet.js" type="module"></script>
     <script src="/scripts/filterbar.js"></script>
     <script src="/scripts/index.js"></script>

@@ -145,7 +145,7 @@ function buildCarCard(car) {
   const photo = getPrimaryPhoto(car.car_photos);
   const imageUrl = getPhotoUrl(photo?.storage_path);
   const imageAlt = photo?.alt_text ?? `${car.brand} ${car.model}`;
-    const price = pricing ? parseFloat(pricing.price_per_day).toFixed(2) : "N/A"; // Price calculation
+  const price = pricing ? parseFloat(pricing.price_per_day).toFixed(2) : "N/A"; // Price calculation
   const transmissionCode = (car.transmission || "").toLowerCase();
   const transmission =
     window.DuaI18n?.tv?.("values.transmission", transmissionCode) ??
@@ -167,7 +167,7 @@ function buildCarCard(car) {
   const perDayLabel = i18n?.t?.("fleet.state.per_day") ?? "per day";
   const viewDetailsLabel =
     i18n?.t?.("fleet.state.view_details") ?? "View Details";
-    return `\n    <div class="car-card" data-car-id="${car.id}">\n      <img src="${imageUrl}" alt="${imageAlt}" class="car-image" loading="lazy" draggable="false">\n      <div class="card-body">\n        <h2 class="car-title">${car.brand} ${car.model}</h2>\n        <ul class="car-features">\n          <li><img src="/assets/icons/person.svg" alt="person icon" loading="lazy" draggable="false"> <span data-i18n-original='${seatsLabel}'>${seatsLabel}</span></li>\n          <li><img src="/assets/icons/bag.svg" alt="bag icon" loading="lazy" draggable="false"> <span data-i18n-original='${bagsLabel}'>${bagsLabel}</span></li>\n          <li><img src="/assets/icons/door.svg" alt="door icon" loading="lazy" draggable="false"> <span data-i18n-original='${doorsLabel}'>${doorsLabel}</span></li>\n          <li><img src="/assets/icons/gears.svg" alt="gears icon" loading="lazy" draggable="false"> ${transmission}</li>\n          ${car.has_ac ? `<li><img src="/assets/icons/ac.svg" alt="ac icon" loading="lazy" draggable="false"> ${acLabel}</li>` : ""}\n        </ul>\n        <ul class="car-amenities">\n          ${car.mileage_unlimited ? `<li><img src="/assets/icons/checkmark.svg" alt="checkmark icon" loading="lazy" draggable="false"> ${unlimitedMileageLabel}</li>` : ""}\n          <li><img src="/assets/icons/checkmark.svg" alt="checkmark icon" loading="lazy" draggable="false"> ${freeCancelLabel}</li>\n          <li><img src="/assets/icons/checkmark.svg" alt="checkmark icon" loading="lazy" draggable="false"> ${assistanceLabel}</li>\n        </ul>\n      </div>\n      <hr>\n      <div class="card-end">\n        <div class="car-price">\n          <span>${fromLabel}</span>\n          <div class="price">\n            <span class="currency-sign" style="font-size:1em;font-weight:bold;color:var(--color-txt-primary);">€</span><span class="currency-num" style="font-size:1em;font-weight:bold;color:var(--color-txt-primary);">${price}</span>\n          </div>\n          <span>${perDayLabel}</span>\n        </div>\n        <a href="/pages/car.html?id=${car.id}" class="rent-now-btn" id="viewDetailsBtn">${viewDetailsLabel}</a>\n      </div>\n    </div>\n  `;
+  return `\n    <div class="car-card" data-car-id="${car.id}">\n      <img src="${imageUrl}" alt="${imageAlt}" class="car-image" loading="lazy" draggable="false">\n      <div class="card-body">\n        <h2 class="car-title">${car.brand} ${car.model}</h2>\n        <ul class="car-features">\n          <li><img src="/assets/icons/person.svg" alt="person icon" loading="lazy" draggable="false"> <span data-i18n-original='${seatsLabel}'>${seatsLabel}</span></li>\n          <li><img src="/assets/icons/bag.svg" alt="bag icon" loading="lazy" draggable="false"> <span data-i18n-original='${bagsLabel}'>${bagsLabel}</span></li>\n          <li><img src="/assets/icons/door.svg" alt="door icon" loading="lazy" draggable="false"> <span data-i18n-original='${doorsLabel}'>${doorsLabel}</span></li>\n          <li><img src="/assets/icons/gears.svg" alt="gears icon" loading="lazy" draggable="false"> ${transmission}</li>\n          ${car.has_ac ? `<li><img src="/assets/icons/ac.svg" alt="ac icon" loading="lazy" draggable="false"> ${acLabel}</li>` : ""}\n        </ul>\n        <ul class="car-amenities">\n          ${car.mileage_unlimited ? `<li><img src="/assets/icons/checkmark.svg" alt="checkmark icon" loading="lazy" draggable="false"> ${unlimitedMileageLabel}</li>` : ""}\n          <li><img src="/assets/icons/checkmark.svg" alt="checkmark icon" loading="lazy" draggable="false"> ${freeCancelLabel}</li>\n          <li><img src="/assets/icons/checkmark.svg" alt="checkmark icon" loading="lazy" draggable="false"> ${assistanceLabel}</li>\n        </ul>\n      </div>\n      <hr>\n      <div class="card-end">\n        <div class="car-price">\n          <span>${fromLabel}</span>\n          <div class="price">\n            <span class="currency-sign" style="font-size:1em;font-weight:bold;color:var(--color-txt-primary);">€</span><span class="currency-num" style="font-size:1em;font-weight:bold;color:var(--color-txt-primary);">${price}</span>\n          </div>\n          <span>${perDayLabel}</span>\n        </div>\n        <a href="/pages/car.html?id=${car.id}" class="rent-now-btn" id="viewDetailsBtn">${viewDetailsLabel}</a>\n      </div>\n    </div>\n  `;
 }
 
 function sortCars(cars, sortValue) {
@@ -210,8 +210,8 @@ const activeFilters = {
   electric: false,
   freeCancel: false,
   special: false,
-  brand: "all",
-  make: "all",
+  brand: [],
+  make: [],
   year: "any",
   transmission: [],
   fuel: [],
@@ -269,9 +269,15 @@ function applyFilters(cars) {
     if (activeFilters.seats && car.seats < 4) return false;
     if (activeFilters.electric && car.fuel !== "electric") return false;
     if (activeFilters.special && !carHasSpecialOffer(car)) return false;
-    if (activeFilters.brand !== "all" && car.brand !== activeFilters.brand)
+    if (
+      activeFilters.brand.length > 0 &&
+      !activeFilters.brand.includes(car.brand)
+    )
       return false;
-    if (activeFilters.make !== "all" && car.model !== activeFilters.make)
+    if (
+      activeFilters.make.length > 0 &&
+      !activeFilters.make.includes(car.model)
+    )
       return false;
     if (activeFilters.year !== "any") {
       if (car.year < parseInt(activeFilters.year)) return false;
@@ -325,6 +331,7 @@ function applyFilters(cars) {
 }
 
 let allCars = [];
+let isCarsLoading = false;
 
 function attachPrefetchListeners() {
   container.querySelectorAll(".car-card[data-car-id]").forEach((card) => {
@@ -357,6 +364,7 @@ function attachPrefetchListeners() {
 
 function renderCars(sortValue) {
   if (!container) return;
+  if (isCarsLoading && allCars.length === 0) return;
   const sort =
     sortValue ?? document.getElementById("carSort")?.value ?? "popular";
   const filtered = applyFilters(allCars);
@@ -383,6 +391,15 @@ function renderCars(sortValue) {
   container.appendChild(fragment);
   attachPrefetchListeners();
   window.DuaI18n?.translatePage?.();
+}
+
+function refreshFleetView(sortValue) {
+  if (!container) return;
+  if (isCarsLoading && allCars.length === 0) return;
+  renderCars(sortValue);
+  requestAnimationFrame(() => {
+    window.DuaI18n?.translatePage?.();
+  });
 }
 
 const pillsConfig = [
@@ -448,23 +465,22 @@ const advancedPillDefs = [
   {
     key: "brand",
     getLabel: () =>
-      activeFilters.brand !== "all" ? activeFilters.brand : null,
+      activeFilters.brand.length > 0 ? activeFilters.brand.join(", ") : null,
     reset: () => {
-      activeFilters.brand = "all";
-      const hidden = document.getElementById("brandFilter");
-      if (hidden) hidden.value = "all";
-      const search = document.getElementById("brandSearch");
-      if (search) search.value = "";
-      updateMakeFilter("all");
+      brandTS?.clear(true);
+      activeFilters.brand = [];
+      makeTS?.clear(true);
+      activeFilters.make = [];
+      updateMakeOptions([]);
     },
   },
   {
     key: "make",
-    getLabel: () => (activeFilters.make !== "all" ? activeFilters.make : null),
+    getLabel: () =>
+      activeFilters.make.length > 0 ? activeFilters.make.join(", ") : null,
     reset: () => {
-      activeFilters.make = "all";
-      const el = document.getElementById("makeFilter");
-      if (el) el.value = "all";
+      makeTS?.clear(true);
+      activeFilters.make = [];
     },
   },
   {
@@ -744,8 +760,8 @@ function readAdvancedFilters() {
   const form =
     document.querySelector("#filtersDialog .main-dialog") ??
     document.querySelector(".mobile-advanced-filters .main-dialog");
-  activeFilters.brand = document.getElementById("brandFilter")?.value ?? "all";
-  activeFilters.make = document.getElementById("makeFilter")?.value ?? "all";
+  activeFilters.brand = brandTS ? [...brandTS.items] : [];
+  activeFilters.make = makeTS ? [...makeTS.items] : [];
   activeFilters.year =
     form?.querySelector('input[name="year"]:checked')?.value ?? "any";
   activeFilters.driverExperience =
@@ -795,8 +811,8 @@ function resetAllFilters() {
   });
   pillsCon.querySelectorAll(".filter-pill").forEach((p) => p.remove());
   pillsCon.querySelector(".clear-all-btn")?.remove();
-  activeFilters.brand = "all";
-  activeFilters.make = "all";
+  activeFilters.brand = [];
+  activeFilters.make = [];
   activeFilters.year = "any";
   activeFilters.transmission = [];
   activeFilters.fuel = [];
@@ -808,13 +824,9 @@ function resetAllFilters() {
   activeFilters.minPrice = 0;
   activeFilters.maxPrice = 200;
   activeFilters.carType = "all";
-  const brandSearch = document.getElementById("brandSearch");
-  const brandHidden = document.getElementById("brandFilter");
-  if (brandSearch) brandSearch.value = "";
-  if (brandHidden) brandHidden.value = "all";
-  if (makeSearchInput) makeSearchInput.value = "";
-  if (makeFilterHidden) makeFilterHidden.value = "all";
-  updateMakeFilter("all");
+  brandTS?.clear(true);
+  makeTS?.clear(true);
+  updateMakeOptions([]);
   const activeForm = getActiveForm();
   if (activeForm?.reset) activeForm.reset();
   if (minR) minR.value = 0;
@@ -859,15 +871,37 @@ const SKELETON_HTML = Array(4)
 
 const FLEET_CACHE_KEY = "fleet_cars_v1";
 
-const brandSearchInput = document.getElementById("brandSearch");
+const brandSearchEl = document.getElementById("brandSearch");
 
-const brandFilterHidden = document.getElementById("brandFilter");
-
-const makeSearchInput = document.getElementById("makeSearch");
-
-const makeFilterHidden = document.getElementById("makeFilter");
+const makeSearchEl = document.getElementById("makeSearch");
 
 let brandListAll = [];
+
+// Tom Select instances for the Vehicle Brand / Vehicle Model multiselects.
+// https://tom-select.js.org/ — lightweight (~16kb gzip), zero dependencies, MIT licensed.
+const tomSelectSharedConfig = {
+  plugins: ["remove_button"],
+  persist: false,
+  create: false,
+  maxOptions: null,
+  closeAfterSelect: false,
+};
+
+const brandTS =
+  brandSearchEl && window.TomSelect
+    ? new TomSelect(brandSearchEl, {
+        ...tomSelectSharedConfig,
+        placeholder: brandSearchEl.getAttribute("placeholder") ?? "All Brands",
+      })
+    : null;
+
+const makeTS =
+  makeSearchEl && window.TomSelect
+    ? new TomSelect(makeSearchEl, {
+        ...tomSelectSharedConfig,
+        placeholder: makeSearchEl.getAttribute("placeholder") ?? "All Models",
+      })
+    : null;
 
 function normalizeCachePart(value) {
   return (value || "all")
@@ -882,6 +916,7 @@ function getFleetCacheKey(pickupLoc) {
 }
 
 function renderCachedFleet(cars) {
+  isCarsLoading = false;
   allCars = cars;
   if (carNum) carNum.textContent = cars.length;
   if (totalCarNum) totalCarNum.textContent = cars.length;
@@ -922,87 +957,66 @@ async function resolvePickupLocation(locationData) {
   );
 }
 
-function populateBrandDatalist(brands) {
+function populateBrandOptions(brands) {
   brandListAll = brands;
-  const dl = document.getElementById("brandDatalist");
-  if (dl) dl.innerHTML = brands.map((b) => `<option value="${b}">`).join("");
+  if (!brandTS) return;
+  const previouslySelected = [...brandTS.items];
+  brandTS.clearOptions();
+  brands.forEach((b) => brandTS.addOption({ value: b, text: b }));
+  brandTS.refreshOptions(false);
+  // Keep any selections that are still valid after the brand list refreshes
+  // (e.g. after a language change or a fresh data load).
+  const stillValid = previouslySelected.filter((b) => brands.includes(b));
+  brandTS.setValue(stillValid, true);
+  activeFilters.brand = stillValid;
 }
 
-function updateMakeDatalist(brand) {
-  const dl = document.getElementById("makeDatalist");
-  if (!dl) return;
+function updateMakeOptions(selectedBrands, { preserveSelection = false } = {}) {
+  if (!makeTS) return;
+  const previouslySelected = [...makeTS.items];
   const models =
-    brand === "all" || !brand
+    !selectedBrands || selectedBrands.length === 0
       ? [...new Set(allCars.map((c) => c.model).filter(Boolean))].sort()
       : [
           ...new Set(
-            allCars.filter((c) => c.brand === brand).map((c) => c.model),
+            allCars
+              .filter((c) => selectedBrands.includes(c.brand))
+              .map((c) => c.model)
+              .filter(Boolean),
           ),
         ].sort();
-  dl.innerHTML = models.map((m) => `<option value="${m}">`).join("");
+  makeTS.clearOptions();
+  models.forEach((m) => makeTS.addOption({ value: m, text: m }));
+  makeTS.refreshOptions(false);
+  if (preserveSelection) {
+    const stillValid = previouslySelected.filter((m) => models.includes(m));
+    makeTS.setValue(stillValid, true);
+    activeFilters.make = stillValid;
+  } else {
+    makeTS.clear(true);
+    activeFilters.make = [];
+  }
 }
 
-function matchDatalist(id, val) {
-  const dl = document.getElementById(id);
-  if (!dl) return null;
-  return (
-    [...dl.options].find((o) => o.value.toLowerCase() === val.toLowerCase())
-      ?.value ?? null
-  );
-}
-
-brandSearchInput?.addEventListener("change", () => {
-  const val = brandSearchInput.value.trim();
-  const matched = val ? matchDatalist("brandDatalist", val) : null;
-  if (val && !matched) {
-    brandSearchInput.value = "";
-  }
-  const newBrand = matched ?? "all";
-  brandFilterHidden.value = newBrand;
-  if (activeFilters.brand !== newBrand) {
-    makeSearchInput.value = "";
-    makeFilterHidden.value = "all";
-    activeFilters.make = "all";
-    updateMakeDatalist(newBrand);
-  }
-  activeFilters.brand = newBrand;
+// Requirement 1 & 2: picking brand(s) narrows the model list to matching
+// models; picking model(s) alone doesn't restrict the brand list.
+// Requirement 3: changing the brand selection clears the current model
+// selection and repopulates the model list for the new brand(s).
+brandTS?.on("change", () => {
+  const newBrands = [...brandTS.items];
+  activeFilters.brand = newBrands;
+  updateMakeOptions(newBrands);
 });
 
-brandSearchInput?.addEventListener("input", () => {
-  if (brandSearchInput.value.trim() === "") {
-    brandFilterHidden.value = "all";
-    if (activeFilters.brand !== "all") {
-      makeSearchInput.value = "";
-      makeFilterHidden.value = "all";
-      activeFilters.make = "all";
-      updateMakeDatalist("all");
-    }
-    activeFilters.brand = "all";
-  }
+makeTS?.on("change", () => {
+  activeFilters.make = [...makeTS.items];
 });
-
-makeSearchInput?.addEventListener("change", () => {
-  const val = makeSearchInput.value.trim();
-  const matched = val ? matchDatalist("makeDatalist", val) : null;
-  if (val && !matched) {
-    makeSearchInput.value = "";
-  }
-  makeFilterHidden.value = matched ?? "all";
-  activeFilters.make = matched ?? "all";
-});
-
-function updateMakeFilter(brand) {
-  makeSearchInput.value = "";
-  makeFilterHidden.value = "all";
-  activeFilters.make = "all";
-  updateMakeDatalist(brand);
-}
 
 function populateFiltersFromData(cars) {
-  populateBrandDatalist(
+  populateBrandOptions(
     [...new Set(cars.map((c) => c.brand).filter(Boolean))].sort(),
   );
-  updateMakeDatalist("all");
+  updateMakeOptions(activeFilters.brand, { preserveSelection: true });
   const dbFuels = [...new Set(cars.map((c) => c.fuel).filter(Boolean))].sort();
   const fuelList = document.getElementById("fuelFilterList");
   if (fuelList) {
@@ -1030,8 +1044,10 @@ function populateFiltersFromData(cars) {
 
 async function loadCars() {
   if (!container) return;
+  isCarsLoading = true;
   let locationData =
-    JSON.parse(localStorage.getItem("locationData")) ?? getDefaultLocationData();
+    JSON.parse(localStorage.getItem("locationData")) ??
+    getDefaultLocationData();
   const pickupLocFromState = locationData?.pickupLoc ?? "";
   const cached = cacheGet(getFleetCacheKey(pickupLocFromState));
   if (cached) {
@@ -1043,6 +1059,7 @@ async function loadCars() {
 
   const client = await window.supabaseClientReady;
   if (!client) {
+    isCarsLoading = false;
     const loadFailed =
       window.DuaI18n?.t?.("fleet.state.load_failed") ?? "Failed to load cars.";
     const tryAgain =
@@ -1084,6 +1101,7 @@ async function loadCars() {
 
   if (pickupLoc && !availableCarIds) {
     if (!locationId) {
+      isCarsLoading = false;
       allCars = [];
       if (carNum) carNum.textContent = 0;
       if (totalCarNum) totalCarNum.textContent = 0;
@@ -1096,10 +1114,13 @@ async function loadCars() {
       .select("car_id")
       .eq("location_id", locationId);
     if (locationCarsError) {
+      isCarsLoading = false;
       const loadFailed =
-        window.DuaI18n?.t?.("fleet.state.load_failed") ?? "Failed to load cars.";
+        window.DuaI18n?.t?.("fleet.state.load_failed") ??
+        "Failed to load cars.";
       const tryAgain =
-        window.DuaI18n?.t?.("fleet.state.try_again") ?? "Please try again later.";
+        window.DuaI18n?.t?.("fleet.state.try_again") ??
+        "Please try again later.";
       container.innerHTML = `\n        <div class="error-con">\n          <img src="/assets/icons/error.svg" alt="error icon" loading="lazy" draggable="false">\n          <h1>Failed to load cars.</h1>\n          <p>Please try again later.</p>\n        </div>`;
       return;
     }
@@ -1107,6 +1128,7 @@ async function loadCars() {
       ...new Set((locationCars ?? []).map((row) => row.car_id).filter(Boolean)),
     ];
     if (availableCarIds.length === 0) {
+      isCarsLoading = false;
       allCars = [];
       if (carNum) carNum.textContent = 0;
       if (totalCarNum) totalCarNum.textContent = 0;
@@ -1127,6 +1149,7 @@ async function loadCars() {
     .order("brand", { ascending: true })
     .limit(50);
   if (error) {
+    isCarsLoading = false;
     const loadFailed =
       window.DuaI18n?.t?.("fleet.state.load_failed") ?? "Failed to load cars.";
     const tryAgain =
@@ -1135,6 +1158,7 @@ async function loadCars() {
     return;
   }
   if (!cars || cars.length === 0) {
+    isCarsLoading = false;
     const noneAvailable =
       window.DuaI18n?.t?.("fleet.state.none_available") ??
       "No cars available at this moment";
@@ -1296,7 +1320,11 @@ document.addEventListener("languageChanged", () => {
   if (allCars.length) populateFiltersFromData(allCars);
   retranslatePopularPills();
   syncAdvancedPills();
-  renderCars(document.getElementById("carSort")?.value ?? "popular");
+  refreshFleetView(document.getElementById("carSort")?.value ?? "popular");
+});
+
+window.addEventListener("languageChanged", () => {
+  refreshFleetView(document.getElementById("carSort")?.value ?? "popular");
 });
 
 loadCars();
